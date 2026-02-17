@@ -9,27 +9,11 @@
     <meta property="og:description" content="Welche Partei passt zu mir? Mach den Check mit 25 Thesen für München.">
     <meta property="og:image" content="https://wahlnavi-muenchen.de/share-image.png">
     <meta property="og:type" content="website">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="alpine.min.js"></script>
     <script src="wahlomat_data.js"></script>
     <link rel="icon" type="image/png" href="icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .card { @apply bg-white border border-slate-200 rounded-xl shadow-sm; }
-        .btn { @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2; }
-        .btn-primary { @apply bg-slate-900 text-white hover:bg-slate-800 focus:ring-slate-900; }
-        .btn-success { @apply bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-600; }
-        .btn-neutral { @apply bg-slate-200 text-slate-700 hover:bg-slate-300 focus:ring-slate-400; }
-        .btn-danger { @apply bg-rose-600 text-white hover:bg-rose-700 focus:ring-rose-600; }
-        
-        [x-cloak] { display: none !important; }
-        
-        /* Modal Transitions */
-        .modal-enter-active, .modal-leave-active { transition: opacity 0.3s ease; }
-        .modal-enter-from, .modal-leave-to { opacity: 0; }
-    </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col" x-data="wahlomatApp()" x-cloak>
 
@@ -269,10 +253,13 @@
                         
                         <!-- Party Dots -->
                         <template x-for="party in compassParties" :key="party.id">
-                            <div class="absolute w-3 h-3 rounded-full shadow-sm z-10 cursor-pointer hover:scale-150 transition-transform"
-                                 :style="`left: ${50 + (party.x * 45)}%; top: ${50 - (party.y * 45)}%; background-color: ${getPartyColor(party.id)}; transform: translate(-50%, -50%);`"
-                                 :title="party.name"
-                                 @click="openModal(party.id)">
+                            <div class="absolute"
+                                 :style="`left: ${50 + (party.x * 45)}%; top: ${50 - (party.y * 45)}%; transform: translate(-50%, -50%);`">
+                                <div class="w-3 h-3 rounded-full shadow-sm z-10 cursor-pointer hover:scale-150 transition-transform"
+                                     :style="`background-color: ${getPartyColor(party.id)};`"
+                                     :title="party.name"
+                                     @click="openModal(party.id)">
+                                </div>
                             </div>
                         </template>
                     </div>
@@ -289,19 +276,19 @@
                     <div class="mt-6">
                         <label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Ergebnis teilen</label>
                         <div class="flex gap-2">
-                            <button @click="copyLink()" class="flex-grow py-3 bg-slate-900 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-sm">
+                            <button @click="shareResults()" class="flex-grow py-3 bg-slate-900 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-sm">
                                 <span x-show="!shareTextStatus">Link kopieren</span>
                                 <span x-show="shareTextStatus" x-text="shareTextStatus" class="text-emerald-400"></span>
                                 <svg x-show="!shareTextStatus" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             </button>
                             
                             <!-- WhatsApp -->
-                            <a :href="`https://wa.me/?text=${encodeURIComponent('Mein Top-Match beim Wahl-Navi München: ' + (topMatch?.name || '') + '. Mach auch den Check: https://wahlnavi-muenchen.de')}`" target="_blank" class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors shadow-sm" title="Auf WhatsApp teilen">
+                            <a :href="`https://wa.me/?text=${encodeURIComponent('Mein Top-Match beim Wahl-Navi München: ' + (topMatch?.name || '') + '. Mach auch den Check: https://wahlnavi-muenchen.de')}`" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors shadow-sm" title="Auf WhatsApp teilen">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                             </a>
 
                             <!-- X / Twitter -->
-                            <a :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent('Mein Top-Match beim Wahl-Navi München: ' + (topMatch?.name || '') + '. Mach auch den Check:')}&url=https://wahlnavi-muenchen.de`" target="_blank" class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center hover:bg-slate-800 transition-colors shadow-sm" title="Auf X teilen">
+                            <a :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent('Mein Top-Match beim Wahl-Navi München: ' + (topMatch?.name || '') + '. Mach auch den Check:')}&url=https://wahlnavi-muenchen.de`" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center hover:bg-slate-800 transition-colors shadow-sm" title="Auf X teilen">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             </a>
                         </div>
@@ -418,306 +405,6 @@
         </div>
     </div>
 
-    <script>
-        function wahlomatApp() {
-            return {
-                step: 0,
-                totalTheses: 0,
-                theses: [],
-                parties: [],
-                answers: {}, // thesisId -> position (1, 0, -1)
-                results: [],
-                topMatch: null,
-                selectedPartyId: null,
-                modalOpen: false,
-                detailFilter: 'all', // 'all', 'match', 'diff'
-                userCoords: { x: 0, y: 0 },
-                compassParties: [],
-                shareTextStatus: '',
-
-                init() {
-                    if (window.WAHLOMAT_DATA) {
-                        this.theses = window.WAHLOMAT_DATA.theses;
-                        this.parties = window.WAHLOMAT_DATA.parties;
-                        this.totalTheses = this.theses.length;
-                    } else {
-                        console.error("Daten nicht geladen!");
-                    }
-                    
-                    // Load from LocalStorage
-                    const saved = localStorage.getItem('wahlomat_answers');
-                    if (saved) {
-                        try {
-                            this.answers = JSON.parse(saved);
-                        } catch(e) { console.error("Error loading saves", e); }
-                    }
-
-                    this.$watch('answers', val => {
-                        localStorage.setItem('wahlomat_answers', JSON.stringify(val));
-                    });
-                },
-
-                get currentThesis() {
-                    if (this.step < 1 || this.step > this.theses.length) return null;
-                    return this.theses[this.step - 1];
-                },
-
-                start() {
-                    this.step = 1;
-                    window.scrollTo(0,0);
-                    if (Object.keys(this.answers).length >= this.totalTheses) {
-                        this.calculateResults();
-                        this.step = 99;
-                    }
-                },
-
-                answer(value) {
-                    if (!this.currentThesis) return;
-                    this.answers[this.currentThesis.id] = value;
-                    this.nextStep();
-                },
-
-                skip() {
-                    if (!this.currentThesis) return;
-                    delete this.answers[this.currentThesis.id];
-                    this.nextStep();
-                },
-
-                nextStep() {
-                    if (this.step < this.totalTheses) {
-                        this.step++;
-                    } else {
-                        try {
-                            this.calculateResults();
-                            this.step = 99;
-                        } catch (e) {
-                            console.error("Calculation error:", e);
-                            alert("Fehler bei der Berechnung. Bitte neu laden.");
-                        }
-                    }
-                },
-
-                calculateResults() {
-                    try {
-                        this.results = this.parties.map(party => {
-                            let points = 0;
-                            let maxPoints = 0;
-
-                            for (const [thesisId, userPos] of Object.entries(this.answers)) {
-                                if (party.positions && party.positions[thesisId]) {
-                                    let partyPosData = party.positions[thesisId];
-                                    let partyPos = partyPosData.val !== undefined ? partyPosData.val : partyPosData.position;
-                                    let diff = Math.abs(userPos - partyPos);
-                                    points += (2 - diff);
-                                    maxPoints += 2;
-                                }
-                            }
-
-                            let percent = maxPoints > 0 ? (points / maxPoints) * 100 : 0;
-                            return {
-                                ...party,
-                                score: points,
-                                matchPercentage: percent
-                            };
-                        }).sort((a, b) => b.matchPercentage - a.matchPercentage);
-
-                        this.topMatch = this.results[0];
-                        
-                        // Calculate Compass Coordinates
-                        this.calculateCompass();
-
-                    } catch (e) {
-                        console.error("Inner calculation error", e);
-                        throw e;
-                    }
-                },
-                
-                calculateCompass() {
-                    // 1. Calculate User Coordinates
-                    let userX = 0, userY = 0;
-                    let weightSumX = 0, weightSumY = 0;
-                    
-                    for (const [thesisId, userPos] of Object.entries(this.answers)) {
-                        const thesis = this.theses.find(t => t.id == thesisId);
-                        if (thesis && thesis.axes) {
-                            // UserPos: 1 (Agree), 0 (Neutral), -1 (Disagree)
-                            // AxisWeight: -1 to 1
-                            // Contribution = UserPos * AxisWeight
-                            // Example: Tax Cut (X=1). User Agrees (1). Result X += 1 (Right).
-                            // Example: Tax Cut (X=1). User Disagrees (-1). Result X += -1 (Left).
-                            
-                            if (thesis.axes.x !== 0) {
-                                userX += userPos * thesis.axes.x;
-                                weightSumX += Math.abs(thesis.axes.x);
-                            }
-                            if (thesis.axes.y !== 0) {
-                                userY += userPos * thesis.axes.y;
-                                weightSumY += Math.abs(thesis.axes.y);
-                            }
-                        }
-                    }
-                    
-                    // Normalize to -1...1
-                    this.userCoords = {
-                        x: weightSumX > 0 ? userX / weightSumX : 0,
-                        y: weightSumY > 0 ? userY / weightSumY : 0
-                    };
-                    
-                    // 2. Calculate Party Coordinates
-                    this.compassParties = this.parties.map(party => {
-                        let pX = 0, pY = 0;
-                        let pWeightX = 0, pWeightY = 0;
-                        
-                        this.theses.forEach(thesis => {
-                            if (party.positions && party.positions[thesis.id] && thesis.axes) {
-                                let partyPosData = party.positions[thesis.id];
-                                let pos = partyPosData.val !== undefined ? partyPosData.val : partyPosData.position;
-                                
-                                if (thesis.axes.x !== 0) {
-                                    pX += pos * thesis.axes.x;
-                                    pWeightX += Math.abs(thesis.axes.x);
-                                }
-                                if (thesis.axes.y !== 0) {
-                                    pY += pos * thesis.axes.y;
-                                    pWeightY += Math.abs(thesis.axes.y);
-                                }
-                            }
-                        });
-                        
-                        return {
-                            id: party.id,
-                            name: party.name,
-                            x: pWeightX > 0 ? pX / pWeightX : 0,
-                            y: pWeightY > 0 ? pY / pWeightY : 0
-                        };
-                    });
-                },
-
-                reset() {
-                    if(confirm("Möchten Sie wirklich neu starten? Ihre Antworten werden gelöscht.")) {
-                        this.step = 0;
-                        this.answers = {};
-                        this.results = [];
-                        this.topMatch = null;
-                        this.selectedPartyId = null;
-                        this.modalOpen = false;
-                        localStorage.removeItem('wahlomat_answers');
-                    }
-                },
-                
-                openModal(id) {
-                    this.selectedPartyId = id;
-                    this.modalOpen = true;
-                    this.detailFilter = 'all';
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                },
-                
-                closeModal() {
-                    this.modalOpen = false;
-                    this.selectedPartyId = null;
-                    document.body.style.overflow = ''; 
-                },
-                
-                getSelectedParty() {
-                    return this.results.find(p => p.id === this.selectedPartyId);
-                },
-                
-                getFilteredTheses() {
-                    const party = this.getSelectedParty();
-                    if (!party) return [];
-                    
-                    return this.theses.filter(thesis => {
-                        // Must be answered
-                        if (this.answers[thesis.id] === undefined) return false;
-                        
-                        // Filter Logic
-                        const partyPos = this.getPartyPosition(party, thesis.id);
-                        const userPos = this.answers[thesis.id];
-                        const diff = Math.abs(userPos - partyPos);
-                        
-                        if (this.detailFilter === 'all') return true;
-                        if (this.detailFilter === 'match') return diff <= 1; // 0 or 1 difference (Agree/Agree or Agree/Neutral) - loose match
-                        if (this.detailFilter === 'diff') return diff > 1; // 2 difference (Agree/Disagree) - strict difference
-                        return true;
-                    });
-                },
-
-                // Helpers
-                getPartyPosition(party, thesisId) {
-                    if (!party || !party.positions || !party.positions[thesisId]) return null;
-                    return party.positions[thesisId].val;
-                },
-
-                getPartyQuote(party, thesisId) {
-                    if (!party || !party.positions || !party.positions[thesisId]) return null;
-                    return party.positions[thesisId].quote;
-                },
-                
-                getIconSimple(value) {
-                    // Small icons for modal list
-                    if (value === 1) return '<span class="text-emerald-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span>';
-                    if (value === -1) return '<span class="text-rose-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></span>';
-                    return '<span class="text-slate-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></span>';
-                },
-                
-                // Helper for the modal to show "Stimme zu" etc text? Maybe redundant.
-
-                getIcon(value) {
-                    if (value === 1) return '<span class="text-emerald-600 font-bold flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Zustimmung</span>';
-                    if (value === -1) return '<span class="text-rose-600 font-bold flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Ablehnung</span>';
-                    return '<span class="text-slate-500 font-bold flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg> Neutral</span>';
-                },
-
-                getPositionMatchClass(userVal, partyVal) {
-                    if (partyVal === null) return 'border-slate-200 opacity-50';
-                    const diff = Math.abs(userVal - partyVal);
-                    if (diff === 0) return 'border-emerald-400 bg-emerald-50/30'; // Exact Match
-                    if (diff === 1) return 'border-yellow-400'; // Slight diff
-                    return 'border-rose-400 bg-rose-50/30'; // Mismatch
-                },
-
-                getPartyColor(id) {
-                    const colors = {
-                        'gruene': '#16a34a', 'spd': '#dc2626', 'csu': '#0284c7', 'fdp': '#ca8a04',
-                        'afd': '#0ea5e9', 'linke': '#db2777', 'volt': '#7c3aed', 'oedp': '#ea580c',
-                        'partei': '#334155', 'rosa_liste': '#ec4899', 'muenchen_liste': '#0f766e',
-                        'bp': '#1e3a8a', 'bk': '#be185d', 'fw': '#f59e0b'
-                    };
-                    return colors[id] || '#64748b';
-                },
-
-                getPartySlogan(id) {
-                    const slogans = {
-                        'gruene': 'Für ein klimaneutrales München.', 'spd': 'Sozial und gerecht.',
-                        'csu': 'Näher am Menschen.', 'volt': 'Europäisch denken, lokal handeln.',
-                        'partei': 'Die Partei für Arbeit, Rechtsstaat...', 'oedp': 'Weniger ist mehr.',
-                        'muenchen_liste': 'Wachstum begrenzen.', 'fdp': 'Technologieoffen und frei.',
-                        'afd': 'Mut zur Wahrheit.', 'linke': 'München für alle.',
-                        'rosa_liste': 'Vielfalt in München.', 'bp': 'Leben und leben lassen.',
-                        'bk': 'Kultur ist alles.', 'fw': 'München gemeinsam besser.'
-                    };
-                    return slogans[id] || 'Kommunalwahl 2026';
-                },
-                
-                shareResults() {
-                    const top = this.topMatch ? this.topMatch.name : 'Unbekannt';
-                    const text = `Mein Top-Match beim Wahl-Navi München: ${top} (${Math.round(this.topMatch?.matchPercentage || 0)}%). Mach auch den Check: https://wahlnavi-muenchen.de`;
-                    
-                    if (navigator.share) {
-                        navigator.share({
-                            title: 'Wahl-Navi München 2026',
-                            text: text,
-                            url: 'https://wahlnavi-muenchen.de'
-                        }).catch(console.error);
-                    } else {
-                        navigator.clipboard.writeText(text).then(() => {
-                            this.shareTextStatus = 'In Zwischenablage kopiert!';
-                            setTimeout(() => this.shareTextStatus = '', 3000);
-                        });
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

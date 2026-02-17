@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datenschutz - Wahl-Navi München</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="icon.png">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
 
@@ -24,40 +23,92 @@
         <h1 class="text-3xl font-bold mb-8">Datenschutzerklärung</h1>
 
         <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 text-slate-800 leading-relaxed">
-            
-            <section>
-                <h2 class="text-xl font-bold mb-2 text-slate-900">1. Kurzfassung</h2>
-                <p>Wir nehmen Datenschutz ernst – indem wir erst gar keine Daten sammeln. Diese Webseite nutzt:</p>
-                <ul class="list-disc pl-5 mt-2 space-y-1">
-                    <li><strong>Keine Cookies.</strong></li>
-                    <li><strong>Kein Tracking</strong> (kein Google Analytics, kein Facebook Pixel etc.).</li>
-                    <li><strong>Keine Datenbank.</strong> Alle Eingaben werden ausschließlich in Ihrem Browser verarbeitet ("Client-Side"). Wir sehen nicht, was Sie anklicken.</li>
-                </ul>
-            </section>
 
             <section>
-                <h2 class="text-xl font-bold mb-2 text-slate-900">2. Lokale Speicherung</h2>
-                <p>Damit Ihre Antworten beim Neuladen der Seite nicht verloren gehen, speichern wir Ihren Fortschritt im sogenannten "Local Storage" Ihres Browsers. Diese Daten verlassen niemals Ihr Gerät und werden gelöscht, wenn Sie auf "Neu starten" klicken oder Ihre Browserdaten bereinigen.</p>
-            </section>
-
-            <section>
-                <h2 class="text-xl font-bold mb-2 text-slate-900">3. Hosting</h2>
-                <p>Diese Webseite wird als statische Seite gehostet (z.B. über GitHub Pages oder Netlify). Der Hosting-Provider erhebt technisch notwendige Server-Logfiles (z.B. IP-Adresse, Browser, Zeitpunkt des Abrufs), um den sicheren Betrieb der Seite zu gewährleisten. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.</p>
-            </section>
-
-            <section>
-                <h2 class="text-xl font-bold mb-2 text-slate-900">4. Externe Dienste (CDN)</h2>
-                <p>Um die Ladezeiten zu optimieren, werden Programmbibliotheken (Schriftarten, Alpine.js, TailwindCSS) teilweise von externen Servern (CDNs) geladen. Hierbei wird Ihre IP-Adresse an den jeweiligen Dienstleister übermittelt, jedoch nicht dauerhaft gespeichert.</p>
-            </section>
-
-            <section>
-                <h2 class="text-xl font-bold mb-2 text-slate-900">5. Verantwortliche Stelle</h2>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">1. Verantwortlicher (Art. 13 Abs. 1 lit. a DSGVO)</h2>
                 <p>
                     Frederik Metz<br>
                     Ridlerstr. 29f<br>
                     80339 München<br>
-                    E-Mail: frederikmetz@gmail.com
+                    E-Mail: <a href="mailto:frederikmetz@gmail.com" class="text-blue-600 hover:underline">frederikmetz@gmail.com</a>
                 </p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">2. Kurzfassung</h2>
+                <p>Wir nehmen Datenschutz ernst &ndash; indem wir erst gar keine Daten sammeln. Diese Webseite nutzt:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Keine Cookies.</strong></li>
+                    <li><strong>Kein Tracking</strong> (kein Google Analytics, kein Facebook Pixel etc.).</li>
+                    <li><strong>Keine externen CDNs.</strong> Alle Schriftarten, Skripte und Stylesheets werden direkt von unserem Server ausgeliefert. Es werden keine Daten an Drittanbieter wie Google, Cloudflare oder jsDelivr übermittelt.</li>
+                    <li><strong>Keine Datenbank.</strong> Alle Eingaben werden ausschließlich in Ihrem Browser verarbeitet. Wir sehen nicht, was Sie anklicken.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">3. Hosting (Art. 6 Abs. 1 lit. f DSGVO)</h2>
+                <p>Diese Webseite wird als statische Seite über <strong>GitHub Pages</strong> gehostet, einen Dienst der GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.</p>
+                <p class="mt-2">Der Hosting-Provider erhebt technisch notwendige Server-Logfiles (z.&nbsp;B. IP-Adresse, Browser-Typ, Zeitpunkt des Abrufs), um den sicheren Betrieb der Seite zu gewährleisten. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren Bereitstellung der Webseite).</li>
+                    <li><strong>Speicherdauer:</strong> Server-Logfiles werden von GitHub gemäß dessen Datenschutzrichtlinie gespeichert (in der Regel max. 30 Tage).</li>
+                    <li><strong>Drittlandübermittlung:</strong> GitHub, Inc. ist in den USA ansässig. Die Datenübermittlung erfolgt auf Grundlage von Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO) sowie dem EU-U.S. Data Privacy Framework.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">4. Lokale Speicherung (Art. 6 Abs. 1 lit. f DSGVO)</h2>
+                <p>Damit Ihre Antworten beim Neuladen der Seite nicht verloren gehen, speichern wir Ihren Fortschritt im sogenannten &bdquo;Local Storage&ldquo; Ihres Browsers. Diese Daten verlassen niemals Ihr Gerät und sind für uns nicht einsehbar.</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Komfortfunktion).</li>
+                    <li><strong>Gespeicherte Daten:</strong> Ausschließlich Ihre Quiz-Antworten (numerische Werte: 1, 0, -1). Keine personenbezogenen Daten.</li>
+                    <li><strong>Löschung:</strong> Klicken Sie auf &bdquo;Neu starten&ldquo; oder bereinigen Sie Ihre Browserdaten.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">5. Teilen-Funktion</h2>
+                <p>Wenn Sie auf die Teilen-Buttons (WhatsApp, X/Twitter) klicken, werden Sie zu den jeweiligen Diensten weitergeleitet. Dabei wird Ihre IP-Adresse sowie der vorausgefüllte Nachrichtentext (der Ihren Top-Match-Parteinamen enthält) an den jeweiligen Dienst übermittelt:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>WhatsApp:</strong> Meta Platforms Ireland Ltd., 4 Grand Canal Square, Dublin 2, Irland.</li>
+                    <li><strong>X (Twitter):</strong> X Corp., 1355 Market Street, Suite 900, San Francisco, CA 94103, USA.</li>
+                </ul>
+                <p class="mt-2">Die Weiterleitung erfolgt erst durch Ihren aktiven Klick. Ohne Klick werden keine Daten an diese Dienste übermittelt.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">6. Keine Cookies</h2>
+                <p>Diese Webseite setzt keine Cookies. Ein Cookie-Banner ist daher nicht erforderlich (§ 25 TDDDG).</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">7. Ihre Rechte (Art. 15&ndash;21 DSGVO)</h2>
+                <p>Sie haben jederzeit das Recht auf:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Auskunft</strong> über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
+                    <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+                    <li><strong>Löschung</strong> Ihrer Daten (Art. 17 DSGVO)</li>
+                    <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+                    <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+                    <li><strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
+                </ul>
+                <p class="mt-2">Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:frederikmetz@gmail.com" class="text-blue-600 hover:underline">frederikmetz@gmail.com</a></p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">8. Beschwerderecht bei der Aufsichtsbehörde (Art. 77 DSGVO)</h2>
+                <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die für uns zuständige Aufsichtsbehörde ist:</p>
+                <p class="mt-2">
+                    Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)<br>
+                    Promenade 18<br>
+                    91522 Ansbach<br>
+                    E-Mail: <a href="mailto:poststelle@lda.bayern.de" class="text-blue-600 hover:underline">poststelle@lda.bayern.de</a><br>
+                    Web: <a href="https://www.lda.bayern.de" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">www.lda.bayern.de</a>
+                </p>
+            </section>
+
+            <section class="text-sm text-slate-500 pt-4 border-t border-slate-100">
+                <p>Stand: Februar 2026</p>
             </section>
 
         </div>

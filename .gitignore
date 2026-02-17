@@ -25,6 +25,14 @@ venv/
 *.key
 *.pem
 
+# Internal Docs & Private Vault
+_internal/
+
+# Build tools (not deployed)
+tailwindcss
+input.css
+tailwind.config.js
+
 # Local IDE
 .vscode/
 .idea/
