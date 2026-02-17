@@ -1,0 +1,30 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Backups & Temp
+*.bak
+*.swp
+*~
+data/database_backup_*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
+
+# Environment / Secrets
+.env
+.env.local
+.env.*.local
+.secret
+*.key
+*.pem
+
+# Local IDE
+.vscode/
+.idea/

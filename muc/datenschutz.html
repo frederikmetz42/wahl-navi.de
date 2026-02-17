@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutz - Wahl-Navi München</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+    <nav class="bg-white border-b border-slate-200">
+        <div class="max-w-3xl mx-auto px-6 h-16 flex items-center">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-slate-900 hover:opacity-70 transition-opacity">
+                <svg class="w-5 h-5 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                Zurück zum Wahl-Navi
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-12 flex-grow w-full">
+        <h1 class="text-3xl font-bold mb-8">Datenschutzerklärung</h1>
+
+        <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm space-y-6 text-slate-800 leading-relaxed">
+            
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">1. Kurzfassung</h2>
+                <p>Wir nehmen Datenschutz ernst – indem wir erst gar keine Daten sammeln. Diese Webseite nutzt:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Keine Cookies.</strong></li>
+                    <li><strong>Kein Tracking</strong> (kein Google Analytics, kein Facebook Pixel etc.).</li>
+                    <li><strong>Keine Datenbank.</strong> Alle Eingaben werden ausschließlich in Ihrem Browser verarbeitet ("Client-Side"). Wir sehen nicht, was Sie anklicken.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">2. Lokale Speicherung</h2>
+                <p>Damit Ihre Antworten beim Neuladen der Seite nicht verloren gehen, speichern wir Ihren Fortschritt im sogenannten "Local Storage" Ihres Browsers. Diese Daten verlassen niemals Ihr Gerät und werden gelöscht, wenn Sie auf "Neu starten" klicken oder Ihre Browserdaten bereinigen.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">3. Hosting</h2>
+                <p>Diese Webseite wird als statische Seite gehostet (z.B. über GitHub Pages oder Netlify). Der Hosting-Provider erhebt technisch notwendige Server-Logfiles (z.B. IP-Adresse, Browser, Zeitpunkt des Abrufs), um den sicheren Betrieb der Seite zu gewährleisten. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">4. Externe Dienste (CDN)</h2>
+                <p>Um die Ladezeiten zu optimieren, werden Programmbibliotheken (Schriftarten, Alpine.js, TailwindCSS) teilweise von externen Servern (CDNs) geladen. Hierbei wird Ihre IP-Adresse an den jeweiligen Dienstleister übermittelt, jedoch nicht dauerhaft gespeichert.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-2 text-slate-900">5. Verantwortliche Stelle</h2>
+                <p>
+                    Frederik Metz<br>
+                    Ridlerstr. 29f<br>
+                    80339 München<br>
+                    E-Mail: frederikmetz@gmail.com
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-8 text-slate-400 text-sm">
+        &copy; 2026 Frederik Metz
+    </footer>
+
+</body>
+</html>
