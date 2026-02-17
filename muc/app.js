@@ -279,21 +279,25 @@ function wahlomatApp() {
         },
 
         shareResults() {
-            const top = this.topMatch ? this.topMatch.name : 'Unbekannt';
-            const text = `Mein Top-Match beim Wahl-Navi München: ${top} (${Math.round(this.topMatch?.matchPercentage || 0)}%). Mach auch den Check: https://wahlnavi-muenchen.de`;
+            const title = 'WahlNavi München 2026';
+            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test!`;
+            const url = 'https://wahl-navi.de';
 
             if (navigator.share) {
-                navigator.share({
-                    title: 'Wahl-Navi München 2026',
-                    text: text,
-                    url: 'https://wahlnavi-muenchen.de'
-                }).catch(console.error);
+                navigator.share({ title, text, url }).catch(console.error);
             } else {
-                navigator.clipboard.writeText(text).then(() => {
-                    this.shareTextStatus = 'In Zwischenablage kopiert!';
-                    setTimeout(() => this.shareTextStatus = '', 3000);
-                });
+                this.copyLink();
             }
+        },
+
+        copyLink() {
+            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test: https://wahl-navi.de`;
+            navigator.clipboard.writeText(text).then(() => {
+                this.shareTextStatus = 'Kopiert!';
+                setTimeout(() => this.shareTextStatus = '', 2000);
+            }).catch(() => {
+                alert('Link konnte nicht kopiert werden.');
+            });
         }
     }
 }

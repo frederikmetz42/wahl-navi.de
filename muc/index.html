@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wahl-Navi München 2026</title>
+    <title>WahlNavi München 2026</title>
     <meta name="description" content="Vergleiche deine Positionen mit den Parteien zur Münchner Kommunalwahl 2026. Dein Kompass für die Stadtpolitik.">
-    <meta property="og:title" content="Wahl-Navi München 2026">
+    <meta property="og:title" content="WahlNavi München 2026">
     <meta property="og:description" content="Welche Partei passt zu mir? Mach den Check mit 25 Thesen für München.">
-    <meta property="og:image" content="https://wahlnavi-muenchen.de/share-image.png">
+    <meta property="og:image" content="https://wahl-navi.de/muc/icon.png">
     <meta property="og:type" content="website">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
-    <script defer src="alpine.min.js"></script>
     <script src="wahlomat_data.js"></script>
     <link rel="icon" type="image/png" href="icon.png">
 </head>
 <body class="antialiased min-h-screen flex flex-col" x-data="wahlomatApp()" x-cloak>
 
-    <!-- Navbar -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2 cursor-pointer" @click="reset()">
-                <!-- Nav Icon: Image -->
                 <div class="w-10 h-10 flex items-center justify-center">
                     <img src="icon.svg" class="w-full h-full object-contain" alt="Logo">
                 </div>
@@ -30,280 +27,162 @@
                     <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Kommunalwahl München 2026</div>
                 </div>
             </div>
-            <div class="text-sm text-slate-500" x-show="step > 0 && step <= totalTheses">
-                Frage <span x-text="step"></span> von <span x-text="totalTheses"></span>
+            <div class="text-xs text-slate-400 font-mono" x-show="step > 0 && step <= totalTheses">
+                <span class="text-slate-900 font-bold" x-text="step"></span> / <span x-text="totalTheses"></span>
             </div>
+        </div>
+        <div class="h-1 bg-slate-100 w-full overflow-hidden">
+            <div class="h-full bg-blue-600 transition-all duration-500 ease-out" :style="`width: ${(step / totalTheses) * 100}%`" x-show="step > 0 && step <= totalTheses"></div>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-5xl mx-auto px-6 py-12 w-full relative">
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12 w-full relative">
 
-                                <!-- Intro View -->
+        <!-- Intro -->
+        <div x-show="step === 0" x-transition.opacity class="max-w-2xl mx-auto text-center space-y-8 mt-4">
+            <div class="inline-flex items-center justify-center w-24 h-24 mb-6">
+                <img src="icon.svg" class="w-full h-full object-contain drop-shadow-sm" alt="Logo">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">Orientierung<br><span class="text-slate-400 font-light">für München.</span></h1>
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-800 rounded-full font-medium text-sm">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> 25 Thesen zu Verkehr, Wohnen & Klima
+            </div>
+            <p class="text-lg text-slate-600 leading-relaxed max-w-lg mx-auto">Vergleichen Sie Ihre Positionen mit denen der Parteien zur Kommunalwahl 2026. Finden Sie heraus, wer Ihre Interessen im Stadtrat vertritt.</p>
+            <div class="flex justify-center gap-4 pt-4">
+                <button @click="start()" class="btn btn-primary text-lg px-10 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Starten</button>
+            </div>
+            <p class="text-xs text-slate-400 mt-12">Unabhängige Informationshilfe. Daten basierend auf Wahlprogrammen.</p>
+        </div>
 
-                                <div x-show="step === 0" class="max-w-2xl mx-auto text-center space-y-8 mt-8">
-
-                                    
-
-                                    <!-- Big Hero Logo -->
-
-                                    <div class="inline-flex items-center justify-center w-24 h-24 mb-6">
-
-                                        <img src="icon.svg" class="w-full h-full object-contain drop-shadow-sm" alt="Logo">
-
-                                    </div>
-
-                        
-
-                                    <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-
-                        Orientierung<br><span class="text-slate-400 font-light">für München.</span>
-
-                    </h1>
-
-                    
-
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-800 rounded-full font-medium text-sm">
-
-                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-
-                        25 Thesen zu Verkehr, Wohnen & Klima
-
-                    </div>
-
-        
-
-                    <p class="text-lg text-slate-600 leading-relaxed max-w-lg mx-auto">
-
-                        Vergleichen Sie Ihre Positionen mit denen der Parteien zur Kommunalwahl 2026.
-
-                        Finden Sie heraus, wer Ihre Interessen im Stadtrat vertritt.
-
-                    </p>
-
-                    
-
-                    <div class="flex justify-center gap-4 pt-4">
-
-                        <button @click="start()" class="btn btn-primary text-lg px-10 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Starten</button>
-
-                    </div>
-
-                    <p class="text-xs text-slate-400 mt-12">Unabhängige Informationshilfe. Daten basierend auf Wahlprogrammen.</p>
-
-                </div>
-
-        <!-- Question View -->
-        <div x-show="step > 0 && step <= totalTheses" class="max-w-3xl mx-auto">
+        <!-- Questions -->
+        <div x-show="step > 0 && step <= totalTheses" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-4" class="max-w-3xl mx-auto">
             <template x-if="currentThesis">
-                <div class="card p-8 md:p-12 transition-all duration-300">
+                <div class="card p-6 md:p-12">
                     <div class="mb-6 flex flex-wrap items-center gap-2">
-                        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider rounded-full" x-text="currentThesis.topic"></span>
-                        <span class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold tracking-wide rounded-full border border-amber-100 shadow-sm" x-show="currentThesis.tradeoff" x-text="currentThesis.tradeoff"></span>
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-[10px] md:text-xs font-semibold uppercase tracking-wider rounded-full" x-text="currentThesis.topic"></span>
+                        <span class="px-3 py-1 bg-amber-50 text-amber-700 text-[10px] md:text-xs font-bold tracking-wide rounded-full border border-amber-100 shadow-sm" x-show="currentThesis.tradeoff" x-text="currentThesis.tradeoff"></span>
                     </div>
-                    
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6 leading-tight" x-text="currentThesis.statement"></h2>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
-                        <button @click="answer(1)" class="btn btn-success flex flex-col items-center justify-center py-6 gap-2 hover:scale-[1.02]">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Stimme zu
+                    <h2 class="text-xl md:text-3xl font-bold text-slate-900 mb-6 leading-tight" x-text="currentThesis.statement"></h2>
+                    <div class="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12">
+                        <button @click="answer(1)" class="btn btn-success flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
+                            <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Zustimmung</span>
                         </button>
-                        <button @click="answer(0)" class="btn btn-neutral flex flex-col items-center justify-center py-6 gap-2 hover:scale-[1.02]">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
-                            Neutral
+                        <button @click="answer(0)" class="btn btn-neutral flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
+                            <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                            <span>Neutral</span>
                         </button>
-                        <button @click="answer(-1)" class="btn btn-danger flex flex-col items-center justify-center py-6 gap-2 hover:scale-[1.02]">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            Stimme nicht zu
+                        <button @click="answer(-1)" class="btn btn-danger flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
+                            <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Ablehnung</span>
                         </button>
                     </div>
-
-                    <div class="mt-8 flex justify-between items-center text-sm text-slate-400">
-                        <button @click="step--" class="hover:text-slate-600" x-show="step > 1">Zurück</button>
-                        <button @click="skip()" class="hover:text-slate-600 ml-auto">Überspringen</button>
-                    </div>
-                    
-                    <!-- Fallback / Manual Trigger for last step -->
-                    <div x-show="step === totalTheses" class="mt-4 text-center">
-                         <button @click="nextStep()" class="text-xs text-blue-600 hover:underline">
-                             Ergebnis direkt anzeigen
-                         </button>
+                    <div class="mt-10 flex justify-between items-center text-sm text-slate-400 border-t border-slate-50 pt-6">
+                        <button @click="step--" class="hover:text-slate-600 flex items-center gap-1" x-show="step > 1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Zurück</button>
+                        <button @click="skip()" class="hover:text-slate-600 ml-auto flex items-center gap-1">Überspringen <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
                     </div>
                 </div>
             </template>
         </div>
 
-        <!-- Results View -->
-        <div x-show="step === 99" class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            <!-- Left Column: Results List -->
+        <!-- Results -->
+        <div x-show="step === 99" x-transition.opacity class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div class="lg:col-span-7 space-y-8">
-                
-                <!-- Top Match -->
                 <section x-show="topMatch">
                     <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Dein Ergebnis</h2>
-                    <div class="card p-8 flex items-center justify-between bg-gradient-to-br from-white to-slate-50 cursor-pointer hover:shadow-md transition-shadow" @click="openModal(topMatch.id)">
+                    <div class="card p-8 flex items-center justify-between bg-gradient-to-br from-white to-slate-50 cursor-pointer hover:shadow-md transition-shadow" @click="topMatch && openModal(topMatch.id)">
                         <div>
                             <div class="text-sm text-slate-500 mb-1">Höchste Übereinstimmung</div>
-                            <div class="text-4xl font-bold mb-2 text-slate-900" x-text="topMatch.name"></div>
-                            <p class="text-slate-600 text-sm max-w-xs mt-2" x-text="getPartySlogan(topMatch.id)"></p>
-                            <div class="text-xs text-blue-600 font-medium mt-4 flex items-center">
-                                Details ansehen <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </div>
+                            <div class="text-4xl font-extrabold mb-2 text-slate-900" x-text="topMatch?.name"></div>
+                            <p class="text-slate-600 text-sm max-w-xs mt-2" x-text="topMatch ? getPartySlogan(topMatch.id) : ''"></p>
+                            <div class="text-xs text-blue-600 font-bold mt-6 flex items-center gap-1">DETAILS ANSEHEN <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
                         </div>
-                        
-                        <!-- Ring Chart -->
                         <div class="relative w-32 h-32 flex-shrink-0">
                             <svg class="w-full h-full transform -rotate-90">
                                 <circle cx="64" cy="64" r="60" stroke="#e2e8f0" stroke-width="8" fill="none"/>
-                                <circle cx="64" cy="64" r="60" :stroke="getPartyColor(topMatch.id)" stroke-width="8" fill="none"
-                                        stroke-dasharray="377" :stroke-dashoffset="377 - (377 * topMatch.matchPercentage / 100)"
-                                        class="transition-all duration-1000 ease-out"/>
+                                <circle cx="64" cy="64" r="60" :stroke="topMatch ? getPartyColor(topMatch.id) : '#e2e8f0'" stroke-width="8" fill="none" stroke-dasharray="377" :stroke-dashoffset="topMatch ? 377 - (377 * topMatch.matchPercentage / 100) : 377" class="transition-all duration-1000 ease-out"/>
                             </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-2xl font-bold" x-text="Math.round(topMatch.matchPercentage) + '%'"></span>
-                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center"><span class="text-2xl font-bold" x-text="topMatch ? Math.round(topMatch.matchPercentage) + '%' : ''"></span></div>
                         </div>
                     </div>
                 </section>
 
-                <!-- All Parties -->
                 <section>
                     <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Alle Parteien</h3>
                     <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                         <template x-for="(party, index) in results" :key="party.id">
-                            <div class="group relative flex items-center p-4 border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors cursor-pointer" @click="openModal(party.id)">
-                                <div class="w-8 text-center text-slate-400 font-mono text-sm mr-4" x-text="index + 1"></div>
+                            <div class="group relative flex items-center p-4 border-b border-slate-100 last:border-0 hover:bg-slate-50 cursor-pointer" @click="openModal(party.id)">
+                                <div class="w-8 text-center text-slate-400 font-mono text-xs mr-4" x-text="index + 1"></div>
                                 <div class="flex-1 z-10">
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="font-bold text-slate-900" x-text="party.name"></span>
-                                        <span class="font-mono text-sm font-medium" x-text="Math.round(party.matchPercentage) + '%'"></span>
-                                    </div>
-                                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                        <div class="h-full rounded-full transition-all duration-500" 
-                                             :style="`width: ${party.matchPercentage}%; background-color: ${getPartyColor(party.id)}`"></div>
-                                    </div>
+                                    <div class="flex justify-between items-center mb-2"><span class="font-bold text-slate-900" x-text="party.name"></span><span class="font-mono text-sm font-medium" x-text="Math.round(party.matchPercentage) + '%'"></span></div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all duration-500" :style="`width: ${party.matchPercentage}%; background-color: ${getPartyColor(party.id)}`"></div></div>
                                 </div>
-                                <div class="ml-4 text-slate-300 group-hover:text-slate-600 transition-colors z-10">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                </div>
+                                <div class="ml-4 text-slate-300 group-hover:text-slate-600 transition-colors z-10"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div>
                             </div>
                         </template>
                     </div>
                 </section>
-                
-                <div class="text-center mt-8">
-                     <button @click="reset()" class="btn btn-neutral">Neu starten</button>
-                </div>
+                <div class="text-center mt-8"><button @click="reset()" class="btn btn-neutral">Neu starten</button></div>
             </div>
 
-            <!-- Right Column: Political Compass -->
+            <!-- Compass & Share -->
             <aside class="lg:col-span-5 space-y-6">
-                 
-                <div class="card p-6">
+                <div class="card p-6 sticky top-24">
                     <h3 class="font-bold text-lg mb-2">Politischer Kompass</h3>
-                    <p class="text-xs text-slate-500 mb-6">Positionierung basierend auf den 25 Thesen.</p>
-                    
                     <div class="relative w-full aspect-square border border-slate-200 bg-slate-50 rounded-lg overflow-hidden mt-4">
-                        <!-- Grid Lines (Optional for context) -->
-                        <div class="absolute inset-0" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
-
-                        <!-- Axes with Arrows -->
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div class="w-[90%] h-px bg-slate-300 relative">
-                                <div class="absolute right-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-l-8 border-t-transparent border-b-transparent border-l-slate-300"></div>
-                                <div class="absolute left-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-r-8 border-t-transparent border-b-transparent border-r-slate-300"></div>
-                            </div> <!-- X Axis -->
+                                <div class="absolute right-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-l-8 border-l-slate-300"></div>
+                                <div class="absolute left-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-r-8 border-r-slate-300"></div>
+                            </div>
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div class="h-[90%] w-px bg-slate-300 relative">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-slate-300"></div>
-                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-slate-300"></div>
-                            </div> <!-- Y Axis -->
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-b-8 border-b-slate-300"></div>
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-t-8 border-t-slate-300"></div>
+                            </div>
                         </div>
-                        
-                        <!-- Labels (Optimized for clarity) -->
-                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] text-center font-bold text-slate-500 uppercase bg-slate-50/80 px-1 backdrop-blur-sm shadow-sm rounded border border-slate-100">
-                            Konservativ<br><span class="font-normal text-[9px] normal-case opacity-75">Ordnung & Bewahren</span>
-                        </div>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] text-center font-bold text-slate-500 uppercase bg-slate-50/80 px-1 backdrop-blur-sm shadow-sm rounded border border-slate-100">
-                            Progressiv<br><span class="font-normal text-[9px] normal-case opacity-75">Wandel & Vielfalt</span>
-                        </div>
-                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[10px] text-center font-bold text-slate-500 uppercase bg-slate-50/80 px-1 backdrop-blur-sm shadow-sm rounded border border-slate-100 -rotate-90 origin-center">
-                            Links<br><span class="font-normal text-[9px] normal-case opacity-75">Staat & Soziales</span>
-                        </div>
-                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[10px] text-center font-bold text-slate-500 uppercase bg-slate-50/80 px-1 backdrop-blur-sm shadow-sm rounded border border-slate-100 rotate-90 origin-center">
-                            Rechts<br><span class="font-normal text-[9px] normal-case opacity-75">Markt & Eigenverantw.</span>
-                        </div>
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm">Konservativ</div>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm">Progressiv</div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm -rotate-90">Links</div>
+                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90">Rechts</div>
 
-                        <!-- User Dot (Highlighted) -->
-                        <div class="absolute z-30 flex flex-col items-center justify-center transition-all duration-700 ease-out"
-                             :style="`left: ${50 + (userCoords.x * 45)}%; top: ${50 - (userCoords.y * 45)}%; transform: translate(-50%, -50%);`">
-                             <!-- Pulse Ring -->
-                             <span class="absolute inline-flex h-8 w-8 rounded-full bg-slate-400 opacity-20 animate-ping"></span>
-                             <!-- Main Dot -->
-                             <div class="relative w-5 h-5 bg-slate-900 border-2 border-white rounded-full shadow-xl flex items-center justify-center">
-                                 <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
-                             </div>
-                             <!-- Label -->
-                             <div class="absolute top-6 bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap leading-none">
-                                DU
-                             </div>
+                        <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * 45)}%; top: ${50 - (userCoords.y * 45)}%; transform: translate(-50%, -50%);`">
+                             <span class="absolute inline-flex h-6 w-6 rounded-full bg-slate-400 opacity-20 animate-ping"></span>
+                             <div class="w-4 h-4 bg-slate-900 border-2 border-white rounded-full shadow-xl flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div>
+                             <div class="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">DU</div>
                         </div>
-                        
-                        <!-- Party Dots -->
                         <template x-for="party in compassParties" :key="party.id">
-                            <div class="absolute"
+                            <div class="absolute z-10"
                                  :style="`left: ${50 + (party.x * 45)}%; top: ${50 - (party.y * 45)}%; transform: translate(-50%, -50%);`">
-                                <div class="w-3 h-3 rounded-full shadow-sm z-10 cursor-pointer hover:scale-150 transition-transform"
+                                <div class="w-3 h-3 rounded-full shadow-sm cursor-pointer hover:scale-150 transition-transform"
                                      :style="`background-color: ${getPartyColor(party.id)};`"
-                                     :title="party.name"
                                      @click="openModal(party.id)">
                                 </div>
                             </div>
                         </template>
                     </div>
-                    <div class="mt-4 flex flex-wrap gap-2 justify-center">
-                        <template x-for="party in compassParties.slice(0, 6)" :key="party.id">
-                            <div class="flex items-center gap-1 text-xs">
-                                <div class="w-2 h-2 rounded-full" :style="`background-color: ${getPartyColor(party.id)}`"></div>
-                                <span x-text="party.name"></span>
-                            </div>
-                        </template>
-                        <span class="text-xs text-slate-400 pl-1">(Klicken für Details)</span>
-                    </div>
-                    
-                    <div class="mt-6">
-                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Ergebnis teilen</label>
-                        <div class="flex gap-2">
-                            <button @click="shareResults()" class="flex-grow py-3 bg-slate-900 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-sm">
-                                <span x-show="!shareTextStatus">Link kopieren</span>
-                                <span x-show="shareTextStatus" x-text="shareTextStatus" class="text-emerald-400"></span>
-                                <svg x-show="!shareTextStatus" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                            </button>
-                            
-                            <!-- WhatsApp -->
-                            <a :href="`https://wa.me/?text=${encodeURIComponent('Mein Top-Match beim Wahl-Navi München: ' + (topMatch?.name || '') + '. Mach auch den Check: https://wahlnavi-muenchen.de')}`" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors shadow-sm" title="Auf WhatsApp teilen">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                            </a>
 
-                            <!-- X / Twitter -->
-                            <a :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent('Mein Top-Match beim Wahl-Navi München: ' + (topMatch?.name || '') + '. Mach auch den Check:')}&url=https://wahlnavi-muenchen.de`" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-black text-white rounded-lg flex items-center justify-center hover:bg-slate-800 transition-colors shadow-sm" title="Auf X teilen">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                            </a>
+                    <!-- Share Section -->
+                    <div class="mt-8 space-y-3">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block text-center">Ergebnis teilen</label>
+                        <button @click="shareResults()" class="w-full py-4 bg-slate-900 text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all shadow-lg active:scale-95">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                            <span x-text="shareTextStatus || 'Teilen & Link kopieren'"></span>
+                        </button>
+                        <div class="flex gap-2">
+                            <a :href="'https://wa.me/?text=' + encodeURIComponent('Mein Wahl-Check für München: ' + (topMatch?.name || '') + '. Mach auch den Test: https://wahl-navi.de')" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-emerald-500 text-white rounded-xl flex items-center justify-center hover:bg-emerald-600 transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+                            <a :href="'https://twitter.com/intent/tweet?text=' + encodeURIComponent('Mein WahlNavi Ergebnis für München: ' + (topMatch?.name || '') + '.') + '&url=https://wahl-navi.de'" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-black text-white rounded-xl flex items-center justify-center hover:bg-slate-800 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                         </div>
                     </div>
                 </div>
-
             </aside>
         </div>
-
     </main>
-    
-    <!-- Footer -->
+
     <footer class="border-t border-slate-200 mt-auto bg-white">
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 gap-4">
-            <div>&copy; 2026 Wahl-Navi München. Ein unabhängiges Projekt.</div>
+            <div>&copy; 2026 WahlNavi München. Unabhängig & Werbefrei.</div>
             <div class="flex gap-6">
                 <a href="impressum.html" class="hover:text-slate-900 transition-colors">Impressum</a>
                 <a href="datenschutz.html" class="hover:text-slate-900 transition-colors">Datenschutz</a>
@@ -312,99 +191,44 @@
         </div>
     </footer>
 
-    <!-- Detailed Comparison Modal -->
-    <div x-show="modalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak>
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" 
-             x-show="modalOpen"
-             x-transition.opacity
-             @click="closeModal()"></div>
-
-        <!-- Modal Content -->
-        <div class="bg-white w-full max-w-2xl max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col relative transform transition-all"
-             x-show="modalOpen"
-             x-transition:enter="ease-out duration-300"
-             x-transition:enter-start="opacity-0 translate-y-4 scale-95"
-             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-             x-transition:leave="ease-in duration-200"
-             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-             x-transition:leave-end="opacity-0 translate-y-4 scale-95">
-            
-            <!-- Header -->
+    <!-- Modal -->
+    <div x-show="modalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6" x-cloak>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" x-show="modalOpen" x-transition.opacity @click="closeModal()"></div>
+        <div class="bg-white w-full max-w-2xl h-full sm:h-auto sm:max-h-[90vh] sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col relative transform transition-all" x-show="modalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4">
             <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex-shrink-0">
                 <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-bold text-2xl" x-text="getSelectedParty()?.name"></h3>
-                        <p class="text-slate-500 text-sm mt-1" x-text="getSelectedParty()?.long_name"></p>
-                    </div>
-                    <button @click="closeModal()" class="text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-2 transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
+                    <div><h3 class="font-bold text-2xl" x-text="getSelectedParty()?.name"></h3><p class="text-slate-500 text-sm mt-1" x-text="getSelectedParty()?.long_name"></p></div>
+                    <button @click="closeModal()" class="text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                 </div>
-                
                 <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center gap-3 w-full sm:w-auto">
-                        <div class="text-3xl font-bold" :style="`color: ${getPartyColor(selectedPartyId)}`" x-text="Math.round(getSelectedParty()?.matchPercentage) + '%'"></div>
-                        <div class="text-xs text-slate-500 leading-tight">Übereinstimmung<br>mit Ihren Antworten</div>
+                        <div class="text-3xl font-extrabold" :style="`color: ${getPartyColor(selectedPartyId)}`" x-text="Math.round(getSelectedParty()?.matchPercentage) + '%'"></div>
+                        <div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Übereinstimmung</div>
                     </div>
-                    
-                    <!-- Filters -->
                     <div class="flex bg-slate-200/50 p-1 rounded-lg w-full sm:w-auto">
-                        <button @click="detailFilter = 'all'" 
-                                class="flex-1 sm:flex-none px-4 py-1.5 text-xs font-medium rounded-md transition-all"
-                                :class="detailFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
-                            Alle
-                        </button>
-                        <button @click="detailFilter = 'match'" 
-                                class="flex-1 sm:flex-none px-4 py-1.5 text-xs font-medium rounded-md transition-all flex items-center justify-center gap-1"
-                                :class="detailFilter === 'match' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
-                            <span class="text-emerald-500">●</span> Gemeinsamkeiten
-                        </button>
-                        <button @click="detailFilter = 'diff'" 
-                                class="flex-1 sm:flex-none px-4 py-1.5 text-xs font-medium rounded-md transition-all flex items-center justify-center gap-1"
-                                :class="detailFilter === 'diff' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
-                            <span class="text-rose-500">●</span> Unterschiede
-                        </button>
+                        <button @click="detailFilter = 'all'" class="flex-1 px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'">Alle</button>
+                        <button @click="detailFilter = 'match'" class="flex-1 px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'match' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'">Match</button>
+                        <button @click="detailFilter = 'diff'" class="flex-1 px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'diff' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'">Diff</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Scrollable Content -->
-            <div class="overflow-y-auto p-6 space-y-6 flex-1">
+            <div class="overflow-y-auto p-6 space-y-6 flex-1 bg-white">
                 <template x-for="thesis in getFilteredTheses()" :key="thesis.id">
-                    <div class="relative pl-4 border-l-2 py-1" 
-                         :class="getPositionMatchClass(answers[thesis.id], getPartyPosition(getSelectedParty(), thesis.id))">
-                         
+                    <div class="relative pl-4 border-l-2 py-1" :class="getPositionMatchClass(answers[thesis.id], getPartyPosition(getSelectedParty(), thesis.id))">
                          <div class="flex justify-between items-start mb-1">
-                             <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider" x-text="thesis.topic"></div>
-                             <!-- Icons for quick scan -->
-                             <div class="flex gap-2">
-                                <span x-html="getIconSimple(answers[thesis.id])" title="Ihre Meinung"></span>
-                                <span class="text-slate-300">/</span>
-                                <span x-html="getIconSimple(getPartyPosition(getSelectedParty(), thesis.id))" :title="getSelectedParty()?.name"></span>
-                             </div>
+                             <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest" x-text="thesis.topic"></div>
+                             <div class="flex gap-2"><span x-html="getIconSimple(answers[thesis.id])"></span><span class="text-slate-300">/</span><span x-html="getIconSimple(getPartyPosition(getSelectedParty(), thesis.id))"></span></div>
                          </div>
-                         
-                         <div class="text-base font-bold text-slate-900 mb-2" x-text="thesis.short_title"></div>
+                         <div class="text-base font-extrabold text-slate-900 mb-2" x-text="thesis.short_title"></div>
                          <div class="text-sm text-slate-600 mb-3 leading-relaxed" x-text="thesis.statement"></div>
-                         
-                         <div class="text-sm bg-slate-50 p-3 rounded-lg text-slate-600 italic border border-slate-100" 
-                              x-show="getPartyQuote(getSelectedParty(), thesis.id)">
-                              "<span x-text="getPartyQuote(getSelectedParty(), thesis.id)"></span>"
-                         </div>
-                         <div x-show="!getPartyQuote(getSelectedParty(), thesis.id)" class="text-xs text-slate-400 italic mt-2">
-                             Keine Begründung vorhanden.
-                         </div>
+                         <div class="text-sm bg-slate-50 p-3 rounded-lg text-slate-600 italic border border-slate-100" x-show="getPartyQuote(getSelectedParty(), thesis.id)">"<span x-text="getPartyQuote(getSelectedParty(), thesis.id)"></span>"</div>
                     </div>
                 </template>
-                
-                <div x-show="getFilteredTheses().length === 0" class="text-center py-12 text-slate-400">
-                    Keine Thesen für diesen Filter gefunden.
-                </div>
             </div>
         </div>
     </div>
 
+    <script defer src="alpine.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
