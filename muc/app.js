@@ -12,6 +12,7 @@ function wahlomatApp() {
         detailFilter: 'all', // 'all', 'match', 'diff'
         userCoords: { x: 0, y: 0 },
         compassParties: [],
+        compassDisplayScale: 25,
         shareTextStatus: '',
         topicWeights: {},
         topics: [],
@@ -130,36 +131,38 @@ function wahlomatApp() {
         },
 
         calculateCompass() {
+            // 0. Compute total axis weights across ALL theses (shared denominator)
+            let totalWeightX = 0, totalWeightY = 0;
+            this.theses.forEach(thesis => {
+                if (thesis.axes) {
+                    const tw = this.topicWeights[thesis.topic] || 1;
+                    if (thesis.axes.x !== 0) totalWeightX += Math.abs(thesis.axes.x) * tw;
+                    if (thesis.axes.y !== 0) totalWeightY += Math.abs(thesis.axes.y) * tw;
+                }
+            });
+
             // 1. Calculate User Coordinates
             let userX = 0, userY = 0;
-            let weightSumX = 0, weightSumY = 0;
 
             for (const [thesisId, userPos] of Object.entries(this.answers)) {
                 const thesis = this.theses.find(t => t.id == thesisId);
                 if (thesis && thesis.axes) {
                     const tw = this.topicWeights[thesis.topic] || 1;
-                    if (thesis.axes.x !== 0) {
-                        userX += userPos * thesis.axes.x * tw;
-                        weightSumX += Math.abs(thesis.axes.x) * tw;
-                    }
-                    if (thesis.axes.y !== 0) {
-                        userY += userPos * thesis.axes.y * tw;
-                        weightSumY += Math.abs(thesis.axes.y) * tw;
-                    }
+                    if (thesis.axes.x !== 0) userX += userPos * thesis.axes.x * tw;
+                    if (thesis.axes.y !== 0) userY += userPos * thesis.axes.y * tw;
                 }
             }
 
-            // Normalize to -1...1 and apply power compression to reduce edge clustering
+            // Normalize by total weight and apply power compression
             const compress = v => Math.sign(v) * Math.pow(Math.abs(v), 0.7);
             this.userCoords = {
-                x: compress(weightSumX > 0 ? userX / weightSumX : 0),
-                y: compress(weightSumY > 0 ? userY / weightSumY : 0)
+                x: compress(totalWeightX > 0 ? userX / totalWeightX : 0),
+                y: compress(totalWeightY > 0 ? userY / totalWeightY : 0)
             };
 
-            // 2. Calculate Party Coordinates
+            // 2. Calculate Party Coordinates (same denominator for fair comparison)
             this.compassParties = this.parties.map(party => {
                 let pX = 0, pY = 0;
-                let pWeightX = 0, pWeightY = 0;
 
                 this.theses.forEach(thesis => {
                     if (party.positions && party.positions[thesis.id] && thesis.axes) {
@@ -167,24 +170,51 @@ function wahlomatApp() {
                         let pos = partyPosData.val !== undefined ? partyPosData.val : partyPosData.position;
                         const tw = this.topicWeights[thesis.topic] || 1;
 
-                        if (thesis.axes.x !== 0) {
-                            pX += pos * thesis.axes.x * tw;
-                            pWeightX += Math.abs(thesis.axes.x) * tw;
-                        }
-                        if (thesis.axes.y !== 0) {
-                            pY += pos * thesis.axes.y * tw;
-                            pWeightY += Math.abs(thesis.axes.y) * tw;
-                        }
+                        if (thesis.axes.x !== 0) pX += pos * thesis.axes.x * tw;
+                        if (thesis.axes.y !== 0) pY += pos * thesis.axes.y * tw;
                     }
                 });
 
                 return {
                     id: party.id,
                     name: party.name,
-                    x: compress(pWeightX > 0 ? pX / pWeightX : 0),
-                    y: compress(pWeightY > 0 ? pY / pWeightY : 0)
+                    x: compress(totalWeightX > 0 ? pX / totalWeightX : 0),
+                    y: compress(totalWeightY > 0 ? pY / totalWeightY : 0)
                 };
             });
+
+            // 3. Collision avoidance: push overlapping party dots apart
+            const minDist = 0.12;
+            for (let iter = 0; iter < 8; iter++) {
+                for (let i = 0; i < this.compassParties.length; i++) {
+                    for (let j = i + 1; j < this.compassParties.length; j++) {
+                        const a = this.compassParties[i];
+                        const b = this.compassParties[j];
+                        const dx = b.x - a.x;
+                        const dy = b.y - a.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < minDist) {
+                            const angle = dist === 0 ? (i * 0.7 + j * 1.3) : Math.atan2(dy, dx);
+                            const push = (minDist - dist) / 2;
+                            a.x -= Math.cos(angle) * push;
+                            a.y -= Math.sin(angle) * push;
+                            b.x += Math.cos(angle) * push;
+                            b.y += Math.sin(angle) * push;
+                        }
+                    }
+                }
+            }
+
+            // 4. Dynamic display scaling: spread dots to use available space
+            const allAbs = [
+                ...this.compassParties.map(p => Math.abs(p.x)),
+                ...this.compassParties.map(p => Math.abs(p.y)),
+                Math.abs(this.userCoords.x),
+                Math.abs(this.userCoords.y)
+            ];
+            const maxAbs = Math.max(...allAbs, 0.01);
+            // Scale so the most extreme dot reaches 36% from center, cap at 42 to avoid over-spreading
+            this.compassDisplayScale = Math.min(36 / maxAbs, 42);
         },
 
         reset() {
@@ -309,11 +339,12 @@ function wahlomatApp() {
         },
 
         shareCompass() {
-            const size = 600;
-            const pad = 60;
+            const s = 2; // 2x resolution for sharp export
+            const size = 600 * s;
+            const pad = 60 * s;
             const canvas = document.createElement('canvas');
             canvas.width = size;
-            canvas.height = size + 60;
+            canvas.height = size + 80 * s;
             const ctx = canvas.getContext('2d');
 
             // Background
@@ -331,70 +362,74 @@ function wahlomatApp() {
 
             // Grid lines
             ctx.strokeStyle = '#cbd5e1';
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 2 * s;
             ctx.beginPath(); ctx.moveTo(pad, cy); ctx.lineTo(size - pad, cy); ctx.stroke();
             ctx.beginPath(); ctx.moveTo(cx, pad); ctx.lineTo(cx, size - pad); ctx.stroke();
 
             // Axis labels
             ctx.fillStyle = '#64748b';
-            ctx.font = 'bold 11px Inter, system-ui, sans-serif';
+            ctx.font = `bold ${14 * s}px Inter, system-ui, sans-serif`;
             ctx.textAlign = 'center';
-            ctx.fillText('KONSERVATIV', cx, pad - 8);
-            ctx.fillText('PROGRESSIV', cx, size - pad + 18);
-            ctx.save(); ctx.translate(pad - 12, cy); ctx.rotate(-Math.PI / 2); ctx.fillText('LINKS', 0, 0); ctx.restore();
-            ctx.save(); ctx.translate(size - pad + 12, cy); ctx.rotate(Math.PI / 2); ctx.fillText('RECHTS', 0, 0); ctx.restore();
-
-            // Quadrant names
-            ctx.font = '9px Inter, system-ui, sans-serif';
-            ctx.globalAlpha = 0.5;
-            ctx.fillStyle = '#f43f5e'; ctx.textAlign = 'left'; ctx.fillText('Sozial-Konservativ', pad + 4, pad + 14);
-            ctx.fillStyle = '#3b82f6'; ctx.textAlign = 'right'; ctx.fillText('Markt-Konservativ', size - pad - 4, pad + 14);
-            ctx.fillStyle = '#22c55e'; ctx.textAlign = 'left'; ctx.fillText('Links-Progressiv', pad + 4, size - pad - 6);
-            ctx.fillStyle = '#a855f7'; ctx.textAlign = 'right'; ctx.fillText('Liberal-Progressiv', size - pad - 4, size - pad - 6);
-            ctx.globalAlpha = 1;
+            ctx.fillText('KONSERVATIV', cx, pad - 10 * s);
+            ctx.fillText('PROGRESSIV', cx, size - pad + 22 * s);
+            ctx.save(); ctx.translate(pad - 16 * s, cy); ctx.rotate(-Math.PI / 2); ctx.fillText('LINKS', 0, 0); ctx.restore();
+            ctx.save(); ctx.translate(size - pad + 16 * s, cy); ctx.rotate(Math.PI / 2); ctx.fillText('RECHTS', 0, 0); ctx.restore();
 
             const range = size / 2 - pad;
-            const scale = 0.38 / 0.5; // match the 38% CSS multiplier
+            const scale = (this.compassDisplayScale / 100) / 0.5; // match dynamic CSS scale
 
             // Party dots with names
-            ctx.font = 'bold 9px Inter, system-ui, sans-serif';
+            ctx.font = `bold ${12 * s}px Inter, system-ui, sans-serif`;
             ctx.textAlign = 'center';
             this.compassParties.forEach(party => {
                 const px = cx + party.x * range * scale;
                 const py = cy - party.y * range * scale;
                 ctx.fillStyle = this.getPartyColor(party.id);
-                ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fill();
-                ctx.fillText(party.name, px, py - 10);
+                ctx.beginPath(); ctx.arc(px, py, 7 * s, 0, Math.PI * 2); ctx.fill();
+                ctx.fillText(party.name, px, py - 14 * s);
             });
 
             // User dot
             const ux = cx + this.userCoords.x * range * scale;
             const uy = cy - this.userCoords.y * range * scale;
             ctx.fillStyle = '#0f172a';
-            ctx.beginPath(); ctx.arc(ux, uy, 7, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(ux, uy, 10 * s, 0, Math.PI * 2); ctx.fill();
             ctx.fillStyle = '#ffffff';
-            ctx.beginPath(); ctx.arc(ux, uy, 3, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(ux, uy, 4 * s, 0, Math.PI * 2); ctx.fill();
             ctx.fillStyle = '#0f172a';
-            ctx.font = 'bold 10px Inter, system-ui, sans-serif';
-            ctx.fillText('DU', ux, uy + 20);
+            ctx.font = `bold ${13 * s}px Inter, system-ui, sans-serif`;
+            ctx.fillText('DU', ux, uy + 24 * s);
 
-            // Title
+            // Title bar
+            const barY = size;
             ctx.fillStyle = '#0f172a';
-            ctx.font = 'bold 16px Inter, system-ui, sans-serif';
+            ctx.font = `bold ${20 * s}px Inter, system-ui, sans-serif`;
             ctx.textAlign = 'left';
-            ctx.fillText('Politischer Kompass', 16, size + 28);
+            ctx.fillText('Politischer Kompass', 20 * s, barY + 36 * s);
+
+            // Top match
+            if (this.topMatch) {
+                ctx.fillStyle = '#64748b';
+                ctx.font = `${13 * s}px Inter, system-ui, sans-serif`;
+                ctx.fillText(`Top-Match: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%)`, 20 * s, barY + 58 * s);
+            }
 
             // Watermark
             ctx.fillStyle = '#94a3b8';
-            ctx.font = '12px Inter, system-ui, sans-serif';
+            ctx.font = `${14 * s}px Inter, system-ui, sans-serif`;
             ctx.textAlign = 'right';
-            ctx.fillText('wahl-navi.de', size - 16, size + 28);
+            ctx.fillText('wahl-navi.de', size - 20 * s, barY + 36 * s);
 
             canvas.toBlob(blob => {
                 if (!blob) return;
                 const file = new File([blob], 'kompass.png', { type: 'image/png' });
-                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                    navigator.share({ files: [file], title: 'Mein Politischer Kompass' }).catch(() => {});
+                const shareData = {
+                    files: [file],
+                    title: 'Mein Politischer Kompass',
+                    text: `Mein Politischer Kompass zur Münchner Kommunalwahl 2026. Mach auch den Test: https://wahl-navi.de`
+                };
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    navigator.share(shareData).catch(() => {});
                 } else {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');

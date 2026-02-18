@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WahlNavi München 2026</title>
+    <meta name="version" content="2.1">
     <meta name="description" content="Vergleiche deine Positionen mit den Parteien zur Münchner Kommunalwahl 2026. Dein Kompass für die Stadtpolitik.">
     <meta property="og:title" content="WahlNavi München 2026">
     <meta property="og:description" content="Welche Partei passt zu mir? Mach den Check mit 25 Thesen für München.">
@@ -55,7 +56,7 @@
                 <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
                     <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></div>
                     <h3 class="font-bold text-slate-900 text-sm">Politischer Kompass</h3>
-                    <p class="text-xs text-slate-500">Nicht nur eine Liste — sieh wo du und die Parteien im politischen Spektrum stehen.</p>
+                    <p class="text-xs text-slate-500">Nicht nur eine Liste. Sieh, wo du und die Parteien im politischen Spektrum stehen.</p>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
                     <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg></div>
@@ -175,11 +176,6 @@
                         <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/[0.06] pointer-events-none"></div>
                         <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/[0.06] pointer-events-none"></div>
                         <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-500/[0.06] pointer-events-none"></div>
-                        <!-- Quadrant names -->
-                        <div class="absolute top-3 left-3 text-[7px] font-semibold text-rose-400/70 pointer-events-none leading-tight">Sozial-<br>Konservativ</div>
-                        <div class="absolute top-3 right-3 text-[7px] font-semibold text-blue-400/70 pointer-events-none text-right leading-tight">Markt-<br>Konservativ</div>
-                        <div class="absolute bottom-3 left-3 text-[7px] font-semibold text-green-500/70 pointer-events-none leading-tight">Links-<br>Progressiv</div>
-                        <div class="absolute bottom-3 right-3 text-[7px] font-semibold text-purple-400/70 pointer-events-none text-right leading-tight">Liberal-<br>Progressiv</div>
                         <!-- Axes -->
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div class="w-[90%] h-px bg-slate-300 relative">
@@ -200,7 +196,7 @@
                         <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90 z-20">Rechts</div>
 
                         <!-- User dot -->
-                        <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * 38)}%; top: ${50 - (userCoords.y * 38)}%; transform: translate(-50%, -50%);`">
+                        <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * compassDisplayScale)}%; top: ${50 - (userCoords.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
                              <span class="absolute inline-flex h-6 w-6 rounded-full bg-slate-400 opacity-20 animate-ping"></span>
                              <div class="w-4 h-4 bg-slate-900 border-2 border-white rounded-full shadow-xl flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div>
                              <div class="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm whitespace-nowrap">DU</div>
@@ -208,7 +204,7 @@
                         <!-- Party dots with hover labels -->
                         <template x-for="party in compassParties" :key="party.id">
                             <div class="absolute z-10 group"
-                                 :style="`left: ${50 + (party.x * 38)}%; top: ${50 - (party.y * 38)}%; transform: translate(-50%, -50%);`">
+                                 :style="`left: ${50 + (party.x * compassDisplayScale)}%; top: ${50 - (party.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
                                 <div class="w-3 h-3 rounded-full shadow-sm cursor-pointer hover:scale-150 transition-transform"
                                      :style="`background-color: ${getPartyColor(party.id)};`"
                                      :title="party.name"
@@ -221,15 +217,14 @@
 
                     <!-- Share Section -->
                     <div class="mt-8 space-y-3">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block text-center">Ergebnis teilen</label>
-                        <button @click="shareResults()" class="w-full py-4 bg-slate-900 text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all shadow-lg active:scale-95">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                            <span x-text="shareTextStatus || 'Teilen & Link kopieren'"></span>
-                        </button>
-                        <a :href="'https://wa.me/?text=' + encodeURIComponent('Mein Wahl-Check für München: ' + (topMatch?.name || '') + '. Mach auch den Test: https://wahl-navi.de')" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-emerald-500 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-600 transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> WhatsApp</a>
-                        <button @click="shareCompass()" class="w-full py-3 bg-slate-100 text-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-200 transition-all text-sm font-medium">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            Kompass als Bild speichern
+                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block text-center">Kompass teilen</label>
+                        <div class="flex gap-2">
+                            <button @click="shareCompass()" class="flex-1 py-3 bg-emerald-500 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-600 transition-all font-medium"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> WhatsApp</button>
+                            <button @click="shareCompass()" class="flex-1 py-3 bg-blue-500 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-blue-600 transition-all font-medium"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> Signal</button>
+                        </div>
+                        <button @click="copyLink()" class="w-full py-3 bg-slate-100 text-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-200 transition-all text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span x-text="shareTextStatus || 'Link kopieren'"></span>
                         </button>
                     </div>
                 </div>
