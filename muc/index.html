@@ -434,7 +434,13 @@
                                  <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest" x-text="thesis.topic"></div>
                                  <span x-show="revisedAnswers.includes(thesis.id)" class="text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-200">geändert</span>
                              </div>
-                             <div class="flex gap-2"><span x-html="getIconSimple(answers[thesis.id])"></span><span class="text-slate-300" aria-hidden="true">/</span><span x-html="getIconSimple(getPartyPosition(getSelectedParty(), thesis.id))"></span></div>
+                             <div class="flex items-center gap-1.5 text-[10px]">
+                                 <span class="text-slate-400 font-bold uppercase">Du</span>
+                                 <span x-html="getIconSimple(answers[thesis.id])"></span>
+                                 <span class="text-slate-200 mx-0.5" aria-hidden="true">&middot;</span>
+                                 <span class="text-slate-400 font-bold uppercase" x-text="getSelectedParty()?.name"></span>
+                                 <span x-html="getIconSimple(getPartyPosition(getSelectedParty(), thesis.id))"></span>
+                             </div>
                          </div>
                          <div class="text-base font-extrabold text-slate-900 mb-2" x-text="thesis.short_title"></div>
                          <div class="text-sm text-slate-600 mb-3 leading-relaxed" x-text="thesis.statement"></div>

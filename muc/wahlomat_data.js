@@ -15,7 +15,7 @@ window.WAHLOMAT_DATA = {
       "id": 2,
       "topic": "Mobilität & Verkehr",
       "short_title": "Autofreie Altstadt",
-      "statement": "Innerhalb des Altstadtrings soll der private Autoverkehr weitgehend verboten werden.",
+      "statement": "Der private Autoverkehr innerhalb des Altstadtrings soll stark eingeschränkt werden.",
       "axes": {
         "x": 0.0,
         "y": -1.0
@@ -70,7 +70,7 @@ window.WAHLOMAT_DATA = {
       "id": 7,
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Große Neubaugebiete (SEM)",
-      "statement": "Die Stadt soll die geplante Bebauung von Ackerflächen am Stadtrand (Feldmoching/Daglfing) für Tausende neue Wohnungen konsequent vorantreiben.",
+      "statement": "Die Stadt soll am Stadtrand (Feldmoching/Daglfing) Ackerflächen für den Bau Tausender neuer Wohnungen nutzen.",
       "axes": {
         "x": 0.5,
         "y": 0.0
@@ -91,11 +91,11 @@ window.WAHLOMAT_DATA = {
     {
       "id": 9,
       "topic": "Wohnen & Stadtplanung",
-      "short_title": "Nachverdichtung",
-      "statement": "In Gartenstadtvierteln soll der Erhalt von Gärten und alten Bäumen wichtiger sein als der Bau neuer Wohnungen durch Nachverdichtung.",
+      "short_title": "Wohnungsbau vs. Grünflächen",
+      "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
       "axes": {
         "x": 0.0,
-        "y": 0.6
+        "y": -0.6
       },
       "tradeoff": "Bestandsschutz vs. Nachverdichtung"
     },
@@ -114,7 +114,7 @@ window.WAHLOMAT_DATA = {
       "id": 11,
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Städtisches Bauen",
-      "statement": "Die städtische Wohnungsgesellschaft (Münchner Wohnen) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
+      "statement": "Die städtische Wohnungsgesellschaft Münchner Wohnen (früher GWG) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
       "axes": {
         "x": -0.9,
         "y": 0.0
@@ -125,7 +125,7 @@ window.WAHLOMAT_DATA = {
       "id": 12,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Klimaneutralität 2035",
-      "statement": "München soll das Ziel, bis 2035 klimaneutral zu sein, strikt verfolgen.",
+      "statement": "München soll das Ziel verfolgen, bis 2035 klimaneutral zu sein.",
       "axes": {
         "x": -0.5,
         "y": -1.0
@@ -136,7 +136,7 @@ window.WAHLOMAT_DATA = {
       "id": 13,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Klima-Vorrang",
-      "statement": "Bei städtischen Bau- und Planungsvorhaben sollen Klimaschutzvorgaben im Zweifel schwerer wiegen als Wirtschaftlichkeitsberechnungen.",
+      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
       "axes": {
         "x": -0.6,
         "y": -1.0
@@ -157,8 +157,8 @@ window.WAHLOMAT_DATA = {
     {
       "id": 15,
       "topic": "Klima, Umwelt & Energie",
-      "short_title": "Isar-Renaturierung",
-      "statement": "Die Renaturierung der Isar soll in weiteren Abschnitten nördlich und südlich der Innenstadt fortgeführt werden.",
+      "short_title": "Isar naturnah",
+      "statement": "Die Isar soll in weiteren Abschnitten nördlich und südlich der Innenstadt naturnäher gestaltet werden.",
       "axes": {
         "x": 0.0,
         "y": -0.6
@@ -169,7 +169,7 @@ window.WAHLOMAT_DATA = {
       "id": 16,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbesteuer",
-      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, um lokale Unternehmen zu entlasten.",
+      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
       "axes": {
         "x": 1.0,
         "y": 0.0
@@ -191,7 +191,7 @@ window.WAHLOMAT_DATA = {
       "id": 18,
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Wachstumsbremse",
-      "statement": "Die Stadt soll aktiv Maßnahmen ergreifen, um das weitere Wachstum von München (Zuzug von Firmen/Menschen) zu bremsen, auch wenn das Steuereinnahmen kostet.",
+      "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
       "axes": {
         "x": -0.5,
         "y": 0.8
@@ -246,7 +246,7 @@ window.WAHLOMAT_DATA = {
       "id": 23,
       "topic": "Kultur & Freizeit",
       "short_title": "Gasteig-Sanierung",
-      "statement": "Die Sanierung des Gasteig-Kulturzentrums soll trotz steigender Kosten vollständig wie geplant abgeschlossen werden.",
+      "statement": "Die Sanierung des Gasteig-Kulturzentrums soll wie geplant abgeschlossen werden, auch wenn die Kosten weiter steigen.",
       "axes": {
         "x": -0.4,
         "y": -0.3
@@ -257,7 +257,7 @@ window.WAHLOMAT_DATA = {
       "id": 24,
       "topic": "Kultur & Freizeit",
       "short_title": "Queere Projekte",
-      "statement": "Die finanzielle Förderung für queere Projekte und Beratungsstellen (LGBTIQ*) soll erhöht werden.",
+      "statement": "Die finanzielle Förderung für Projekte und Beratungsstellen für lesbische, schwule, bisexuelle, trans und queere Menschen soll erhöht werden.",
       "axes": {
         "x": -0.3,
         "y": -1.0
@@ -316,7 +316,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Die starre 100-Meter-Grenze ist überholt. Wir befürworten architektonisch anspruchsvolle Hochhäuser."
         },
         "9": {
-          "val": 1,
+          "val": -1,
           "quote": "Wir stoppen die dauerhafte Nachverdichtung in Gartenstädten... und bekennen uns klar zu diesem Siedlungstyp."
         },
         "10": {
@@ -424,7 +424,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Bei höheren Gebäuden ab 9 Geschossen (Hochhäuser) muss im Einzelfall nach Abwägung aller Faktoren entschieden werden, ob und wo Hochhäuser sinnvoll sind."
         },
         "9": {
-          "val": -1,
+          "val": 1,
           "quote": "Wir bauen bevorzugt dort, wo bereits Bebauung vorhanden ist... wollen wir mit Augenmaß bewusst in die Höhe nachverdichten."
         },
         "10": {
@@ -532,7 +532,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir bauen keine Schlafstädte, sondern lebendige Quartiere mit kurzen Wegen, die in ihrer Nutzung gemischt sind."
         },
         "9": {
-          "val": -1,
+          "val": 1,
           "quote": "Wir müssen auch die vorhandenen Wohnraumpotentiale im Bestand gezielt nutzen."
         },
         "10": {
@@ -640,7 +640,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Megalomanie begrenzen: keine Genehmigung weiterer oder hoher dimensionierter Hochhausprojekte."
         },
         "9": {
-          "val": 1,
+          "val": -1,
           "quote": "Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten... Einheitsbauten und überdimensionierte Mietblöcke vermeiden."
         },
         "10": {
@@ -748,7 +748,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Dazu gehören ausdrücklich auch Hochhäuser (höher als 100 Meter) im Einklang mit der Münchner Hochhausstudie."
         },
         "9": {
-          "val": -1,
+          "val": 1,
           "quote": "Nachverdichtung und Gebäudeaufstockung sind als Ansätze zu präferieren."
         },
         "10": {
@@ -856,7 +856,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Den Bau von Hochhäusern über 60 Meter untersagen, da durch diese keine bezahlbarer Wohnraum entsteht."
         },
         "9": {
-          "val": -1,
+          "val": 1,
           "quote": "verbindliche Regelungen für soziale Nachverdichtungen im Bestand einführen."
         },
         "10": {
@@ -960,7 +960,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Einhaltung einer 60-Meter-Grenze für Hochhäuser."
         },
         "9": {
-          "val": 1,
+          "val": -1,
           "quote": "Prüfung von Bebauungsplänen zum Erhalt unserer Stadtviertel mit Gartenstadtcharakter... Maßlose Nachverdichtung darf nicht auf Kosten der Grünflächen erfolgen."
         },
         "12": {
@@ -1012,7 +1012,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Kein flächendeckendes Tempo-30."
         },
         "9": {
-          "val": 1,
+          "val": -1,
           "quote": "Wir müssen die maßlose Nachverdichtung zeitnah stoppen und unser Stadtklima schützen."
         },
         "11": {
@@ -1060,7 +1060,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Großprojekte wie im Münchner Norden konsequenter voranbringen mit verbindlichen Masterplänen bis 2030."
         },
         "9": {
-          "val": -1,
+          "val": 1,
           "quote": "Potenziale im Bestand stärker nutzen: Voraussetzungen für Aufstockungen und kluge Nachverdichtung verbessern."
         },
         "11": {
@@ -1200,7 +1200,7 @@ window.WAHLOMAT_DATA = {
           "quote": "In die Höhe zu bauen stellt keine Lösung der grundlegenden strukturellen Probleme dar."
         },
         "9": {
-          "val": 1,
+          "val": -1,
           "quote": "Nachverdichtung ist ein wesentlicher Preistreiber... Erhalt unserer Grünflächen."
         },
         "15": {
