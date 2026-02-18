@@ -7,12 +7,12 @@
     <meta name="description" content="Vergleiche deine Positionen mit den Parteien zur Münchner Kommunalwahl 2026. Dein Kompass für die Stadtpolitik.">
     <meta property="og:title" content="WahlNavi München 2026">
     <meta property="og:description" content="Welche Partei passt zu mir? Mach den Check mit 25 Thesen für München.">
-    <meta property="og:image" content="https://wahl-navi.de/muc/icon.png">
+    <meta property="og:image" content="https://wahl-navi.de/muc/icon.svg">
     <meta property="og:type" content="website">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
     <script src="wahlomat_data.js"></script>
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
 </head>
 <body class="antialiased min-h-screen flex flex-col" x-data="wahlomatApp()" x-cloak>
 
@@ -51,7 +51,23 @@
             <div class="flex justify-center gap-4 pt-4">
                 <button @click="start()" class="btn btn-primary text-lg px-10 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Starten</button>
             </div>
-            <p class="text-xs text-slate-400 mt-12">Unabhängige Informationshilfe. Daten basierend auf Wahlprogrammen.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 text-left">
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
+                    <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg></div>
+                    <h3 class="font-bold text-slate-900 text-sm">Politischer Kompass</h3>
+                    <p class="text-xs text-slate-500">Nicht nur eine Liste — sieh wo du und die Parteien im politischen Spektrum stehen.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
+                    <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg></div>
+                    <h3 class="font-bold text-slate-900 text-sm">Themen-Gewichtung</h3>
+                    <p class="text-xs text-slate-500">Entscheide selbst, welche Themen dir wichtig sind. Wichtige Themen zählen doppelt.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
+                    <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><svg class="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
+                    <h3 class="font-bold text-slate-900 text-sm">Open Source</h3>
+                    <p class="text-xs text-slate-500">Quellcode offen auf <a href="https://github.com/frederikmetz42/wahl-navi.de" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub</a>. Transparent und nachprüfbar.</p>
+                </div>
+            </div>
         </div>
 
         <!-- Questions -->
@@ -64,15 +80,15 @@
                     </div>
                     <h2 class="text-xl md:text-3xl font-bold text-slate-900 mb-6 leading-tight" x-text="currentThesis.statement"></h2>
                     <div class="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12">
-                        <button @click="answer(1)" class="btn btn-success flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
+                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
                             <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span>Zustimmung</span>
                         </button>
-                        <button @click="answer(0)" class="btn btn-neutral flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
+                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
                             <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                             <span>Neutral</span>
                         </button>
-                        <button @click="answer(-1)" class="btn btn-danger flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
+                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] text-[10px] md:text-base">
                             <svg class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             <span>Ablehnung</span>
                         </button>
@@ -85,8 +101,33 @@
             </template>
         </div>
 
+        <!-- Weighting -->
+        <div x-show="step === 98" x-transition.opacity class="max-w-2xl mx-auto">
+            <div class="card p-6 md:p-10">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">Gewichtung</h2>
+                <p class="text-slate-500 text-sm md:text-base mb-8">Welche Themen sind Ihnen besonders wichtig? Wichtige Themen zählen doppelt.</p>
+                <div class="space-y-3">
+                    <template x-for="topic in topics" :key="topic">
+                        <button class="w-full flex items-center justify-between p-4 rounded-xl border transition-all"
+                                :class="topicWeights[topic] === 2 ? 'border-blue-500 bg-blue-50 shadow-sm' : 'border-slate-200 bg-white hover:bg-slate-50'"
+                                @click="topicWeights[topic] = topicWeights[topic] === 2 ? 1 : 2">
+                            <span class="font-semibold text-slate-900 text-sm md:text-base" x-text="topic"></span>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full"
+                                  :class="topicWeights[topic] === 2 ? 'bg-blue-500 text-white' : 'bg-slate-100 text-slate-500'"
+                                  x-text="topicWeights[topic] === 2 ? '2x Wichtig' : '1x Normal'"></span>
+                        </button>
+                    </template>
+                </div>
+                <div class="mt-8 space-y-3">
+                    <button @click="showResults()" class="btn btn-primary w-full text-lg py-4">Ergebnis berechnen</button>
+                    <button @click="step = totalTheses" class="text-sm text-slate-400 hover:text-slate-600 w-full text-center">Zurück zu den Fragen</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Results -->
-        <div x-show="step === 99" x-transition.opacity class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div x-show="step === 99" x-transition.opacity class="space-y-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div class="lg:col-span-7 space-y-8">
                 <section x-show="topMatch">
                     <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Dein Ergebnis</h2>
@@ -122,7 +163,6 @@
                         </template>
                     </div>
                 </section>
-                <div class="text-center mt-8"><button @click="reset()" class="btn btn-neutral">Neu starten</button></div>
             </div>
 
             <!-- Compass & Share -->
@@ -130,6 +170,17 @@
                 <div class="card p-6 sticky top-24">
                     <h3 class="font-bold text-lg mb-2">Politischer Kompass</h3>
                     <div class="relative w-full aspect-square border border-slate-200 bg-slate-50 rounded-lg overflow-hidden mt-4">
+                        <!-- Quadrant tints -->
+                        <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-rose-500/[0.06] pointer-events-none"></div>
+                        <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/[0.06] pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/[0.06] pointer-events-none"></div>
+                        <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-500/[0.06] pointer-events-none"></div>
+                        <!-- Quadrant names -->
+                        <div class="absolute top-3 left-3 text-[7px] font-semibold text-rose-400/70 pointer-events-none leading-tight">Sozial-<br>Konservativ</div>
+                        <div class="absolute top-3 right-3 text-[7px] font-semibold text-blue-400/70 pointer-events-none text-right leading-tight">Markt-<br>Konservativ</div>
+                        <div class="absolute bottom-3 left-3 text-[7px] font-semibold text-green-500/70 pointer-events-none leading-tight">Links-<br>Progressiv</div>
+                        <div class="absolute bottom-3 right-3 text-[7px] font-semibold text-purple-400/70 pointer-events-none text-right leading-tight">Liberal-<br>Progressiv</div>
+                        <!-- Axes -->
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div class="w-[90%] h-px bg-slate-300 relative">
                                 <div class="absolute right-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-l-8 border-l-slate-300"></div>
@@ -142,23 +193,28 @@
                                 <div class="absolute bottom-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-t-8 border-t-slate-300"></div>
                             </div>
                         </div>
-                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm">Konservativ</div>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm">Progressiv</div>
-                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm -rotate-90">Links</div>
-                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90">Rechts</div>
+                        <!-- Axis labels -->
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20">Konservativ</div>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20">Progressiv</div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm -rotate-90 z-20">Links</div>
+                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90 z-20">Rechts</div>
 
-                        <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * 45)}%; top: ${50 - (userCoords.y * 45)}%; transform: translate(-50%, -50%);`">
+                        <!-- User dot -->
+                        <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * 38)}%; top: ${50 - (userCoords.y * 38)}%; transform: translate(-50%, -50%);`">
                              <span class="absolute inline-flex h-6 w-6 rounded-full bg-slate-400 opacity-20 animate-ping"></span>
                              <div class="w-4 h-4 bg-slate-900 border-2 border-white rounded-full shadow-xl flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div>
-                             <div class="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">DU</div>
+                             <div class="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm whitespace-nowrap">DU</div>
                         </div>
+                        <!-- Party dots with hover labels -->
                         <template x-for="party in compassParties" :key="party.id">
-                            <div class="absolute z-10"
-                                 :style="`left: ${50 + (party.x * 45)}%; top: ${50 - (party.y * 45)}%; transform: translate(-50%, -50%);`">
+                            <div class="absolute z-10 group"
+                                 :style="`left: ${50 + (party.x * 38)}%; top: ${50 - (party.y * 38)}%; transform: translate(-50%, -50%);`">
                                 <div class="w-3 h-3 rounded-full shadow-sm cursor-pointer hover:scale-150 transition-transform"
                                      :style="`background-color: ${getPartyColor(party.id)};`"
+                                     :title="party.name"
                                      @click="openModal(party.id)">
                                 </div>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-1.5 py-0.5 bg-slate-800 text-white text-[8px] font-bold rounded shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" x-text="party.name"></div>
                             </div>
                         </template>
                     </div>
@@ -170,23 +226,27 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                             <span x-text="shareTextStatus || 'Teilen & Link kopieren'"></span>
                         </button>
-                        <div class="flex gap-2">
-                            <a :href="'https://wa.me/?text=' + encodeURIComponent('Mein Wahl-Check für München: ' + (topMatch?.name || '') + '. Mach auch den Test: https://wahl-navi.de')" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-emerald-500 text-white rounded-xl flex items-center justify-center hover:bg-emerald-600 transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-                            <a :href="'https://twitter.com/intent/tweet?text=' + encodeURIComponent('Mein WahlNavi Ergebnis für München: ' + (topMatch?.name || '') + '.') + '&url=https://wahl-navi.de'" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-black text-white rounded-xl flex items-center justify-center hover:bg-slate-800 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                        </div>
+                        <a :href="'https://wa.me/?text=' + encodeURIComponent('Mein Wahl-Check für München: ' + (topMatch?.name || '') + '. Mach auch den Test: https://wahl-navi.de')" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-emerald-500 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-600 transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> WhatsApp</a>
+                        <button @click="shareCompass()" class="w-full py-3 bg-slate-100 text-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-200 transition-all text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            Kompass als Bild speichern
+                        </button>
                     </div>
                 </div>
             </aside>
+        </div>
+        <div class="text-center"><button @click="reset()" class="btn btn-neutral">Neu starten</button></div>
         </div>
     </main>
 
     <footer class="border-t border-slate-200 mt-auto bg-white">
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 gap-4">
             <div>&copy; 2026 WahlNavi München. Unabhängig & Werbefrei.</div>
-            <div class="flex gap-6">
+            <div class="flex items-center gap-6">
                 <a href="impressum.html" class="hover:text-slate-900 transition-colors">Impressum</a>
                 <a href="datenschutz.html" class="hover:text-slate-900 transition-colors">Datenschutz</a>
                 <a href="ueber-uns.html" class="hover:text-slate-900 transition-colors">Über uns</a>
+                <a href="https://github.com/frederikmetz42/wahl-navi.de" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors" title="GitHub"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
             </div>
         </div>
     </footer>
