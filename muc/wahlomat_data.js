@@ -59,10 +59,10 @@ window.WAHLOMAT_DATA = {
       "id": 6,
       "topic": "Mobilität & Verkehr",
       "short_title": "Radwege",
-      "statement": "Der Ausbau breiter Radwege soll Vorrang vor dem Erhalt von Fahrspuren für Autos haben.",
+      "statement": "Fahrspuren für Autos sollen erhalten bleiben, auch wenn dadurch weniger Platz für breite Radwege ist.",
       "axes": {
         "x": 0.0,
-        "y": -0.9
+        "y": 0.9
       },
       "tradeoff": "Umweltverbund vs. Auto"
     },
@@ -103,9 +103,9 @@ window.WAHLOMAT_DATA = {
       "id": 10,
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Wohnungs-Rückkauf",
-      "statement": "Die Stadt soll private Wohnungsbestände in großem Stil zurückkaufen, um dauerhaft bezahlbare Mieten zu garantieren.",
+      "statement": "Private Wohnungsbestände sollen im Besitz der Eigentümer bleiben und nicht von der Stadt aufgekauft werden.",
       "axes": {
-        "x": -1.0,
+        "x": 1.0,
         "y": 0.0
       },
       "tradeoff": "Markt vs. Staat"
@@ -180,9 +180,9 @@ window.WAHLOMAT_DATA = {
       "id": 17,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Übernachtungssteuer",
-      "statement": "München soll eine Steuer auf Übernachtungen für Touristen (City Tax) einführen.",
+      "statement": "München soll auf eine Übernachtungssteuer für Touristen verzichten.",
       "axes": {
-        "x": -0.7,
+        "x": 0.7,
         "y": 0.0
       },
       "tradeoff": "Tourismusförderung vs. Einnahmen"
@@ -304,7 +304,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir erhöhen Münchens Einnahmen durch Wachstum statt Gebühren... Prioritäten setzen statt Wunschlisten schreiben."
         },
         "6": {
-          "val": -1,
+          "val": 1,
           "quote": "Notwendige Fahrspuren erhalten wir... Keine Goldrandlösungen: Mobilität miteinander statt gegeneinander."
         },
         "7": {
@@ -320,7 +320,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir stoppen die dauerhafte Nachverdichtung in Gartenstädten... und bekennen uns klar zu diesem Siedlungstyp."
         },
         "10": {
-          "val": -1,
+          "val": 1,
           "quote": "Wir verteufeln Eigentum nicht... Anreize zur Privatisierung von Mietwohnungen."
         },
         "11": {
@@ -348,7 +348,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir prüfen eine moderate Senkung, wenn sie Ansiedlungen und das Gesamtaufkommen stärkt."
         },
         "17": {
-          "val": -1,
+          "val": 1,
           "quote": "Wir erhöhen Münchens Einnahmen ohne neue Belastungen: keine Bettensteuer, keine Verpackungssteuer."
         },
         "19": {
@@ -412,7 +412,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Nulltarif für Kinder bis zum 7. Geburtstag ausweiten... Finanziell geförderte D-Tickets statt zeitlich eingeschränkter Isarcard Sozial."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "Verdopplung der geschützten Radwege... Statt in teure Autotunnel investieren wir in sichere Fuß- und Radwege."
         },
         "7": {
@@ -428,7 +428,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir bauen bevorzugt dort, wo bereits Bebauung vorhanden ist... wollen wir mit Augenmaß bewusst in die Höhe nachverdichten."
         },
         "10": {
-          "val": 1,
+          "val": -1,
           "quote": "Prüfung weitergehender kommunaler Maßnahmen wie Baugebote oder Rückkaufoptionen."
         },
         "11": {
@@ -456,7 +456,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Ein Haushalt für die Zukunft – fair investieren... Priorität für Zukunftsinvestitionen: Bildung, Klima, Wohnen."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Einführung einer Übernachtungsabgabe."
         },
         "19": {
@@ -520,7 +520,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Nulltarif für Kinder bis zum 7. Geburtstag ausweiten und kostenlose Mitnahme von Kindern bei der IsarCard."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "Wir stehen für eine Umverteilung des städtischen Raumes zu Gunsten des Umweltverbundes... Infrastruktur für zu Fuss Gehende und Radfahrende ausbauen."
         },
         "7": {
@@ -536,7 +536,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir müssen auch die vorhandenen Wohnraumpotentiale im Bestand gezielt nutzen."
         },
         "10": {
-          "val": 1,
+          "val": -1,
           "quote": "Wir nutzen jedes Instrument, das wir als Stadt zur Verfügung haben, um Mieterinnen und Mieter zu schützen."
         },
         "11": {
@@ -564,7 +564,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Kampf gegen Hebesatz-Dumping und Gewerbesteuer-Oasen im Umland."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Einführung einer Übernachtungssteuer für Touristinnen und Touristen."
         },
         "19": {
@@ -628,7 +628,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Schuldenabbau... durch Priorisierung und Streichung nicht zwingender Großprojekte (z. B. der U9, diverser Trambahnprojekte)."
         },
         "6": {
-          "val": -1,
+          "val": 1,
           "quote": "Streichung nicht zwingender Großprojekte (z. B. ... Radwegeausbau)."
         },
         "7": {
@@ -644,7 +644,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten... Einheitsbauten und überdimensionierte Mietblöcke vermeiden."
         },
         "10": {
-          "val": -1,
+          "val": 1,
           "quote": "Sofortiger Stopp der investiven Neuverschuldung... Rückführung neu aufgenommener Schulden durch Verkauf des Gasteig-Geländes und weiterer geeigneter städtischer Immobilien."
         },
         "11": {
@@ -672,7 +672,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Keine Erhöhung der Gewerbesteuer."
         },
         "17": {
-          "val": -1,
+          "val": 1,
           "quote": "Keine Einführung einer Tourismusabgabe bzw. Übernachtungssteuer."
         },
         "19": {
@@ -736,7 +736,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Bezahlbarer ÖPNV... Eine kluge Haushaltsführung ist essenziell... anstelle kostenintensiver Komfortlösungen."
         },
         "6": {
-          "val": -1,
+          "val": 1,
           "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr."
         },
         "7": {
@@ -752,7 +752,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Nachverdichtung und Gebäudeaufstockung sind als Ansätze zu präferieren."
         },
         "10": {
-          "val": -1,
+          "val": 1,
           "quote": "Insbesondere soll München Investitionen in den Neubau zusätzlicher Wohnungen den Vorrang geben vor dem Aufkauf von Bestandswohnungen."
         },
         "11": {
@@ -780,7 +780,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Ziel ist es, die Gewerbesteuer zu senken."
         },
         "17": {
-          "val": -1,
+          "val": 1,
           "quote": "Solide Staatsfinanzen... Grundlage für nachhaltiges Wachstum."
         },
         "19": {
@@ -844,7 +844,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Den ÖPNV nach Luxemburger Vorbild ticketfrei gestalten."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "weniger Autospuren... Stattdessen sollen Fahrradwege, Spielstraßen und Schulstraßen ausgebaut werden."
         },
         "7": {
@@ -860,7 +860,7 @@ window.WAHLOMAT_DATA = {
           "quote": "verbindliche Regelungen für soziale Nachverdichtungen im Bestand einführen."
         },
         "10": {
-          "val": 1,
+          "val": -1,
           "quote": "Die Wohnungsbestände von Dawonia, Vonovia, WSB & Co. zurück in öffentliches Eigentum holen und Initiativen wie 'DW & Co. enteignen' aktiv unterstützen."
         },
         "11": {
@@ -888,7 +888,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Seit fast 30 Jahren wurde die Gewerbesteuer in München nicht mehr erhöht. Wir wollen eine Erhöhung um zehn Prozent."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Wir wollen ein München, in dem alle zur Verantwortung gezogen werden -- auch Tourist*innen. ... Dafür wollen wir eine Kulturtaxe... einführen."
         },
         "19": {
@@ -948,7 +948,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Kostenloser ÖPNV für Kinder und Jugendliche... Änderung der Finanzierung... um ein kostenloses Angebot zu ermöglichen."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "Reduzierung von Parkplätzen zugunsten von Wohnraum und Grünflächen... Radnetzes hat oberste Priorität."
         },
         "7": {
@@ -980,7 +980,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Renaturierung von Wasserläufen (z.B. Nordteil der Isar)."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Einführung einer Übernachtungsabgabe, mit der Zielsetzung der Erhöhung der städtischen Einnahmen."
         },
         "25": {
@@ -1052,7 +1052,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Weitere Tempo 30 Zonen an kritischen Stellen."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "Hauptrouten nach aktuellen Qualitätsstandards ausbauen: breite Wege, getrennt vom motorisierten Verkehr."
         },
         "7": {
@@ -1072,7 +1072,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Verpflichtende Solarquoten auf städtischen Gebäuden."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Volt unterstützt rechtliche Schritte gegen Bayerns Verbot eigener kommunaler Einnahmequellen (Bettensteuer...)."
         },
         "19": {
@@ -1128,7 +1128,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Das Oktoberfest wird jährlich an den Meistbietenden versteigert."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "Wir spannen mit einem stadtweiten Seilbahnnetz ein umfangreiches Mobilitätsangebot. Für Eichhörnchen."
         },
         "22": {
@@ -1148,7 +1148,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Entlastung vom Durchgangsverkehr... Stärkere Nutzung von öffentlichen Straßen und Plätzen für ein urbanes Leben."
         },
         "6": {
-          "val": 1,
+          "val": -1,
           "quote": "Ausbau von Rad- und Fußgängerwegen... Verkehrssicherheit, vor allem für Fußgänger*innen, Radfahrer*innen."
         },
         "12": {
@@ -1208,7 +1208,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Bodenversiegelung... bei Überlastung gelangt ungereinigtes Abwasser in die Isar."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Zweitwohnungssteuer... sinnvoller Beitrag."
         },
         "18": {
@@ -1236,7 +1236,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Begrüßung der Aufhebung von Tempo 30 auf der Landshuter Allee."
         },
         "6": {
-          "val": -1,
+          "val": 1,
           "quote": "Ideologiefreie und vernünftige Verkehrspolitik... statt einseitiger 'Radl-Dogmatik'."
         },
         "12": {
@@ -1272,7 +1272,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Städte gehören den Bürgern, nicht den Autos."
         },
         "17": {
-          "val": 1,
+          "val": -1,
           "quote": "Das Bündnis fordert eine Kulturabgabe von mindestens 5% auf jede Hotelübernachtung."
         },
         "23": {
