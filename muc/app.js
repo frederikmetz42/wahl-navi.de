@@ -29,6 +29,7 @@ function wahlomatApp() {
         compassAnimated: false,
         milestoneShown: null,
         prefersReducedMotion: false,
+        mobileResultTab: 'overview',
 
         init() {
             if (window.WAHLOMAT_DATA) {
@@ -150,9 +151,12 @@ function wahlomatApp() {
             if (hit && this.milestoneShown !== hit) {
                 this.milestoneShown = hit;
                 const toast = document.createElement('div');
-                toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] bg-slate-900 text-white px-5 py-3 rounded-full text-sm font-bold shadow-lg animate-toast-in';
+                toast.className = 'fixed bottom-[env(safe-area-inset-bottom,24px)] left-1/2 -translate-x-1/2 z-[200] bg-slate-900 text-white px-5 py-3 rounded-full text-sm font-bold shadow-lg animate-toast-in';
                 toast.textContent = `${hit}% geschafft!`;
                 document.body.appendChild(toast);
+                // Announce to screen readers
+                const liveRegion = document.getElementById('aria-live-region');
+                if (liveRegion) liveRegion.textContent = `${hit}% geschafft!`;
                 setTimeout(() => {
                     toast.classList.remove('animate-toast-in');
                     toast.classList.add('animate-toast-out');
@@ -284,7 +288,7 @@ function wahlomatApp() {
             let econText = '';
             if (x < -0.4) econText = 'wirtschaftlich eher links';
             else if (x < -0.15) econText = 'wirtschaftlich leicht links der Mitte';
-            else if (x > 0.4) econText = 'wirtschaftlich eher rechts';
+            else if (x > 0.4) econText = 'wirtschaftlich eher wirtschaftsliberal';
             else if (x > 0.15) econText = 'wirtschaftlich leicht rechts der Mitte';
             else econText = 'wirtschaftlich in der Mitte';
 
@@ -295,19 +299,28 @@ function wahlomatApp() {
             else if (y < -0.15) socialText = 'gesellschaftlich leicht progressiv';
             else socialText = 'gesellschaftlich in der Mitte';
 
-            let summary = econText + ' und ' + socialText;
+            // For centrist users, provide a meaningful summary
+            const isCentrist = Math.abs(x) <= 0.15 && Math.abs(y) <= 0.15;
+            let summary = '';
+            if (isCentrist) {
+                summary = 'Dein Profil liegt nah an der politischen Mitte';
+            } else {
+                summary = 'Dein Profil: ' + econText + ' und ' + socialText;
+            }
 
-            // Strongest topic
+            // Strongest topic — based on user's OWN highest-scoring topic across all parties
             let bestTopic = null;
             let bestPct = 0;
             Object.entries(this.topicScores).forEach(([topic, data]) => {
-                if (this.topMatch && data.parties[this.topMatch.id]) {
-                    const pct = data.parties[this.topMatch.id].percent;
-                    if (pct > bestPct) { bestPct = pct; bestTopic = topic; }
-                }
+                // Find the user's average match across all parties for this topic
+                let topicBest = 0;
+                Object.values(data.parties).forEach(p => {
+                    if (p.percent > topicBest) topicBest = p.percent;
+                });
+                if (topicBest > bestPct) { bestPct = topicBest; bestTopic = topic; }
             });
-            if (bestTopic && bestPct > 75) {
-                summary += '. Besonders stark beim Thema ' + bestTopic;
+            if (bestTopic && (bestPct > 75 || isCentrist)) {
+                summary += '. Besonders interessiert am Thema ' + bestTopic;
             }
 
             this.profileSummary = summary + '.';
@@ -366,7 +379,7 @@ function wahlomatApp() {
             // Axis lines + labels
             this.getRadarAxisEndpoints(r).forEach(a => {
                 svg += `<line x1="${a.x1}" y1="${a.y1}" x2="${a.x2}" y2="${a.y2}" stroke="#cbd5e1" stroke-width="1"/>`;
-                svg += `<text x="${a.labelX}" y="${a.labelY}" text-anchor="middle" dominant-baseline="central" fill="#64748b" font-size="9" font-weight="500">${a.topic.split(' ')[0]}</text>`;
+                svg += `<text x="${a.labelX}" y="${a.labelY}" text-anchor="middle" dominant-baseline="central" fill="#64748b" font-size="9" font-weight="500">${a.topic.split(/[\s,&]+/)[0]}</text>`;
             });
             // Top match polygon
             const color = this.getPartyColor(this.topMatch.id);
@@ -475,7 +488,7 @@ function wahlomatApp() {
         },
 
         reset() {
-            if(confirm("Möchten Sie wirklich neu starten? Ihre Antworten werden gelöscht.")) {
+            if(confirm("Möchtest du wirklich neu starten? Deine Antworten werden gelöscht.")) {
                 this.step = 0;
                 this.answers = {};
                 this.results = [];
@@ -663,10 +676,10 @@ function wahlomatApp() {
             ctx.fillStyle = '#64748b';
             ctx.font = `bold ${14 * s}px Inter, system-ui, sans-serif`;
             ctx.textAlign = 'center';
-            ctx.fillText('KONSERVATIV', cx, pad - 10 * s);
-            ctx.fillText('PROGRESSIV', cx, size - pad + 22 * s);
-            ctx.save(); ctx.translate(pad - 16 * s, cy); ctx.rotate(-Math.PI / 2); ctx.fillText('LINKS', 0, 0); ctx.restore();
-            ctx.save(); ctx.translate(size - pad + 16 * s, cy); ctx.rotate(Math.PI / 2); ctx.fillText('RECHTS', 0, 0); ctx.restore();
+            ctx.fillText('GESELLSCHAFTLICH KONSERVATIV', cx, pad - 10 * s);
+            ctx.fillText('GESELLSCHAFTLICH PROGRESSIV', cx, size - pad + 22 * s);
+            ctx.save(); ctx.translate(pad - 16 * s, cy); ctx.rotate(-Math.PI / 2); ctx.fillText('WIRTSCHAFTLICH LINKS', 0, 0); ctx.restore();
+            ctx.save(); ctx.translate(size - pad + 16 * s, cy); ctx.rotate(Math.PI / 2); ctx.fillText('WIRTSCHAFTLICH RECHTS', 0, 0); ctx.restore();
 
             const range = size / 2 - pad;
             const scale = (this.compassDisplayScale / 100) / 0.5; // match dynamic CSS scale
@@ -706,6 +719,12 @@ function wahlomatApp() {
                 ctx.font = `${13 * s}px Inter, system-ui, sans-serif`;
                 ctx.fillText(`Top-Match: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%)`, 20 * s, barY + 58 * s);
             }
+
+            // Caveat
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = `${11 * s}px Inter, system-ui, sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.fillText('Basiert auf 25 Thesen zur Münchner Kommunalwahl 2026', 20 * s, barY + 74 * s);
 
             // Watermark
             ctx.fillStyle = '#94a3b8';

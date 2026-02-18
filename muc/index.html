@@ -86,12 +86,12 @@
             <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-800 rounded-full font-medium text-sm">
                 <span class="w-2 h-2 rounded-full bg-blue-500" aria-hidden="true"></span> 25 Thesen zu Verkehr, Wohnen & Klima
             </div>
-            <p class="text-lg text-slate-600 leading-relaxed max-w-lg mx-auto">Vergleichen Sie Ihre Positionen mit denen der Parteien zur Kommunalwahl 2026. Finden Sie heraus, wer Ihre Interessen im Stadtrat vertritt.</p>
+            <p class="text-lg text-slate-600 leading-relaxed max-w-lg mx-auto">Vergleiche deine Positionen mit denen der Parteien zur Kommunalwahl 2026. Finde heraus, wer deine Interessen im Stadtrat vertritt.</p>
             <div class="inline-flex items-center gap-3 px-5 py-3 bg-emerald-50 border border-emerald-200 rounded-full text-emerald-800 text-sm font-medium">
                 <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
-                <span>Keine Cookies · Kein Tracking · Kein Backend</span>
+                <span>Kein Tracking · Kein Backend · Daten nur lokal</span>
             </div>
             <div class="flex justify-center gap-4 pt-4">
                 <button @click="start()" class="btn btn-primary text-lg px-10 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Starten</button>
@@ -156,7 +156,7 @@
         <div x-show="step === 98" x-transition.opacity class="max-w-2xl mx-auto">
             <div class="card p-6 md:p-10">
                 <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">Gewichtung</h2>
-                <p class="text-slate-500 text-sm md:text-base mb-8">Welche Themen sind Ihnen besonders wichtig? Wichtige Themen zählen doppelt.</p>
+                <p class="text-slate-500 text-sm md:text-base mb-8">Welche Themen sind dir besonders wichtig? Wichtige Themen zählen doppelt.</p>
                 <div class="space-y-3" role="group" aria-label="Themen-Gewichtung">
                     <template x-for="topic in topics" :key="topic">
                         <button class="w-full flex items-center justify-between p-4 rounded-xl border transition-all"
@@ -178,7 +178,7 @@
         </div>
 
         <!-- Results -->
-        <div x-show="step === 99" x-transition.opacity class="space-y-12">
+        <div x-show="step === 99" x-transition.opacity class="space-y-6 lg:space-y-12">
 
         <!-- Profile Summary -->
         <div x-show="profileSummary" class="flex justify-center">
@@ -190,9 +190,22 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Mobile Tab Navigation (hidden on desktop) -->
+        <nav class="lg:hidden flex bg-white border border-slate-200 rounded-xl p-1 shadow-sm no-print" role="tablist" aria-label="Ergebnis-Bereiche">
+            <button role="tab" :aria-selected="mobileResultTab === 'overview'" @click="mobileResultTab = 'overview'"
+                    class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all text-center"
+                    :class="mobileResultTab === 'overview' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'">Ergebnis</button>
+            <button role="tab" :aria-selected="mobileResultTab === 'analysis'" @click="mobileResultTab = 'analysis'"
+                    class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all text-center"
+                    :class="mobileResultTab === 'analysis' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'">Analyse</button>
+            <button role="tab" :aria-selected="mobileResultTab === 'compass'" @click="mobileResultTab = 'compass'"
+                    class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all text-center"
+                    :class="mobileResultTab === 'compass' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'">Kompass</button>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
             <div class="lg:col-span-7 space-y-8">
-                <section x-show="topMatch" aria-label="Dein Top-Ergebnis">
+                <section x-show="topMatch" :class="{'hidden lg:block': mobileResultTab !== 'overview'}" aria-label="Dein Top-Ergebnis">
                     <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Dein Ergebnis</h2>
                     <div class="card p-8 flex items-center justify-between bg-gradient-to-br from-white to-slate-50 cursor-pointer hover:shadow-md transition-shadow" @click="topMatch && openModal(topMatch.id)">
                         <div>
@@ -211,7 +224,7 @@
                     </div>
                 </section>
 
-                <section aria-label="Alle Parteien im Vergleich">
+                <section aria-label="Alle Parteien im Vergleich" :class="{'hidden lg:block': mobileResultTab !== 'overview'}">
                     <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Alle Parteien</h3>
                     <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                         <template x-for="(party, index) in results" :key="party.id">
@@ -234,7 +247,7 @@
                 </section>
 
                 <!-- Topic Breakdown -->
-                <section class="no-print" aria-label="Themen-Analyse">
+                <section class="no-print" aria-label="Themen-Analyse" :class="{'hidden lg:block': mobileResultTab !== 'analysis'}">
                     <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Themen-Analyse</h3>
                     <div class="space-y-2">
                         <template x-for="topic in topics" :key="'tb-' + topic">
@@ -248,7 +261,7 @@
                                             <span class="font-bold text-slate-900 text-sm" x-text="topic"></span>
                                             <span class="text-[10px] text-slate-400 font-mono" x-text="topicScores[topic] ? topicScores[topic].answeredCount + '/' + topicScores[topic].totalCount + ' beantwortet' : ''"></span>
                                         </div>
-                                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden" role="meter" :aria-valuenow="topMatch && topicScores[topic] ? Math.round(topicScores[topic].parties[topMatch.id]?.percent || 0) : 0" aria-valuemin="0" aria-valuemax="100" :aria-label="topMatch ? Math.round(topicScores[topic]?.parties[topMatch.id]?.percent || 0) + '% Übereinstimmung mit ' + topMatch.name + ' bei ' + topic : ''">
                                             <div class="h-full rounded-full transition-all duration-500" :style="topMatch && topicScores[topic] ? `width: ${topicScores[topic].parties[topMatch.id]?.percent || 0}%; background-color: ${getPartyColor(topMatch.id)}` : 'width: 0'"></div>
                                         </div>
                                     </div>
@@ -282,7 +295,7 @@
             </div>
 
             <!-- Radar, Compass & Share -->
-            <aside class="lg:col-span-5 space-y-6 no-print" aria-label="Radar, Kompass und Teilen">
+            <aside class="lg:col-span-5 space-y-6 no-print" aria-label="Radar, Kompass und Teilen" :class="{'hidden lg:block': mobileResultTab !== 'compass'}">
                 <!-- Radar Chart -->
                 <div class="card p-6" x-show="topMatch && Object.keys(topicScores).length > 0">
                     <h3 class="font-bold text-lg mb-2">Themen-Radar</h3>
@@ -323,7 +336,7 @@
 
                         <!-- User dot -->
                         <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * compassDisplayScale)}%; top: ${50 - (userCoords.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
-                             <span class="absolute inline-flex h-6 w-6 rounded-full bg-slate-400 opacity-20 animate-ping" aria-hidden="true"></span>
+                             <span class="absolute inline-flex h-6 w-6 rounded-full bg-slate-400 opacity-20" :class="prefersReducedMotion ? '' : 'animate-ping'" aria-hidden="true"></span>
                              <div class="w-4 h-4 bg-slate-900 border-2 border-white rounded-full shadow-xl flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div>
                              <div class="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm whitespace-nowrap">DU</div>
                         </div>
@@ -331,23 +344,26 @@
                         <template x-for="party in compassParties" :key="party.id">
                             <div class="absolute z-10 group"
                                  :style="`left: ${50 + (party.x * compassDisplayScale)}%; top: ${50 - (party.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
-                                <div class="w-3 h-3 rounded-full shadow-sm cursor-pointer hover:scale-150 transition-transform"
-                                     :style="`background-color: ${getPartyColor(party.id)};`"
-                                     :title="party.name"
+                                <button class="w-8 h-8 flex items-center justify-center cursor-pointer group/dot focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-full"
+                                     :aria-label="party.name + ' — Details anzeigen'"
                                      @click="openModal(party.id)">
-                                </div>
+                                    <div class="w-3 h-3 rounded-full shadow-sm group-hover/dot:scale-150 transition-transform"
+                                         :style="`background-color: ${getPartyColor(party.id)};`"></div>
+                                </button>
                                 <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-1.5 py-0.5 bg-slate-800 text-white text-[8px] font-bold rounded shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" x-text="party.name"></div>
                             </div>
                         </template>
                     </div>
 
+                    <p class="text-[10px] text-slate-400 mt-3 text-center leading-relaxed">Nähe im Kompass bedeutet inhaltliche Übereinstimmung, keine politische Empfehlung. Basiert auf deinen Antworten zu 25 Thesen.</p>
+
                     <!-- Share Section -->
                     <div class="mt-8 space-y-3">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block text-center">Kompass teilen</label>
-                        <div class="flex gap-2">
-                            <button @click="shareCompass()" class="flex-1 py-3 bg-emerald-500 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-600 transition-all font-medium"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.19 3.349 5.306 4.695.742.32 1.321.51 1.771.653.742.237 1.417.204 1.953.124.597-.087 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> WhatsApp</button>
-                            <button @click="shareCompass()" class="flex-1 py-3 bg-blue-500 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-blue-600 transition-all font-medium"><svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> Signal</button>
-                        </div>
+                        <button @click="shareCompass()" class="w-full py-3 bg-slate-900 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-slate-800 transition-all font-medium">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                            Kompass teilen
+                        </button>
                         <button @click="copyLink()" class="w-full py-3 bg-slate-100 text-slate-700 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-200 transition-all text-sm font-medium">
                             <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span x-text="shareTextStatus || 'Link kopieren'"></span>
