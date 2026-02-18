@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WahlNavi München 2026</title>
+    <meta name="version" content="4.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; frame-ancestors *; base-uri 'self'; form-action 'none';">
+    <link rel="stylesheet" href="styles.css">
+    <script src="wahlomat_data.js"></script>
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-white" x-data="wahlomatApp()" x-cloak x-init="isEmbedMode = true" @keydown.window="handleKeydown($event)">
+
+    <div id="aria-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Compact Header -->
+    <div class="border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <img src="icon.svg" class="w-7 h-7" alt="WahlNavi">
+            <span class="text-base tracking-tight"><span class="font-extrabold text-slate-900">Wahl</span><span class="font-light text-slate-600">Navi</span></span>
+        </div>
+        <div class="text-xs text-slate-400 font-mono" x-show="step > 0 && step <= totalTheses">
+            <span class="text-slate-900 font-bold" x-text="step"></span> / <span x-text="totalTheses"></span>
+        </div>
+    </div>
+    <div class="h-1 bg-slate-100 w-full overflow-hidden" role="progressbar" :aria-valuenow="step" aria-valuemin="0" :aria-valuemax="totalTheses">
+        <div class="h-full bg-blue-600 transition-all duration-500 ease-out" :style="`width: ${(step / totalTheses) * 100}%`" x-show="step > 0 && step <= totalTheses"></div>
+    </div>
+
+    <main class="flex-grow px-4 py-6 w-full max-w-lg mx-auto">
+
+        <!-- Intro -->
+        <div x-show="step === 0" x-transition.opacity class="text-center space-y-5">
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">WahlNavi<br><span class="text-slate-400 font-light">München 2026</span></h1>
+            <p class="text-sm text-slate-600">25 Thesen. 14 Parteien. Finde dein Match.</p>
+            <button @click="start()" class="btn btn-primary text-base px-8 py-3">Starten</button>
+        </div>
+
+        <!-- Questions -->
+        <div x-show="step > 0 && step <= totalTheses" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" class="space-y-4">
+            <template x-if="currentThesis">
+                <div>
+                    <span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] font-semibold uppercase tracking-wider rounded-full" x-text="currentThesis.topic"></span>
+                    <h2 class="text-lg font-bold text-slate-900 mt-2 mb-4 leading-snug" x-text="currentThesis.statement"></h2>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center py-3 gap-1 text-[10px]">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Ja</span>
+                        </button>
+                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center py-3 gap-1 text-[10px]">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                            <span>Neutral</span>
+                        </button>
+                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center py-3 gap-1 text-[10px]">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Nein</span>
+                        </button>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center text-xs text-slate-400">
+                        <button @click="step--" class="hover:text-slate-600" x-show="step > 1">Zurück</button>
+                        <button @click="skip()" class="hover:text-slate-600 ml-auto">Überspringen</button>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Weighting -->
+        <div x-show="step === 98" x-transition.opacity class="space-y-4">
+            <h2 class="text-xl font-extrabold text-slate-900">Gewichtung</h2>
+            <p class="text-sm text-slate-500">Welche Themen zählen doppelt?</p>
+            <div class="space-y-2">
+                <template x-for="topic in topics" :key="topic">
+                    <button class="w-full flex items-center justify-between p-3 rounded-xl border text-sm transition-all"
+                            :class="topicWeights[topic] === 2 ? 'border-blue-500 bg-blue-50' : 'border-slate-200 hover:bg-slate-50'"
+                            @click="topicWeights[topic] = topicWeights[topic] === 2 ? 1 : 2">
+                        <span class="font-semibold text-slate-900" x-text="topic"></span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                              :class="topicWeights[topic] === 2 ? 'bg-blue-500 text-white' : 'bg-slate-100 text-slate-500'"
+                              x-text="topicWeights[topic] === 2 ? '2x' : '1x'"></span>
+                    </button>
+                </template>
+            </div>
+            <button @click="showResults()" class="btn btn-primary w-full py-3">Ergebnis berechnen</button>
+        </div>
+
+        <!-- Results (top 5 only) -->
+        <div x-show="step === 99" x-transition.opacity class="space-y-6">
+            <div x-show="topMatch" class="text-center">
+                <div class="text-sm text-slate-500 mb-1">Dein Top-Match</div>
+                <div class="text-3xl font-extrabold text-slate-900" x-text="topMatch?.name"></div>
+                <div class="text-2xl font-bold mt-1" :style="`color: ${topMatch ? getPartyColor(topMatch.id) : ''}`" x-text="topMatch ? Math.round(topMatch.matchPercentage) + '%' : ''"></div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+                <template x-for="(party, index) in results.slice(0, 5)" :key="party.id">
+                    <div class="flex items-center p-3 border-b border-slate-100 last:border-0">
+                        <div class="w-6 text-center text-slate-400 font-mono text-xs mr-3" x-text="index + 1"></div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-1"><span class="font-bold text-slate-900 text-sm" x-text="party.name"></span><span class="font-mono text-xs" x-text="Math.round(party.matchPercentage) + '%'"></span></div>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden"><div class="h-full rounded-full" :style="`width: ${party.matchPercentage}%; background-color: ${getPartyColor(party.id)}`"></div></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="text-center">
+                <a href="https://wahl-navi.de/muc/" target="_blank" rel="noopener" class="text-sm text-blue-600 hover:underline font-medium">Vollständige Ergebnisse auf wahl-navi.de</a>
+            </div>
+        </div>
+    </main>
+
+    <script defer src="alpine.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -17,7 +17,18 @@ function wahlomatApp() {
         topicWeights: {},
         topics: [],
         isSharedView: false,
+        savedStep: 0,
+        revisedAnswers: [],
         _modalTrigger: null,
+        topicScores: {},
+        topicBreakdownOpen: {},
+        isEmbedMode: false,
+        embedCodeVisible: false,
+        profileSummary: '',
+        resultsRevealed: false,
+        compassAnimated: false,
+        milestoneShown: null,
+        prefersReducedMotion: false,
 
         init() {
             if (window.WAHLOMAT_DATA) {
@@ -26,16 +37,30 @@ function wahlomatApp() {
                 this.totalTheses = this.theses.length;
                 const seen = new Set();
                 this.theses.forEach(t => { if (!seen.has(t.topic)) { seen.add(t.topic); this.topics.push(t.topic); } });
-                this.topics.forEach(t => { this.topicWeights[t] = 1; });
+                this.topics.forEach(t => { this.topicWeights[t] = 1; this.topicBreakdownOpen[t] = false; });
             } else {
                 console.error("Daten nicht geladen!");
             }
 
+            this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
             this.$watch('answers', val => {
-                if (!this.isSharedView) {
+                if (!this.isSharedView && !this.isEmbedMode) {
                     localStorage.setItem('wahlomat_answers', JSON.stringify(val));
                 }
             });
+
+            this.$watch('step', val => {
+                if (val > 0 && !this.isSharedView && !this.isEmbedMode) {
+                    localStorage.setItem('wn_step', val);
+                }
+            });
+
+            this.$watch('topicWeights', val => {
+                if (!this.isSharedView && !this.isEmbedMode) {
+                    localStorage.setItem('wn_weights', JSON.stringify(val));
+                }
+            }, { deep: true });
 
             // Check URL params for shared results
             const params = new URLSearchParams(window.location.search);
@@ -45,6 +70,8 @@ function wahlomatApp() {
                 this.isSharedView = true;
                 this.calculateResults();
                 this.step = 99;
+                this.resultsRevealed = true;
+                this.compassAnimated = true;
                 window.history.replaceState({}, '', window.location.pathname);
                 return;
             }
@@ -56,6 +83,21 @@ function wahlomatApp() {
                     this.answers = JSON.parse(saved);
                 } catch(e) { console.error("Error loading saves", e); }
             }
+
+            const savedStep = localStorage.getItem('wn_step');
+            if (savedStep) {
+                this.savedStep = parseInt(savedStep, 10) || 0;
+            }
+
+            const savedWeights = localStorage.getItem('wn_weights');
+            if (savedWeights) {
+                try {
+                    const w = JSON.parse(savedWeights);
+                    if (w && typeof w === 'object') {
+                        Object.assign(this.topicWeights, w);
+                    }
+                } catch(e) { /* ignore */ }
+            }
         },
 
         get currentThesis() {
@@ -64,11 +106,18 @@ function wahlomatApp() {
         },
 
         start() {
+            this.savedStep = 0;
             this.step = 1;
             window.scrollTo(0,0);
             if (Object.keys(this.answers).length >= this.totalTheses) {
                 this.step = 98;
             }
+        },
+
+        resumeQuiz() {
+            this.step = this.savedStep;
+            this.savedStep = 0;
+            window.scrollTo(0,0);
         },
 
         answer(value) {
@@ -86,17 +135,46 @@ function wahlomatApp() {
         nextStep() {
             if (this.step < this.totalTheses) {
                 this.step++;
+                this.checkMilestone();
             } else {
                 this.step = 98;
                 window.scrollTo(0,0);
             }
         },
 
+        checkMilestone() {
+            if (this.prefersReducedMotion) return;
+            const pct = Math.round((this.step / this.totalTheses) * 100);
+            const milestones = [25, 50, 75];
+            const hit = milestones.find(m => pct >= m && pct < m + (100 / this.totalTheses) + 1);
+            if (hit && this.milestoneShown !== hit) {
+                this.milestoneShown = hit;
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] bg-slate-900 text-white px-5 py-3 rounded-full text-sm font-bold shadow-lg animate-toast-in';
+                toast.textContent = `${hit}% geschafft!`;
+                document.body.appendChild(toast);
+                setTimeout(() => {
+                    toast.classList.remove('animate-toast-in');
+                    toast.classList.add('animate-toast-out');
+                    setTimeout(() => toast.remove(), 300);
+                }, 1500);
+            }
+        },
+
         showResults() {
             try {
+                this.resultsRevealed = false;
+                this.compassAnimated = false;
                 this.calculateResults();
                 this.step = 99;
                 window.scrollTo(0,0);
+                if (!this.prefersReducedMotion) {
+                    setTimeout(() => { this.resultsRevealed = true; }, 100);
+                    setTimeout(() => { this.compassAnimated = true; }, 300);
+                } else {
+                    this.resultsRevealed = true;
+                    this.compassAnimated = true;
+                }
             } catch (e) {
                 console.error("Calculation error:", e);
                 alert("Fehler bei der Berechnung. Bitte neu laden.");
@@ -138,11 +216,175 @@ function wahlomatApp() {
 
                 // Calculate Compass Coordinates
                 this.calculateCompass();
+                this.calculateTopicScores();
+                this.calculateProfileSummary();
 
             } catch (e) {
                 console.error("Inner calculation error", e);
                 throw e;
             }
+        },
+
+        calculateTopicScores() {
+            const scores = {};
+            this.topics.forEach(topic => {
+                const topicTheses = this.theses.filter(t => t.topic === topic);
+                const answered = topicTheses.filter(t => this.answers[t.id] !== undefined);
+                const parties = {};
+                this.parties.forEach(party => {
+                    let points = 0;
+                    let maxPoints = 0;
+                    answered.forEach(thesis => {
+                        const userPos = this.answers[thesis.id];
+                        const tw = this.topicWeights[thesis.topic] || 1;
+                        if (party.positions && party.positions[thesis.id]) {
+                            const partyPosData = party.positions[thesis.id];
+                            const partyPos = partyPosData.val !== undefined ? partyPosData.val : partyPosData.position;
+                            const diff = Math.abs(userPos - partyPos);
+                            points += (2 - diff) * tw;
+                        } else {
+                            points += 1 * tw;
+                        }
+                        maxPoints += 2 * tw;
+                    });
+                    parties[party.id] = {
+                        score: points,
+                        maxScore: maxPoints,
+                        percent: maxPoints > 0 ? (points / maxPoints) * 100 : 0
+                    };
+                });
+                scores[topic] = {
+                    thesisIds: topicTheses.map(t => t.id),
+                    answeredCount: answered.length,
+                    totalCount: topicTheses.length,
+                    parties
+                };
+            });
+            this.topicScores = scores;
+        },
+
+        toggleTopicBreakdown(topic) {
+            this.topicBreakdownOpen[topic] = !this.topicBreakdownOpen[topic];
+        },
+
+        getTopTopicParty(topic) {
+            const ts = this.topicScores[topic];
+            if (!ts) return null;
+            let best = null;
+            let bestPct = -1;
+            Object.entries(ts.parties).forEach(([pid, data]) => {
+                if (data.percent > bestPct) { bestPct = data.percent; best = pid; }
+            });
+            return best;
+        },
+
+        calculateProfileSummary() {
+            const x = this.userCoords.x;
+            const y = this.userCoords.y;
+            let econText = '';
+            if (x < -0.4) econText = 'wirtschaftlich eher links';
+            else if (x < -0.15) econText = 'wirtschaftlich leicht links der Mitte';
+            else if (x > 0.4) econText = 'wirtschaftlich eher rechts';
+            else if (x > 0.15) econText = 'wirtschaftlich leicht rechts der Mitte';
+            else econText = 'wirtschaftlich in der Mitte';
+
+            let socialText = '';
+            if (y > 0.4) socialText = 'gesellschaftlich eher konservativ';
+            else if (y > 0.15) socialText = 'gesellschaftlich leicht konservativ';
+            else if (y < -0.4) socialText = 'gesellschaftlich eher progressiv';
+            else if (y < -0.15) socialText = 'gesellschaftlich leicht progressiv';
+            else socialText = 'gesellschaftlich in der Mitte';
+
+            let summary = econText + ' und ' + socialText;
+
+            // Strongest topic
+            let bestTopic = null;
+            let bestPct = 0;
+            Object.entries(this.topicScores).forEach(([topic, data]) => {
+                if (this.topMatch && data.parties[this.topMatch.id]) {
+                    const pct = data.parties[this.topMatch.id].percent;
+                    if (pct > bestPct) { bestPct = pct; bestTopic = topic; }
+                }
+            });
+            if (bestTopic && bestPct > 75) {
+                summary += '. Besonders stark beim Thema ' + bestTopic;
+            }
+
+            this.profileSummary = summary + '.';
+        },
+
+        // --- Radar Chart Methods ---
+
+        radarPolygonString(partyId, radius) {
+            const cx = 150, cy = 150;
+            const n = this.topics.length;
+            const points = this.topics.map((topic, i) => {
+                const pct = (this.topicScores[topic]?.parties[partyId]?.percent || 0) / 100;
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                const r = pct * radius;
+                return `${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`;
+            });
+            return points.join(' ');
+        },
+
+        radarGridRingPoints(fraction, radius) {
+            const cx = 150, cy = 150;
+            const n = this.topics.length;
+            const points = [];
+            for (let i = 0; i < n; i++) {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                const r = fraction * radius;
+                points.push(`${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`);
+            }
+            return points.join(' ');
+        },
+
+        getRadarAxisEndpoints(radius) {
+            const cx = 150, cy = 150;
+            const n = this.topics.length;
+            return this.topics.map((topic, i) => {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                return {
+                    topic,
+                    x1: cx, y1: cy,
+                    x2: cx + radius * Math.cos(angle),
+                    y2: cy + radius * Math.sin(angle),
+                    labelX: cx + (radius + 18) * Math.cos(angle),
+                    labelY: cy + (radius + 18) * Math.sin(angle)
+                };
+            });
+        },
+
+        getRadarSVG() {
+            if (!this.topMatch || this.topics.length === 0) return '';
+            const r = 110;
+            let svg = '<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%">';
+            // Grid rings
+            [0.25, 0.5, 0.75, 1.0].forEach(frac => {
+                svg += `<polygon points="${this.radarGridRingPoints(frac, r)}" fill="none" stroke="#e2e8f0" stroke-width="1"/>`;
+            });
+            // Axis lines + labels
+            this.getRadarAxisEndpoints(r).forEach(a => {
+                svg += `<line x1="${a.x1}" y1="${a.y1}" x2="${a.x2}" y2="${a.y2}" stroke="#cbd5e1" stroke-width="1"/>`;
+                svg += `<text x="${a.labelX}" y="${a.labelY}" text-anchor="middle" dominant-baseline="central" fill="#64748b" font-size="9" font-weight="500">${a.topic.split(' ')[0]}</text>`;
+            });
+            // Top match polygon
+            const color = this.getPartyColor(this.topMatch.id);
+            svg += `<polygon points="${this.radarPolygonString(this.topMatch.id, r)}" fill="${color}33" stroke="${color}" stroke-width="2"/>`;
+            svg += '</svg>';
+            return svg;
+        },
+
+        getEmbedCode() {
+            return '<iframe src="https://wahl-navi.de/muc/embed.html" width="100%" height="700" style="border:none;max-width:500px;" title="WahlNavi München 2026"></iframe>';
+        },
+
+        copyEmbedCode() {
+            navigator.clipboard.writeText(this.getEmbedCode()).then(() => {
+                this.embedCodeVisible = false;
+            }).catch(() => {
+                alert('Code konnte nicht kopiert werden.');
+            });
         },
 
         calculateCompass() {
@@ -241,8 +483,12 @@ function wahlomatApp() {
                 this.selectedPartyId = null;
                 this.modalOpen = false;
                 this.isSharedView = false;
+                this.savedStep = 0;
+                this.revisedAnswers = [];
                 document.body.style.overflow = '';
                 localStorage.removeItem('wahlomat_answers');
+                localStorage.removeItem('wn_step');
+                localStorage.removeItem('wn_weights');
                 this.topics.forEach(t => { this.topicWeights[t] = 1; });
             }
         },
@@ -298,7 +544,12 @@ function wahlomatApp() {
             this.answers = {};
             this.results = [];
             this.topMatch = null;
+            this.savedStep = 0;
+            this.revisedAnswers = [];
             this.topics.forEach(t => { this.topicWeights[t] = 1; });
+            localStorage.removeItem('wahlomat_answers');
+            localStorage.removeItem('wn_step');
+            localStorage.removeItem('wn_weights');
         },
 
         // --- Modal with Focus Management ---
@@ -491,6 +742,22 @@ function wahlomatApp() {
             }).catch(() => {
                 alert('Link konnte nicht kopiert werden.');
             });
+        },
+
+        // --- Answer Revision ---
+
+        reviseAnswer(thesisId, value) {
+            this.answers[thesisId] = value;
+            if (!this.revisedAnswers.includes(thesisId)) {
+                this.revisedAnswers.push(thesisId);
+            }
+            this.calculateResults();
+            const liveRegion = document.getElementById('aria-live-region');
+            if (liveRegion) {
+                const thesis = this.theses.find(t => t.id == thesisId);
+                const label = value === 1 ? 'Zustimmung' : value === -1 ? 'Ablehnung' : 'Neutral';
+                liveRegion.textContent = `Antwort für "${thesis?.short_title}" geändert zu ${label}. Ergebnisse aktualisiert.`;
+            }
         },
 
         // --- Helpers ---

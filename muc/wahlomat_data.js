@@ -321,7 +321,7 @@ window.WAHLOMAT_DATA = {
         },
         "10": {
           "val": -1,
-          "quote": "Wir verteufeln Eigentum nicht... [wir setzen auf] Anreize zur Privatisierung von Mietwohnungen."
+          "quote": "Wir verteufeln Eigentum nicht... Anreize zur Privatisierung von Mietwohnungen."
         },
         "11": {
           "val": -1,
@@ -461,7 +461,7 @@ window.WAHLOMAT_DATA = {
         },
         "19": {
           "val": 1,
-          "quote": "Wir stehen zur Gleichberechtigung... (Verwendung von Frauen*, etc. im Programm)."
+          "quote": "Wir stehen zur Gleichberechtigung."
         },
         "20": {
           "val": -1,
@@ -569,7 +569,7 @@ window.WAHLOMAT_DATA = {
         },
         "19": {
           "val": 1,
-          "quote": "Wir fördern eine gendergerechte Medizin... (Verwendung von LGBTIQ* im Programm)."
+          "quote": ""
         },
         "20": {
           "val": -1,
@@ -589,7 +589,7 @@ window.WAHLOMAT_DATA = {
         },
         "25": {
           "val": 0,
-          "quote": "Wir unterstützen die Einrichtung der 'Sicheren Wiesn'..."
+          "quote": ""
         },
         "18": {
           "val": -1,
@@ -609,7 +609,7 @@ window.WAHLOMAT_DATA = {
       "positions": {
         "1": {
           "val": 1,
-          "quote": "Autobahnringlücke im Südwesten der Stadt schließen... [Fokus auf] Erhalt bzw. Wiederherstellung der Erreichbarkeit von Gewerbebetrieben und Einzelhandel mit dem PKW."
+          "quote": "Autobahnringlücke im Südwesten der Stadt schließen... Erhalt bzw. Wiederherstellung der Erreichbarkeit von Gewerbebetrieben und Einzelhandel mit dem PKW."
         },
         "2": {
           "val": -1,
@@ -633,7 +633,7 @@ window.WAHLOMAT_DATA = {
         },
         "7": {
           "val": -1,
-          "quote": "Abkehr von Projekten wie... Smart City oder bewegungseinschränkenden 15-Minuten-Stadt. [Fokus auf] Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten."
+          "quote": "Abkehr von Projekten wie... Smart City oder bewegungseinschränkenden 15-Minuten-Stadt. Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten."
         },
         "8": {
           "val": -1,
@@ -668,8 +668,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Grünflächen erhalten und erweitern (Parks, Wiesen, Ackerflächen, Straßengrün)."
         },
         "16": {
-          "val": -1,
-          "quote": "Keine Erhöhung der Gewerbesteuer. [vs. Theses demand for reduction]"
+          "val": 0,
+          "quote": "Keine Erhöhung der Gewerbesteuer."
         },
         "17": {
           "val": -1,
@@ -721,7 +721,7 @@ window.WAHLOMAT_DATA = {
         },
         "2": {
           "val": -1,
-          "quote": "Autos, die nicht nach München müssen, sollen die Stadt umfahren... [aber] Eine weitere Erhöhung der Taxi-Preise oder gar eine Untergrenze für Wettbewerber lehnen wir ab."
+          "quote": "Autos, die nicht nach München müssen, sollen die Stadt umfahren."
         },
         "3": {
           "val": 1,
@@ -733,11 +733,11 @@ window.WAHLOMAT_DATA = {
         },
         "5": {
           "val": -1,
-          "quote": "Bezahlbarer ÖPNV [aber auch] Eine kluge Haushaltsführung ist essenziell... anstelle kostenintensiver Komfortlösungen."
+          "quote": "Bezahlbarer ÖPNV... Eine kluge Haushaltsführung ist essenziell... anstelle kostenintensiver Komfortlösungen."
         },
         "6": {
           "val": -1,
-          "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr [statt Vorrang]."
+          "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr."
         },
         "7": {
           "val": 1,
@@ -757,7 +757,7 @@ window.WAHLOMAT_DATA = {
         },
         "11": {
           "val": -1,
-          "quote": "Wir wollen es mehr Menschen erleichtern, ihren Traum vom Eigenheim zu verwirklichen... [Fokus auf private Bauträger erleichtern]."
+          "quote": "Wir wollen es mehr Menschen erleichtern, ihren Traum vom Eigenheim zu verwirklichen."
         },
         "12": {
           "val": -1,
@@ -765,11 +765,11 @@ window.WAHLOMAT_DATA = {
         },
         "13": {
           "val": -1,
-          "quote": "Wir wollen eine naturwissenschaftlich fundierte Energiepolitik, die auf Innovation, Wettbewerb und hohe gesellschaftliche Akzeptanz setzt [statt Verboten]."
+          "quote": "Wir wollen eine naturwissenschaftlich fundierte Energiepolitik, die auf Innovation, Wettbewerb und hohe gesellschaftliche Akzeptanz setzt."
         },
         "14": {
           "val": -1,
-          "quote": "Mit Dach- und Fassadenbegrünungen sollen... auch private Gebäudeeigentümer [beitragen], alternativ sollen sie die Flächen auch für Photovoltaik nutzen können... auf freiwilliger Basis."
+          "quote": "Mit Dach- und Fassadenbegrünungen sollen... auch private Gebäudeeigentümer beitragen, alternativ sollen sie die Flächen auch für Photovoltaik nutzen können... auf freiwilliger Basis."
         },
         "15": {
           "val": 0,
@@ -781,7 +781,7 @@ window.WAHLOMAT_DATA = {
         },
         "17": {
           "val": -1,
-          "quote": "Solide Staatsfinanzen... Grundlage für nachhaltiges Wachstum. [Implied: No new taxes like City Tax which harms tourism/business]."
+          "quote": "Solide Staatsfinanzen... Grundlage für nachhaltiges Wachstum."
         },
         "19": {
           "val": 0,
@@ -793,7 +793,7 @@ window.WAHLOMAT_DATA = {
         },
         "21": {
           "val": 1,
-          "quote": "Die Stadt München soll ihren entspannten Umgang mit Cannabis-Konsum in der Stadt weiter umsetzen."
+          "quote": "München soll Drogenkonsumräume einrichten, um öffentlichen Konsum zu reduzieren und gesundheitliche sowie soziale Hilfeangebote zugänglich zu machen."
         },
         "23": {
           "val": 1,
@@ -805,7 +805,7 @@ window.WAHLOMAT_DATA = {
         },
         "25": {
           "val": -1,
-          "quote": "Menschen aus aller Welt kommen zum Oktoberfest... [Keine Regulierungsforderung]."
+          "quote": ""
         },
         "18": {
           "val": -1,
@@ -856,7 +856,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Den Bau von Hochhäusern über 60 Meter untersagen, da durch diese keine bezahlbarer Wohnraum entsteht."
         },
         "9": {
-          "val": 1,
+          "val": -1,
           "quote": "verbindliche Regelungen für soziale Nachverdichtungen im Bestand einführen."
         },
         "10": {
@@ -893,7 +893,7 @@ window.WAHLOMAT_DATA = {
         },
         "19": {
           "val": 1,
-          "quote": "Wir fördern die Gleichberechtigung von Frauen, Männern und queeren/nicht-binären sowie trans* Personengruppen. [Verwendung von Gender-Sternchen im Programm]."
+          "quote": "Wir fördern die Gleichberechtigung von Frauen, Männern und queeren/nicht-binären sowie trans* Personengruppen."
         },
         "20": {
           "val": -1,
@@ -905,7 +905,7 @@ window.WAHLOMAT_DATA = {
         },
         "23": {
           "val": 1,
-          "quote": "Eine mehrjährige Finanzplanung ohne Spardruck und Stellenkürzungen für Planungssicherheit [im Kulturbereich]."
+          "quote": "Eine mehrjährige Finanzplanung ohne Spardruck und Stellenkürzungen für Planungssicherheit."
         },
         "24": {
           "val": 1,
@@ -1001,7 +1001,7 @@ window.WAHLOMAT_DATA = {
       "positions": {
         "2": {
           "val": -1,
-          "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr... Kein flächendeckendes Tempo-30."
+          "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr."
         },
         "3": {
           "val": 1,
@@ -1081,7 +1081,7 @@ window.WAHLOMAT_DATA = {
         },
         "20": {
           "val": -1,
-          "quote": "Passive, deeskalierende Polizeipräsenz [statt Überwachung]."
+          "quote": "Passive, deeskalierende Polizeipräsenz."
         },
         "21": {
           "val": 1,
@@ -1113,7 +1113,7 @@ window.WAHLOMAT_DATA = {
       "positions": {
         "2": {
           "val": 1,
-          "quote": "Wir führen das Generische Femininum als Amtssprache ein."
+          "quote": ""
         },
         "8": {
           "val": 1,
@@ -1157,7 +1157,7 @@ window.WAHLOMAT_DATA = {
         },
         "19": {
           "val": 1,
-          "quote": "Rosa Liste unterstützt... Gender-Budgeting sowie der Einführung geschlechtergerechter Haushaltspläne."
+          "quote": ""
         },
         "20": {
           "val": -1,
@@ -1217,7 +1217,7 @@ window.WAHLOMAT_DATA = {
         },
         "22": {
           "val": 1,
-          "quote": "Unsere Ressourcen sind begrenzt. Wir müssen Prioritäten setzen."
+          "quote": ""
         }
       }
     },
