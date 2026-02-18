@@ -4,30 +4,49 @@ function wahlomatApp() {
         totalTheses: 0,
         theses: [],
         parties: [],
-        answers: {}, // thesisId -> position (1, 0, -1)
+        answers: {},
         results: [],
         topMatch: null,
         selectedPartyId: null,
         modalOpen: false,
-        detailFilter: 'all', // 'all', 'match', 'diff'
+        detailFilter: 'all',
         userCoords: { x: 0, y: 0 },
         compassParties: [],
         compassDisplayScale: 25,
         shareTextStatus: '',
         topicWeights: {},
         topics: [],
+        isSharedView: false,
+        _modalTrigger: null,
 
         init() {
             if (window.WAHLOMAT_DATA) {
                 this.theses = window.WAHLOMAT_DATA.theses;
                 this.parties = window.WAHLOMAT_DATA.parties;
                 this.totalTheses = this.theses.length;
-                // Derive unique topics and initialize weights
                 const seen = new Set();
                 this.theses.forEach(t => { if (!seen.has(t.topic)) { seen.add(t.topic); this.topics.push(t.topic); } });
                 this.topics.forEach(t => { this.topicWeights[t] = 1; });
             } else {
                 console.error("Daten nicht geladen!");
+            }
+
+            this.$watch('answers', val => {
+                if (!this.isSharedView) {
+                    localStorage.setItem('wahlomat_answers', JSON.stringify(val));
+                }
+            });
+
+            // Check URL params for shared results
+            const params = new URLSearchParams(window.location.search);
+            const r = params.get('r');
+            const w = params.get('w');
+            if (r && this.decodeResults(r, w)) {
+                this.isSharedView = true;
+                this.calculateResults();
+                this.step = 99;
+                window.history.replaceState({}, '', window.location.pathname);
+                return;
             }
 
             // Load from LocalStorage
@@ -37,10 +56,6 @@ function wahlomatApp() {
                     this.answers = JSON.parse(saved);
                 } catch(e) { console.error("Error loading saves", e); }
             }
-
-            this.$watch('answers', val => {
-                localStorage.setItem('wahlomat_answers', JSON.stringify(val));
-            });
         },
 
         get currentThesis() {
@@ -225,111 +240,138 @@ function wahlomatApp() {
                 this.topMatch = null;
                 this.selectedPartyId = null;
                 this.modalOpen = false;
+                this.isSharedView = false;
                 document.body.style.overflow = '';
                 localStorage.removeItem('wahlomat_answers');
                 this.topics.forEach(t => { this.topicWeights[t] = 1; });
             }
         },
 
+        // --- URL-Encoded Sharing ---
+
+        encodeResults() {
+            let r = '';
+            for (let i = 1; i <= this.totalTheses; i++) {
+                const ans = this.answers[i];
+                if (ans === 1) r += 'a';
+                else if (ans === 0) r += 'n';
+                else if (ans === -1) r += 'd';
+                else r += 's';
+            }
+            let w = '';
+            this.topics.forEach(t => {
+                w += this.topicWeights[t] === 2 ? '2' : '1';
+            });
+            return { r, w };
+        },
+
+        decodeResults(r, w) {
+            if (!r || r.length !== this.totalTheses) return false;
+            if (!/^[ands]+$/.test(r)) return false;
+
+            this.answers = {};
+            for (let i = 0; i < r.length; i++) {
+                const ch = r[i];
+                const thesisId = i + 1;
+                if (ch === 'a') this.answers[thesisId] = 1;
+                else if (ch === 'n') this.answers[thesisId] = 0;
+                else if (ch === 'd') this.answers[thesisId] = -1;
+            }
+
+            if (w && w.length === this.topics.length && /^[12]+$/.test(w)) {
+                for (let i = 0; i < w.length; i++) {
+                    this.topicWeights[this.topics[i]] = w[i] === '2' ? 2 : 1;
+                }
+            }
+
+            return Object.keys(this.answers).length > 0;
+        },
+
+        getShareUrl() {
+            const { r, w } = this.encodeResults();
+            return `https://wahl-navi.de/muc/?r=${r}&w=${w}`;
+        },
+
+        startOwnQuiz() {
+            this.isSharedView = false;
+            this.step = 0;
+            this.answers = {};
+            this.results = [];
+            this.topMatch = null;
+            this.topics.forEach(t => { this.topicWeights[t] = 1; });
+        },
+
+        // --- Modal with Focus Management ---
+
         openModal(id) {
+            this._modalTrigger = document.activeElement;
             this.selectedPartyId = id;
             this.modalOpen = true;
             this.detailFilter = 'all';
             document.body.style.overflow = 'hidden';
+            this.$nextTick(() => {
+                const closeBtn = document.getElementById('modal-close-btn');
+                if (closeBtn) closeBtn.focus();
+            });
         },
 
         closeModal() {
             this.modalOpen = false;
             this.selectedPartyId = null;
             document.body.style.overflow = '';
+            if (this._modalTrigger) {
+                this._modalTrigger.focus();
+                this._modalTrigger = null;
+            }
         },
 
-        getSelectedParty() {
-            return this.results.find(p => p.id === this.selectedPartyId);
+        trapFocus(event) {
+            if (!this.modalOpen) return;
+            const modal = document.getElementById('party-detail-modal');
+            if (!modal) return;
+            const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                last.focus();
+                event.preventDefault();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                first.focus();
+                event.preventDefault();
+            }
         },
 
-        getFilteredTheses() {
-            const party = this.getSelectedParty();
-            if (!party) return [];
+        // --- Keyboard Navigation ---
 
-            return this.theses.filter(thesis => {
-                if (this.answers[thesis.id] === undefined) return false;
-
-                const partyPos = this.getPartyPosition(party, thesis.id);
-
-                // Party has no position: only show in 'all' view
-                if (partyPos === null) {
-                    return this.detailFilter === 'all';
-                }
-
-                const userPos = this.answers[thesis.id];
-                const diff = Math.abs(userPos - partyPos);
-
-                if (this.detailFilter === 'all') return true;
-                if (this.detailFilter === 'match') return diff <= 1;
-                if (this.detailFilter === 'diff') return diff > 1;
-                return true;
-            });
+        handleKeydown(event) {
+            if (this.modalOpen) {
+                if (event.key === 'Escape') { this.closeModal(); event.preventDefault(); }
+                return;
+            }
+            if (this.step > 0 && this.step <= this.totalTheses) {
+                if (event.key === '1') { this.answer(1); event.preventDefault(); }
+                else if (event.key === '2') { this.answer(0); event.preventDefault(); }
+                else if (event.key === '3') { this.answer(-1); event.preventDefault(); }
+                else if (event.key === 'Backspace' && this.step > 1) { this.step--; event.preventDefault(); }
+                return;
+            }
+            if (this.step === 0 && event.key === 'Enter') { this.start(); event.preventDefault(); }
+            if (this.step === 98 && event.key === 'Enter') { this.showResults(); event.preventDefault(); }
         },
 
-        // Helpers
-        getPartyPosition(party, thesisId) {
-            if (!party || !party.positions || !party.positions[thesisId]) return null;
-            return party.positions[thesisId].val;
+        // --- PDF Export ---
+
+        printResults() {
+            window.print();
         },
 
-        getPartyQuote(party, thesisId) {
-            if (!party || !party.positions || !party.positions[thesisId]) return null;
-            return party.positions[thesisId].quote;
-        },
-
-        getIconSimple(value) {
-            if (value === 1) return '<span class="text-emerald-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span>';
-            if (value === -1) return '<span class="text-rose-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></span>';
-            return '<span class="text-slate-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></span>';
-        },
-
-        getIcon(value) {
-            if (value === 1) return '<span class="text-emerald-600 font-bold flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Zustimmung</span>';
-            if (value === -1) return '<span class="text-rose-600 font-bold flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Ablehnung</span>';
-            return '<span class="text-slate-500 font-bold flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg> Neutral</span>';
-        },
-
-        getPositionMatchClass(userVal, partyVal) {
-            if (partyVal === null) return 'border-slate-200 opacity-50';
-            const diff = Math.abs(userVal - partyVal);
-            if (diff === 0) return 'border-emerald-400 bg-emerald-50/30';
-            if (diff === 1) return 'border-yellow-400';
-            return 'border-rose-400 bg-rose-50/30';
-        },
-
-        getPartyColor(id) {
-            const colors = {
-                'gruene': '#16a34a', 'spd': '#dc2626', 'csu': '#0284c7', 'fdp': '#ca8a04',
-                'afd': '#0ea5e9', 'linke': '#db2777', 'volt': '#7c3aed', 'oedp': '#ea580c',
-                'partei': '#334155', 'rosa_liste': '#ec4899', 'muenchen_liste': '#0f766e',
-                'bp': '#1e3a8a', 'bk': '#be185d', 'fw': '#f59e0b'
-            };
-            return colors[id] || '#64748b';
-        },
-
-        getPartySlogan(id) {
-            const slogans = {
-                'gruene': 'Für ein klimaneutrales München.', 'spd': 'Sozial und gerecht.',
-                'csu': 'Näher am Menschen.', 'volt': 'Europäisch denken, lokal handeln.',
-                'partei': 'Die Partei für Arbeit, Rechtsstaat...', 'oedp': 'Weniger ist mehr.',
-                'muenchen_liste': 'Wachstum begrenzen.', 'fdp': 'Technologieoffen und frei.',
-                'afd': 'Mut zur Wahrheit.', 'linke': 'München für alle.',
-                'rosa_liste': 'Vielfalt in München.', 'bp': 'Leben und leben lassen.',
-                'bk': 'Kultur ist alles.', 'fw': 'München gemeinsam besser.'
-            };
-            return slogans[id] || 'Kommunalwahl 2026';
-        },
+        // --- Sharing ---
 
         shareResults() {
             const title = 'WahlNavi München 2026';
+            const url = this.getShareUrl();
             const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test!`;
-            const url = 'https://wahl-navi.de';
 
             if (navigator.share) {
                 navigator.share({ title, text, url }).catch(console.error);
@@ -420,13 +462,14 @@ function wahlomatApp() {
             ctx.textAlign = 'right';
             ctx.fillText('wahl-navi.de', size - 20 * s, barY + 36 * s);
 
+            const shareUrl = this.getShareUrl();
             canvas.toBlob(blob => {
                 if (!blob) return;
                 const file = new File([blob], 'kompass.png', { type: 'image/png' });
                 const shareData = {
                     files: [file],
                     title: 'Mein Politischer Kompass',
-                    text: `Mein Politischer Kompass zur Münchner Kommunalwahl 2026. Mach auch den Test: https://wahl-navi.de`
+                    text: `Mein Politischer Kompass zur Münchner Kommunalwahl 2026. Mach auch den Test: ${shareUrl}`
                 };
                 if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
                     navigator.share(shareData).catch(() => {});
@@ -440,13 +483,97 @@ function wahlomatApp() {
         },
 
         copyLink() {
-            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test: https://wahl-navi.de`;
+            const url = this.getShareUrl();
+            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test: ${url}`;
             navigator.clipboard.writeText(text).then(() => {
                 this.shareTextStatus = 'Kopiert!';
                 setTimeout(() => this.shareTextStatus = '', 2000);
             }).catch(() => {
                 alert('Link konnte nicht kopiert werden.');
             });
+        },
+
+        // --- Helpers ---
+
+        getSelectedParty() {
+            return this.results.find(p => p.id === this.selectedPartyId);
+        },
+
+        getFilteredTheses() {
+            const party = this.getSelectedParty();
+            if (!party) return [];
+
+            return this.theses.filter(thesis => {
+                if (this.answers[thesis.id] === undefined) return false;
+
+                const partyPos = this.getPartyPosition(party, thesis.id);
+
+                // Party has no position: only show in 'all' view
+                if (partyPos === null) {
+                    return this.detailFilter === 'all';
+                }
+
+                const userPos = this.answers[thesis.id];
+                const diff = Math.abs(userPos - partyPos);
+
+                if (this.detailFilter === 'all') return true;
+                if (this.detailFilter === 'match') return diff <= 1;
+                if (this.detailFilter === 'diff') return diff > 1;
+                return true;
+            });
+        },
+
+        getPartyPosition(party, thesisId) {
+            if (!party || !party.positions || !party.positions[thesisId]) return null;
+            return party.positions[thesisId].val;
+        },
+
+        getPartyQuote(party, thesisId) {
+            if (!party || !party.positions || !party.positions[thesisId]) return null;
+            return party.positions[thesisId].quote;
+        },
+
+        getIconSimple(value) {
+            if (value === 1) return '<span class="text-emerald-600"><svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span>';
+            if (value === -1) return '<span class="text-rose-600"><svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></span>';
+            return '<span class="text-slate-400"><svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></span>';
+        },
+
+        getIcon(value) {
+            if (value === 1) return '<span class="text-emerald-600 font-bold flex items-center gap-1"><svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Zustimmung</span>';
+            if (value === -1) return '<span class="text-rose-600 font-bold flex items-center gap-1"><svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Ablehnung</span>';
+            return '<span class="text-slate-500 font-bold flex items-center gap-1"><svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg> Neutral</span>';
+        },
+
+        getPositionMatchClass(userVal, partyVal) {
+            if (partyVal === null) return 'border-slate-200 opacity-50';
+            const diff = Math.abs(userVal - partyVal);
+            if (diff === 0) return 'border-emerald-400 bg-emerald-50/30';
+            if (diff === 1) return 'border-yellow-400';
+            return 'border-rose-400 bg-rose-50/30';
+        },
+
+        getPartyColor(id) {
+            const colors = {
+                'gruene': '#16a34a', 'spd': '#dc2626', 'csu': '#0284c7', 'fdp': '#ca8a04',
+                'afd': '#0ea5e9', 'linke': '#db2777', 'volt': '#7c3aed', 'oedp': '#ea580c',
+                'partei': '#334155', 'rosa_liste': '#ec4899', 'muenchen_liste': '#0f766e',
+                'bp': '#1e3a8a', 'bk': '#be185d', 'fw': '#f59e0b'
+            };
+            return colors[id] || '#64748b';
+        },
+
+        getPartySlogan(id) {
+            const slogans = {
+                'gruene': 'Für ein klimaneutrales München.', 'spd': 'Sozial und gerecht.',
+                'csu': 'Näher am Menschen.', 'volt': 'Europäisch denken, lokal handeln.',
+                'partei': 'Die Partei für Arbeit, Rechtsstaat...', 'oedp': 'Weniger ist mehr.',
+                'muenchen_liste': 'Wachstum begrenzen.', 'fdp': 'Technologieoffen und frei.',
+                'afd': 'Mut zur Wahrheit.', 'linke': 'München für alle.',
+                'rosa_liste': 'Vielfalt in München.', 'bp': 'Leben und leben lassen.',
+                'bk': 'Kultur ist alles.', 'fw': 'München gemeinsam besser.'
+            };
+            return slogans[id] || 'Kommunalwahl 2026';
         }
     }
 }
