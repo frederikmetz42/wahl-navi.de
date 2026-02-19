@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wahl-navi.de/sitemap.xml
+
+# Internal project files
+Disallow: /_internal/
+Disallow: /data/

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WahlNavi München 2026</title>
-    <meta name="version" content="4.0">
+    <meta name="version" content="4.3">
     <meta name="description" content="Vergleiche deine Positionen mit den Parteien zur Münchner Kommunalwahl 2026. Dein Kompass für die Stadtpolitik.">
     <meta property="og:title" content="WahlNavi München 2026">
     <meta property="og:description" content="Welche Partei passt zu mir? Mach den Check mit 25 Thesen für München.">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="wahlomat_data.js"></script>
     <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="canonical" href="https://wahl-navi.de/muc/">
 </head>
 <body class="antialiased min-h-screen flex flex-col" x-data="wahlomatApp()" x-cloak @keydown.window="handleKeydown($event)">
 
@@ -125,15 +126,15 @@
                     </div>
                     <h2 class="text-xl md:text-3xl font-bold text-slate-900 mb-6 leading-tight" x-text="currentThesis.statement"></h2>
                     <div class="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12">
-                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
+                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base" :class="answers[currentThesis?.id] === 1 && 'ring-2 ring-emerald-500 bg-emerald-50/50'">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span>Zustimmung</span>
                         </button>
-                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
+                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base" :class="answers[currentThesis?.id] === 0 && 'ring-2 ring-slate-400 bg-slate-50'">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                             <span>Neutral</span>
                         </button>
-                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
+                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base" :class="answers[currentThesis?.id] === -1 && 'ring-2 ring-rose-500 bg-rose-50/50'">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             <span>Ablehnung</span>
                         </button>
