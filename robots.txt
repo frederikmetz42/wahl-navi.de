@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wahl-navi.de/sitemap.xml
+Sitemap: https://mucwahl.de/sitemap.xml
 
 # Internal project files
 Disallow: /_internal/

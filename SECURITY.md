@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Only the current version of the Wahl-Navi is supported.
+Only the current version of the MUCwahl is supported.
 
 | Version | Supported          |
 | ------- | ------------------ |

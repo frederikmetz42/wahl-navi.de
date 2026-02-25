@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WahlNavi München 2026</title>
+    <title>MUCwahl München 2026</title>
     <meta name="version" content="4.3">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; frame-ancestors *; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
     <script src="wahlomat_data.js"></script>
-    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body class="antialiased min-h-screen flex flex-col bg-white" x-data="wahlomatApp()" x-cloak x-init="isEmbedMode = true" @keydown.window="handleKeydown($event)">
 
@@ -17,8 +17,8 @@
     <!-- Compact Header -->
     <div class="border-b border-slate-200 px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <img src="icon.svg" class="w-7 h-7" alt="WahlNavi">
-            <span class="text-base tracking-tight"><span class="font-extrabold text-slate-900">Wahl</span><span class="font-light text-slate-600">Navi</span></span>
+            <img src="icon.png" class="w-7 h-7" alt="MUCwahl">
+            <span class="text-base tracking-tight"><span class="font-extrabold text-slate-900">MUC</span><span class="font-light text-slate-600">wahl</span></span>
         </div>
         <div class="text-xs text-slate-400 font-mono" x-show="step > 0 && step <= totalTheses">
             <span class="text-slate-900 font-bold" x-text="step"></span> / <span x-text="totalTheses"></span>
@@ -32,7 +32,7 @@
 
         <!-- Intro -->
         <div x-show="step === 0" x-transition.opacity class="text-center space-y-5">
-            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">WahlNavi<br><span class="text-slate-400 font-light">München 2026</span></h1>
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">MUCwahl<br><span class="text-slate-400 font-light">München 2026</span></h1>
             <p class="text-sm text-slate-600">25 Thesen. 14 Parteien. Finde dein Match.</p>
             <button @click="start()" class="btn btn-primary text-base px-8 py-3">Starten</button>
         </div>
@@ -103,7 +103,7 @@
                 </template>
             </div>
             <div class="text-center">
-                <a href="https://wahl-navi.de/muc/" target="_blank" rel="noopener" class="text-sm text-blue-600 hover:underline font-medium">Vollständige Ergebnisse auf wahl-navi.de</a>
+                <a href="https://mucwahl.de/muc/" target="_blank" rel="noopener" class="text-sm text-blue-600 hover:underline font-medium">Vollständige Ergebnisse auf mucwahl.de</a>
             </div>
         </div>
     </main>

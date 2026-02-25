@@ -389,7 +389,7 @@ function wahlomatApp() {
         },
 
         getEmbedCode() {
-            return '<iframe src="https://wahl-navi.de/muc/embed.html" width="100%" height="700" style="border:none;max-width:500px;" title="WahlNavi München 2026"></iframe>';
+            return '<iframe src="https://mucwahl.de/muc/embed.html" width="100%" height="700" style="border:none;max-width:500px;" title="MUCwahl München 2026"></iframe>';
         },
 
         copyEmbedCode() {
@@ -548,7 +548,7 @@ function wahlomatApp() {
 
         getShareUrl() {
             const { r, w } = this.encodeResults();
-            return `https://wahl-navi.de/muc/?r=${r}&w=${w}`;
+            return `https://mucwahl.de/muc/?r=${r}&w=${w}`;
         },
 
         startOwnQuiz() {
@@ -633,7 +633,7 @@ function wahlomatApp() {
         // --- Sharing ---
 
         shareResults() {
-            const title = 'WahlNavi München 2026';
+            const title = 'MUCwahl München 2026';
             const url = this.getShareUrl();
             const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test!`;
 
@@ -730,7 +730,7 @@ function wahlomatApp() {
             ctx.fillStyle = '#94a3b8';
             ctx.font = `${14 * s}px Inter, system-ui, sans-serif`;
             ctx.textAlign = 'right';
-            ctx.fillText('wahl-navi.de', size - 20 * s, barY + 36 * s);
+            ctx.fillText('mucwahl.de', size - 20 * s, barY + 36 * s);
 
             const shareUrl = this.getShareUrl();
             canvas.toBlob(blob => {
