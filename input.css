@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted Inter font */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/inter-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/inter-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/inter-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/inter-latin-700-normal.woff2') format('woff2');
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Component classes (from index.html inline styles) */
+.card {
+  @apply bg-white border border-slate-200 rounded-xl shadow-sm;
+}
+
+.btn {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-orange-600 text-white hover:bg-orange-700 focus:ring-orange-600;
+}
+
+.btn-answer {
+  @apply bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 focus:ring-slate-400;
+}
+
+.btn-neutral {
+  @apply bg-slate-200 text-slate-700 hover:bg-slate-300 focus:ring-slate-400;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* Modal Transitions */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+/* Animations */
+@keyframes barFill {
+  from { width: 0; }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+.animate-bar-fill {
+  animation: barFill 0.8s ease-out;
+}
+
+.animate-toast-in {
+  animation: toastIn 0.3s ease-out;
+}
+
+.animate-toast-out {
+  animation: toastOut 0.3s ease-in forwards;
+}
+
+/* Print Stylesheet */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 2cm;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print,
+  nav,
+  footer,
+  .fixed {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    break-inside: avoid;
+  }
+
+  .print-top-match {
+    font-size: 24pt !important;
+  }
+
+  /* Force single column layout */
+  .lg\:col-span-7,
+  .lg\:col-span-5 {
+    grid-column: span 12 / span 12 !important;
+  }
+
+  .grid-cols-1.lg\:grid-cols-12 {
+    display: block !important;
+  }
+
+  /* Show all results bars */
+  .transition-all {
+    transition: none !important;
+  }
+
+  a[href]::after {
+    content: none !important;
+  }
+
+  /* Force-show compass/radar column even when mobile tab hides it */
+  aside[aria-label*="Kompass"] {
+    display: block !important;
+  }
+
+  /* Remove sticky positioning in print */
+  .sticky {
+    position: static !important;
+  }
+}
