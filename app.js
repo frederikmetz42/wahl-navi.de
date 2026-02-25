@@ -390,7 +390,7 @@ function wahlomatApp() {
         },
 
         getEmbedCode() {
-            return '<iframe src="https://mucwahl.de/muc/embed.html" width="100%" height="700" style="border:none;max-width:500px;" title="MUCwahl München 2026"></iframe>';
+            return '<iframe src="https://mucwahl.de/embed.html" width="100%" height="700" style="border:none;max-width:500px;" title="MUCwahl München 2026"></iframe>';
         },
 
         copyEmbedCode() {
@@ -549,7 +549,7 @@ function wahlomatApp() {
 
         getShareUrl() {
             const { r, w } = this.encodeResults();
-            return `https://mucwahl.de/muc/?r=${r}&w=${w}`;
+            return `https://mucwahl.de/?r=${r}&w=${w}`;
         },
 
         startOwnQuiz() {
