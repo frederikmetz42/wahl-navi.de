@@ -17,7 +17,7 @@
     <meta name="twitter:title" content="MUCwahl München 2026">
     <meta name="twitter:description" content="Welche Partei passt zu mir? Mach den Check mit 25 Thesen für München.">
     <meta name="twitter:image" content="https://mucwahl.de/muc/og-image.png">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
     <script src="wahlomat_data.js"></script>
     <link rel="icon" type="image/png" href="favicon.png">
@@ -88,8 +88,8 @@
                 <span class="w-2 h-2 rounded-full bg-blue-500" aria-hidden="true"></span> 25 Thesen zu Verkehr, Wohnen & Klima
             </div>
             <p class="text-lg text-slate-600 leading-relaxed max-w-lg mx-auto">Vergleiche deine Positionen mit denen der Parteien zur Kommunalwahl 2026. Finde heraus, wer deine Interessen im Stadtrat vertritt.</p>
-            <div class="inline-flex items-center gap-3 px-5 py-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-sm font-medium">
-                <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <div class="inline-flex items-center gap-2 px-5 py-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-xs sm:text-sm font-medium">
+                <svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
                 <span>Kein Tracking · Kein Backend · Daten nur lokal</span>
@@ -308,14 +308,19 @@
                     </div>
                 </div>
 
-                <div class="card p-6 sticky top-24">
+                <div class="card p-6">
                     <h3 class="font-bold text-lg mb-2">Politischer Kompass</h3>
-                    <div class="relative w-full aspect-square border border-slate-200 bg-slate-50 rounded-lg overflow-hidden mt-4" role="img" aria-label="Politischer Kompass: Deine Position und die der Parteien auf den Achsen Links-Rechts und Progressiv-Konservativ">
+                    <div class="relative w-full aspect-square border border-slate-200 bg-slate-50 rounded-lg overflow-hidden mt-4" role="img" aria-label="Politischer Kompass: Deine Position und die der Parteien auf den Achsen Links-Rechts und Progressiv-Konservativ" style="pointer-events:none">
                         <!-- Quadrant tints -->
                         <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-rose-500/[0.06] pointer-events-none" aria-hidden="true"></div>
                         <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/[0.06] pointer-events-none" aria-hidden="true"></div>
                         <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/[0.06] pointer-events-none" aria-hidden="true"></div>
                         <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-500/[0.06] pointer-events-none" aria-hidden="true"></div>
+                        <!-- Quadrant names (hidden on mobile, shown on lg+ where compass is wide enough) -->
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight" style="top:12%;left:4%;font-size:8px;color:rgba(251,113,133,0.5)" aria-hidden="true">Sozial-<br>Konservativ</div>
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight text-right" style="top:12%;right:4%;font-size:8px;color:rgba(96,165,250,0.5)" aria-hidden="true">Markt-<br>Konservativ</div>
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight" style="bottom:12%;left:4%;font-size:8px;color:rgba(34,197,94,0.4)" aria-hidden="true">Links-<br>Progressiv</div>
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight text-right" style="bottom:12%;right:4%;font-size:8px;color:rgba(192,132,252,0.5)" aria-hidden="true">Liberal-<br>Progressiv</div>
                         <!-- Axes -->
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
                             <div class="w-[90%] h-px bg-slate-300 relative">
@@ -330,10 +335,10 @@
                             </div>
                         </div>
                         <!-- Axis labels -->
-                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20">Konservativ</div>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20">Progressiv</div>
-                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm -rotate-90 z-20">Links</div>
-                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90 z-20">Rechts</div>
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20 pointer-events-none">Konservativ</div>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20 pointer-events-none">Progressiv</div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm -rotate-90 z-20 pointer-events-none">Links</div>
+                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90 z-20 pointer-events-none">Rechts</div>
 
                         <!-- User dot -->
                         <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * compassDisplayScale)}%; top: ${50 - (userCoords.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
@@ -344,14 +349,15 @@
                         <!-- Party dots with hover labels -->
                         <template x-for="party in compassParties" :key="party.id">
                             <div class="absolute z-10 group"
-                                 :style="`left: ${50 + (party.x * compassDisplayScale)}%; top: ${50 - (party.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
-                                <button class="w-8 h-8 flex items-center justify-center cursor-pointer group/dot focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-full"
+                                 :style="`left: ${50 + (party.x * compassDisplayScale)}%; top: ${50 - (party.y * compassDisplayScale)}%; transform: translate(-50%, -50%); pointer-events: none;`">
+                                <button class="flex items-center justify-center cursor-pointer group/dot focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-full"
+                                     style="width:44px;height:44px;pointer-events:auto"
                                      :aria-label="party.name + ': Details anzeigen'"
                                      @click="openModal(party.id)">
                                     <div class="w-3 h-3 rounded-full shadow-sm group-hover/dot:scale-150 transition-transform"
                                          :style="`background-color: ${getPartyColor(party.id)};`"></div>
                                 </button>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-1.5 py-0.5 bg-slate-800 text-white text-[8px] font-bold rounded shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" x-text="party.name"></div>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-1.5 py-0.5 bg-slate-800 text-white text-[8px] font-bold rounded shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity" style="pointer-events:none" x-text="party.name"></div>
                             </div>
                         </template>
                     </div>
@@ -393,11 +399,11 @@
     <footer class="border-t border-slate-200 mt-auto bg-white no-print" role="contentinfo">
         <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 gap-4">
             <div>&copy; 2026 MUCwahl München. Unabhängig & Werbefrei.</div>
-            <div class="flex items-center gap-6">
-                <a href="impressum.html" class="hover:text-slate-900 transition-colors">Impressum</a>
-                <a href="datenschutz.html" class="hover:text-slate-900 transition-colors">Datenschutz</a>
-                <a href="ueber-uns.html" class="hover:text-slate-900 transition-colors">Über uns</a>
-                <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors" title="GitHub"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+            <div class="flex items-center gap-4 md:gap-6 flex-wrap">
+                <a href="impressum.html" class="hover:text-slate-900 transition-colors py-2">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-slate-900 transition-colors py-2">Datenschutz</a>
+                <a href="ueber-uns.html" class="hover:text-slate-900 transition-colors py-2">Über uns</a>
+                <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors p-2" title="GitHub"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
             </div>
         </div>
     </footer>

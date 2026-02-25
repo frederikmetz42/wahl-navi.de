@@ -19,14 +19,14 @@ Two brand colours, derived from the logo. Everything else is neutral (slate).
 
 ### Blue (Information, Trust)
 
-| Token | Tailwind | Hex | Usage |
-|-------|----------|-----|-------|
-| blue-50 | `bg-blue-50` | #eff6ff | Tag backgrounds, info badges, banners |
-| blue-200 | `border-blue-200` | #bfdbfe | Banner/badge borders |
-| blue-500 | `bg-blue-500` | #3b82f6 | Indicator dots |
-| blue-600 | `bg-blue-600` | #2563eb | Progress bar, links |
-| blue-700 | `text-blue-700` | #1d4ed8 | Topic tag text |
-| blue-800 | `text-blue-800` | #1e40af | Banner text |
+| Token    | Tailwind          | Hex     | Usage                                 |
+| -------- | ----------------- | ------- | ------------------------------------- |
+| blue-50  | `bg-blue-50`      | #eff6ff | Tag backgrounds, info badges, banners |
+| blue-200 | `border-blue-200` | #bfdbfe | Banner/badge borders                  |
+| blue-500 | `bg-blue-500`     | #3b82f6 | Indicator dots                        |
+| blue-600 | `bg-blue-600`     | #2563eb | Progress bar, links                   |
+| blue-700 | `text-blue-700`   | #1d4ed8 | Topic tag text                        |
+| blue-800 | `text-blue-800`   | #1e40af | Banner text                           |
 
 Blue signals: progress, topic context, informational badges, hyperlinks, trust indicators.
 

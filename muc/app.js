@@ -372,9 +372,10 @@ function wahlomatApp() {
             if (!this.topMatch || this.topics.length === 0) return '';
             const r = 110;
             let svg = '<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%">';
-            // Grid rings
+            // Grid rings with % labels
             [0.25, 0.5, 0.75, 1.0].forEach(frac => {
                 svg += `<polygon points="${this.radarGridRingPoints(frac, r)}" fill="none" stroke="#e2e8f0" stroke-width="1"/>`;
+                svg += `<text x="153" y="${150 - frac * r + 3}" fill="#94a3b8" font-size="7" font-weight="400">${Math.round(frac * 100)}%</text>`;
             });
             // Axis lines + labels
             this.getRadarAxisEndpoints(r).forEach(a => {
