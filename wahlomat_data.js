@@ -5,6 +5,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Straßentunnel",
       "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, um den oberirdischen Verkehr zu entlasten.",
+      "background": "München diskutiert seit Jahren Tunnelprojekte am Englischen Garten und der Landshuter Allee. Befürworter sehen Entlastung für Anwohner und neue Freiflächen an der Oberfläche. Kritiker verweisen auf Kosten von 1–3 Mrd. Euro pro Tunnel und jahrelange Bauzeiten. Der Luise-Kiesselbach-Tunnel (fertig 2015) kostete am Ende deutlich mehr als geplant.",
       "axes": {
         "x": 0.0,
         "y": 0.8
@@ -16,6 +17,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Autofreie Altstadt",
       "statement": "Der private Autoverkehr innerhalb des Altstadtrings soll stark eingeschränkt werden.",
+      "background": "Der Altstadtring umschließt das historische Zentrum Münchens (Marienplatz, Viktualienmarkt, Residenz). Die Fußgängerzone ist bereits autofrei, aber auf umliegenden Straßen fließt regulärer Autoverkehr. Befürworter wollen mehr Platz für Fußgänger und Gastronomie. Gegner warnen vor Erreichbarkeitsproblemen für Anwohner, Handwerk und Lieferverkehr.",
       "axes": {
         "x": 0.0,
         "y": -1.0
@@ -27,6 +29,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Parkplätze",
       "statement": "Bestehende Parkplätze am Straßenrand sollen erhalten bleiben und nicht für Radwege oder Grünflächen umgewandelt werden.",
+      "background": "München hat rund 300.000 öffentliche Parkplätze am Straßenrand. In vielen Vierteln werden diese zunehmend in Radwege, Grünflächen oder Außengastronomie umgewandelt. Befürworter des Umbaus sehen mehr Lebensqualität und Verkehrssicherheit. Anwohner und Gewerbetreibende befürchten Parkplatzmangel und längere Anfahrtswege.",
       "axes": {
         "x": 0.0,
         "y": 0.7
@@ -38,6 +41,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Tempo 30",
       "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll ein Tempolimit von 30 km/h gelten.",
+      "background": "Aktuell gilt auf Münchner Hauptverkehrsstraßen Tempo 50, in Wohngebieten meist Tempo 30. Die Debatte dreht sich um eine Ausweitung auf Hauptstraßen. Befürworter verweisen auf weniger Verkehrstote und weniger Lärm. Kritiker sehen längere Fahrzeiten, Stau-Verlagerung in Nebenstraßen und warnen, dass Hauptstraßen ihre Bündelungsfunktion verlieren.",
       "axes": {
         "x": 0.0,
         "y": -0.8
@@ -49,6 +53,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "ÖPNV-Preise",
       "statement": "Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dafür an anderer Stelle im Haushalt gespart werden muss.",
+      "background": "Ein MVV-Monatsticket für München kostet aktuell rund 60–80 Euro (Zone M). Das Deutschlandticket liegt bei 49 Euro. München bezuschusst den ÖPNV bereits mit über 300 Mio. Euro jährlich. Günstigere Tickets könnten mehr Fahrgäste anziehen und Autoverkehr reduzieren, müssten aber durch Einsparungen oder Einnahmen an anderer Stelle gegenfinanziert werden.",
       "axes": {
         "x": -0.8,
         "y": -0.5
@@ -60,6 +65,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Radwege",
       "statement": "Fahrspuren für Autos sollen erhalten bleiben, auch wenn dadurch weniger Platz für breite Radwege ist.",
+      "background": "München plant den Ausbau des Radwegenetzes, besonders geschützte Radwege (Protected Bike Lanes) an Hauptstraßen. Dafür müssten teilweise Fahrspuren oder Parkplätze wegfallen. Radfahrverbände fordern mehr Sicherheit durch Trennung vom Autoverkehr. Autofahrer und Wirtschaftsverbände warnen vor Stau und eingeschränkter Erreichbarkeit.",
       "axes": {
         "x": 0.0,
         "y": 0.9
@@ -71,6 +77,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Große Neubaugebiete (SEM)",
       "statement": "Die Stadt soll am Stadtrand (Feldmoching/Daglfing) Ackerflächen für den Bau Tausender neuer Wohnungen nutzen.",
+      "background": "Die Städtebaulichen Entwicklungsmaßnahmen (SEM) Nord und Nordost sind Münchens größte Wohnungsbauprojekte. Auf Feldern bei Feldmoching und Daglfing sollen bis zu 30.000 Wohnungen entstehen. Befürworter sehen dringend benötigten Wohnraum. Kritiker (darunter Landwirte und Naturschützer) warnen vor Flächenversiegelung und dem Verlust der letzten Ackerflächen im Stadtgebiet.",
       "axes": {
         "x": 0.5,
         "y": 0.0
@@ -82,6 +89,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Hochhäuser",
       "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), um Platz zu sparen.",
+      "background": "Seit einem Bürgerentscheid 2004 gilt in München eine informelle Höhengrenze von 100 Metern (Höhe der Frauenkirche). Befürworter einer Lockerung argumentieren mit Flächeneffizienz und modernem Städtebau. Gegner sehen das Stadtbild und die Silhouette Münchens in Gefahr. Aktuell gibt es einzelne Ausnahmen (z.B. Highlight Towers mit 126 m), aber keine generelle Freigabe.",
       "axes": {
         "x": 0.7,
         "y": -0.3
@@ -93,6 +101,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Wohnungsbau vs. Grünflächen",
       "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
+      "background": "Viele Münchner Viertel (z.B. Solln, Obermenzing, Trudering) haben Gartenstadtcharakter mit Einfamilienhäusern und viel Grün. Angesichts des Wohnungsmangels wird diskutiert, ob dort nachverdichtet werden soll. Befürworter sehen brachliegendes Potenzial in der teuersten Stadt Deutschlands. Anwohner verteidigen den Charakter ihrer Viertel und warnen vor Überlastung der Infrastruktur.",
       "axes": {
         "x": 0.0,
         "y": -0.6
@@ -104,6 +113,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Wohnungs-Rückkauf",
       "statement": "Private Wohnungsbestände sollen im Besitz der Eigentümer bleiben und nicht von der Stadt aufgekauft werden.",
+      "background": "Große Wohnungsunternehmen wie Vonovia und Dawonia besitzen Tausende Wohnungen in München. Einige Parteien fordern den Rückkauf durch die Stadt, um Mieten dauerhaft kontrollieren zu können. Befürworter sehen darin langfristigen Mieterschutz. Kritiker verweisen auf die hohen Kaufpreise (Münchner Immobilienmarkt) und die bereits angespannte Haushaltslage der Stadt.",
       "axes": {
         "x": 1.0,
         "y": 0.0
@@ -115,6 +125,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Städtisches Bauen",
       "statement": "Die städtische Wohnungsgesellschaft Münchner Wohnen (früher GWG) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
+      "background": "Die Münchner Wohnen (ehemals GWG/GEWOFAG) ist mit rund 70.000 Wohnungen Münchens größter Vermieter. Sie baut sowohl geförderte als auch freifinanzierte Wohnungen. Freifinanzierte Wohnungen erwirtschaften Gewinne, die wiederum in neue Projekte fließen. Die Frage ist, ob die Gesellschaft komplett auf bezahlbaren Wohnraum umschwenken soll, auch wenn das die Investitionsfähigkeit senkt.",
       "axes": {
         "x": -0.9,
         "y": 0.0
@@ -126,6 +137,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Klimaneutralität 2035",
       "statement": "München soll das Ziel verfolgen, bis 2035 klimaneutral zu sein.",
+      "background": "Der Münchner Stadtrat hat 2019 Klimaneutralität bis 2035 als Ziel beschlossen. Das ist 15 Jahre früher als das Bundesziel (2045). Befürworter sehen München als wohlhabende Stadt in der Pflicht, voranzugehen. Kritiker halten das Ziel für unrealistisch und warnen vor hohen Kosten für Gebäudesanierung, Energieumbau und Verkehrswende.",
       "axes": {
         "x": -0.5,
         "y": -1.0
@@ -137,6 +149,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Klima-Vorrang",
       "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
+      "background": "München hat eine Klimaschutzprüfung für alle städtischen Vorhaben eingeführt. In der Praxis entstehen dadurch Zielkonflikte: klimafreundlichere Bauweisen oder Materialien kosten oft mehr. Die Frage ist, ob Klimaschutz bei Zielkonflikten automatisch Vorrang vor dem Budget haben soll oder ob eine Einzelfallabwägung reicht.",
       "axes": {
         "x": -0.6,
         "y": -1.0
@@ -148,6 +161,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Solarpflicht",
       "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein.",
+      "background": "Auf städtischen Neubauten ist Photovoltaik in München bereits vorgeschrieben. Die Debatte betrifft die Ausweitung auf private Neubauten und Dachsanierungen. Befürworter sehen ungenutztes Potenzial auf Münchens Dächern für die Energiewende. Kritiker warnen vor Mehrkosten für Bauherren (ca. 10.000–20.000 Euro pro Dach) und Eingriffen in die Eigentumsfreiheit.",
       "axes": {
         "x": -0.4,
         "y": -0.8
@@ -159,6 +173,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Isar naturnah",
       "statement": "Die Isar soll in weiteren Abschnitten nördlich und südlich der Innenstadt naturnäher gestaltet werden.",
+      "background": "Zwischen 2000 und 2011 wurde die Isar auf 8 km im Stadtgebiet renaturiert (Braunauer Eisenbahnbrücke bis Großhesselohe). Das Projekt gilt als Erfolg. Weitere Abschnitte nördlich (Oberföhring) und südlich (Thalkirchen) sind noch kanalisiert. Renaturierung kostet zweistellige Millionenbeträge, schränkt teilweise Freizeitnutzung ein und dauert Jahre.",
       "axes": {
         "x": 0.0,
         "y": -0.6
@@ -170,6 +185,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbesteuer",
       "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
+      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490 Punkten (Bundesdurchschnitt: ca. 435). Einige Umlandgemeinden locken mit deutlich niedrigeren Sätzen. Befürworter einer Senkung wollen Unternehmen halten und Abwanderung ins Umland verhindern. Gegner warnen vor Einnahmeausfällen: Die Gewerbesteuer ist Münchens wichtigste Einnahmequelle (über 3 Mrd. Euro jährlich).",
       "axes": {
         "x": 1.0,
         "y": 0.0
@@ -181,6 +197,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Übernachtungssteuer",
       "statement": "München soll auf eine Übernachtungssteuer für Touristen verzichten.",
+      "background": "Anders als Berlin, Hamburg oder Frankfurt erhebt München bislang keine Übernachtungssteuer. Geschätzte Einnahmen: 30–50 Mio. Euro jährlich. Befürworter sehen eine faire Beteiligung von Touristen an der Infrastruktur. Die Hotelbranche warnt vor Wettbewerbsnachteilen und bürokratischem Aufwand. Der Freistaat Bayern hat kommunale Bettensteuer bisher rechtlich blockiert.",
       "axes": {
         "x": 0.7,
         "y": 0.0
@@ -192,6 +209,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Wachstumsbremse",
       "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
+      "background": "Münchens Bevölkerung ist in 20 Jahren um über 300.000 auf rund 1,6 Mio. gewachsen. Der Zuzug treibt Mieten, Verkehr und Infrastrukturkosten. Befürworter einer Begrenzung wollen die Lebensqualität der bestehenden Bevölkerung schützen. Gegner sehen Wachstum als Motor für Steuereinnahmen und warnen, dass eine Kommune den Zuzug rechtlich kaum steuern kann.",
       "axes": {
         "x": -0.5,
         "y": 0.8
@@ -203,6 +221,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Gesellschaft & Sicherheit",
       "short_title": "Gendersprache",
       "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
+      "background": "Die Münchner Stadtverwaltung verwendet seit einigen Jahren geschlechtergerechte Formulierungen in offiziellen Dokumenten. Befürworter sehen darin ein Zeichen für Gleichberechtigung und Sichtbarkeit aller Geschlechter. Kritiker halten die Sonderzeichen für unleserlich und sehen einen Eingriff in die Standardsprache. Der Rat für deutsche Rechtschreibung empfiehlt bislang keine Sonderzeichen im amtlichen Gebrauch.",
       "axes": {
         "x": 0.0,
         "y": -1.0
@@ -214,6 +233,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Gesellschaft & Sicherheit",
       "short_title": "Videoüberwachung",
       "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt eigene Videoüberwachung einsetzen.",
+      "background": "Am Münchner Hauptbahnhof und in Teilen der Innenstadt gibt es bereits Videoüberwachung durch die Bundespolizei. Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Befürworter versprechen sich Abschreckung und schnellere Aufklärung. Datenschützer und Bürgerrechtsorganisationen warnen vor einem Überwachungsstaat und bezweifeln die präventive Wirkung.",
       "axes": {
         "x": 0.0,
         "y": 1.0
@@ -225,6 +245,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Gesellschaft & Sicherheit",
       "short_title": "Drogenkonsumräume",
       "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
+      "background": "Drogenkonsumräume existieren in Frankfurt, Hamburg und Berlin, aber nicht in Bayern. Das bayerische Landesrecht erlaubt sie bislang nicht. Befürworter sehen medizinische Vorteile (weniger Drogentote, weniger Spritzen im öffentlichen Raum) und verweisen auf positive Erfahrungen anderer Städte. Gegner befürchten eine Signalwirkung und Anlaufstellen für die Drogenszene in Wohngebieten.",
       "axes": {
         "x": 0.0,
         "y": -0.9
@@ -236,6 +257,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Migration & Soziales",
       "short_title": "Bezahlkarte für Asylbewerber",
       "statement": "Asylbewerber sollen eine Bezahlkarte erhalten, auch wenn dies ihre persönliche Freiheit einschränkt, über ihr Geld selbst zu verfügen.",
+      "background": "Die Bezahlkarte für Asylbewerber wurde bundesweit eingeführt und ersetzt teilweise Bargeldauszahlungen. Befürworter sehen weniger Missbrauchsmöglichkeiten und geringere Verwaltungskosten. Kritiker warnen vor Stigmatisierung und Einschränkungen im Alltag (z.B. kein Bezahlen auf Flohmärkten, bei kleinen Läden oder für Überweisungen an Familie).",
       "axes": {
         "x": 0.3,
         "y": 0.9
@@ -247,6 +269,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Kultur & Freizeit",
       "short_title": "Gasteig-Sanierung",
       "statement": "Die Sanierung des Gasteig-Kulturzentrums soll wie geplant abgeschlossen werden, auch wenn die Kosten weiter steigen.",
+      "background": "Der Gasteig ist Europas größtes Kulturzentrum (Philharmonie, Stadtbibliothek, VHS). Die Generalsanierung wurde 2021 begonnen, die Kosten sind von ursprünglich 450 Mio. auf über 700 Mio. Euro gestiegen. Befürworter sehen den Gasteig als unverzichtbar für Münchens Kulturleben. Kritiker fragen, ob die Stadt bei knapper Kasse Hunderte Millionen in ein einzelnes Gebäude investieren sollte.",
       "axes": {
         "x": -0.4,
         "y": -0.3
@@ -258,6 +281,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Kultur & Freizeit",
       "short_title": "Queere Projekte",
       "statement": "Die finanzielle Förderung für Projekte und Beratungsstellen für lesbische, schwule, bisexuelle, trans und queere Menschen soll erhöht werden.",
+      "background": "München fördert queere Einrichtungen wie das Sub (Schwules Kommunikations- und Kulturzentrum), das LeZ (Lesbenberatung) und das diversity-Jugendzentrum. Die Finanzierung deckt laut Trägern nicht den wachsenden Bedarf. Befürworter sehen München in der Verantwortung als weltoffene Stadt. Kritiker fragen, ob Sonderförderung in Zeiten knapper Kassen gerechtfertigt ist.",
       "axes": {
         "x": -0.3,
         "y": -1.0
@@ -269,6 +293,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Kultur & Freizeit",
       "short_title": "Wiesn-Nachhaltigkeit",
       "statement": "Die Stadt soll für das Oktoberfest verpflichtende Nachhaltigkeitskriterien (z.B. Bio-Quoten) festlegen, auch wenn dies die Preise erhöht.",
+      "background": "Das Oktoberfest zieht jährlich rund 6 Mio. Besucher an und produziert erhebliche Mengen Müll und CO₂. Einzelne Wirte setzen bereits auf Bio-Produkte und Ökostrom. Befürworter wollen verbindliche Standards für alle Zelte (Bio-Quoten, Mehrweggeschirr, regionale Produkte). Kritiker warnen vor steigenden Preisen (eine Maß kostet bereits über 15 Euro) und Eingriffen in bewährte Traditionen.",
       "axes": {
         "x": -0.5,
         "y": -0.7

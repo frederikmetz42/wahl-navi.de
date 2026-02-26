@@ -30,6 +30,7 @@ function wahlomatApp() {
         milestoneShown: null,
         prefersReducedMotion: false,
         mobileResultTab: 'overview',
+        showBackground: false,
 
         init() {
             if (window.WAHLOMAT_DATA) {
@@ -123,12 +124,14 @@ function wahlomatApp() {
 
         answer(value) {
             if (!this.currentThesis) return;
+            this.showBackground = false;
             this.answers[this.currentThesis.id] = value;
             this.nextStep();
         },
 
         skip() {
             if (!this.currentThesis) return;
+            this.showBackground = false;
             delete this.answers[this.currentThesis.id];
             this.nextStep();
         },
@@ -618,7 +621,8 @@ function wahlomatApp() {
                 if (event.key === '1') { this.answer(1); event.preventDefault(); }
                 else if (event.key === '2') { this.answer(0); event.preventDefault(); }
                 else if (event.key === '3') { this.answer(-1); event.preventDefault(); }
-                else if (event.key === 'Backspace' && this.step > 1) { this.step--; event.preventDefault(); }
+                else if (event.key === 'i' || event.key === 'I') { this.showBackground = !this.showBackground; event.preventDefault(); }
+                else if (event.key === 'Backspace' && this.step > 1) { this.showBackground = false; this.step--; event.preventDefault(); }
                 return;
             }
             if (this.step === 0 && event.key === 'Enter') { this.start(); event.preventDefault(); }
