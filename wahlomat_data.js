@@ -5,7 +5,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Straßentunnel",
       "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, um den oberirdischen Verkehr zu entlasten.",
-      "background": "München diskutiert seit Jahren Tunnelprojekte am Englischen Garten und der Landshuter Allee. Befürworter sehen Entlastung für Anwohner und neue Freiflächen an der Oberfläche. Kritiker verweisen auf Kosten von 1–3 Mrd. Euro pro Tunnel und jahrelange Bauzeiten. Der Luise-Kiesselbach-Tunnel (fertig 2015) kostete am Ende deutlich mehr als geplant.",
+      "background": "Gemeint sind v.a. der Englischer-Garten-Tunnel (ca. 240 Mio. Euro laut Machbarkeitsstudie 2024) und ein möglicher Tunnel an der Landshuter Allee. Befürworter sehen Entlastung für Anwohner und neue Freiflächen an der Oberfläche. Kritiker verweisen auf jahrelange Bauzeiten und Kostenexplosionen: Der Luise-Kiesselbach-Tunnel (fertig 2015) wurde deutlich teurer als geplant.",
       "axes": {
         "x": 0.0,
         "y": 0.8
@@ -41,7 +41,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "Tempo 30",
       "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll ein Tempolimit von 30 km/h gelten.",
-      "background": "Aktuell gilt auf Münchner Hauptverkehrsstraßen Tempo 50, in Wohngebieten meist Tempo 30. Die Debatte dreht sich um eine Ausweitung auf Hauptstraßen. Befürworter verweisen auf weniger Verkehrstote und weniger Lärm. Kritiker sehen längere Fahrzeiten, Stau-Verlagerung in Nebenstraßen und warnen, dass Hauptstraßen ihre Bündelungsfunktion verlieren.",
+      "background": "Gemeint sind innerstädtische Hauptstraßen wie Rosenheimer Str. oder Lindwurmstraße, nicht Autobahnen oder der Mittlere Ring (Bundesstraße, nicht kommunal). An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. 2024 wurde dort erstmals der NO₂-Grenzwert eingehalten (39 µg/m³). Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
       "axes": {
         "x": 0.0,
         "y": -0.8
@@ -53,7 +53,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Mobilität & Verkehr",
       "short_title": "ÖPNV-Preise",
       "statement": "Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dafür an anderer Stelle im Haushalt gespart werden muss.",
-      "background": "Ein MVV-Monatsticket für München kostet aktuell rund 60–80 Euro (Zone M). Das Deutschlandticket liegt bei 49 Euro. München bezuschusst den ÖPNV bereits mit über 300 Mio. Euro jährlich. Günstigere Tickets könnten mehr Fahrgäste anziehen und Autoverkehr reduzieren, müssten aber durch Einsparungen oder Einnahmen an anderer Stelle gegenfinanziert werden.",
+      "background": "Das Deutschlandticket kostet seit Januar 2026 monatlich 63 Euro (vorher 58 Euro, zum Start 2023: 49 Euro). München bezuschusst den ÖPNV bereits mit über 300 Mio. Euro jährlich. Günstigere Tickets könnten mehr Fahrgäste anziehen und Autoverkehr reduzieren, müssten aber durch Einsparungen oder Einnahmen an anderer Stelle gegenfinanziert werden.",
       "axes": {
         "x": -0.8,
         "y": -0.5
@@ -77,7 +77,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Große Neubaugebiete (SEM)",
       "statement": "Die Stadt soll am Stadtrand (Feldmoching/Daglfing) Ackerflächen für den Bau Tausender neuer Wohnungen nutzen.",
-      "background": "Die Städtebaulichen Entwicklungsmaßnahmen (SEM) Nord und Nordost sind Münchens größte Wohnungsbauprojekte. Auf Feldern bei Feldmoching und Daglfing sollen bis zu 30.000 Wohnungen entstehen. Befürworter sehen dringend benötigten Wohnraum. Kritiker (darunter Landwirte und Naturschützer) warnen vor Flächenversiegelung und dem Verlust der letzten Ackerflächen im Stadtgebiet.",
+      "background": "Die SEM Nordost (600 Hektar bei Daglfing) soll ab den 2030ern Platz für ca. 30.000 Bewohner und 10.000 Arbeitsplätze schaffen. Die SEM Nord (Feldmoching) ist ebenfalls in Planung. Befürworter sehen dringend benötigten Wohnraum. Kritiker (darunter Landwirte und Naturschützer) warnen vor Flächenversiegelung und dem Verlust der letzten Ackerflächen im Stadtgebiet.",
       "axes": {
         "x": 0.5,
         "y": 0.0
@@ -89,7 +89,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Hochhäuser",
       "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), um Platz zu sparen.",
-      "background": "Seit einem Bürgerentscheid 2004 gilt in München eine informelle Höhengrenze von 100 Metern (Höhe der Frauenkirche). Befürworter einer Lockerung argumentieren mit Flächeneffizienz und modernem Städtebau. Gegner sehen das Stadtbild und die Silhouette Münchens in Gefahr. Aktuell gibt es einzelne Ausnahmen (z.B. Highlight Towers mit 126 m), aber keine generelle Freigabe.",
+      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
       "axes": {
         "x": 0.7,
         "y": -0.3
@@ -137,7 +137,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Klimaneutralität 2035",
       "statement": "München soll das Ziel verfolgen, bis 2035 klimaneutral zu sein.",
-      "background": "Der Münchner Stadtrat hat 2019 Klimaneutralität bis 2035 als Ziel beschlossen. Das ist 15 Jahre früher als das Bundesziel (2045). Befürworter sehen München als wohlhabende Stadt in der Pflicht, voranzugehen. Kritiker halten das Ziel für unrealistisch und warnen vor hohen Kosten für Gebäudesanierung, Energieumbau und Verkehrswende.",
+      "background": "Der Münchner Stadtrat hat 2019 Klimaneutralität bis 2035 beschlossen, 10 Jahre früher als das Bundesziel (2045). Ein Maßnahmenplan des Öko-Instituts umfasst über 250 Einzelmaßnahmen, u.a. Ausbau der Photovoltaik von 75 auf 800 MW und klimaneutrale Fernwärme. Kritiker halten das Ziel für unrealistisch und warnen vor hohen Kosten für Gebäudesanierung und Energieumbau.",
       "axes": {
         "x": -0.5,
         "y": -1.0
@@ -161,7 +161,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Solarpflicht",
       "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein.",
-      "background": "Auf städtischen Neubauten ist Photovoltaik in München bereits vorgeschrieben. Die Debatte betrifft die Ausweitung auf private Neubauten und Dachsanierungen. Befürworter sehen ungenutztes Potenzial auf Münchens Dächern für die Energiewende. Kritiker warnen vor Mehrkosten für Bauherren (ca. 10.000–20.000 Euro pro Dach) und Eingriffen in die Eigentumsfreiheit.",
+      "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Die These fragt nach einer echten Pflicht ohne Ausnahmen. Befürworter sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
       "axes": {
         "x": -0.4,
         "y": -0.8
@@ -173,7 +173,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Isar naturnah",
       "statement": "Die Isar soll in weiteren Abschnitten nördlich und südlich der Innenstadt naturnäher gestaltet werden.",
-      "background": "Zwischen 2000 und 2011 wurde die Isar auf 8 km im Stadtgebiet renaturiert (Braunauer Eisenbahnbrücke bis Großhesselohe). Das Projekt gilt als Erfolg. Weitere Abschnitte nördlich (Oberföhring) und südlich (Thalkirchen) sind noch kanalisiert. Renaturierung kostet zweistellige Millionenbeträge, schränkt teilweise Freizeitnutzung ein und dauert Jahre.",
+      "background": "Der Isar-Plan (2000–2011) hat 8 km Flusslauf zwischen Großhesselohe und Deutschem Museum renaturiert, Kosten: über 20 Mio. Euro. Das Projekt gilt als Erfolg. Diese These betrifft weitere Abschnitte nördlich (Oberföhring) und südlich (Thalkirchen), die noch kanalisiert sind. Kritiker verweisen auf erneute Kosten in zweistelliger Millionenhöhe und mögliche Einschränkungen der Freizeitnutzung.",
       "axes": {
         "x": 0.0,
         "y": -0.6
@@ -185,7 +185,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbesteuer",
       "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
-      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490 Punkten (Bundesdurchschnitt: ca. 435). Einige Umlandgemeinden locken mit deutlich niedrigeren Sätzen. Befürworter einer Senkung wollen Unternehmen halten und Abwanderung ins Umland verhindern. Gegner warnen vor Einnahmeausfällen: Die Gewerbesteuer ist Münchens wichtigste Einnahmequelle (über 3 Mrd. Euro jährlich).",
+      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490% (Bundesdurchschnitt: ca. 400%). Umlandgemeinden wie Grünwald (240%) oder Gräfelfing (250%) locken Unternehmen mit deutlich niedrigeren Sätzen. Befürworter einer Senkung wollen Abwanderung verhindern. Gegner warnen vor Einnahmeausfällen: Die Gewerbesteuer ist Münchens wichtigste Einnahmequelle (über 3 Mrd. Euro jährlich).",
       "axes": {
         "x": 1.0,
         "y": 0.0
@@ -233,7 +233,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Gesellschaft & Sicherheit",
       "short_title": "Videoüberwachung",
       "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt eigene Videoüberwachung einsetzen.",
-      "background": "Am Münchner Hauptbahnhof und in Teilen der Innenstadt gibt es bereits Videoüberwachung durch die Bundespolizei. Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Befürworter versprechen sich Abschreckung und schnellere Aufklärung. Datenschützer und Bürgerrechtsorganisationen warnen vor einem Überwachungsstaat und bezweifeln die präventive Wirkung.",
+      "background": "Am Hauptbahnhof gibt es bereits Bundespolizei-Kameras sowie seit 2025 mobile Videotürme mit 360°-Panorama. Der Bahnhof zählt zu den kriminalitätsbelasteten in Deutschland (553 Gewaltdelikte 2025). Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Datenschützer warnen vor Flächenüberwachung und bezweifeln die präventive Wirkung.",
       "axes": {
         "x": 0.0,
         "y": 1.0
@@ -245,7 +245,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Gesellschaft & Sicherheit",
       "short_title": "Drogenkonsumräume",
       "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
-      "background": "Drogenkonsumräume existieren in Frankfurt, Hamburg und Berlin, aber nicht in Bayern. Das bayerische Landesrecht erlaubt sie bislang nicht. Befürworter sehen medizinische Vorteile (weniger Drogentote, weniger Spritzen im öffentlichen Raum) und verweisen auf positive Erfahrungen anderer Städte. Gegner befürchten eine Signalwirkung und Anlaufstellen für die Drogenszene in Wohngebieten.",
+      "background": "Drogenkonsumräume existieren in Frankfurt, Hamburg und Berlin, aber nicht in Bayern. Die CSU-geführte Landesregierung lehnt sie ab und hat im Mai 2025 ihren restriktiven Kurs bestätigt. München fordert seit 2018 eine Erlaubnis vom Freistaat. Befürworter verweisen auf weniger Drogentote und weniger Spritzen im öffentlichen Raum. Gegner befürchten Signalwirkung und Anlaufstellen für die Szene.",
       "axes": {
         "x": 0.0,
         "y": -0.9
@@ -257,7 +257,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Migration & Soziales",
       "short_title": "Bezahlkarte für Asylbewerber",
       "statement": "Asylbewerber sollen eine Bezahlkarte erhalten, auch wenn dies ihre persönliche Freiheit einschränkt, über ihr Geld selbst zu verfügen.",
-      "background": "Die Bezahlkarte für Asylbewerber wurde bundesweit eingeführt und ersetzt teilweise Bargeldauszahlungen. Befürworter sehen weniger Missbrauchsmöglichkeiten und geringere Verwaltungskosten. Kritiker warnen vor Stigmatisierung und Einschränkungen im Alltag (z.B. kein Bezahlen auf Flohmärkten, bei kleinen Läden oder für Überweisungen an Familie).",
+      "background": "Die Bezahlkarte ist in Bayern seit 2024 im Einsatz, über 70.000 Karten wurden ausgegeben (Stand März 2025). Empfänger können damit bei Mastercard-Akzeptanzstellen einkaufen und bis zu 50 Euro/Monat bar abheben. Überweisungen sind nicht möglich. Befürworter sehen weniger Missbrauch und geringere Verwaltungskosten. Kritiker warnen vor Stigmatisierung und Einschränkungen im Alltag.",
       "axes": {
         "x": 0.3,
         "y": 0.9
@@ -269,7 +269,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Kultur & Freizeit",
       "short_title": "Gasteig-Sanierung",
       "statement": "Die Sanierung des Gasteig-Kulturzentrums soll wie geplant abgeschlossen werden, auch wenn die Kosten weiter steigen.",
-      "background": "Der Gasteig ist Europas größtes Kulturzentrum (Philharmonie, Stadtbibliothek, VHS). Die Generalsanierung wurde 2021 begonnen, die Kosten sind von ursprünglich 450 Mio. auf über 700 Mio. Euro gestiegen. Befürworter sehen den Gasteig als unverzichtbar für Münchens Kulturleben. Kritiker fragen, ob die Stadt bei knapper Kasse Hunderte Millionen in ein einzelnes Gebäude investieren sollte.",
+      "background": "Der Gasteig ist Europas größtes Kulturzentrum (Philharmonie, Stadtbibliothek, VHS). Die geschätzten Sanierungskosten sind von 450 Mio. auf bis zu 900 Mio. Euro gestiegen. Die Bauphase soll 2027 beginnen, Fertigstellung ist für 2033 geplant. Befürworter sehen den Gasteig als unverzichtbar für Münchens Kulturleben. Kritiker fragen, ob die Stadt bei knapper Kasse fast eine Milliarde investieren sollte.",
       "axes": {
         "x": -0.4,
         "y": -0.3
@@ -293,7 +293,7 @@ window.WAHLOMAT_DATA = {
       "topic": "Kultur & Freizeit",
       "short_title": "Wiesn-Nachhaltigkeit",
       "statement": "Die Stadt soll für das Oktoberfest verpflichtende Nachhaltigkeitskriterien (z.B. Bio-Quoten) festlegen, auch wenn dies die Preise erhöht.",
-      "background": "Das Oktoberfest zieht jährlich rund 6 Mio. Besucher an und produziert erhebliche Mengen Müll und CO₂. Einzelne Wirte setzen bereits auf Bio-Produkte und Ökostrom. Befürworter wollen verbindliche Standards für alle Zelte (Bio-Quoten, Mehrweggeschirr, regionale Produkte). Kritiker warnen vor steigenden Preisen (eine Maß kostet bereits über 15 Euro) und Eingriffen in bewährte Traditionen.",
+      "background": "Die Wiesn hat bereits Nachhaltigkeitsregeln: Mehrweggeschirr seit 1991, 100% Ökostrom seit 2012, kostenloses Trinkwasser seit 2023. 2025 sank die Abfallmenge um 12% gegenüber dem Vorjahr. Die These fragt, ob darüber hinaus verbindliche Bio-Quoten und regionale Einkaufsstandards gelten sollen. Kritiker warnen vor steigenden Preisen (eine Maß kostet bereits über 15 Euro).",
       "axes": {
         "x": -0.5,
         "y": -0.7
