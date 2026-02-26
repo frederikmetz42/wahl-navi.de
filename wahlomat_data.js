@@ -4,7 +4,7 @@ window.WAHLOMAT_DATA = {
       "id": 1,
       "topic": "Mobilität & Verkehr",
       "short_title": "Straßentunnel",
-      "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, um den oberirdischen Verkehr zu entlasten.",
+      "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, auch wenn dies Milliarden kostet und Jahre dauert.",
       "background": "Gemeint sind v.a. der Englischer-Garten-Tunnel (ca. 240 Mio. Euro laut Machbarkeitsstudie 2024) und ein möglicher Tunnel an der Landshuter Allee. Befürworter sehen Entlastung für Anwohner und neue Freiflächen an der Oberfläche. Kritiker verweisen auf jahrelange Bauzeiten und Kostenexplosionen: Der Luise-Kiesselbach-Tunnel (fertig 2015) wurde deutlich teurer als geplant.",
       "axes": {
         "x": 0.0,
@@ -40,7 +40,7 @@ window.WAHLOMAT_DATA = {
       "id": 4,
       "topic": "Mobilität & Verkehr",
       "short_title": "Tempo 30",
-      "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll ein Tempolimit von 30 km/h gelten.",
+      "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll Tempo 30 gelten, auch wenn dies längere Fahrzeiten bedeutet.",
       "background": "Gemeint sind innerstädtische Hauptstraßen wie Rosenheimer Str. oder Lindwurmstraße, nicht Autobahnen oder der Mittlere Ring (Bundesstraße, nicht kommunal). An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. 2024 wurde dort erstmals der NO₂-Grenzwert eingehalten (39 µg/m³). Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
       "axes": {
         "x": 0.0,
@@ -88,7 +88,7 @@ window.WAHLOMAT_DATA = {
       "id": 8,
       "topic": "Wohnen & Stadtplanung",
       "short_title": "Hochhäuser",
-      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), um Platz zu sparen.",
+      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), auch wenn dies das Stadtbild verändert.",
       "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
       "axes": {
         "x": 0.7,
@@ -136,7 +136,7 @@ window.WAHLOMAT_DATA = {
       "id": 12,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Klimaneutralität 2035",
-      "statement": "München soll das Ziel verfolgen, bis 2035 klimaneutral zu sein.",
+      "statement": "München soll das Ziel verfolgen, bis 2035 klimaneutral zu sein, auch wenn dies hohe Investitionen erfordert.",
       "background": "Der Münchner Stadtrat hat 2019 Klimaneutralität bis 2035 beschlossen, 10 Jahre früher als das Bundesziel (2045). Ein Maßnahmenplan des Öko-Instituts umfasst über 250 Einzelmaßnahmen, u.a. Ausbau der Photovoltaik von 75 auf 800 MW und klimaneutrale Fernwärme. Kritiker halten das Ziel für unrealistisch und warnen vor hohen Kosten für Gebäudesanierung und Energieumbau.",
       "axes": {
         "x": -0.5,
@@ -160,7 +160,7 @@ window.WAHLOMAT_DATA = {
       "id": 14,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Solarpflicht",
-      "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein.",
+      "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein, auch wenn dies die Baukosten erhöht.",
       "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Die These fragt nach einer echten Pflicht ohne Ausnahmen. Befürworter sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
       "axes": {
         "x": -0.4,
@@ -172,7 +172,7 @@ window.WAHLOMAT_DATA = {
       "id": 15,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Isar naturnah",
-      "statement": "Die Isar soll in weiteren Abschnitten nördlich und südlich der Innenstadt naturnäher gestaltet werden.",
+      "statement": "Die Isar soll in weiteren Abschnitten naturnäher gestaltet werden, auch wenn dies Kosten verursacht und Uferbereiche zeitweise einschränkt.",
       "background": "Der Isar-Plan (2000–2011) hat 8 km Flusslauf zwischen Großhesselohe und Deutschem Museum renaturiert, Kosten: über 20 Mio. Euro. Das Projekt gilt als Erfolg. Diese These betrifft weitere Abschnitte nördlich (Oberföhring) und südlich (Thalkirchen), die noch kanalisiert sind. Kritiker verweisen auf erneute Kosten in zweistelliger Millionenhöhe und mögliche Einschränkungen der Freizeitnutzung.",
       "axes": {
         "x": 0.0,
@@ -196,7 +196,7 @@ window.WAHLOMAT_DATA = {
       "id": 17,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Übernachtungssteuer",
-      "statement": "München soll auf eine Übernachtungssteuer für Touristen verzichten.",
+      "statement": "München soll auf eine Übernachtungssteuer für Touristen verzichten, auch wenn der Stadt dadurch Einnahmen entgehen.",
       "background": "Anders als Berlin, Hamburg oder Frankfurt erhebt München bislang keine Übernachtungssteuer. Geschätzte Einnahmen: 30–50 Mio. Euro jährlich. Befürworter sehen eine faire Beteiligung von Touristen an der Infrastruktur. Die Hotelbranche warnt vor Wettbewerbsnachteilen und bürokratischem Aufwand. Der Freistaat Bayern hat kommunale Bettensteuer bisher rechtlich blockiert.",
       "axes": {
         "x": 0.7,
@@ -232,7 +232,7 @@ window.WAHLOMAT_DATA = {
       "id": 20,
       "topic": "Gesellschaft & Sicherheit",
       "short_title": "Videoüberwachung",
-      "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt eigene Videoüberwachung einsetzen.",
+      "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt Videoüberwachung einsetzen, auch wenn dies die Privatsphäre im öffentlichen Raum einschränkt.",
       "background": "Am Hauptbahnhof gibt es bereits Bundespolizei-Kameras sowie seit 2025 mobile Videotürme mit 360°-Panorama. Der Bahnhof zählt zu den kriminalitätsbelasteten in Deutschland (553 Gewaltdelikte 2025). Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Datenschützer warnen vor Flächenüberwachung und bezweifeln die präventive Wirkung.",
       "axes": {
         "x": 0.0,
@@ -280,7 +280,7 @@ window.WAHLOMAT_DATA = {
       "id": 24,
       "topic": "Kultur & Freizeit",
       "short_title": "Queere Projekte",
-      "statement": "Die finanzielle Förderung für Projekte und Beratungsstellen für lesbische, schwule, bisexuelle, trans und queere Menschen soll erhöht werden.",
+      "statement": "Die finanzielle Förderung für Projekte und Beratungsstellen für lesbische, schwule, bisexuelle, trans und queere Menschen soll erhöht werden, auch wenn dafür an anderer Stelle im Haushalt gespart wird.",
       "background": "München fördert queere Einrichtungen wie das Sub (Schwules Kommunikations- und Kulturzentrum), das LeZ (Lesbenberatung) und das diversity-Jugendzentrum. Die Finanzierung deckt laut Trägern nicht den wachsenden Bedarf. Befürworter sehen München in der Verantwortung als weltoffene Stadt. Kritiker fragen, ob Sonderförderung in Zeiten knapper Kassen gerechtfertigt ist.",
       "axes": {
         "x": -0.3,

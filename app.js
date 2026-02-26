@@ -7,6 +7,7 @@ function wahlomatApp() {
         answers: {},
         results: [],
         topMatch: null,
+        surpriseMatches: [],
         selectedPartyId: null,
         modalOpen: false,
         detailFilter: 'all',
@@ -29,7 +30,7 @@ function wahlomatApp() {
         compassAnimated: false,
         milestoneShown: null,
         prefersReducedMotion: false,
-        mobileResultTab: 'overview',
+        resultTab: 'compass',
         showBackground: false,
 
         init() {
@@ -97,6 +98,13 @@ function wahlomatApp() {
                     const w = JSON.parse(savedWeights);
                     if (w && typeof w === 'object') {
                         Object.assign(this.topicWeights, w);
+                        this.topics.forEach(t => {
+                            this.topicWeights[t] = Math.max(0, Math.min(4, this.topicWeights[t] || 1));
+                        });
+                        let sum = this.topics.reduce((s, t) => s + this.topicWeights[t], 0);
+                        if (sum > 10) {
+                            this.topics.forEach(t => { this.topicWeights[t] = 1; });
+                        }
                     }
                 } catch(e) { /* ignore */ }
             }
@@ -107,13 +115,44 @@ function wahlomatApp() {
             return this.theses[this.step - 1];
         },
 
+        get budgetUsed() {
+            return this.topics.reduce((sum, t) => sum + (this.topicWeights[t] || 0), 0);
+        },
+
+        get budgetRemaining() {
+            return 10 - this.budgetUsed;
+        },
+
+        get daysUntilElection() {
+            const today = new Date(); today.setHours(0,0,0,0);
+            const election = new Date('2026-03-15'); election.setHours(0,0,0,0);
+            const diff = Math.round((election - today) / 86400000);
+            return diff >= 0 ? diff : null;
+        },
+        get isElectionDay() { return this.daysUntilElection === 0; },
+        get isElectionSeason() { return this.daysUntilElection !== null && this.daysUntilElection <= 30; },
+
+        incrementWeight(topic) {
+            if (this.topicWeights[topic] < 4 && this.budgetRemaining > 0) {
+                this.topicWeights[topic]++;
+            }
+        },
+
+        decrementWeight(topic) {
+            if (this.topicWeights[topic] > 0) {
+                this.topicWeights[topic]--;
+            }
+        },
+
+        goToStimmzettel() {
+            this.step = 97;
+            window.scrollTo(0, 0);
+        },
+
         start() {
             this.savedStep = 0;
-            this.step = 1;
+            this.step = 98;
             window.scrollTo(0,0);
-            if (Object.keys(this.answers).length >= this.totalTheses) {
-                this.step = 98;
-            }
         },
 
         resumeQuiz() {
@@ -141,8 +180,7 @@ function wahlomatApp() {
                 this.step++;
                 this.checkMilestone();
             } else {
-                this.step = 98;
-                window.scrollTo(0,0);
+                this.showResults();
             }
         },
 
@@ -153,18 +191,24 @@ function wahlomatApp() {
             const hit = milestones.find(m => pct >= m && pct < m + (100 / this.totalTheses) + 1);
             if (hit && this.milestoneShown !== hit) {
                 this.milestoneShown = hit;
+                const remaining = this.totalTheses - this.step;
+                const messages = {
+                    25: 'Gut warm geworden!',
+                    50: 'Halbzeit! Schon eine Tendenz?',
+                    75: `Fast geschafft. Noch ${remaining} Thesen.`
+                };
+                const msg = messages[hit] || `${hit}% geschafft!`;
                 const toast = document.createElement('div');
                 toast.className = 'fixed bottom-[env(safe-area-inset-bottom,24px)] left-1/2 -translate-x-1/2 z-[200] bg-slate-900 text-white px-5 py-3 rounded-full text-sm font-bold shadow-lg animate-toast-in';
-                toast.textContent = `${hit}% geschafft!`;
+                toast.textContent = msg;
                 document.body.appendChild(toast);
-                // Announce to screen readers
                 const liveRegion = document.getElementById('aria-live-region');
-                if (liveRegion) liveRegion.textContent = `${hit}% geschafft!`;
+                if (liveRegion) liveRegion.textContent = msg;
                 setTimeout(() => {
                     toast.classList.remove('animate-toast-in');
                     toast.classList.add('animate-toast-out');
                     setTimeout(() => toast.remove(), 300);
-                }, 1500);
+                }, 1800);
             }
         },
 
@@ -220,6 +264,12 @@ function wahlomatApp() {
                 }).sort((a, b) => b.matchPercentage - a.matchPercentage);
 
                 this.topMatch = this.results[0];
+
+                // Surprise matches: small parties ranking outside top 3 with >55%
+                const bigSix = ['csu', 'gruene', 'spd', 'afd', 'fdp', 'linke'];
+                this.surpriseMatches = this.results
+                    .slice(3)
+                    .filter(p => p.matchPercentage > 55 && !bigSix.includes(p.id));
 
                 // Calculate Compass Coordinates
                 this.calculateCompass();
@@ -523,7 +573,7 @@ function wahlomatApp() {
             }
             let w = '';
             this.topics.forEach(t => {
-                w += this.topicWeights[t] === 2 ? '2' : '1';
+                w += this.topicWeights[t];
             });
             return { r, w };
         },
@@ -541,9 +591,9 @@ function wahlomatApp() {
                 else if (ch === 'd') this.answers[thesisId] = -1;
             }
 
-            if (w && w.length === this.topics.length && /^[12]+$/.test(w)) {
+            if (w && w.length === this.topics.length && /^[0-4]+$/.test(w)) {
                 for (let i = 0; i < w.length; i++) {
-                    this.topicWeights[this.topics[i]] = w[i] === '2' ? 2 : 1;
+                    this.topicWeights[this.topics[i]] = parseInt(w[i], 10);
                 }
             }
 
@@ -622,11 +672,15 @@ function wahlomatApp() {
                 else if (event.key === '2') { this.answer(0); event.preventDefault(); }
                 else if (event.key === '3') { this.answer(-1); event.preventDefault(); }
                 else if (event.key === 'i' || event.key === 'I') { this.showBackground = !this.showBackground; event.preventDefault(); }
-                else if (event.key === 'Backspace' && this.step > 1) { this.showBackground = false; this.step--; event.preventDefault(); }
+                else if (event.key === 'Backspace') { this.showBackground = false; if (this.step > 1) { this.step--; } else { this.step = 98; window.scrollTo(0, 0); } event.preventDefault(); }
                 return;
             }
             if (this.step === 0 && event.key === 'Enter') { this.start(); event.preventDefault(); }
-            if (this.step === 98 && event.key === 'Enter') { this.showResults(); event.preventDefault(); }
+            if (this.step === 98 && event.key === 'Enter') {
+                if (Object.keys(this.answers).length === 0) { this.step = 1; window.scrollTo(0, 0); }
+                else { this.showResults(); }
+                event.preventDefault();
+            }
         },
 
         // --- PDF Export ---
@@ -638,15 +692,218 @@ function wahlomatApp() {
         // --- Sharing ---
 
         shareResults() {
+            if (!this.topMatch) return;
+            // Check font readiness
+            const fontReady = document.fonts ? document.fonts.check('bold 32px Inter') : true;
+            if (!fontReady) {
+                // Fallback to text share if font not ready
+                this._shareTextFallback();
+                return;
+            }
+
+            const W = 1080, H = 1350;
+            const canvas = document.createElement('canvas');
+            canvas.width = W;
+            canvas.height = H;
+            const ctx = canvas.getContext('2d');
+
+            // Background
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, W, H);
+
+            // Header bar
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, W, 120);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 36px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('MUCwahl München 2026', 48, 76);
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '24px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('mucwahl.de', W - 48, 76);
+
+            // Top match card
+            const matchColor = this.getPartyColor(this.topMatch.id);
+            ctx.fillStyle = '#ffffff';
+            this._roundRectFill(ctx, 48, 168, W - 96, 240, 24);
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 2;
+            this._roundRect(ctx, 48, 168, W - 96, 240, 24);
+            ctx.stroke();
+
+            // Match color accent bar
+            ctx.fillStyle = matchColor;
+            ctx.fillRect(48, 168, 8, 240);
+
+            ctx.fillStyle = '#64748b';
+            ctx.font = '22px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Höchste Übereinstimmung', 96, 220);
+
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 56px Inter, system-ui, sans-serif';
+            ctx.fillText(this.topMatch.name, 96, 295);
+
+            // Percentage circle
+            const circleX = W - 168, circleY = 288, circleR = 72;
+            ctx.beginPath();
+            ctx.arc(circleX, circleY, circleR, 0, Math.PI * 2);
+            ctx.fillStyle = '#f1f5f9';
+            ctx.fill();
+            const pct = this.topMatch.matchPercentage / 100;
+            ctx.beginPath();
+            ctx.arc(circleX, circleY, circleR, -Math.PI / 2, -Math.PI / 2 + pct * Math.PI * 2);
+            ctx.strokeStyle = matchColor;
+            ctx.lineWidth = 10;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 40px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(Math.round(this.topMatch.matchPercentage) + '%', circleX, circleY + 14);
+
+            // Top 3 bars
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 28px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Top 3', 48, 476);
+
+            const top3 = this.results.slice(0, 3);
+            top3.forEach((party, i) => {
+                const y = 510 + i * 100;
+                const barW = W - 96;
+                const color = this.getPartyColor(party.id);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.font = '24px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(party.name, 48, y + 28);
+
+                ctx.font = 'bold 24px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(Math.round(party.matchPercentage) + '%', W - 48, y + 28);
+
+                // Bar background
+                ctx.fillStyle = '#f1f5f9';
+                this._roundRectFill(ctx, 48, y + 42, barW, 24, 12);
+                // Bar fill
+                ctx.fillStyle = color;
+                const fillW = Math.max(24, (party.matchPercentage / 100) * barW);
+                this._roundRectFill(ctx, 48, y + 42, fillW, 24, 12);
+            });
+
+            // Radar chart (compact)
+            if (this.topics.length > 0) {
+                const radarCx = W / 2, radarCy = 980, radarR = 200;
+                const n = this.topics.length;
+
+                // Grid rings
+                ctx.strokeStyle = '#e2e8f0';
+                ctx.lineWidth = 1;
+                [0.25, 0.5, 0.75, 1.0].forEach(frac => {
+                    ctx.beginPath();
+                    for (let i = 0; i <= n; i++) {
+                        const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                        const rr = frac * radarR;
+                        const x = radarCx + rr * Math.cos(angle);
+                        const y = radarCy + rr * Math.sin(angle);
+                        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                });
+
+                // Axes + labels
+                ctx.fillStyle = '#64748b';
+                ctx.font = '18px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                this.topics.forEach((topic, i) => {
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    ctx.strokeStyle = '#cbd5e1';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(radarCx, radarCy);
+                    ctx.lineTo(radarCx + radarR * Math.cos(angle), radarCy + radarR * Math.sin(angle));
+                    ctx.stroke();
+                    const labelR = radarR + 30;
+                    ctx.fillText(topic.split(/[\s,&]+/)[0], radarCx + labelR * Math.cos(angle), radarCy + labelR * Math.sin(angle));
+                });
+
+                // Top match polygon
+                ctx.beginPath();
+                this.topics.forEach((topic, i) => {
+                    const topicPct = (this.topicScores[topic]?.parties[this.topMatch.id]?.percent || 0) / 100;
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    const rr = topicPct * radarR;
+                    const x = radarCx + rr * Math.cos(angle);
+                    const y = radarCy + rr * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.fillStyle = matchColor + '33';
+                ctx.fill();
+                ctx.strokeStyle = matchColor;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+
+            // Watermark
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '20px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillText('mucwahl.de · Kommunalwahl München 2026', W / 2, H - 36);
+
+            const shareUrl = this.getShareUrl();
+            canvas.toBlob(blob => {
+                if (!blob) { this._shareTextFallback(); return; }
+                const file = new File([blob], 'mucwahl-ergebnis.png', { type: 'image/png' });
+                const shareData = {
+                    files: [file],
+                    title: 'Mein MUCwahl Ergebnis',
+                    text: `Mein Wahl-Check für München: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%). Mach auch den Test: ${shareUrl}`
+                };
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    navigator.share(shareData).catch(() => {});
+                } else {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url; a.download = 'mucwahl-ergebnis.png'; a.click();
+                    URL.revokeObjectURL(url);
+                }
+            }, 'image/png');
+        },
+
+        _shareTextFallback() {
             const title = 'MUCwahl München 2026';
             const url = this.getShareUrl();
             const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test!`;
-
             if (navigator.share) {
                 navigator.share({ title, text, url }).catch(console.error);
             } else {
                 this.copyLink();
             }
+        },
+
+        _roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+            ctx.lineTo(x + w, y + h - r);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            ctx.lineTo(x + r, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.closePath();
+        },
+
+        _roundRectFill(ctx, x, y, w, h, r) {
+            this._roundRect(ctx, x, y, w, h, r);
+            ctx.fill();
         },
 
         shareCompass() {
@@ -752,6 +1009,107 @@ function wahlomatApp() {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url; a.download = 'kompass.png'; a.click();
+                    URL.revokeObjectURL(url);
+                }
+            }, 'image/png');
+        },
+
+        shareRadar() {
+            if (!this.topMatch || this.topics.length === 0) return;
+            const s = 2;
+            const svgSize = 300 * s;
+            const canvas = document.createElement('canvas');
+            canvas.width = svgSize;
+            canvas.height = svgSize + 80 * s;
+            const ctx = canvas.getContext('2d');
+            const cx = svgSize / 2, cy = svgSize / 2;
+            const r = 110 * s;
+            const n = this.topics.length;
+
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 1 * s;
+            [0.25, 0.5, 0.75, 1.0].forEach(frac => {
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                    const rr = frac * r;
+                    const x = cx + rr * Math.cos(angle);
+                    const y = cy + rr * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+            });
+
+            ctx.fillStyle = '#64748b';
+            ctx.font = `${9 * s}px Inter, system-ui, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            this.topics.forEach((topic, i) => {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                ctx.strokeStyle = '#cbd5e1';
+                ctx.lineWidth = 1 * s;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+                ctx.stroke();
+                const labelR = r + 18 * s;
+                ctx.fillText(topic.split(/[\s,&]+/)[0], cx + labelR * Math.cos(angle), cy + labelR * Math.sin(angle));
+            });
+
+            const color = this.getPartyColor(this.topMatch.id);
+            ctx.beginPath();
+            this.topics.forEach((topic, i) => {
+                const pct = (this.topicScores[topic]?.parties[this.topMatch.id]?.percent || 0) / 100;
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                const rr = pct * r;
+                const x = cx + rr * Math.cos(angle);
+                const y = cy + rr * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.closePath();
+            ctx.fillStyle = color + '33';
+            ctx.fill();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2 * s;
+            ctx.stroke();
+
+            const barY = svgSize;
+            ctx.fillStyle = '#0f172a';
+            ctx.font = `bold ${20 * s}px Inter, system-ui, sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillText('Themen-Radar', 20 * s, barY + 36 * s);
+            if (this.topMatch) {
+                ctx.fillStyle = '#64748b';
+                ctx.font = `${13 * s}px Inter, system-ui, sans-serif`;
+                ctx.fillText(`Top-Match: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%)`, 20 * s, barY + 58 * s);
+            }
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = `${11 * s}px Inter, system-ui, sans-serif`;
+            ctx.fillText('Dein politisches Profil nach Themengebieten', 20 * s, barY + 74 * s);
+            ctx.font = `${14 * s}px Inter, system-ui, sans-serif`;
+            ctx.textAlign = 'right';
+            ctx.fillText('mucwahl.de', svgSize - 20 * s, barY + 36 * s);
+
+            const shareUrl = this.getShareUrl();
+            canvas.toBlob(blob => {
+                if (!blob) return;
+                const file = new File([blob], 'radar.png', { type: 'image/png' });
+                const shareData = {
+                    files: [file],
+                    title: 'Mein Themen-Radar',
+                    text: `Mein Themen-Radar zur Münchner Kommunalwahl 2026. Mach auch den Test: ${shareUrl}`
+                };
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    navigator.share(shareData).catch(() => {});
+                } else {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url; a.download = 'radar.png'; a.click();
                     URL.revokeObjectURL(url);
                 }
             }, 'image/png');
