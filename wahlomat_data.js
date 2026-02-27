@@ -40,7 +40,7 @@ window.WAHLOMAT_DATA = {
       "id": 4,
       "topic": "Mobilität & Verkehr",
       "short_title": "Tempo 30",
-      "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll Tempo 30 gelten, auch wenn dies längere Fahrzeiten bedeutet.",
+      "statement": "Auf den meisten Hauptverkehrsstraßen innerhalb des Mittleren Rings soll Tempo 30 gelten, auch wenn dies längere Fahrzeiten bedeutet.",
       "background": "Gemeint sind innerstädtische Hauptstraßen wie Rosenheimer Str. oder Lindwurmstraße, nicht Autobahnen oder der Mittlere Ring (Bundesstraße, nicht kommunal). An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. 2024 wurde dort erstmals der NO₂-Grenzwert eingehalten (39 µg/m³). Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
       "axes": {
         "x": 0.0,
