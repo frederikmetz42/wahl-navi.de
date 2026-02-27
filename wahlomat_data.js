@@ -160,13 +160,13 @@ window.WAHLOMAT_DATA = {
       "id": 14,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Solarpflicht",
-      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll beibehalten und konsequent durchgesetzt werden, auch wenn dies die Baukosten erhöht.",
-      "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Die These fragt nach einer echten Pflicht ohne Ausnahmen. Befürworter sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
+      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn dadurch weniger Solarenergie auf Münchens Dächern erzeugt wird.",
+      "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Befürworter der Pflicht sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
       "axes": {
-        "x": -0.4,
-        "y": -0.8
+        "x": 0.4,
+        "y": 0.8
       },
-      "tradeoff": "Klimaschutz vs. Eigentumsfreiheit"
+      "tradeoff": "Eigentumsfreiheit vs. Klimaschutz"
     },
     {
       "id": 15,
@@ -361,7 +361,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Die zwingende Klimaschutzprüfung aller städtischen Aktivitäten und Pläne schaffen wir wieder ab und führen diese Prüfung nur aus begründetem Anlass im Einzelfall durch."
         },
         "14": {
-          "val": -1,
+          "val": 1,
           "quote": "Die Landeshauptstadt geht voran: Photovoltaik auf allen städtischen Neubauten... Außerhalb der Fernwärme setzen wir auf... Anreize."
         },
         "15": {
@@ -469,7 +469,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Klimaschutz ist Daseinsvorsorge. Wir stoppen klimaschädliche Großprojekte."
         },
         "14": {
-          "val": 1,
+          "val": -1,
           "quote": "Solarpflicht für Neubauten und auf kommunalen Gebäuden."
         },
         "15": {
@@ -577,7 +577,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Klare Prioritäten bei den Investitionen: ... Klimaschutz und nachhaltige Infrastruktur haben oberste Priorität."
         },
         "14": {
-          "val": 1,
+          "val": -1,
           "quote": "Solarpflicht für Neubauten und auf kommunalen Gebäuden."
         },
         "15": {
@@ -685,7 +685,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Das 'Greenwashing' von nicht regional erzeugter Energie durch die Münchner Stadtwerke beenden... Strategiewechsel weg von priorisierten Investitionen in erneuerbare Energien."
         },
         "14": {
-          "val": -1,
+          "val": 1,
           "quote": "Keine über bundesweite Vorgaben hinausgehenden Baustandards festlegen (z. B. im energetischen Bereich)."
         },
         "15": {
@@ -793,7 +793,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir wollen eine naturwissenschaftlich fundierte Energiepolitik, die auf Innovation, Wettbewerb und hohe gesellschaftliche Akzeptanz setzt."
         },
         "14": {
-          "val": -1,
+          "val": 1,
           "quote": "Mit Dach- und Fassadenbegrünungen sollen... auch private Gebäudeeigentümer beitragen, alternativ sollen sie die Flächen auch für Photovoltaik nutzen können... auf freiwilliger Basis."
         },
         "15": {
@@ -901,7 +901,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Stadtentwicklungspläne bezüglich des Klimas und des Umweltschutzes priorisieren."
         },
         "14": {
-          "val": 1,
+          "val": -1,
           "quote": "Lösungen für eine lokale und stadtviertel-basierte Stromversorgung entwickeln... Verwendung nachhaltiger Baustoffe fördern."
         },
         "15": {
@@ -997,7 +997,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Klimaschutz als Querschnittsaufgabe... Kontrolle aller Stadtratsbeschlüsse auf Klimawirksamkeit."
         },
         "14": {
-          "val": 1,
+          "val": -1,
           "quote": "Verpflichtung zur Nutzung von Photovoltaik auf Neubauten."
         },
         "15": {
@@ -1093,7 +1093,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Städtische Wohnungsbaugesellschaft Münchner Wohnen: Mehr als 2.000 neue Wohnungen pro Jahr; Wiener Modell als Vorbild."
         },
         "14": {
-          "val": 1,
+          "val": -1,
           "quote": "Verpflichtende Solarquoten auf städtischen Gebäuden."
         },
         "17": {
