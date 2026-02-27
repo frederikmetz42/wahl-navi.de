@@ -160,7 +160,7 @@ window.WAHLOMAT_DATA = {
       "id": 14,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Solarpflicht",
-      "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein, auch wenn dies die Baukosten erhöht.",
+      "statement": "Solaranlagen auf Dächern sollen bei allen Neubauten und Dachsanierungen ausnahmslos verpflichtend sein, auch wenn dies die Baukosten erhöht.",
       "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Die These fragt nach einer echten Pflicht ohne Ausnahmen. Befürworter sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
       "axes": {
         "x": -0.4,
@@ -280,7 +280,7 @@ window.WAHLOMAT_DATA = {
       "id": 24,
       "topic": "Kultur & Freizeit",
       "short_title": "Queere Projekte",
-      "statement": "Die finanzielle Förderung für Projekte und Beratungsstellen für lesbische, schwule, bisexuelle, trans und queere Menschen soll erhöht werden, auch wenn dafür an anderer Stelle im Haushalt gespart wird.",
+      "statement": "Die finanzielle Förderung für LGBTQ+-Projekte und -Beratungsstellen soll erhöht werden, auch wenn dafür an anderer Stelle im Haushalt gespart wird.",
       "background": "München fördert queere Einrichtungen wie das Sub (Schwules Kommunikations- und Kulturzentrum), das LeZ (Lesbenberatung) und das diversity-Jugendzentrum. Die Finanzierung deckt laut Trägern nicht den wachsenden Bedarf. Befürworter sehen München in der Verantwortung als weltoffene Stadt. Kritiker fragen, ob Sonderförderung in Zeiten knapper Kassen gerechtfertigt ist.",
       "axes": {
         "x": -0.3,

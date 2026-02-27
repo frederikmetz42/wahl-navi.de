@@ -140,13 +140,8 @@ body {
     font-size: 24pt !important;
   }
 
-  /* Force single column layout */
-  .lg\:col-span-7,
-  .lg\:col-span-5 {
-    grid-column: span 12 / span 12 !important;
-  }
-
-  .grid-cols-1.lg\:grid-cols-12 {
+  /* Force-show both result tab panels in print */
+  .result-tab {
     display: block !important;
   }
 
@@ -157,11 +152,6 @@ body {
 
   a[href]::after {
     content: none !important;
-  }
-
-  /* Force-show compass/radar column even when mobile tab hides it */
-  aside[aria-label*="Kompass"] {
-    display: block !important;
   }
 
   /* Remove sticky positioning in print */

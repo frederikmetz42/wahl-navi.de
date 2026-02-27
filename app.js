@@ -635,8 +635,12 @@ function wahlomatApp() {
 
         closeModal() {
             this.modalOpen = false;
-            this.selectedPartyId = null;
             document.body.style.overflow = '';
+            if (this.resultTab === 'compare' && this.topMatch) {
+                this.selectedPartyId = this.topMatch.id;
+            } else {
+                this.selectedPartyId = null;
+            }
             if (this._modalTrigger) {
                 this._modalTrigger.focus();
                 this._modalTrigger = null;

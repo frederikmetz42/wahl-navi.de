@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="pin" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#303D4F"/>
+      <stop offset="100%" stop-color="#1C2735"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0D1520" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Pin - slightly shorter tail than v5 -->
+  <path d="M200 18 C298 18 370 88 370 178 C370 265 200 448 200 448 C200 448 30 265 30 178 C30 88 102 18 200 18Z" 
+        fill="url(#pin)" filter="url(#shadow)"/>
+
+  <!-- Inner white circle -->
+  <circle cx="200" cy="178" r="124" fill="#FEFEFE"/>
+</svg>
