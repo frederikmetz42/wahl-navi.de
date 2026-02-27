@@ -160,7 +160,7 @@ window.WAHLOMAT_DATA = {
       "id": 14,
       "topic": "Klima, Umwelt & Energie",
       "short_title": "Solarpflicht",
-      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn dadurch weniger Solarenergie auf Münchens Dächern erzeugt wird.",
+      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn Solaranlagen langfristig die Stromkosten senken.",
       "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Befürworter der Pflicht sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
       "axes": {
         "x": 0.4,
