@@ -397,39 +397,39 @@
       </div>
     </div>
 
-    <!-- Suggestion Log -->
+    <!-- Top 10 Feature Roadmap (Prioritized via 4-role adversarial debate, Feb 2026) -->
     <div class="card" style="margin-bottom: 24px;">
-      <div class="section-title">Vorschl&auml;ge <span style="font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 8px;">nach Thema gruppiert</span></div>
-      <div class="grid-2">
-        <div>
-          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 8px;">Ergebnis-Klarheit</div>
-          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
-            <li>&bull; Percentage Context Labels (&bdquo;Hohe / Mittlere / Geringe &Uuml;bereinstimmung&ldquo;)</li>
-            <li>&bull; &bdquo;Warum dieses Ergebnis?&ldquo;-Explainer (Top-3-Thesen pro Partei)</li>
-            <li>&bull; Diff-First Modal (Abweichungen zuerst zeigen)</li>
-          </ul>
+      <div class="section-title">Top 10 Feature Roadmap <span class="feature-counter" id="feature-counter"></span></div>
+      <div style="font-size: 11px; color: var(--text3); margin-bottom: 16px; line-height: 1.6;">
+        Scored: (Impact&times;3) + (Viral&times;2) + (Diff&times;2) + (Feasibility&times;1) + (Risk&times;1). Click row to expand analysis.
+        <button class="feat-toggle" id="restore-all-btn" style="display: none; margin-left: 8px;">Alle wiederherstellen</button>
+      </div>
+      <div id="feature-board"></div>
+    </div>
+
+    <!-- Explicitly NOT Building -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Bewusst NICHT bauen <span style="font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 8px;">Devil's Advocate, validiert</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); padding: 8px 0; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--red); font-weight: 700; font-size: 16px;">&#10007;</span>
+          <strong>Dark Mode</strong> <span style="color: var(--text3);">16 Tage bis Wahl. Vanity Feature. Null Einfluss auf W&auml;hlerbildung.</span>
         </div>
-        <div>
-          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 8px;">Quiz Flow</div>
-          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
-            <li>&bull; Post-Quiz Weighting (Gewichtung nach dem Quiz statt davor)</li>
-            <li>&bull; Safe Logo Behaviour (Best&auml;tigung bei Logo-Klick im Quiz)</li>
-            <li>&bull; Progress Ring Animation</li>
-          </ul>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); padding: 8px 0; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--red); font-weight: 700; font-size: 16px;">&#10007;</span>
+          <strong>PWA / Offline</strong> <span style="color: var(--text3);">Nutzer:innen machen den Quiz einmal. Offline-Support l&ouml;st kein echtes Problem.</span>
         </div>
-        <div>
-          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin-bottom: 8px;">Sharing</div>
-          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
-            <li>&bull; &bdquo;Dein Typ&ldquo;-Personality Card (teilbarer Archetyp)</li>
-            <li>&bull; Freund:innen-Vergleich (v6.0+)</li>
-          </ul>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); padding: 8px 0; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--red); font-weight: 700; font-size: 16px;">&#10007;</span>
+          <strong>Kandidat:innen-Profile</strong> <span style="color: var(--text3);">14 Parteien &times; Kandidat:innen = unwartbare Datenmenge f&uuml;r ein Ein-Personen-Projekt.</span>
         </div>
-        <div>
-          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 8px;">Barrierefreiheit</div>
-          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
-            <li>&bull; Accessible Charts (Screen Reader, Kontrast, Keyboard-Navigation)</li>
-            <li>&bull; WCAG AAA Audit (v6.0+)</li>
-          </ul>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); padding: 8px 0; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--red); font-weight: 700; font-size: 16px;">&#10007;</span>
+          <strong>Freund:innen-Vergleich</strong> <span style="color: var(--text3);">Braucht Backend-State oder monstr&ouml;se URL-Kodierung. Bricht Fortress Zero.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); padding: 8px 0;">
+          <span style="color: var(--red); font-weight: 700; font-size: 16px;">&#10007;</span>
+          <strong>Multi-City</strong> <span style="color: var(--text3);">Post-Election Feature. Null Wert f&uuml;r M&uuml;nchen 2026. Ablenkung.</span>
         </div>
       </div>
     </div>
@@ -511,32 +511,48 @@
         <div class="section-title"><span style="color: var(--green);">&#9679;</span> Now</div>
         <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Aktiv in Arbeit</div>
         <div style="font-size: 13px; color: var(--text2); line-height: 1.8;">
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; Cockpit Overhaul</div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; Percentage Context Labels <span class="badge badge-green" style="font-size: 10px;">S</span> <span style="font-size: 11px; color: var(--text3);">#1</span>
+          </div>
+          <div style="padding: 8px 0;">
+            &bull; Safe Logo Behaviour <span class="badge badge-green" style="font-size: 10px;">S</span> <span style="font-size: 11px; color: var(--text3);">#7</span>
+          </div>
         </div>
       </div>
       <div class="card" style="border-top: 3px solid var(--blue);">
         <div class="section-title"><span style="color: var(--blue);">&#9679;</span> Next</div>
-        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Validiert, in der Warteschlange</div>
+        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Validiert, pre-election</div>
         <div style="font-size: 13px; color: var(--text2); line-height: 1.8;">
           <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-            &bull; Percentage Context Labels <span class="badge badge-green" style="font-size: 10px;">S</span>
+            &bull; &bdquo;Warum dieses Ergebnis?&ldquo; Explainer <span class="badge badge-blue" style="font-size: 10px;">M</span> <span style="font-size: 11px; color: var(--text3);">#2</span>
           </div>
           <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
-            &bull; Post-Quiz Weighting <span class="badge badge-blue" style="font-size: 10px;">M</span>
+            &bull; Diff-First Modal <span class="badge badge-green" style="font-size: 10px;">S</span> <span style="font-size: 11px; color: var(--text3);">#4</span>
+          </div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; Feedback Gathering <span class="badge badge-green" style="font-size: 10px;">S</span> <span style="font-size: 11px; color: var(--text3);">#6</span>
           </div>
           <div style="padding: 8px 0;">
-            &bull; &bdquo;Warum dieses Ergebnis?&ldquo; Explainer <span class="badge badge-blue" style="font-size: 10px;">M</span>
+            &bull; PayPal Spende-Link <span class="badge badge-green" style="font-size: 10px;">S</span> <span style="font-size: 11px; color: var(--text3);">#10</span>
           </div>
         </div>
       </div>
       <div class="card" style="border-top: 3px solid var(--purple);">
         <div class="section-title"><span style="color: var(--purple);">&#9679;</span> Later</div>
-        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Unvalidiert, v6.0+</div>
+        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Post-election, v6.0+</div>
         <div style="font-size: 13px; color: var(--text2); line-height: 1.8;">
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; Freund:innen-Vergleich</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; PWA mit Manifest</div>
-          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; Multi-City</div>
-          <div style="padding: 8px 0;">&bull; WCAG AAA Audit</div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; &bdquo;Dein Typ&ldquo; Personality Card <span class="badge badge-blue" style="font-size: 10px;">M</span> <span style="font-size: 11px; color: var(--text3);">#3</span>
+          </div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; Accessible Charts <span class="badge badge-blue" style="font-size: 10px;">M</span> <span style="font-size: 11px; color: var(--text3);">#5</span>
+          </div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; Post-Quiz Weighting <span class="badge badge-blue" style="font-size: 10px;">M</span> <span style="font-size: 11px; color: var(--text3);">#8</span>
+          </div>
+          <div style="padding: 8px 0;">
+            &bull; Embedded Wahlpr&uuml;fsteine <span class="badge badge-blue" style="font-size: 10px;">M</span> <span style="font-size: 11px; color: var(--text3);">#9</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1764,6 +1780,167 @@ Ohne Tracking, Open Source. Methodik und alle Quellen liegen offen auf mucwahl.d
     badge.className = 'badge badge-' + (days <= 7 ? 'red' : 'orange');
     badge.textContent = days + ' Tage bis Wahl';
   }
+})();
+
+// Feature Board (Top 10 Roadmap)
+// Note: innerHTML usage is safe here — all data is hardcoded, no user input
+(function() {
+  var features = [
+    {
+      rank: 1, name: 'Percentage Context Labels', type: 'Incremental', effort: 'S', score: 35,
+      desc: 'Semantische Labels neben Prozentzahlen: "Hohe \u00dcbereinstimmung" (\u226575%), "Mittlere" (40\u201374%), "Geringe" (<40%). 8/10 User-Panel-Mitglieder meldeten Verwirrung bei rohen Zahlen.',
+      benefit: 'Sofortige Verst\u00e4ndlichkeit der Ergebnisse. Reduziert "Ist 67% gut?" Unsicherheit. H\u00f6chster Impact bei geringstem Aufwand.',
+      impl: 'app.js: getMatchLabel(pct) Helper \u2192 3 Schwellenwerte. Ergebnis-Liste + Top-Match-Hero + Vergleich-Tab: Label neben % einf\u00fcgen. ~20 Zeilen.',
+      risk: 'Schwellenwerte k\u00f6nnen irref\u00fchrend sein, wenn viele Parteien im Grenzbereich liegen. Mitigation: Labels als Orientierung kennzeichnen, nicht als Bewertung.',
+      scores: { impact: 5, viral: 2, diff: 3, feas: 5, risk: 5 }
+    },
+    {
+      rank: 2, name: '"Warum dieses Ergebnis?" Explainer', type: 'Revolutionary', effort: 'M', score: 35,
+      desc: 'Pro Partei die 3 Thesen anzeigen, die das Match-Ergebnis am st\u00e4rksten beeinflusst haben (gr\u00f6\u00dfter positiver + negativer Beitrag). Kein Konkurrent bietet das.',
+      benefit: 'Einzigartiges Differenzierungsmerkmal. Verwandelt intransparentes Scoring in radikale Nachvollziehbarkeit. Erh\u00f6ht Vertrauen und Verweildauer.',
+      impl: 'app.js: topInfluencers(partyId, n=3) \u2192 sortiert Thesen nach absolutem Scoring-Beitrag. UI: Collapsible unter jeder Partei im Ergebnis. ~60 Zeilen JS + HTML Template.',
+      risk: 'Gewichtete Thesen dominieren die Liste. Mitigation: "Gewichtet \u00d7N" Badge neben beeinflussten Thesen zeigen.',
+      scores: { impact: 4, viral: 3, diff: 5, feas: 3, risk: 4 }
+    },
+    {
+      rank: 3, name: '"Dein Typ" Personality Card', type: 'Revolutionary', effort: 'M', score: 32,
+      desc: 'Teilbarer Archetyp basierend auf Kompass-Position: "Der Pragmatische Progressive", "Die Soziale Marktwirtschaftlerin" etc. Zeigt Typ statt Parteinamen \u2192 niedrigere Sharing-Barriere.',
+      benefit: 'Viraler Verteilungsmechanismus. Jeder Share bringt neue Nutzer:innen. Emotionaler Anker, den kein Konkurrent hat.',
+      impl: 'app.js: getArchetype(x, y) \u2192 Maps Kompass-Quadranten auf 8-12 Archetyp-Labels. Canvas: 600\u00d7600 Card mit Typ, Kompass-Position, Top-Match. Share via Web Share API.',
+      risk: 'Archetyp-Labels k\u00f6nnten als Schubladendenken wahrgenommen werden. Mitigation: "Dein politisches Profil" statt "Dein Typ", Disclaimer.',
+      scores: { impact: 3, viral: 5, diff: 4, feas: 2, risk: 3 }
+    },
+    {
+      rank: 4, name: 'Diff-First Modal', type: 'Incremental', effort: 'S', score: 28,
+      desc: 'Im Partei-Detail-Modal Abweichungen zuerst zeigen statt alle 25 Thesen sequentiell. Nutzer:innen erfahren sofort, wo sie anderer Meinung sind.',
+      benefit: 'Erh\u00f6ht Engagement durch kognitive Dissonanz. "Warum passt meine Top-Partei hier nicht?" Motiviert Auseinandersetzung mit Positionen.',
+      impl: 'app.js: Modal-Rendering sortiert Thesen nach |userVal - partyVal| absteigend. Toggle "Abweichungen zuerst / Alle Thesen". ~15 Zeilen.',
+      risk: 'Minimal. Rein UI-Sortierung, keine Daten\u00e4nderung. Nutzer:innen k\u00f6nnen zur Standardreihenfolge wechseln.',
+      scores: { impact: 3, viral: 2, diff: 3, feas: 4, risk: 5 }
+    },
+    {
+      rank: 5, name: 'Accessible Charts', type: 'Incremental', effort: 'M', score: 27,
+      desc: 'Screen-Reader-Beschreibungen f\u00fcr Kompass + Radar, High-Contrast-Modus, Keyboard-Navigation f\u00fcr Compass-Dots, ARIA-Labels f\u00fcr alle Datenpunkte.',
+      benefit: 'Differenzierung: "Das einzige barrierefreie Wahl-Quiz." Presse-Angle. Pflicht f\u00fcr Civic Tech.',
+      impl: 'index.html: aria-label auf SVG-Elemente, role="img" + aria-describedby f\u00fcr Kompass. JS: Keyboard-Handler f\u00fcr Dot-Focus. CSS: @media (prefers-contrast: more). ~80 Zeilen.',
+      risk: 'Aufw\u00e4ndig korrekt zu testen ohne Screen-Reader-Expertise. Mitigation: axe-core Audit + manueller VoiceOver-Test.',
+      scores: { impact: 3, viral: 1, diff: 4, feas: 3, risk: 5 }
+    },
+    {
+      rank: 6, name: 'Feedback Gathering', type: 'Incremental', effort: 'S', score: 26,
+      desc: 'Feedback-Link auf Ergebnis-Seite: "Feedback? Schreib mir." \u2192 mailto: oder GitHub Issues. Fortress-Zero-kompatibel, kein Backend.',
+      benefit: 'Schlie\u00dft den Feedback-Loop. Nutzer:innen k\u00f6nnen Fehler melden, Vorschl\u00e4ge machen. Baut Community auf, die kein Konkurrent hat.',
+      impl: 'index.html: Link unter Share-Section: "Feedback oder Fehler gefunden?" \u2192 GitHub Issues URL. ~5 Zeilen HTML.',
+      risk: 'Spam-Risiko bei mailto. Mitigation: GitHub Issues Link bevorzugen (erfordert GitHub-Account = nat\u00fcrlicher Spam-Filter).',
+      scores: { impact: 3, viral: 1, diff: 3, feas: 4, risk: 5 }
+    },
+    {
+      rank: 7, name: 'Safe Logo Behaviour', type: 'Incremental', effort: 'S', score: 23,
+      desc: 'Best\u00e4tigungsdialog bei Klick auf Logo w\u00e4hrend des Quiz: "Quiz abbrechen und zur Startseite?" Verhindert versehentlichen Fortschrittsverlust.',
+      benefit: 'Eliminiert echte User-Frustration. Kein verlorener Quiz-Fortschritt mehr durch versehentliches Tippen auf das Logo.',
+      impl: 'app.js: Logo-Click-Handler pr\u00fcft ob step > 0 && step < 26, zeigt confirm() Dialog. Bei Cancel: return false. ~8 Zeilen.',
+      risk: 'Minimal. confirm() ist nativ, blockiert nicht, kein UI-Aufwand.',
+      scores: { impact: 3, viral: 1, diff: 1, feas: 5, risk: 5 }
+    },
+    {
+      rank: 8, name: 'Post-Quiz Weighting', type: 'Revolutionary', effort: 'M', score: 22,
+      desc: 'Themen-Gewichtung nach dem Quiz statt davor. Nutzer:innen sehen zuerst alle 25 Thesen, dann gewichten sie informiert.',
+      benefit: 'Eliminiert "Gewichte Themen, die du noch nicht gesehen hast"-Problem. Informierte Entscheidung statt Ratespiel.',
+      impl: 'app.js: Reihenfolge \u00e4ndern: Quiz (1-25) \u2192 Weighting (98) \u2192 Results (99). calculateResults() bleibt gleich. ~20 Zeilen.',
+      risk: 'HOCH. Kern-Quiz-Flow \u00e4ndern kurz vor Wahl ist gef\u00e4hrlich. Definitiv v6.0.',
+      scores: { impact: 4, viral: 1, diff: 2, feas: 2, risk: 2 }
+    },
+    {
+      rank: 9, name: 'Embedded Wahlpr\u00fcfsteine Links', type: 'Incremental', effort: 'M', score: 21,
+      desc: 'Pro These Links zu externen Quellen (Wahlpr\u00fcfsteine, Presseartikel). Positioniert MUCwahl als Research-Hub.',
+      benefit: 'Trust-Signal: Positionen verifizierbar. Wenig Klicks erwartet, aber Pr\u00e4senz signalisiert Sorgfalt.',
+      impl: 'wahlomat_data.js: sources[] Array pro These. index.html: Link-Icons im Detail-Modal + Vergleich-Tab. ~40 Zeilen + Datenerfassung.',
+      risk: 'Link-Rot. Externe URLs \u00e4ndern sich. Mitigation: Nur offizielle Wahlprogramm-PDFs verlinken (stabil).',
+      scores: { impact: 2, viral: 1, diff: 3, feas: 3, risk: 4 }
+    },
+    {
+      rank: 10, name: 'PayPal Spende-Link', type: 'Incremental', effort: 'S', score: 20,
+      desc: '"Serverkosten unterst\u00fctzen" Link im Footer oder Offene Karten. Dezent, nicht prominent. Authentisch f\u00fcr Ein-Personen-Civic-Projekt.',
+      benefit: 'Konvertiert Goodwill in Nachhaltigkeit. Signal: "Das hier ist kein Konzern, das ist eine Person."',
+      impl: 'methodik.html: Link im Footer "MUCwahl unterst\u00fctzen" \u2192 paypal.me/Link. Fortress-Zero-kompatibel (externer Link). ~3 Zeilen HTML.',
+      risk: 'Kann Neutralit\u00e4t untergraben. Mitigation: Nur auf methodik.html, nicht Ergebnis-Seite. Framing: "Serverkosten", nicht "Spende".',
+      scores: { impact: 2, viral: 1, diff: 2, feas: 5, risk: 3 }
+    }
+  ];
+  var dismissed = JSON.parse(localStorage.getItem('cockpit-dismissed') || '[]');
+  var board = document.getElementById('feature-board');
+  var counter = document.getElementById('feature-counter');
+  var restoreBtn = document.getElementById('restore-all-btn');
+
+  function effortBadge(e) {
+    var cls = e === 'S' ? 'green' : e === 'M' ? 'blue' : 'orange';
+    return '<span class="badge badge-' + cls + '" style="font-size:10px;">' + e + '</span>';
+  }
+  function typeBadge(t) {
+    var cls = t === 'Revolutionary' ? 'purple' : 'cyan';
+    return '<span class="badge badge-' + cls + '" style="font-size:10px;">' + t + '</span>';
+  }
+  function scoreBar(label, val) {
+    var pct = (val / 5) * 100;
+    var col = val >= 4 ? 'var(--green)' : val >= 3 ? 'var(--yellow)' : 'var(--red)';
+    return '<div style="margin-bottom:6px;"><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px;"><span style="color:var(--text3);">' + label + '</span><span style="font-weight:700;">' + val + '/5</span></div><div style="height:4px;background:var(--surface2);border-radius:2px;"><div style="height:100%;width:' + pct + '%;background:' + col + ';border-radius:2px;"></div></div></div>';
+  }
+  function render() {
+    var active = features.filter(function(f) { return dismissed.indexOf(f.rank) === -1; });
+    counter.textContent = active.length + ' / ' + features.length + ' aktiv';
+    restoreBtn.style.display = dismissed.length > 0 ? 'inline' : 'none';
+    // Using hardcoded data only (no user input), safe for innerHTML
+    board.innerHTML = features.map(function(f) {
+      var isDismissed = dismissed.indexOf(f.rank) !== -1;
+      return '<div class="feature-card' + (isDismissed ? ' dismissed' : '') + '" data-rank="' + f.rank + '">' +
+        '<div class="feat-rank" style="color:' + (f.rank <= 3 ? 'var(--green)' : f.rank <= 6 ? 'var(--blue)' : 'var(--text3)') + ';">' + f.rank + '</div>' +
+        '<div class="feat-expand">' +
+          '<div class="feat-name">' + f.name + '</div>' +
+          '<div class="feat-desc">' + f.desc + '</div>' +
+          '<div class="feat-detail" id="detail-' + f.rank + '">' +
+            '<div class="feat-detail-grid">' +
+              '<div><div class="feat-detail-label">Erwarteter Nutzen</div><div class="feat-detail-text">' + f.benefit + '</div></div>' +
+              '<div><div class="feat-detail-label">Implementierung</div><div class="feat-detail-text">' + f.impl + '</div></div>' +
+              '<div><div class="feat-detail-label">Risiko (Devil\'s Advocate)</div><div class="feat-detail-text">' + f.risk + '</div></div>' +
+              '<div><div class="feat-detail-label">Scoring (Composite: ' + f.score + ')</div><div class="feat-detail-text">' +
+                scoreBar('Impact \u00d73', f.scores.impact) +
+                scoreBar('Viral \u00d72', f.scores.viral) +
+                scoreBar('Diff \u00d72', f.scores.diff) +
+                scoreBar('Feasibility', f.scores.feas) +
+                scoreBar('Risk Safety', f.scores.risk) +
+              '</div></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="feat-badges">' + effortBadge(f.effort) + typeBadge(f.type) + '</div>' +
+        '<button class="dismiss-btn" title="' + (isDismissed ? 'Wiederherstellen' : 'Ausblenden') + '">' + (isDismissed ? '&#8634;' : '&times;') + '</button>' +
+      '</div>';
+    }).join('');
+    board.querySelectorAll('.feat-expand').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var detail = el.querySelector('.feat-detail');
+        if (detail) detail.classList.toggle('open');
+      });
+    });
+    board.querySelectorAll('.dismiss-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var card = btn.closest('.feature-card');
+        var rank = parseInt(card.dataset.rank);
+        var idx = dismissed.indexOf(rank);
+        if (idx === -1) dismissed.push(rank);
+        else dismissed.splice(idx, 1);
+        localStorage.setItem('cockpit-dismissed', JSON.stringify(dismissed));
+        render();
+      });
+    });
+  }
+  restoreBtn.addEventListener('click', function() {
+    dismissed = [];
+    localStorage.setItem('cockpit-dismissed', '[]');
+    render();
+  });
+  render();
 })();
 
 // Version sync
