@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUCwahl Cockpit</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #242837; --border: #2e3348;
+    --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+    --green: #22c55e; --yellow: #eab308; --red: #ef4444; --blue: #3b82f6;
+    --orange: #f97316; --purple: #a855f7; --cyan: #06b6d4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+  header h1 span { color: var(--text3); font-weight: 400; }
+  .meta { display: flex; gap: 16px; align-items: center; font-size: 12px; color: var(--text3); }
+  .meta .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; }
+
+  /* Sticky Nav */
+  .nav-bar { position: sticky; top: 0; z-index: 100; background: var(--bg); display: flex; gap: 4px; margin-bottom: 0; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+  .nav-link { padding: 10px 20px; font-size: 13px; font-weight: 700; color: var(--text3); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; letter-spacing: 0.02em; text-decoration: none; display: inline-flex; align-items: center; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .nav-link:hover { color: var(--text2); background: var(--surface); border-radius: 8px 8px 0 0; }
+  .nav-link.active { color: var(--text); border-bottom-color: var(--blue); }
+  .nav-link .nav-emoji { margin-right: 6px; }
+  .nav-link .nav-label-short { display: none; }
+
+  /* Sections */
+  .section { scroll-margin-top: 56px; padding-top: 32px; }
+  .section-divider { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+  .stat { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
+  .badge-green { background: #22c55e20; color: var(--green); }
+  .badge-yellow { background: #eab30820; color: var(--yellow); }
+  .badge-red { background: #ef444420; color: var(--red); }
+  .badge-blue { background: #3b82f620; color: var(--blue); }
+  .badge-purple { background: #a855f720; color: var(--purple); }
+  .badge-orange { background: #f9731620; color: var(--orange); }
+  .badge-cyan { background: #06b6d420; color: var(--cyan); }
+
+  .section-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+
+  .priority-crit { color: var(--red); font-weight: 700; }
+  .priority-high { color: var(--orange); font-weight: 700; }
+  .priority-med { color: var(--yellow); font-weight: 700; }
+  .priority-low { color: var(--text3); font-weight: 600; }
+
+  .file-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .file-row:last-child { border-bottom: none; }
+  .file-name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: var(--text2); }
+  .file-size { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; font-weight: 600; }
+
+  .check { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 13px; }
+  .check-icon { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+  .check-pass { background: #22c55e20; color: var(--green); }
+  .check-warn { background: #eab30820; color: var(--yellow); }
+  .check-fail { background: #ef444420; color: var(--red); }
+
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ''; position: absolute; left: 5px; top: 4px; bottom: 4px; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; padding-bottom: 14px; font-size: 13px; }
+  .timeline-item::before { content: ''; position: absolute; left: -19px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--border); background: var(--bg); }
+  .timeline-item.done::before { background: var(--green); border-color: var(--green); }
+  .timeline-item .hash { font-family: 'SF Mono', monospace; font-size: 11px; color: var(--text3); }
+
+  /* GTM-specific */
+  .channel-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .channel-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .budget-bar { display: flex; height: 32px; border-radius: 8px; overflow: hidden; margin: 12px 0; font-size: 11px; font-weight: 700; }
+  .budget-bar > div { display: flex; align-items: center; justify-content: center; }
+  .phase { padding: 16px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); }
+  .phase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .phase-title { font-weight: 700; font-size: 14px; }
+  .phase-date { font-size: 11px; color: var(--text3); font-family: 'SF Mono', monospace; }
+  .phase-tasks { list-style: none; font-size: 13px; color: var(--text2); }
+  .phase-tasks li { padding: 3px 0; padding-left: 16px; position: relative; }
+  .phase-tasks li::before { content: '\2022'; position: absolute; left: 0; color: var(--text3); }
+  .template-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; font-size: 13px; line-height: 1.7; color: var(--text2); position: relative; white-space: pre-wrap; }
+  .template-box .copy-btn { position: absolute; top: 8px; right: 8px; background: var(--surface); border: 1px solid var(--border); color: var(--text3); font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; }
+  .template-box .copy-btn:hover { color: var(--text); border-color: var(--text3); }
+  .copy-inline { background: none; border: 1px solid var(--border); color: var(--text3); font-size: 12px; padding: 2px 6px; border-radius: 4px; cursor: pointer; line-height: 1; }
+  .copy-inline:hover { color: var(--text); border-color: var(--text3); }
+  .copy-all-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text3); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; }
+  .copy-all-btn:hover { color: var(--text); border-color: var(--text3); }
+  .keyword-tag { display: inline-block; padding: 2px 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; font-size: 11px; font-family: 'SF Mono', monospace; color: var(--text2); margin: 2px; }
+  .phase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  /* Discovery Feature Board */
+  .feature-card { display: grid; grid-template-columns: 36px 1fr auto 32px; gap: 12px; align-items: start; padding: 14px 12px; border-radius: 8px; transition: opacity 0.2s; }
+  .feature-card:nth-child(odd) { background: var(--surface2); }
+  .feature-card.dismissed { opacity: 0.35; }
+  .feature-card.dismissed .feat-name { text-decoration: line-through; }
+  .feat-rank { font-size: 20px; font-weight: 800; text-align: center; line-height: 1; }
+  .feat-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .feat-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .feat-badges { display: flex; gap: 4px; flex-shrink: 0; flex-wrap: wrap; }
+  .dismiss-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--text3); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+  .dismiss-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--text2); }
+  .feature-counter { font-size: 12px; color: var(--text3); font-weight: 700; }
+  .feat-expand { cursor: pointer; }
+  .feat-detail { display: none; grid-column: 2 / -1; padding: 10px 0 4px; font-size: 12px; line-height: 1.6; }
+  .feat-detail.open { display: block; }
+  .feat-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .feat-detail-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); margin-bottom: 2px; }
+  .feat-detail-text { color: var(--text2); }
+  .feat-toggle { font-size: 11px; color: var(--text3); cursor: pointer; background: none; border: none; padding: 2px 0; font-weight: 600; }
+  .feat-toggle:hover { color: var(--text2); }
+
+  /* Reserved features */
+  .reserved-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .reserved-item:last-child { border-bottom: none; }
+  .reserved-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+
+  /* Mobile */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    header { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .meta { flex-wrap: wrap; gap: 8px; }
+    .nav-bar { gap: 0; }
+    .nav-link { padding: 10px 16px; font-size: 12px; flex: 1; text-align: center; justify-content: center; }
+    .nav-link .nav-label-full { display: none; }
+    .nav-link .nav-label-short { display: inline; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .stat { font-size: 26px; }
+    .card { padding: 16px; }
+    .section-title { font-size: 14px; }
+    .budget-bar { height: 24px; font-size: 9px; }
+    .feature-card { grid-template-columns: 28px 1fr auto 28px; gap: 8px; padding: 12px 8px; }
+    .feat-rank { font-size: 16px; }
+    .feat-name { font-size: 13px; }
+  }
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: 1fr; }
+    .nav-link { padding: 10px 8px; font-size: 11px; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .stat { font-size: 22px; }
+    .card { padding: 14px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px; }
+    .feature-card { grid-template-columns: 24px 1fr 28px; }
+    .feat-badges { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>MUCwahl <span>Project Cockpit</span></h1>
+    <div class="meta">
+      <span><span class="dot"></span> Live on GitHub Pages</span>
+      <span>mucwahl.de</span>
+      <span>Updated: 2026-02-27</span>
+    </div>
+  </header>
+
+  <!-- Sticky Nav -->
+  <nav class="nav-bar" id="nav">
+    <a href="#vision" class="nav-link active"><span class="nav-emoji">&#127919;</span><span class="nav-label-full">Vision</span><span class="nav-label-short">Vision</span></a>
+    <a href="#discovery" class="nav-link"><span class="nav-emoji">&#128270;</span><span class="nav-label-full">Discovery</span><span class="nav-label-short">Disc</span></a>
+    <a href="#pipeline" class="nav-link"><span class="nav-emoji">&#128230;</span><span class="nav-label-full">Pipeline</span><span class="nav-label-short">Pipe</span></a>
+    <a href="#gtm" class="nav-link"><span class="nav-emoji">&#128640;</span><span class="nav-label-full">Go to Market</span><span class="nav-label-short">GTM</span></a>
+    <a href="#seo" class="nav-link"><span class="nav-emoji">&#128269;</span><span class="nav-label-full">SEO &amp; Ads</span><span class="nav-label-short">SEO</span></a>
+    <a href="#neutrality" class="nav-link"><span class="nav-emoji">&#9878;</span><span class="nav-label-full">Neutralit&auml;t</span><span class="nav-label-short">Neutral</span></a>
+    <a href="#tech" class="nav-link"><span class="nav-emoji">&#9881;</span><span class="nav-label-full">Tech</span><span class="nav-label-short">Tech</span></a>
+  </nav>
+
+  <!-- ==================== VISION ==================== -->
+  <section id="vision" class="section">
+    <div class="section-divider">&#127919; Vision</div>
+
+    <!-- Warum MUCwahl existiert -->
+    <div class="card" style="margin-bottom: 24px; border-left: 3px solid var(--blue);">
+      <div class="section-title" style="font-size: 17px;">Warum MUCwahl existiert</div>
+      <div style="font-size: 14px; color: var(--text); line-height: 1.8; max-width: 780px;">
+        <p style="margin-bottom: 12px;">Mich haben Wahl-Tools frustriert, die schwammige Fragen stellen, auf die alle Parteien &bdquo;irgendwie zustimmen&ldquo;. &bdquo;Soll M&uuml;nchen nachhaltiger werden?&ldquo; Ja klar, sagen alle. Die Frage ist wertlos.</p>
+        <p style="margin-bottom: 12px;">MUCwahl stellt Fragen, die eine echte Entscheidung fordern. Keine &bdquo;Wir wollen alles&ldquo;-Wohlfühlsätze, sondern klare Zielkonflikte. 9 von 25 Thesen enthalten eine explizite &bdquo;auch wenn&ldquo;-Klausel, die die Kosten der Zustimmung benennt.</p>
+        <p style="margin-bottom: 0;">Jede Parteiposition ist mit einem Zitat aus dem Wahlprogramm belegt. Methodik, Scoring, Kompass-Gewichte: alles offen. Meine eigenen Blind Spots sind unvermeidlich, aber sie sind nachpr&uuml;fbar.</p>
+      </div>
+    </div>
+
+    <!-- Core Differentiators -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Kern-Differenzierung <span style="font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 8px;">nach Priorit&auml;t</span></div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--blue);">1</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Trade-off-Transparenz</div>
+            <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Jede These benennt, was auf dem Spiel steht. 9 von 25 Thesen enthalten eine explizite &bdquo;auch wenn&ldquo;-Klausel, die die Kosten der Zustimmung benennt. Keine &bdquo;Soll M&uuml;nchen nachhaltiger werden?&ldquo;-Wohlfühlfragen.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--blue);">2</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Offene Methodik</div>
+            <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Thesenauswahl, Scoring, Kompass-Gewichte, Polarity Flips: alles dokumentiert und nachpr&uuml;fbar auf methodik.html. PCA wurde bewusst vermieden, weil es die Achsen uninterpretierbar macht.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--blue);">3</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Vergleich-Tab</div>
+            <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">These f&uuml;r These mit Wahlprogramm-Zitat. Nutzer:innen sehen nicht nur ob, sondern warum eine Partei passt. Antworten k&ouml;nnen direkt ge&auml;ndert werden.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--blue);">4</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Fortress Zero</div>
+            <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Kein Tracking, keine Cookies, kein CDN, keine externen Schriftarten. CSP blockiert alle ausgehenden Verbindungen. Kein anderes Civic-Tool erreicht dieses Niveau.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--blue);">5</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Quellenbasierte Positionen</div>
+            <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Jede Parteiposition ist mit einem direkten Zitat aus dem Wahlprogramm belegt. Keine Interpretation, keine Ableitung aus dem Parteiprofil.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; border-radius: 8px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--blue);">6</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Ein-Personen-Transparenz</div>
+            <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Offen kommunizierte Limitierungen. Kein fake Advisory Board. &bdquo;Meine eigenen Blind Spots sind unvermeidlich.&ldquo;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Competitive Comparison -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Wettbewerbsvergleich</div>
+      <div style="overflow-x: auto;">
+        <table style="min-width: 700px;">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>MUCwahl</th>
+              <th>Wahl-O-Mat (bpb)</th>
+              <th>WahlSwiper</th>
+              <th>Wahlkompass</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Trade-off-Framing</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">&#10003; 9/25 &bdquo;auch wenn&ldquo;</span></td>
+              <td><span style="color: var(--red);">&#10007; Konsensf&auml;hige Aussagen</span></td>
+              <td><span style="color: var(--red);">&#10007; Bin&auml;re Aussagen</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+            </tr>
+            <tr>
+              <td><strong>Methodik-Transparenz</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">&#10003; Vollst&auml;ndig (methodik.html + Code)</span></td>
+              <td><span style="color: var(--yellow);">&#9684; Allgemeiner Prozess</span></td>
+              <td><span style="color: var(--red);">&#10007; Minimal</span></td>
+              <td><span style="color: var(--yellow);">&#9684;</span></td>
+            </tr>
+            <tr>
+              <td><strong>Quellenangaben</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">&#10003; Wahlprogramm-Zitat pro These</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+              <td><span style="color: var(--yellow);">&#9684;</span></td>
+            </tr>
+            <tr>
+              <td><strong>Tracking / Datenschutz</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">&#10003; Zero (Fortress Zero, CSP)</span></td>
+              <td><span style="color: var(--red);">&#10007; Google Analytics, Cookies</span></td>
+              <td><span style="color: var(--red);">&#10007; Cookies, Analytics</span></td>
+              <td><span style="color: var(--red);">&#10007; Cookies, Analytics</span></td>
+            </tr>
+            <tr>
+              <td><strong>Open Source</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">&#10003; GitHub (Code + Daten)</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ergebnis-Tiefe</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">Kompass + Radar + Vergleich + Themenaufschlüsselung</span></td>
+              <td>Balkendiagramm</td>
+              <td>Match-Liste</td>
+              <td>Kompass</td>
+            </tr>
+            <tr>
+              <td><strong>Antwort-Revision</strong></td>
+              <td><span style="color: var(--green); font-weight: 700;">&#10003; Inline im Vergleich-Tab</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+              <td><span style="color: var(--red);">&#10007;</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Value Prop per Audience -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Nutzen nach Zielgruppe</div>
+      <div class="grid-2">
+        <div style="padding: 16px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 16px;">&#128100;</span> W&auml;hler:innen</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Echte Zielkonflikte statt Wohlfühlfragen. Jede Position nachpr&uuml;fbar mit Wahlprogramm-Zitat. Datenschutz durch Architektur, nicht durch Versprechen.</div>
+        </div>
+        <div style="padding: 16px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 16px;">&#127987;</span> Kleinere Parteien</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Gleiche Sichtbarkeit. W&auml;hler:innen finden euch &uuml;ber inhaltliche &Uuml;bereinstimmung, nicht Namensbekanntheit. Positionen in euren eigenen Worten.</div>
+        </div>
+        <div style="padding: 16px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 16px;">&#128240;</span> Presse / Medien</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Story-Angle: B&uuml;rger-gebaute Alternative zum Wahl-O-Mat mit offener Methodik. Alles nachpr&uuml;fbar, kein Black-Box-Scoring.</div>
+        </div>
+        <div style="padding: 16px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 16px;">&#127963;</span> Civic Orgs</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Open Source, einbettbar, zero Tracking. Ohne Datenschutz-Bedenken empfehlbar. Methodik-Seite als Lehrmaterial nutzbar.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DISCOVERY ==================== -->
+  <section id="discovery" class="section">
+    <div class="section-divider">&#128270; Discovery</div>
+
+    <!-- Active Hypotheses -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Aktive Hypothesen</div>
+      <table>
+        <thead>
+          <tr><th>Hypothese</th><th>Evidenz</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>&bdquo;Der Vergleich-Tab ist der st&auml;rkste Retention-Mechanismus&ldquo;</strong></td>
+            <td style="font-size: 12px; color: var(--text2);">PO-Analyse, keine Analytics wegen Fortress Zero</td>
+            <td><span class="badge badge-yellow">TESTING</span></td>
+          </tr>
+          <tr>
+            <td><strong>&bdquo;Nutzer:innen fehlt ein Rahmen f&uuml;r rohe Prozentzahlen &mdash; semantische Labels w&uuml;rden das Vertrauen erh&ouml;hen&ldquo;</strong></td>
+            <td style="font-size: 12px; color: var(--text2);">8/10 User-Panel-Mitglieder meldeten Verwirrung</td>
+            <td><span class="badge badge-yellow">TESTING</span></td>
+          </tr>
+          <tr>
+            <td><strong>&bdquo;Gewichtung vor dem Quiz ist eine Friktionsfalle &mdash; man kann Themen nicht gewichten, die man noch nicht gesehen hat&ldquo;</strong></td>
+            <td style="font-size: 12px; color: var(--text2);">UX-Beobachtung</td>
+            <td><span class="badge badge-blue">OPEN</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PO Recommendations -->
+    <div class="card" style="margin-bottom: 24px; border-left: 3px solid var(--purple);">
+      <div class="section-title">PO-Empfehlungen</div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="padding: 14px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">1. Vergleich-Tab als Loop-Closer</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Nutzer die Ergebnisse sehen haben zwei nat&uuml;rliche n&auml;chste Aktionen: teilen oder vertiefen. Der Vergleich-Tab bedient &bdquo;vertiefen&ldquo;.</div>
+        </div>
+        <div style="padding: 14px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">2. Prozent-Kontext-Labels: h&ouml;chster Wert, geringster Aufwand</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">8/10 User-Panel-Mitglieder meldeten Verwirrung bei rohen Prozentzahlen. &bdquo;Hohe &Uuml;bereinstimmung&ldquo; / &bdquo;Mittlere&ldquo; / &bdquo;Geringe&ldquo; w&auml;ren die wertvollste Verbesserung mit dem geringsten Aufwand.</div>
+        </div>
+        <div style="padding: 14px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">3. &bdquo;Warum dieses Ergebnis?&ldquo; als radikale Transparenz</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.6;">Zeigen, welche 3 Thesen ein Match-Ergebnis am st&auml;rksten beeinflusst haben. Kein Konkurrent bietet das. W&auml;re ein einzigartiges Differenzierungsmerkmal.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggestion Log -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Vorschl&auml;ge <span style="font-size: 11px; color: var(--text3); font-weight: 400; margin-left: 8px;">nach Thema gruppiert</span></div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 8px;">Ergebnis-Klarheit</div>
+          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
+            <li>&bull; Percentage Context Labels (&bdquo;Hohe / Mittlere / Geringe &Uuml;bereinstimmung&ldquo;)</li>
+            <li>&bull; &bdquo;Warum dieses Ergebnis?&ldquo;-Explainer (Top-3-Thesen pro Partei)</li>
+            <li>&bull; Diff-First Modal (Abweichungen zuerst zeigen)</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 8px;">Quiz Flow</div>
+          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
+            <li>&bull; Post-Quiz Weighting (Gewichtung nach dem Quiz statt davor)</li>
+            <li>&bull; Safe Logo Behaviour (Best&auml;tigung bei Logo-Klick im Quiz)</li>
+            <li>&bull; Progress Ring Animation</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin-bottom: 8px;">Sharing</div>
+          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
+            <li>&bull; &bdquo;Dein Typ&ldquo;-Personality Card (teilbarer Archetyp)</li>
+            <li>&bull; Freund:innen-Vergleich (v6.0+)</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 8px;">Barrierefreiheit</div>
+          <ul style="list-style: none; font-size: 12px; color: var(--text2); line-height: 1.8;">
+            <li>&bull; Accessible Charts (Screen Reader, Kontrast, Keyboard-Navigation)</li>
+            <li>&bull; WCAG AAA Audit (v6.0+)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learnings Archive -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Learnings-Archiv</div>
+      <table>
+        <thead>
+          <tr><th>Version</th><th>Learning</th><th>Ergebnis</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-green">v4.7</span></td>
+            <td>Solar-Polarity-Flip validiert: &bdquo;abschaffen&ldquo;-Framing klarer als doppelte Verneinung</td>
+            <td><span class="badge badge-green">VALIDIERT</span></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.5</span></td>
+            <td>Budget-Gewichtung (10 Punkte) validiert: granulare Kontrolle besser als simple 1x/2x Toggles</td>
+            <td><span class="badge badge-green">VALIDIERT</span></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.2</span></td>
+            <td>Thesis Rewordings validiert: 11 Thesen f&uuml;r Neutralit&auml;t &uuml;berarbeitet, Voter Panel best&auml;tigt</td>
+            <td><span class="badge badge-green">VALIDIERT</span></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.2.1</span></td>
+            <td>Polarity Balance validiert: 3 Flips reduzierten progressive Bias von 18:5 auf 15:8</td>
+            <td><span class="badge badge-green">VALIDIERT</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== PIPELINE ==================== -->
+  <section id="pipeline" class="section">
+    <div class="section-divider">&#128230; Pipeline</div>
+
+    <!-- KPI Cards -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">Version</div>
+        <div style="display: flex; gap: 16px; align-items: baseline;">
+          <div>
+            <div class="stat" style="color: var(--green)">4.7</div>
+            <div class="stat-label">Local</div>
+          </div>
+          <div style="font-size: 20px; color: var(--text3);">&rarr;</div>
+          <div>
+            <div class="stat" id="live-version" style="color: var(--text3)">...</div>
+            <div class="stat-label">Live</div>
+          </div>
+        </div>
+        <div id="version-status" style="margin-top: 8px;"></div>
+      </div>
+      <div class="card">
+        <div class="card-header">Tage bis Wahl</div>
+        <div class="stat" id="days-left-pipeline" style="color: var(--orange)"></div>
+        <div class="stat-label">15. M&auml;rz 2026</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Open Bugs</div>
+        <div class="stat" style="color: var(--green)">1</div>
+        <div class="stat-label">CSP frame-ancestors only (harmless)</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Last Ship</div>
+        <div class="stat" style="color: var(--blue)">v4.7</div>
+        <div class="stat-label">6 Features</div>
+      </div>
+    </div>
+
+    <!-- Now / Next / Later -->
+    <div class="grid-3" style="margin-bottom: 24px;">
+      <div class="card" style="border-top: 3px solid var(--green);">
+        <div class="section-title"><span style="color: var(--green);">&#9679;</span> Now</div>
+        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Aktiv in Arbeit</div>
+        <div style="font-size: 13px; color: var(--text2); line-height: 1.8;">
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; Cockpit Overhaul</div>
+        </div>
+      </div>
+      <div class="card" style="border-top: 3px solid var(--blue);">
+        <div class="section-title"><span style="color: var(--blue);">&#9679;</span> Next</div>
+        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Validiert, in der Warteschlange</div>
+        <div style="font-size: 13px; color: var(--text2); line-height: 1.8;">
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; Percentage Context Labels <span class="badge badge-green" style="font-size: 10px;">S</span>
+          </div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+            &bull; Post-Quiz Weighting <span class="badge badge-blue" style="font-size: 10px;">M</span>
+          </div>
+          <div style="padding: 8px 0;">
+            &bull; &bdquo;Warum dieses Ergebnis?&ldquo; Explainer <span class="badge badge-blue" style="font-size: 10px;">M</span>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="border-top: 3px solid var(--purple);">
+        <div class="section-title"><span style="color: var(--purple);">&#9679;</span> Later</div>
+        <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px;">Unvalidiert, v6.0+</div>
+        <div style="font-size: 13px; color: var(--text2); line-height: 1.8;">
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; Freund:innen-Vergleich</div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; PWA mit Manifest</div>
+          <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">&bull; Multi-City</div>
+          <div style="padding: 8px 0;">&bull; WCAG AAA Audit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Known Bugs -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Bekannte Bugs</div>
+      <table>
+        <thead><tr><th>P</th><th>Issue</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="priority-low">LOW</span></td>
+            <td>CSP <code>frame-ancestors</code> warning</td>
+            <td>Harmless. GitHub Pages limitation. Nicht behebbar ohne Cloudflare.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Shipped Changelog -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Shipped</div>
+      <table>
+        <thead><tr><th>Version</th><th>Features</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-green">v4.7</span></td>
+            <td>Offene Karten, Vergleich tab, solar polarity flip, LGBTQ+ shortening, footer merge</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.6</span></td>
+            <td>Surprise matches, Wahltag-Modus, Stimmzettel, share image, milestones, UI polish</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.5</span></td>
+            <td>Budget weighting (10-point), 2-tab results, top match hero, share redesign</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.4</span></td>
+            <td>Background info + fact-check for all 25 theses</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.3</span></td>
+            <td>SEO basics, quiz selected state, PDF compass fix</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.2</span></td>
+            <td>Polarity balance, thesis rewordings, DU/Partei labels</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.0</span></td>
+            <td>Mobile result tabs, answer revision, radar, profile, animations, embed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== GO TO MARKET ==================== -->
+  <section id="gtm" class="section">
+    <div class="section-divider">&#128640; Go to Market</div>
+
+    <!-- Campaign KPIs -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">Budget</div>
+        <div class="stat" style="color: var(--green)">&euro;500</div>
+        <div class="stat-label">total campaign budget</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Days to Election</div>
+        <div class="stat" id="days-left" style="color: var(--orange)"></div>
+        <div class="stat-label">March 15, 2026</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Outreach Channels</div>
+        <div class="stat" style="color: var(--blue)">6</div>
+        <div class="stat-label">Ads + Press + Politicians + IG + Unis + Civic</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Expected Reach</div>
+        <div class="stat" style="color: var(--cyan)">~5K</div>
+        <div class="stat-label">clicks (ads + organic)</div>
+      </div>
+    </div>
+
+    <!-- Budget Allocation -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Budget Allocation</div>
+      <div class="budget-bar">
+        <div style="width: 80%; background: var(--blue); color: white;">Google Ads &euro;400</div>
+        <div style="width: 20%; background: var(--purple); color: white;">Boost &euro;100</div>
+      </div>
+      <table>
+        <thead><tr><th>Channel</th><th>Budget</th><th>Expected Result</th><th>CPC</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Google Ads (Search)</strong></td>
+            <td>&euro;400</td>
+            <td>1,300&ndash;2,600 clicks</td>
+            <td>&euro;0.15&ndash;0.30</td>
+          </tr>
+          <tr>
+            <td><strong>Instagram Story Boost</strong> (optional)</td>
+            <td>&euro;100</td>
+            <td>3,000&ndash;8,000 impressions</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Instagram DMs to Parties</strong></td>
+            <td>&euro;0</td>
+            <td>If 3 parties share = 5,000&ndash;50,000 organic reach</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Organic (Reddit, Press, Facebook)</strong></td>
+            <td>&euro;0</td>
+            <td>Wildcard &mdash; press coverage = jackpot</td>
+            <td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size: 11px; color: var(--text3); margin-top: 12px;">
+        Why Google Search is cheap: local political keywords (&ldquo;Kommunalwahl M&uuml;nchen&rdquo;) have low commercial competition. Expected CPC &euro;0.15&ndash;0.30 vs. commercial keywords at &euro;1&ndash;3+.
+      </div>
+    </div>
+
+    <!-- Campaign Timeline -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Campaign Timeline</div>
+      <div class="phase-grid">
+        <div class="phase" style="border-top: 3px solid var(--blue);">
+          <div class="phase-header">
+            <div class="phase-title">Seed</div>
+            <div class="phase-date">Feb 19&ndash;23</div>
+          </div>
+          <ul class="phase-tasks">
+            <li>Set up Google Ads campaign</li>
+            <li>DM all 14 parties on Instagram</li>
+            <li>DM 9 Munich IG accounts</li>
+            <li>Email 5 small-party OB candidates</li>
+            <li>Post on r/munich + FB groups</li>
+          </ul>
+        </div>
+        <div class="phase" style="border-top: 3px solid var(--purple);">
+          <div class="phase-header">
+            <div class="phase-title">Amplify</div>
+            <div class="phase-date">Feb 24&ndash;Mar 2</div>
+          </div>
+          <ul class="phase-tasks">
+            <li>Google Ads running (&euro;20/day)</li>
+            <li>Email 10 press targets (use contact sheet)</li>
+            <li>Email 5 university student govs</li>
+            <li>DM youth orgs (Jusos, GJ, JU)</li>
+            <li>Follow up unanswered party DMs</li>
+          </ul>
+        </div>
+        <div class="phase" style="border-top: 3px solid var(--orange);">
+          <div class="phase-header">
+            <div class="phase-title">Peak</div>
+            <div class="phase-date">Mar 3&ndash;11</div>
+          </div>
+          <ul class="phase-tasks">
+            <li>Increase ad budget if CPC is good</li>
+            <li>Follow up press + civic orgs</li>
+            <li>Pitch big-reach politicians (Schulze 65K, Krause 43K)</li>
+            <li>Countdown badge goes live (day &minus;14)</li>
+            <li>Contact Mehr Demokratie e.V. + InterNations</li>
+          </ul>
+        </div>
+        <div class="phase" style="border-top: 3px solid var(--red);">
+          <div class="phase-header">
+            <div class="phase-title">Election Week</div>
+            <div class="phase-date">Mar 12&ndash;15</div>
+          </div>
+          <ul class="phase-tasks">
+            <li>Wahltag-Modus activates</li>
+            <li>Final push Google Ads</li>
+            <li>Re-share party DMs that got traction</li>
+            <li>Post &ldquo;Noch 3 Tage&rdquo; countdown content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Channel Details -->
+    <div class="grid-2" style="margin-bottom: 24px;">
+      <!-- Google Ads -->
+      <div class="channel-card">
+        <h3><span style="color: var(--blue);">&#9679;</span> Google Ads (Search)</h3>
+        <table style="margin-bottom: 12px;">
+          <tbody>
+            <tr><td style="color: var(--text3); width: 120px;">Type</td><td>Responsive Search Ad</td></tr>
+            <tr><td style="color: var(--text3);">Targeting</td><td>M&uuml;nchen + 10 km, German</td></tr>
+            <tr><td style="color: var(--text3);">Budget</td><td>&euro;20/day &times; 20 days = &euro;400</td></tr>
+            <tr><td style="color: var(--text3);">Bid Strategy</td><td>Maximize Clicks, &euro;0.50 CPC cap</td></tr>
+            <tr><td style="color: var(--text3);">Landing Page</td><td>mucwahl.de</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size: 12px; color: var(--text2); padding: 10px; background: var(--surface2); border-radius: 8px; line-height: 1.6;">
+          Full ad copy, keywords, negatives, and extensions in the <a href="#seo" style="color: var(--blue); font-weight: 700;">SEO &amp; Ads</a> tab.
+        </div>
+      </div>
+
+      <!-- Instagram -->
+      <div class="channel-card">
+        <h3><span style="color: var(--purple);">&#9679;</span> Instagram &mdash; Party Outreach</h3>
+        <div style="font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.6;">
+          DM all 14 parties. Cost: &euro;0. Effort: 30 minutes. If even 2&ndash;3 share it in their story, that&rsquo;s thousands of free targeted impressions from people already interested in the election.
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">DM Template</div>
+        <div class="template-box">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
+          <span class="msg">Hi! Ich hab MUCwahl gebaut, ein kostenloses Tool f&uuml;r die Kommunalwahl M&uuml;nchen 2026. Eure Positionen zu 25 Thesen sind mit drin, jede belegt mit einem Zitat aus eurem Wahlprogramm.
+
+Das Besondere: Jede These zeigt den Zielkonflikt, nicht nur die Position. Eure Follower sehen nicht nur, wo sie mit euch &uuml;bereinstimmen, sondern k&ouml;nnen im Vergleichs-Tab These f&uuml;r These nachvollziehen, warum.
+
+Kein Tracking, Open Source, alle 14 Parteien gleichberechtigt.
+
+&#128073; mucwahl.de</span>
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin: 16px 0 8px;">Party Accounts to DM (14)</div>
+        <div style="font-size: 12px; color: var(--text2); line-height: 1.8; column-count: 2;">
+          &#9744; CSU M&uuml;nchen<br>
+          &#9744; SPD M&uuml;nchen<br>
+          &#9744; Gr&uuml;ne M&uuml;nchen<br>
+          &#9744; AfD M&uuml;nchen<br>
+          &#9744; FDP M&uuml;nchen<br>
+          &#9744; Die Linke M&uuml;nchen<br>
+          &#9744; &Ouml;DP M&uuml;nchen<br>
+          &#9744; Freie W&auml;hler M&uuml;nchen<br>
+          &#9744; Bayernpartei<br>
+          &#9744; Die PARTEI M&uuml;nchen<br>
+          &#9744; Volt M&uuml;nchen<br>
+          &#9744; M&uuml;nchen-Liste<br>
+          &#9744; Rosa Liste<br>
+          &#9744; BSW M&uuml;nchen
+        </div>
+      </div>
+    </div>
+
+    <!-- MESSAGE TEMPLATES -->
+    <div class="card" style="margin-bottom: 24px; border-color: var(--cyan); border-width: 2px;">
+      <div class="section-title">&#9999; Message Templates &mdash; 3 Angles</div>
+      <div style="font-size: 12px; color: var(--text3); margin-bottom: 16px; line-height: 1.6;">
+        Each template has a different <strong>Betonung</strong> (emphasis). Core message across all: trade-off transparency, verifiable positions, open methodology. Pick the right angle for the audience.
+      </div>
+
+      <!-- ANGLE 1: Genuine / Community -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">&#9679; Angle 1: Echt &amp; Pers&ouml;nlich <span style="color: var(--text3); font-weight: 400;">&mdash; r/munich, Facebook-Gruppen, Telegram</span></div>
+        <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Ehrliche Orientierung, echte Zielkonflikte statt Wohlfühl-Fragen, Nachvollziehbarkeit.</div>
+        <div class="template-box" style="font-size: 12px; line-height: 1.7;">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
+          <span class="msg">Hey Leute, ich hab MUCwahl gebaut: ein kostenloses Tool f&uuml;r die Kommunalwahl M&uuml;nchen am 15. M&auml;rz.
+
+Mich haben Wahl-Tools genervt, die schwammige Fragen stellen, bei denen alle Parteien „irgendwie zustimmen". MUCwahl stellt 25 Thesen, die echte Zielkonflikte abbilden. Jede These zeigt, was auf dem Spiel steht.
+
+14 Parteien, alle gleichberechtigt. Im Vergleichs-Tab k&ouml;nnt ihr These f&uuml;r These sehen, wo ihr mit einer Partei &uuml;bereinstimmt und wo nicht, mit Zitaten aus den Wahlprogrammen. Kein Tracking, Open Source.
+
+&#128073; mucwahl.de
+
+Feedback gerne, besonders wenn Positionen komisch wirken. Methodik und Quellen liegen offen auf mucwahl.de/methodik.html.</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 6px;">
+          <strong>Wo verwenden:</strong> &#9744; r/munich &middot; &#9744; Facebook: M&uuml;nchner &middot; &#9744; Facebook: Zugezogene M&uuml;nchner &middot; &#9744; Munich Telegram-Gruppen
+        </div>
+      </div>
+
+      <!-- ANGLE 2: Privacy / Tech -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">&#9679; Angle 2: Datenschutz &amp; Transparenz <span style="color: var(--text3); font-weight: 400;">&mdash; Presse, SZ, BR, Civic Orgs</span></div>
+        <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Methodische Transparenz, offene Quellen, Gegenmodell zum Black-Box-Wahl-O-Mat.</div>
+        <div class="template-box" style="font-size: 12px; line-height: 1.7;">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
+          <span class="msg">Betreff: Kommunalwahl M&uuml;nchen: Wahl-Tool mit offener Methodik
+
+Sehr geehrte Redaktion,
+
+am 15. M&auml;rz w&auml;hlt M&uuml;nchen. Bestehende Wahl-Tools liefern Prozentzahlen, ohne zu erkl&auml;ren, wie sie zustande kommen. MUCwahl geht einen anderen Weg.
+
+Das Tool stellt 25 Thesen, die echte Zielkonflikte abbilden, nicht „Soll M&uuml;nchen nachhaltiger werden?", sondern Fragen, bei denen Parteien tats&auml;chlich unterschiedlicher Meinung sind. Jede Parteiposition ist mit einem Zitat aus dem Wahlprogramm belegt. Im Vergleichs-Tab sehen Nutzer:innen These f&uuml;r These, wo sie mit einer Partei &uuml;bereinstimmen und wo nicht.
+
+Was MUCwahl von anderen Tools unterscheidet:
+&bull; Offene Methodik: Thesenauswahl, Scoring, Kompass-Berechnung sind erkl&auml;rt und nachpr&uuml;fbar (mucwahl.de/methodik.html)
+&bull; Kein Tracking, keine Cookies, keine externen Server. Alle Daten bleiben im Browser
+&bull; Alle 14 Parteien gleichberechtigt. Quellcode offen auf GitHub
+
+Ich habe MUCwahl als unabh&auml;ngiges Ein-Mann-Projekt gebaut, weil mich Wahl-Tools frustriert haben, die Fragen stellen, auf die alle Parteien „irgendwie zustimmen".
+
+&#128073; mucwahl.de
+
+F&uuml;r R&uuml;ckfragen stehe ich gerne zur Verf&uuml;gung.
+
+Frederik Metz</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 6px;">
+          <strong>Wo verwenden:</strong> &#9744; SZ &middot; &#9744; Merkur &middot; &#9744; AZ &middot; &#9744; BR &middot; &#9744; Hallo M&uuml;nchen &middot; &#9744; m&uuml;nchen.de &middot; &#9744; Mehr Demokratie e.V.
+        </div>
+      </div>
+
+      <!-- ANGLE 3: Kurz & Teilbar -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">&#9679; Angle 3: Kurz &amp; Direkt <span style="color: var(--text3); font-weight: 400;">&mdash; IG-Community-Accounts, Influencer, Politiker:innen</span></div>
+        <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Was es ihrer Community bringt &mdash; Orientierung durch echte Zielkonflikte, nachvollziehbar.</div>
+        <div class="template-box" style="font-size: 12px; line-height: 1.7;">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
+          <span class="msg">Hi! Am 15. M&auml;rz ist Kommunalwahl in M&uuml;nchen. K&ouml;nnte f&uuml;r eure Community interessant sein:
+
+MUCwahl zeigt, wo man mit 14 Parteien &uuml;bereinstimmt und wo nicht. Jede These bildet einen echten Zielkonflikt ab, jede Parteiposition ist mit einem Zitat aus dem Wahlprogramm belegt.
+
+&#128073; mucwahl.de
+
+Ohne Tracking, Open Source. Methodik und Quellen liegen offen.</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 6px;">
+          <strong>Wo verwenden:</strong> &#9744; @muenchnergesindel &middot; &#9744; @mitvergnuegen_muenchen &middot; &#9744; @tollwoodfestival &middot; &#9744; Politiker:innen &middot; &#9744; Jugendorgs
+        </div>
+      </div>
+
+      <!-- ANGLE: Politicians (small parties) -->
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">&#9679; Variante f&uuml;r Kleinere Parteien <span style="color: var(--text3); font-weight: 400;">&mdash; OB-Kandidat:innen, Rosa Liste, Volt, &Ouml;DP, M&uuml;-Liste</span></div>
+        <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Gleiche Sichtbarkeit, Positionen in eigenen Worten, nachpr&uuml;fbare Zuordnung.</div>
+        <div class="template-box" style="font-size: 12px; line-height: 1.7;">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
+          <span class="msg">Hallo! Ich habe MUCwahl gebaut, ein kostenloses Wahl-Tool f&uuml;r die Kommunalwahl M&uuml;nchen. [Parteiname] ist mit dabei.
+
+Alle 14 Parteien werden gleichberechtigt angezeigt. Eure Positionen zu 25 Thesen sind mit Zitaten aus eurem Wahlprogramm belegt. Im Vergleichs-Tab k&ouml;nnen W&auml;hler:innen These f&uuml;r These sehen, wo sie mit euch &uuml;bereinstimmen und wo nicht. Methodik und Quellen liegen offen (mucwahl.de/methodik.html).
+
+&#128073; mucwahl.de
+
+F&uuml;r kleinere Parteien ist das eine Chance, W&auml;hler:innen zu erreichen, die inhaltlich passen, euch aber noch nicht kennen. Ohne Tracking, Open Source.</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 6px;">
+          <strong>Wo verwenden:</strong> &#9744; Volt (Sproll) &middot; &#9744; &Ouml;DP (Ruff) &middot; &#9744; Rosa Liste (M&uuml;ller) &middot; &#9744; M&uuml;-Liste (H&ouml;pner) &middot; &#9744; Linke (Lechner)
+        </div>
+      </div>
+
+      <!-- ANGLE: Students -->
+      <div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">&#9679; Variante f&uuml;r Unis &amp; Student:innen <span style="color: var(--text3); font-weight: 400;">&mdash; StuVe, AStA, CampusZeitung</span></div>
+        <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Erstw&auml;hler-Orientierung, echte Entscheidungen statt Wohlfühl-Fragen, offen und nachpr&uuml;fbar.</div>
+        <div class="template-box" style="font-size: 12px; line-height: 1.7;">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
+          <span class="msg">Hi! Am 15. M&auml;rz ist Kommunalwahl in M&uuml;nchen. Viele Studierende w&auml;hlen zum ersten Mal auf kommunaler Ebene und wissen nicht, welche Partei zu ihnen passt.
+
+MUCwahl stellt 25 Thesen zu Miete, &Ouml;PNV, Klimaschutz, Nachtleben. Keine schwammigen Fragen, sondern echte Zielkonflikte. 14 Parteien, alle gleichberechtigt. Jede Position ist mit einem Zitat aus dem Wahlprogramm belegt, man kann These f&uuml;r These nachvollziehen, warum eine Partei passt oder nicht.
+
+&#128073; mucwahl.de
+
+Ohne Tracking, Open Source. Methodik und alle Quellen liegen offen auf mucwahl.de/methodik.html.</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 6px;">
+          <strong>Wo verwenden:</strong> &#9744; StuVe LMU &middot; &#9744; SV TUM &middot; &#9744; HM StuVe &middot; &#9744; CampusZeitung &middot; &#9744; Philtrat
+        </div>
+      </div>
+    </div>
+
+    <!-- Organic + Press -->
+    <div class="grid-2" style="margin-bottom: 24px;">
+      <div class="channel-card">
+        <h3><span style="color: var(--green);">&#9679;</span> Organic &mdash; Reddit, Facebook, Telegram</h3>
+        <div style="font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.6;">
+          Use <strong style="color: var(--green);">Angle 1</strong> (Echt &amp; Pers&ouml;nlich) above. Free, 20 minutes total.
+        </div>
+        <table>
+          <thead><tr><th>Where</th><th>Template</th><th>When</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>r/munich</strong></td>
+              <td>Angle 1 &mdash; genuine, feedback-first</td>
+              <td>Week 1</td>
+            </tr>
+            <tr>
+              <td><strong>FB: M&uuml;nchner / Zugezogene</strong></td>
+              <td>Angle 1 &mdash; same text, shorter intro ok</td>
+              <td>Week 1</td>
+            </tr>
+            <tr>
+              <td><strong>Munich Telegram</strong></td>
+              <td>Angle 3 &mdash; short version, link only</td>
+              <td>Week 1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="channel-card">
+        <h3><span style="color: var(--orange);">&#9679;</span> Press &mdash; Local Media Pitch</h3>
+        <div style="font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.6;">
+          Longshot but free. The angle: &ldquo;Wahl-Tool with open methodology, verifiable positions, and trade-off transparency, built by a Munich citizen.&rdquo; One article = campaign won.
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Pitch Angle</div>
+        <div style="font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 12px;">
+          &ldquo;Wahl-Tools liefern Prozentzahlen, erkl&auml;ren aber nicht, wie sie zustande kommen. MUCwahl legt die Methodik offen: 25 Thesen mit echten Zielkonflikten, alle Parteipositionen mit Wahlprogramm-Zitaten belegt, Scoring-Logik nachvollziehbar. Gebaut von einem M&uuml;nchner B&uuml;rger, komplett ohne Tracking, Open Source.&rdquo;
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Targets (click to copy email)</div>
+        <table style="font-size: 12px;">
+          <thead><tr><th style="width: 24px;"></th><th>Outlet</th><th>Email</th><th>Best Angle</th></tr></thead>
+          <tbody>
+            <tr><td>&#9744;</td><td><strong>MUCBOOK</strong> <span class="badge badge-green" style="font-size: 9px;">BEST FIT</span></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">redaktion@mucbook.de</td><td>Grassroots civic tech, open methodology</td></tr>
+            <tr><td>&#9744;</td><td><strong>S&uuml;ddeutsche Zeitung</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">redaktion@sueddeutsche.de</td><td>Transparency standard for civic tools</td></tr>
+            <tr><td>&#9744;</td><td><strong>Abendzeitung</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">redaktion@abendzeitung.de</td><td>M&uuml;nchner baut f&uuml;r M&uuml;nchner</td></tr>
+            <tr><td>&#9744;</td><td><strong>Hallo M&uuml;nchen</strong> <span class="badge badge-blue" style="font-size: 9px;">600K</span></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">redaktion@hallo-muenchen.de</td><td>Free orientation, verifiable positions</td></tr>
+            <tr><td>&#9744;</td><td><strong>M&uuml;nchner Merkur</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">info@merkur-online.de</td><td>Trade-offs statt Wohlfühl-Thesen</td></tr>
+            <tr><td>&#9744;</td><td><strong>TZ M&uuml;nchen</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">info@tz.de</td><td>Nachvollziehbar statt Black Box</td></tr>
+            <tr><td>&#9744;</td><td><strong>BR / Bayern 2</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">info@br.de</td><td>Open methodology, civic education</td></tr>
+            <tr><td>&#9744;</td><td><strong>Radio Gong 96.3</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">info@radiogong.de</td><td>On-air interview + demo</td></tr>
+            <tr><td>&#9744;</td><td><strong>Wochenanzeiger</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">j.beetz@wochenanzeiger.de</td><td>Neighborhood voting guide</td></tr>
+            <tr><td>&#9744;</td><td><strong>m&uuml;nchen.de</strong></td><td style="font-family: 'SF Mono', monospace; font-size: 11px;">rathaus@muenchen.de</td><td>Non-partisan civic resource</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- POLITICIANS TO CONTACT -->
+    <div class="card" style="margin-bottom: 24px; border-color: var(--purple); border-width: 2px;">
+      <div class="section-title">&#127987; Politicians &amp; Youth Orgs to Contact</div>
+      <div style="font-size: 12px; color: var(--text3); margin-bottom: 16px; line-height: 1.6;">
+        Smaller parties benefit most from visibility. OB candidates and youth orgs are highly motivated to share.
+      </div>
+      <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">OB Candidates &amp; Small Parties (highest motivation)</div>
+      <table style="font-size: 12px; margin-bottom: 16px;">
+        <thead><tr><th style="width: 24px;"></th><th>Name</th><th>Party</th><th>Contact</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>&#9744;</td><td><strong>Felix Sproll</strong></td><td>Volt</td><td>IG: @felix_sproll</td><td>OB candidate, digital-first</td></tr>
+          <tr><td>&#9744;</td><td><strong>Tobias Ruff</strong></td><td>&Ouml;DP</td><td>IG: @tobias.ruff.oedp</td><td>OB candidate, small party</td></tr>
+          <tr><td>&#9744;</td><td><strong>Dirk H&ouml;pner</strong></td><td>M&uuml;-Liste</td><td>presse@muenchen-liste.de</td><td>OB candidate, citizen participation</td></tr>
+          <tr><td>&#9744;</td><td><strong>Bernd M&uuml;ller</strong></td><td>Rosa Liste</td><td>bernd.mueller@rosaliste.de</td><td>Spitzenkandidat, LGBTQ+</td></tr>
+          <tr><td>&#9744;</td><td><strong>Thomas Lechner</strong></td><td>Linke</td><td>IG: @thomas.lechner.stadtrat</td><td>DJ, CSD activist, culture</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Big Reach (digital-savvy politicians)</div>
+      <table style="font-size: 12px; margin-bottom: 16px;">
+        <thead><tr><th style="width: 24px;"></th><th>Name</th><th>Party</th><th>Followers</th><th>Contact</th></tr></thead>
+        <tbody>
+          <tr><td>&#9744;</td><td><strong>Katharina Schulze</strong></td><td>Gr&uuml;ne</td><td>65K IG</td><td>IG: @kathaschulze</td></tr>
+          <tr><td>&#9744;</td><td><strong>Dominik Krause</strong></td><td>Gr&uuml;ne</td><td>43K IG</td><td>IG: @dominik_krause11</td></tr>
+          <tr><td>&#9744;</td><td><strong>Anne H&uuml;bner</strong></td><td>SPD</td><td>active IG</td><td>IG: @anniemuc</td></tr>
+          <tr><td>&#9744;</td><td><strong>Christian K&ouml;ning</strong></td><td>SPD</td><td>&mdash;</td><td>christian.koening@spd-muenchen.de</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Youth Organizations</div>
+      <table style="font-size: 12px;">
+        <thead><tr><th style="width: 24px;"></th><th>Org</th><th>Party</th><th>Contact</th></tr></thead>
+        <tbody>
+          <tr><td>&#9744;</td><td><strong>Jusos M&uuml;nchen</strong></td><td>SPD</td><td>IG: @jusosmuenchen &middot; mueller@jusos-m.de</td></tr>
+          <tr><td>&#9744;</td><td><strong>Gr&uuml;ne Jugend M&uuml;nchen</strong></td><td>Gr&uuml;ne</td><td>IG: @gj_muenchen &middot; gjm.de</td></tr>
+          <tr><td>&#9744;</td><td><strong>Junge Union M&uuml;nchen</strong></td><td>CSU</td><td>IG: @jumuenchen &middot; buero@ju-muenchen.de</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 12px; font-size: 12px; color: var(--text2); padding: 10px; background: var(--surface2); border-radius: 8px; line-height: 1.6;">
+        <strong>Message framework:</strong> Small parties &rarr; &ldquo;Your positions in your own words, equal visibility&rdquo; &middot; Youth orgs &rarr; &ldquo;Real trade-offs, not Wohlfühl questions&rdquo; &middot; Big reach &rarr; &ldquo;Open methodology, every position verifiable&rdquo;
+      </div>
+    </div>
+
+    <!-- INSTAGRAM COMMUNITY -->
+    <div class="card" style="margin-bottom: 24px; border-color: var(--orange); border-width: 2px;">
+      <div class="section-title">&#128247; Munich Instagram Community</div>
+      <div style="font-size: 12px; color: var(--text3); margin-bottom: 12px; line-height: 1.6;">
+        Philip Windsperger (runs @muenchnergesindel) is a CSU city council candidate 2026. Both personal interest AND 358K reach.
+      </div>
+      <table style="font-size: 12px;">
+        <thead><tr><th style="width: 24px;"></th><th>Account</th><th>Followers</th><th>Type</th><th>Contact</th></tr></thead>
+        <tbody>
+          <tr><td>&#9744;</td><td><strong>@muenchnergesindel</strong> <span class="badge badge-red" style="font-size: 9px;">TOP</span></td><td>358K</td><td>Humor / city culture</td><td>info@muenchner-gesindel.de</td></tr>
+          <tr><td>&#9744;</td><td><strong>@mitvergnuegen_muenchen</strong></td><td>247K</td><td>Food / events / tips</td><td>DM</td></tr>
+          <tr><td>&#9744;</td><td><strong>@munichfoodguide</strong></td><td>113K</td><td>Trendy food spots</td><td>DM</td></tr>
+          <tr><td>&#9744;</td><td><strong>@stadtmuenchen</strong></td><td>76K</td><td>Official city account</td><td>City press office</td></tr>
+          <tr><td>&#9744;</td><td><strong>@tollwoodfestival</strong></td><td>66K</td><td>Culture / environment</td><td>DM</td></tr>
+          <tr><td>&#9744;</td><td><strong>@tum.student</strong></td><td>41K</td><td>TU M&uuml;nchen students</td><td>DM</td></tr>
+          <tr><td>&#9744;</td><td><strong>@mymunichjournal</strong></td><td>38K</td><td>Expat / city life</td><td>DM</td></tr>
+          <tr><td>&#9744;</td><td><strong>@munichblogger</strong></td><td>22K</td><td>City fan page</td><td>DM</td></tr>
+          <tr><td>&#9744;</td><td><strong>@greencityev</strong></td><td>~10K</td><td>Environment / civic</td><td>DM</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- UNIVERSITIES + STUDENTS -->
+    <div class="grid-2" style="margin-bottom: 24px;">
+      <div class="channel-card">
+        <h3><span style="color: var(--cyan);">&#9679;</span> Universities &amp; Students</h3>
+        <div style="font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.6;">
+          First-time voters goldmine. Student governments and campus media reach thousands.
+        </div>
+        <table style="font-size: 12px;">
+          <thead><tr><th style="width: 24px;"></th><th>Target</th><th>Contact</th></tr></thead>
+          <tbody>
+            <tr><td>&#9744;</td><td><strong>StuVe LMU</strong> (largest uni)</td><td>IG: @stuve.lmu</td></tr>
+            <tr><td>&#9744;</td><td><strong>SV TUM</strong> (tech uni)</td><td>sv@fs.tum.de</td></tr>
+            <tr><td>&#9744;</td><td><strong>StuVe Hochschule M&uuml;nchen</strong></td><td>IG: @hmstuve</td></tr>
+            <tr><td>&#9744;</td><td><strong>CampusZeitung LMU</strong></td><td>campuszeitunglmu@gmail.com</td></tr>
+            <tr><td>&#9744;</td><td><strong>Philtrat</strong> (student mag)</td><td>philtrat-muenchen.de</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="channel-card">
+        <h3><span style="color: var(--green);">&#9679;</span> Civic Orgs &amp; Expat Communities</h3>
+        <div style="font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.6;">
+          Mission-aligned organizations and Munich&rsquo;s large international community (EU citizens can vote in Kommunalwahl!).
+        </div>
+        <table style="font-size: 12px;">
+          <thead><tr><th style="width: 24px;"></th><th>Target</th><th>Contact</th></tr></thead>
+          <tbody>
+            <tr><td>&#9744;</td><td><strong>Mehr Demokratie e.V. Bayern</strong></td><td>bayern.mehr-demokratie.de</td></tr>
+            <tr><td>&#9744;</td><td><strong>InterNations M&uuml;nchen</strong> (421K IG)</td><td>IG: @internationsorg</td></tr>
+            <tr><td>&#9744;</td><td><strong>Stadtbibliothek M&uuml;nchen</strong></td><td>IG: @muenchner_stadtbibliothek</td></tr>
+            <tr><td>&#9744;</td><td><strong>Impact Hub Munich</strong></td><td>munich.impacthub.net</td></tr>
+            <tr><td>&#9744;</td><td><strong>Bellevue di Monaco</strong></td><td>bellevuedimonaco.de</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Measurement -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Measurement <span class="badge badge-cyan" style="margin-left: 8px;">Fortress Zero compatible</span></div>
+      <div style="font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.6;">
+        No analytics on the site (by design). These are the only measurement channels available:
+      </div>
+      <table>
+        <thead><tr><th>Metric</th><th>Where to Check</th><th>Frequency</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Ad clicks + impressions + CPC</strong></td>
+            <td>Google Ads dashboard</td>
+            <td>Daily</td>
+          </tr>
+          <tr>
+            <td><strong>Site visits + unique visitors</strong></td>
+            <td>GitHub repo &rarr; Insights &rarr; Traffic</td>
+            <td>Every few days</td>
+          </tr>
+          <tr>
+            <td><strong>Party shares</strong></td>
+            <td>Manual: check party Instagram stories</td>
+            <td>Daily in week 1</td>
+          </tr>
+          <tr>
+            <td><strong>Embed pickups</strong></td>
+            <td>Search <code>site:* &quot;mucwahl.de&quot; iframe</code></td>
+            <td>Weekly</td>
+          </tr>
+          <tr>
+            <td><strong>Press coverage</strong></td>
+            <td>Google News alert for &ldquo;MUCwahl M&uuml;nchen&rdquo;</td>
+            <td>Set up once (auto)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== SEO & ADS ==================== -->
+  <section id="seo" class="section">
+    <div class="section-divider">&#128269; SEO &amp; Ads</div>
+
+    <!-- Campaign Settings -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">Campaign Type</div>
+        <div class="stat" style="color: var(--blue); font-size: 22px;">RSA</div>
+        <div class="stat-label">Responsive Search Ad</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Targeting</div>
+        <div class="stat" style="color: var(--green); font-size: 22px;">10 km</div>
+        <div class="stat-label">M&uuml;nchen radius, German</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Budget</div>
+        <div class="stat" style="color: var(--orange); font-size: 22px;">&euro;20/d</div>
+        <div class="stat-label">&euro;400 total (20 days)</div>
+      </div>
+      <div class="card">
+        <div class="card-header">Bid Strategy</div>
+        <div class="stat" style="color: var(--cyan); font-size: 22px;">&euro;0.50</div>
+        <div class="stat-label">Max CPC cap, Maximize Clicks</div>
+      </div>
+    </div>
+
+    <!-- Audience Segments -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Audience Segments <span class="badge badge-purple" style="margin-left: 8px;">Observation</span></div>
+      <div style="font-size: 12px; color: var(--text2); margin-bottom: 16px; line-height: 1.6;">
+        All segments set to <strong style="color: var(--text);">Observation</strong> (not Targeting). Ads still show to everyone searching your keywords. Observation lets you see which audiences convert, then bid-adjust later.
+      </div>
+      <div class="grid-3">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">In-Market Audiences</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 2;">
+            &bull; Government &amp; Public Services<br>
+            &bull; News &amp; Current Events<br>
+            &bull; Education
+          </div>
+          <div style="font-size: 11px; color: var(--text3); margin-top: 4px;">People actively researching these topics right now.</div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Affinity Audiences</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 2;">
+            &bull; News Junkies &amp; Avid Readers<br>
+            &bull; Politically Active<br>
+            &bull; Technophiles
+          </div>
+          <div style="font-size: 11px; color: var(--text3); margin-top: 4px;">Long-term interests. &ldquo;Technophiles&rdquo; correlates with Open Source appeal.</div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Demographics</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 2;">
+            &bull; Age 18&ndash;24 (Erstw&auml;hler)<br>
+            &bull; Age 25&ndash;34 (young professionals)<br>
+            &bull; University students<br>
+            &bull; Renters (not homeowners)
+          </div>
+          <div style="font-size: 11px; color: var(--text3); margin-top: 4px;">Core audience. Miete + Nachtleben theses resonate here.</div>
+        </div>
+      </div>
+      <div style="font-size: 12px; color: var(--text2); padding: 10px; background: var(--surface2); border-radius: 8px; line-height: 1.6; margin-top: 16px;">
+        <strong style="color: var(--text);">After 3&ndash;5 days:</strong> Check Google Ads &rarr; Audiences tab. If a segment has a significantly higher CTR, add a +20% bid adjustment. If a segment burns budget with zero conversions, exclude it.
+      </div>
+    </div>
+
+    <!-- Headlines + Descriptions -->
+    <div class="grid-2" style="margin-bottom: 24px;">
+      <div class="card">
+        <div class="section-title">Headlines <span class="badge badge-blue" style="margin-left: 8px;">8 &times; max 30 chars</span></div>
+        <table>
+          <thead><tr><th>#</th><th>Headline</th><th style="text-align: right;">Chars</th><th style="width: 40px;"></th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>In 5 Min wissen, wen du w&auml;hlst</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">30</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('In 5 Min wissen, wen du wählst');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>2</td><td>14 Parteien &middot; 25 Thesen</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">23</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('14 Parteien · 25 Thesen');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>3</td><td>Kostenlos &amp; ohne Tracking</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">25</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Kostenlos & ohne Tracking');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>4</td><td>MUCwahl M&uuml;nchen 2026</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">20</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('MUCwahl München 2026');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>5</td><td>Fairer Parteien-Vergleich</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">24</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Fairer Parteien-Vergleich');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>6</td><td>Kommunalwahl: wen w&auml;hlen?</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">25</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Kommunalwahl: wen wählen?');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>7</td><td>Dein politischer Kompass</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">24</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Dein politischer Kompass');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>8</td><td>Jetzt Parteien vergleichen</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">26</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Jetzt Parteien vergleichen');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+          </tbody>
+        </table>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">Google picks 3 headlines per impression. Pin #1 and #4 to position 1 for brand visibility. Cut from 11 to 8 after RSA simulation.</div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Descriptions <span class="badge badge-purple" style="margin-left: 8px;">4 &times; max 90 chars</span></div>
+        <table>
+          <thead><tr><th>#</th><th>Description</th><th style="text-align: right;">Chars</th><th style="width: 40px;"></th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Welche M&uuml;nchner Partei passt zu dir? 25 Thesen, alle 14 Parteien, fairer Vergleich.</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">84</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Welche Münchner Partei passt zu dir? 25 Thesen, alle 14 Parteien, fairer Vergleich.');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>2</td><td>Klare Fragen statt Wohlf&uuml;hl-Thesen. 25 echte Trade-offs zeigen, wo du wirklich stehst.</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">86</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Klare Fragen statt Wohlfühl-Thesen. 25 echte Trade-offs zeigen, wo du wirklich stehst.');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>3</td><td>Erste Kommunalwahl? In 5 Min. herausfinden, welche der 14 Parteien zu dir passt.</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">80</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Erste Kommunalwahl? In 5 Min. herausfinden, welche der 14 Parteien zu dir passt.');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+            <tr><td>4</td><td>Dein Ergebnis als politischer Kompass und Themen-Radar. Ohne Anmeldung, ohne Daten.</td><td style="text-align: right; font-family: 'SF Mono', monospace; font-size: 11px;">83</td><td><button class="copy-inline" onclick="navigator.clipboard.writeText('Dein Ergebnis als politischer Kompass und Themen-Radar. Ohne Anmeldung, ohne Daten.');this.textContent='✓';setTimeout(()=>this.textContent='⧉',800)">⧉</button></td></tr>
+          </tbody>
+        </table>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">Google picks 2 descriptions per impression. All verified under 90-char limit.</div>
+      </div>
+    </div>
+
+    <!-- Keywords -->
+    <div class="grid-2" style="margin-bottom: 24px;">
+      <div class="card">
+        <div class="section-title">Primary Keywords <span class="badge badge-green" style="margin-left: 8px;">12</span> <button class="copy-all-btn" onclick="navigator.clipboard.writeText('kommunalwahl münchen 2026\nwahl-o-mat münchen\nwahlhilfe münchen\nmünchen wahl 2026\nstadtratswahl münchen\nwen wählen münchen\nparteien vergleich münchen\noberbürgermeisterwahl münchen\nkommunalwahl münchen parteien\nwahlentscheidungshilfe münchen\nmünchen wählen gehen\nkommunalwahl bayern 2026');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy All',800)">Copy All</button></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+          <span class="keyword-tag">kommunalwahl m&uuml;nchen 2026</span>
+          <span class="keyword-tag">wahl-o-mat m&uuml;nchen</span>
+          <span class="keyword-tag">wahlhilfe m&uuml;nchen</span>
+          <span class="keyword-tag">m&uuml;nchen wahl 2026</span>
+          <span class="keyword-tag">stadtratswahl m&uuml;nchen</span>
+          <span class="keyword-tag">wen w&auml;hlen m&uuml;nchen</span>
+          <span class="keyword-tag">parteien vergleich m&uuml;nchen</span>
+          <span class="keyword-tag">oberb&uuml;rgermeisterwahl m&uuml;nchen</span>
+          <span class="keyword-tag">kommunalwahl m&uuml;nchen parteien</span>
+          <span class="keyword-tag">wahlentscheidungshilfe m&uuml;nchen</span>
+          <span class="keyword-tag">m&uuml;nchen w&auml;hlen gehen</span>
+          <span class="keyword-tag">kommunalwahl bayern 2026</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">Low commercial competition. Expected CPC &euro;0.15&ndash;0.30.</div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Negative Keywords <span class="badge badge-red" style="margin-left: 8px;">Block</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">bundestagswahl</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">landtagswahl</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">europawahl</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">berlin</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">hamburg</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">k&ouml;ln</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">frankfurt</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">wahl ergebnisse</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">umfrage</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">prognose</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">Prevents waste on non-Munich or non-election-tool searches.</div>
+      </div>
+    </div>
+
+    <!-- Ad Extensions -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Ad Extensions</div>
+      <div class="grid-3">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Sitelinks</div>
+          <table style="font-size: 12px;">
+            <tbody>
+              <tr><td><strong>Quiz starten</strong></td><td style="color: var(--text3);">mucwahl.de</td></tr>
+              <tr><td><strong>&Uuml;ber das Projekt</strong></td><td style="color: var(--text3);">mucwahl.de/ueber-uns.html</td></tr>
+              <tr><td><strong>Datenschutz</strong></td><td style="color: var(--text3);">mucwahl.de/datenschutz.html</td></tr>
+              <tr><td><strong>Quellcode (GitHub)</strong></td><td style="color: var(--text3);">github.com/frederikmetz42/mucwahl.de</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Callout Extensions</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 2;">
+            &bull; Kein Tracking<br>
+            &bull; Open Source<br>
+            &bull; DSGVO-konform<br>
+            &bull; Alle 14 Parteien<br>
+            &bull; In 5 Minuten fertig<br>
+            &bull; Kostenlos
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Structured Snippets</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 2;">
+            <strong style="color: var(--text3);">Themen:</strong> Miete, &Ouml;PNV, Klimaschutz, Sicherheit, Nachtleben, Wirtschaft, Demokratie
+          </div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 2; margin-top: 8px;">
+            <strong style="color: var(--text3);">Features:</strong> Politischer Kompass, Themen-Radar, Parteien-Vergleich, PDF-Export
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Checklist -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">SEO Setup Checklist</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Google Search Console</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Verify domain (DNS TXT record via Cloudflare)</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Submit sitemap.xml</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Request indexing for mucwahl.de</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> sitemap.xml exists</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> robots.txt exists</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> Canonical URLs on all pages</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> 404.html with /muc/ redirect</div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Google Ads Setup</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Create campaign in Google Ads</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add 12 keywords + 10 negatives</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Enter 9 headlines + 4 descriptions</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Set bid strategy (&euro;0.50 CPC cap)</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Set geo targeting (M&uuml;nchen + 10km)</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add sitelink extensions</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add callout + snippet extensions</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add audience segments (Observation mode)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why these choices -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Strategy Notes</div>
+      <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+        <strong style="color: var(--text);">Why 10 km (not 50 km):</strong> Municipal election. Only Munich residents vote. 10 km covers the city proper without bleeding into Landkreis M&uuml;nchen. Every euro stays inside city limits.<br><br>
+        <strong style="color: var(--text);">Why &euro;0.50 CPC cap:</strong> Political keywords in Munich have low commercial competition. Expected CPC &euro;0.15&ndash;0.30. The cap prevents accidental overspend on broad-match leakage.<br><br>
+        <strong style="color: var(--text);">Why Responsive Search Ads:</strong> Google assembles the best headline/description combo per search. 9 headlines &times; 4 descriptions = many combinations. Google optimizes which ones perform.<br><br>
+        <strong style="color: var(--text);">Why no Display/Video:</strong> Search captures intent (&ldquo;wen w&auml;hlen&rdquo;). Display is awareness, not conversion. With &euro;400, focus on the high-intent channel.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== NEUTRALITÄT ==================== -->
+  <section id="neutrality" class="section">
+    <div class="section-divider">&#9878; Neutralit&auml;tsaudit &mdash; Thesen &amp; Daten</div>
+
+    <!-- Methodology -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Ma&szlig;nahmen zur Neutralit&auml;t</div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Thesendesign</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+            &bull; <strong>Trade-off-Prinzip:</strong> Jede These formuliert eine echte Entscheidung, keine Wunschliste<br>
+            &bull; <strong>&bdquo;Auch wenn&ldquo;-Klauseln:</strong> 9 von 25 Thesen benennen die Kosten explizit<br>
+            &bull; <strong>Keine Wertungen:</strong> Kein &bdquo;wichtig&ldquo;, &bdquo;richtig&ldquo;, &bdquo;problematisch&ldquo; in Thesen<br>
+            &bull; <strong>Konkrete Bez&uuml;ge:</strong> Spezifische Orte, Zahlen, Institutionen statt vager Begriffe
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Hintergrundtexte</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+            &bull; <strong>25/25 Thesen</strong> mit Hintergrund-Info versehen<br>
+            &bull; <strong>Struktur:</strong> Status quo &rarr; Pro &rarr; Contra<br>
+            &bull; <strong>Verifizierte Fakten:</strong> Zahlen, Daten, Quellen (z.B. NO&sup2;-Werte, Kosten, Gesetze)<br>
+            &bull; <strong>Kl&auml;rung heikler Fragen:</strong> z.B. Tempo 30 &ne; Mittlerer Ring, D-Ticket = 63&euro;<br>
+            &bull; <strong>Optional:</strong> Inline-Akkordeon, beeinflusst Antwortverhalten nicht
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Polarit&auml;tsbalance</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+            &bull; <strong>&bdquo;Stimme zu&ldquo; = progressiv:</strong> 11 Thesen<br>
+            &bull; <strong>&bdquo;Stimme zu&ldquo; = konservativ:</strong> 9 Thesen<br>
+            &bull; <strong>Ambivalent / beides:</strong> 5 Thesen<br>
+            &bull; Polarity flips: T6, T10, T14, T17 (v4.2.1 + v4.7)
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Parteizuordnung</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+            &bull; <strong>Quellenbasiert:</strong> Jede Position mit Originalzitat aus dem Wahlprogramm belegt<br>
+            &bull; <strong>14 Parteien gleichberechtigt:</strong> Keine Partei hervorgehoben oder benachteiligt<br>
+            &bull; <strong>Neutrale Werte:</strong> Parteien ohne klare Position erhalten &bdquo;neutral&ldquo; (0), nicht eine Zuordnung<br>
+            &bull; <strong>Open Source:</strong> Quellcode und Daten f&uuml;r jeden einsehbar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Score Summary -->
+    <div class="grid" style="margin-bottom: 24px;">
+      <div class="card" style="text-align: center;">
+        <div class="card-header" style="justify-content: center;">Alle 4 Kriterien bestanden</div>
+        <div class="stat" style="color: var(--green);">10</div>
+        <div class="stat-label">von 25 Thesen</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="card-header" style="justify-content: center;">Leichte Hinweise</div>
+        <div class="stat" style="color: var(--yellow);">14</div>
+        <div class="stat-label">akzeptabel, dokumentiert</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="card-header" style="justify-content: center;">Auff&auml;llig</div>
+        <div class="stat" style="color: var(--orange);">1</div>
+        <div class="stat-label">T15 (Isar naturnah)</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="card-header" style="justify-content: center;">&bdquo;Auch wenn&ldquo;-Klauseln</div>
+        <div class="stat" style="color: var(--blue);">9</div>
+        <div class="stat-label">st&auml;rkstes Neutralit&auml;tswerkzeug</div>
+      </div>
+    </div>
+
+    <!-- Kriterien Legend -->
+    <div class="card" style="margin-bottom: 16px; padding: 12px 20px;">
+      <div style="display: flex; gap: 32px; font-size: 12px; color: var(--text2); flex-wrap: wrap;">
+        <span><strong style="color: var(--text);">4 Kriterien je These:</strong></span>
+        <span><strong>N</strong> = Neutralit&auml;t (keine geladene Sprache)</span>
+        <span><strong>K</strong> = Klarheit (eindeutig, was Zustimmung/Ablehnung bedeutet)</span>
+        <span><strong>T</strong> = Trade-off sichtbar (Kosten/Konsequenz benannt)</span>
+        <span><strong>S</strong> = Suggestivit&auml;t (lenkt nicht zu einer Antwort)</span>
+      </div>
+      <div style="display: flex; gap: 24px; font-size: 11px; color: var(--text3); margin-top: 8px;">
+        <span>&#x1F7E2; = sauber</span>
+        <span>&#x1F7E1; = leichter Hinweis</span>
+        <span>&#x1F7E0; = auff&auml;llig</span>
+      </div>
+    </div>
+
+    <!-- Thesis Audit Table -->
+    <div class="card" style="margin-bottom: 24px; overflow-x: auto;">
+      <table style="width: 100%; font-size: 12px;">
+        <thead>
+          <tr>
+            <th style="width: 30px;">#</th>
+            <th style="width: 140px;">Kurzname</th>
+            <th>These (gek&uuml;rzt)</th>
+            <th style="text-align: center; width: 36px;">N</th>
+            <th style="text-align: center; width: 36px;">K</th>
+            <th style="text-align: center; width: 36px;">T</th>
+            <th style="text-align: center; width: 36px;">S</th>
+            <th style="width: 240px;">Anmerkung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Stra&szlig;entunnel</td><td>Neue Stra&szlig;entunnel bauen, um oberirdischen Verkehr zu entlasten</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;um zu entlasten&ldquo; rahmt positiv. Kosten (Milliarden) nicht benannt.</td></tr>
+          <tr><td>2</td><td>Autofreie Altstadt</td><td>Privater Autoverkehr im Altstadtring stark einschr&auml;nken</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Sauber. Klare Geografie, neutrale Sprache.</td></tr>
+          <tr><td>3</td><td>Parkpl&auml;tze</td><td>Parkpl&auml;tze erhalten, nicht f&uuml;r Radwege/Gr&uuml;n umwandeln</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Erhalten bleiben&ldquo; = Status-quo-Framing. Trade-off-Klausel gleicht aus.</td></tr>
+          <tr><td>4</td><td>Tempo 30</td><td>Tempolimit 30 km/h auf den meisten Hauptstra&szlig;en</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Trade-off (Sicherheit vs. Reisezeit) nicht explizit, aber aus Kontext klar.</td></tr>
+          <tr><td>5</td><td>&Ouml;PNV-Preise</td><td>Ticketpreise senken, auch wenn anderswo gespart werden muss</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">&bdquo;Auch wenn&ldquo;-Klausel. Vorbildlich.</td></tr>
+          <tr><td>6</td><td>Radwege</td><td>Fahrspuren f&uuml;r Autos erhalten, weniger Platz f&uuml;r Radwege</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">Auto-Perspektive. Trade-off-Klausel gleicht teilweise aus.</td></tr>
+          <tr><td>7</td><td>SEM Neubaugebiete</td><td>Ackerfl&auml;chen am Stadtrand f&uuml;r Tausende Wohnungen nutzen</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Ackerfl&auml;chen&ldquo; k&ouml;nnte emotional Natur-Verlust betonen. Sachlich korrekt.</td></tr>
+          <tr><td>8</td><td>Hochh&auml;user</td><td>Hochh&auml;user h&ouml;her als Frauenkirche erlauben</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Frauenkirche-Referenz ist faktischer Kontext (geltende Regel).</td></tr>
+          <tr><td>9</td><td>Wohnungsbau vs. Gr&uuml;n</td><td>In EFH-Vierteln Wohnungsbau Vorrang vor Gr&uuml;nfl&auml;chen</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Klare Priorit&auml;tsfrage. Beides benannt.</td></tr>
+          <tr><td>10</td><td>Wohnungs-R&uuml;ckkauf</td><td>Private Wohnungsbest&auml;nde nicht von der Stadt aufkaufen</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Im Besitz bleiben&ldquo; = Status-quo-Framing. Kosten nicht benannt.</td></tr>
+          <tr><td>11</td><td>St&auml;dtisches Bauen</td><td>M&uuml;nchner Wohnen nur bezahlbare Wohnungen, auch wenn nicht gewinnbringend</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">&bdquo;Auch wenn&ldquo;-Klausel. Vorbildlich.</td></tr>
+          <tr><td>12</td><td>Klimaneutralit&auml;t 2035</td><td>Ziel Klimaneutralit&auml;t bis 2035 verfolgen</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Kosten/Machbarkeit nicht benannt. &bdquo;Ziel verfolgen&ldquo; ist aber weich genug.</td></tr>
+          <tr><td>13</td><td>Klima-Vorrang</td><td>Klimaschutz im Zweifel wichtiger als Kosten</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Direkte Priorit&auml;tsfrage. Vorbildlich.</td></tr>
+          <tr><td>14</td><td>Solarpflicht</td><td>Bestehende Solarpflicht abschaffen, auch wenn Stromkosten langfristig sinken</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Polarity flip v4.7. &bdquo;Auch wenn&ldquo;-Klausel. 8 Party-vals geflippt.</td></tr>
+          <tr style="background: rgba(249,115,22,0.08);"><td>15</td><td>Isar naturnah</td><td>Isar in weiteren Abschnitten naturn&auml;her gestalten</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E0;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--orange)">&bdquo;Naturn&auml;her&ldquo; ist positiv konnotiert. Kein Gegenargument sichtbar. Schw&auml;chste These.</td></tr>
+          <tr><td>16</td><td>Gewerbesteuer</td><td>Gewerbesteuersatz senken, auch wenn Einnahmen sinken</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">&bdquo;Auch wenn&ldquo;-Klausel. Vorbildlich.</td></tr>
+          <tr><td>17</td><td>&Uuml;bernachtungssteuer</td><td>Auf &Uuml;bernachtungssteuer f&uuml;r Touristen verzichten</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Verzichten&ldquo; hat leichten Verlust-Framing-Effekt. Einnahmeausfall nicht benannt.</td></tr>
+          <tr><td>18</td><td>Wachstumsbremse</td><td>Wachstum aktiv begrenzen, auch wenn Steuereinnahmen sinken</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">&bdquo;Auch wenn&ldquo;-Klausel. Vorbildlich.</td></tr>
+          <tr><td>19</td><td>Gendersprache</td><td>Geschlechtergerechte Sprache in der Stadtverwaltung weiterhin nutzen d&uuml;rfen</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Weiterhin ... d&uuml;rfen&ldquo; = Status-quo + Freiheits-Framing. Rahmt als Erlaubnis, nicht als Pflicht.</td></tr>
+          <tr><td>20</td><td>Video&uuml;berwachung</td><td>Verst&auml;rkt Video&uuml;berwachung an Kriminalit&auml;tsschwerpunkten</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Kriminalit&auml;tsschwerpunkten&ldquo; rahmt Notwendigkeit. Privatsph&auml;re-Kosten nicht benannt.</td></tr>
+          <tr><td>21</td><td>Drogenkonsumr&auml;ume</td><td>Staatlich kontrollierte Drogenkonsumr&auml;ume einrichten</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E1;</td><td style="color:var(--text3)">&bdquo;Staatlich kontrollierte&ldquo; und &bdquo;f&uuml;r Abh&auml;ngige&ldquo; rahmt als geregelt und gezielt.</td></tr>
+          <tr><td>22</td><td>Bezahlkarte</td><td>Bezahlkarte f&uuml;r Asylbewerber, auch wenn pers&ouml;nliche Freiheit einschr&auml;nkt</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Kosten f&uuml;r Betroffene explizit benannt. Vorbildlich.</td></tr>
+          <tr><td>23</td><td>Gasteig-Sanierung</td><td>Sanierung abschlie&szlig;en, auch wenn Kosten weiter steigen</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">&bdquo;Auch wenn&ldquo;-Klausel. Vorbildlich.</td></tr>
+          <tr><td>24</td><td>Queere Projekte</td><td>Finanzielle F&ouml;rderung f&uuml;r LGBTQ+-Projekte erh&ouml;hen</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E1;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">Haushaltswirkung nicht benannt. Vertretbar bei klarer Zielgruppe.</td></tr>
+          <tr><td>25</td><td>Wiesn-Nachhaltigkeit</td><td>Verpflichtende Nachhaltigkeitskriterien f&uuml;rs Oktoberfest, auch wenn Preise steigen</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="text-align:center">&#x1F7E2;</td><td style="color:var(--text3)">&bdquo;Auch wenn&ldquo;-Klausel. Vorbildlich.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Known Limitations -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Bekannte Einschr&auml;nkungen</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Akzeptierte Grenzen</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+            &bull; <strong>T15 (Isar naturnah)</strong> ist die schw&auml;chste These. &bdquo;Naturn&auml;her&ldquo; klingt universell positiv, es fehlt ein sichtbares Gegenargument (z.B. Kosten, Freizeitnutzung). Bewusst beibehalten, weil die These politisch relevant ist und Parteien sich unterschiedlich positionieren.<br>
+            &bull; <strong>Status-quo-Framing</strong> bei T3, T6, T10, T19: &bdquo;Erhalten bleiben&ldquo; oder &bdquo;weiterhin&ldquo; bevorzugt leicht den Ist-Zustand. Akzeptabel, weil Ver&auml;nderung immer den h&ouml;heren Begr&uuml;ndungsbedarf hat.<br>
+            &bull; <strong>Fehlende Kosten</strong> bei T1, T4, T12, T20, T24: Nicht jede These hat eine explizite &bdquo;auch wenn&ldquo;-Klausel. 9 von 25 ist ein guter Schnitt, alle 25 w&uuml;rden formelhaft wirken.
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Strukturelle Transparenz</div>
+          <div style="font-size: 12px; color: var(--text2); line-height: 1.8;">
+            &bull; <strong>1-Mann-Projekt:</strong> Keine Redaktion, kein Gremium. Alle Thesen von einer Person formuliert. Transparenz durch Open Source und diese Dokumentation.<br>
+            &bull; <strong>Keine Partei-R&uuml;ckmeldung:</strong> Positionen aus Wahlprogrammen extrahiert, nicht von Parteien best&auml;tigt. Standardverfahren (auch Wahl-O-Mat arbeitet so, holt aber zus&auml;tzlich Partei-Feedback ein).<br>
+            &bull; <strong>Subjektive Achsen:</strong> Die x/y-Gewichtung je These (f&uuml;r den Kompass) ist eine redaktionelle Entscheidung. Offengelegt im Quellcode.<br>
+            &bull; <strong>Themenauswahl:</strong> 25 aus hunderten m&ouml;glichen Themen. Auswahl priorisiert Themen, die M&uuml;nchner Parteien tats&auml;chlich trennen.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================== TECH ==================== -->
+  <section id="tech" class="section">
+    <div class="section-divider">&#9881; Tech</div>
+
+    <!-- Quick Links -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">&#128279; Quick Links</div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="https://mucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#127968;</span> Live Site
+        </a>
+        <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#128025;</span> GitHub Repo
+        </a>
+        <a href="https://github.com/frederikmetz42/mucwahl.de/actions" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#9654;</span> GitHub Actions
+        </a>
+        <a href="https://github.com/frederikmetz42/mucwahl.de/settings/pages" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#9881;</span> Pages Settings
+        </a>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+        <a href="https://ads.google.com" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#128200;</span> Google Ads
+        </a>
+        <a href="https://search.google.com/search-console?resource_id=sc-domain:mucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#128270;</span> Search Console
+        </a>
+        <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fmucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#9889;</span> PageSpeed Insights
+        </a>
+        <a href="https://www.google.com/search?q=site:mucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#127758;</span> site:mucwahl.de
+        </a>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+        <a href="https://account.inwx.de/en/domainlist#" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#127760;</span> INWX Domain
+        </a>
+        <a href="https://dash.cloudflare.com/login" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#9729;</span> Cloudflare
+        </a>
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fmucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#9989;</span> HTML Validator
+        </a>
+        <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fmucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#11088;</span> Rich Results Test
+        </a>
+      </div>
+    </div>
+
+    <!-- Health + Tech Recs + Files -->
+    <div class="grid-3">
+      <!-- HEALTH CHECKS -->
+      <div class="card">
+        <div class="section-title">Health Checks</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Zero external CDN requests</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> CSP on all 5 pages</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Self-hosted fonts (Inter woff2)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Self-hosted Alpine.js v3.14.9</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> DSGVO Art. 13 privacy policy</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> DDG/MStV legal citations</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Fair scoring (weighted, neutral for missing)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> LocalStorage persistence</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Mobile responsive (375px+)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Zero console errors</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> icon.svg optimized (723 bytes)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Neutral answer buttons (no color bias)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Compass: total-weight normalization</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Compass: collision avoidance</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Polarity balance: 14:9 (v4.7, thesis 14 flipped)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> 11 thesis rewordings for neutrality (v4.2)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> DU/Partei labels in modal (v4.2)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Budget weighting (10-point, 1-4 per topic) (v4.5)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Personalized share image (1080&times;1350 canvas) (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> WhatsApp + Signal sharing</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Open Source (GitHub link)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> OG social card (1200x630)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Twitter card meta tags</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> URL-encoded result sharing</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Background info: 25/25 theses, verified facts</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Keyboard nav (1/2/3, i, Backspace, Enter, Esc)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Skip-to-content link</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> ARIA landmarks, roles, labels</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Modal focus trap + focus return</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Print/PDF stylesheet</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Compass/Radar visible in PDF (v4.3.1)</div>
+        <div class="check"><div class="check-icon check-warn">!</div> CSP frame-ancestors warning (harmless)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> sitemap.xml + robots.txt + canonical (v4.3)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Surprise matches card (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Wahltag-Modus + countdown (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Stimmzettel + Wahllokal page (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Enhanced milestones + &ldquo;Letzte These!&rdquo; (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> 3-tab results (Kompass + Parteien + Vergleich) (v4.7)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Heading hierarchy h1&rarr;h2&rarr;h3 (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Compass explainer text (v4.6)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> &ldquo;Offene Karten&rdquo; transparency page (v4.7)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Vergleich tab with inline answer revision (v4.7)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> Solar thesis polarity flip + party vals (v4.7)</div>
+        <div class="check"><div class="check-icon check-pass">&#10003;</div> &Uuml;ber-uns redirect to methodik.html (v4.7)</div>
+      </div>
+
+      <!-- TECH RECOMMENDATIONS -->
+      <div class="card">
+        <div class="section-title">Technical Recommendations</div>
+        <table>
+          <thead><tr><th>Action</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr style="opacity: 0.4;">
+              <td><strong><s>Add SEO basics</s></strong></td>
+              <td><s>sitemap.xml, robots.txt, canonical URL.</s> <span class="badge badge-green">v4.3</span></td>
+            </tr>
+            <tr style="opacity: 0.4;">
+              <td><strong><s>Fix PDF compass</s></strong></td>
+              <td><s>Compass/Radar missing from print.</s> <span class="badge badge-green">v4.3.1</span></td>
+            </tr>
+            <tr>
+              <td><strong>Add <code>defer</code></strong> to wahlomat_data.js</td>
+              <td>Currently render-blocking. Move to <code>&lt;script defer&gt;</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>Preload critical font</strong></td>
+              <td>Add <code>&lt;link rel="preload"&gt;</code> for Inter 400 woff2.</td>
+            </tr>
+            <tr>
+              <td><strong>Cloudflare (optional)</strong></td>
+              <td>HTTP headers for CSP, CDN caching, DDOS protection.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FILE SIZES -->
+      <div class="card">
+        <div class="section-title">Asset Inventory</div>
+        <div class="file-row"><span class="file-name">index.html</span><span class="file-size">72 KB</span></div>
+        <div class="file-row"><span class="file-name">wahlomat_data.js</span><span class="file-size">60 KB</span></div>
+        <div class="file-row"><span class="file-name">app.js</span><span class="file-size">56 KB</span></div>
+        <div class="file-row"><span class="file-name">alpine.min.js</span><span class="file-size">44 KB</span></div>
+        <div class="file-row"><span class="file-name">styles.css</span><span class="file-size">36 KB</span></div>
+        <div class="file-row"><span class="file-name">methodik.html</span><span class="file-size">24 KB</span></div>
+        <div class="file-row"><span class="file-name">fonts/ (4x woff2)</span><span class="file-size">96 KB</span></div>
+        <div class="file-row"><span class="file-name">datenschutz.html</span><span class="file-size">9 KB</span></div>
+        <div class="file-row"><span class="file-name">impressum.html</span><span class="file-size">4.0 KB</span></div>
+        <div class="file-row"><span class="file-name">icon.svg</span><span class="file-size">723 B</span></div>
+        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+          <span>Total</span><span>~404 KB</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text3); margin-top: 4px;">Grew from 380 KB (v4.6) due to methodik.html + Vergleich tab. Still no external dependencies.</div>
+
+        <div style="margin-top: 20px;">
+          <div class="card-header">Code Lines</div>
+          <div class="file-row"><span class="file-name">wahlomat_data.js</span><span class="file-size">1,309</span></div>
+          <div class="file-row"><span class="file-name">app.js</span><span class="file-size">1,232</span></div>
+          <div class="file-row"><span class="file-name">index.html</span><span class="file-size">744</span></div>
+          <div class="file-row"><span class="file-name">methodik.html</span><span class="file-size">227</span></div>
+          <div class="file-row"><span class="file-name">datenschutz.html</span><span class="file-size">121</span></div>
+          <div class="file-row"><span class="file-name">impressum.html</span><span class="file-size">62</span></div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--text3);">Total: 3,695 lines (up from 3,452 in v4.6)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Git History -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="section-title">Git History</div>
+      <div class="timeline">
+        <div class="timeline-item done">
+          <div><strong>v4.7: Offene Karten, Vergleich Tab, Thesis Fixes</strong></div>
+          <div class="hash">a33d6e6 &middot; 2026-02-27</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">&ldquo;Offene Karten&rdquo; transparency page (methodik.html), Vergleich tab (inline party comparison), solar thesis polarity flip (abgeschafft-Framing, 8 party vals flipped), LGBTQ thesis shortened, &uuml;ber-uns merged + redirect, footer consolidated.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.6: Election Features, Surprise Matches, Share Image</strong></div>
+          <div class="hash">bf64fe1 &middot; 2026-02-27</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Surprise matches card, Wahltag-Modus + countdown, Stimmzettel + Wahllokal page (step 97), personalized share image (canvas 1080&times;1350), enhanced milestones, &ldquo;Letzte These!&rdquo; badge, UI fixes (title, intro, single-column, heading hierarchy), compass explainer.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.5: Budget Weighting, 2-Tab Results</strong></div>
+          <div class="hash">2026-02-27</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">10-point budget weighting (1-4 per topic), 2-tab results (Kompass + Parteien), top match hero redesign, share section redesign, stable answer buttons.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.4: Background Info + Fact-Check</strong></div>
+          <div class="hash">e2a97bc &middot; 2026-02-26</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Inline accordion with neutral background for all 25 theses. Verified facts: D-Ticket 63&euro;, Tempo 30 scope, NO&sup2; data, SEM 30k residents, Gasteig 900M, Gewerbesteuer Umland-Vergleich. Keyboard shortcut (i).</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.3.1: Compass/Radar PDF Fix</strong></div>
+          <div class="hash">e3ba91f &middot; 2026-02-20</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Fix compass and radar missing from PDF export. Print CSS for aside visibility.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.3: SEO, Quiz UX Fix, Cockpit Cleanup</strong></div>
+          <div class="hash">b878b3c &middot; 2026-02-19</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">robots.txt, sitemap.xml, canonical URLs. Quiz answer buttons show selected state.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.2.1: Polarity Balance</strong></div>
+          <div class="hash">c2c2d95 &middot; 2026-02-19</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Flip theses 6, 10, 17. Bias from 18:5 to 15:8.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.2: Thesis Rewordings &amp; Clarity</strong></div>
+          <div class="hash">680abc5 &middot; 2026-02-19</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">11 rewordings for neutrality. Thesis 9 polarity reversal. DU/Partei labels.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.1: Polish Pass</strong></div>
+          <div class="hash">fed1b62 &middot; 2026-02-19</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Review fixes, mobile result tabs, answer revision in modal.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v4.0: Trust Badge, Radar, Breakdown, Embed</strong></div>
+          <div class="hash">80a3941 &middot; 2026-02-19</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Topic radar chart, profile summary, animations, topic breakdown, embed widget, trust badge.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v3.0: Sharing, Accessibility, PDF</strong></div>
+          <div class="hash">fb78ed9 &middot; 2026-02-18</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">URL sharing, OG card, keyboard nav, ARIA, PDF export.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v2.1: Compass &amp; Sharing</strong></div>
+          <div class="hash">c61a4c2 &middot; 2026-02-18</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Fix compass normalization, collision avoidance, WhatsApp/Signal sharing.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v2.0: UX &amp; Features</strong></div>
+          <div class="hash">5c095fe &middot; 2026-02-18</div>
+          <div style="font-size: 12px; color: var(--text2); margin-top: 4px;">Neutral buttons, compass calibration, icon fix (6MB&rarr;182KB), open source.</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>Self-host assets, CSP, fix null errors</strong></div>
+          <div class="hash">d65f1ac &middot; 2026-02-17</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>Fix 13 critical security issues</strong></div>
+          <div class="hash">a913d3d &middot; 2026-02-17</div>
+        </div>
+        <div class="timeline-item done">
+          <div><strong>v1.0: Initial Release</strong></div>
+          <div class="hash">2144771 &middot; 2026-02-17</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align: center; padding: 24px 0; font-size: 11px; color: var(--text3); border-top: 1px solid var(--border); margin-top: 8px;">
+    Internal project dashboard &middot; Not for public distribution &middot; Updated 2026-02-27
+  </footer>
+</div>
+
+<script>
+// Scroll spy for nav
+(function() {
+  var sections = document.querySelectorAll('.section');
+  var navLinks = document.querySelectorAll('.nav-link');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function(l) { l.classList.remove('active'); });
+        var link = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-80px 0px -70% 0px' });
+  sections.forEach(function(s) { observer.observe(s); });
+})();
+
+// Election countdown
+(function() {
+  var election = new Date('2026-03-15T00:00:00');
+  var now = new Date();
+  var days = Math.max(0, Math.ceil((election - now) / 86400000));
+  var el = document.getElementById('days-left');
+  if (el) {
+    el.textContent = days;
+    if (days <= 7) el.style.color = 'var(--red)';
+    else if (days <= 14) el.style.color = 'var(--orange)';
+  }
+  var el2 = document.getElementById('days-left-pipeline');
+  if (el2) {
+    el2.textContent = days;
+    if (days <= 7) el2.style.color = 'var(--red)';
+    else if (days <= 14) el2.style.color = 'var(--orange)';
+  }
+  var badge = document.getElementById('countdown-badge');
+  if (badge) {
+    badge.className = 'badge badge-' + (days <= 7 ? 'red' : 'orange');
+    badge.textContent = days + ' Tage bis Wahl';
+  }
+})();
+
+// Version sync
+(async function() {
+  var LOCAL = '4.7';
+  var el = document.getElementById('live-version');
+  var status = document.getElementById('version-status');
+  function setStatus(text, cls) {
+    var b = document.createElement('span');
+    b.className = 'badge badge-' + cls;
+    b.textContent = text;
+    status.replaceChildren(b);
+  }
+  try {
+    var res = await fetch('https://mucwahl.de/', { cache: 'no-store' });
+    var html = await res.text();
+    var m = html.match(/<meta\s+name="version"\s+content="([^"]+)"/);
+    var live = m ? m[1] : null;
+    if (!live) { el.textContent = '?'; el.style.color = 'var(--yellow)'; setStatus('No version meta tag', 'yellow'); }
+    else if (live === LOCAL) { el.textContent = live; el.style.color = 'var(--green)'; setStatus('In sync', 'green'); }
+    else { el.textContent = live; el.style.color = 'var(--red)'; setStatus('Out of sync \u2014 deploy needed', 'red'); }
+  } catch (e) { el.textContent = '?'; el.style.color = 'var(--text3)'; setStatus('Could not fetch live site', 'yellow'); }
+})();
+</script>
+</body>
+</html>
