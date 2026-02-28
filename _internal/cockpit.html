@@ -491,7 +491,7 @@
       <div class="card">
         <div class="card-header">Tage bis Wahl</div>
         <div class="stat" id="days-left-pipeline" style="color: var(--orange)"></div>
-        <div class="stat-label">15. M&auml;rz 2026</div>
+        <div class="stat-label">8. M&auml;rz 2026</div>
       </div>
       <div class="card">
         <div class="card-header">Open Bugs</div>
@@ -625,7 +625,7 @@
       <div class="card">
         <div class="card-header">Days to Election</div>
         <div class="stat" id="days-left" style="color: var(--orange)"></div>
-        <div class="stat-label">March 15, 2026</div>
+        <div class="stat-label">March 8, 2026</div>
       </div>
       <div class="card">
         <div class="card-header">Outreach Channels</div>
@@ -828,7 +828,7 @@ Kein Tracking, kein Backend, Open Source. Wenn Positionen komisch wirken: Method
 
 Sehr geehrte Redaktion,
 
-am 15. M&auml;rz w&auml;hlt M&uuml;nchen. MUCwahl ist ein kostenloses Wahl-Tool, das zwei Dinge anders macht als bestehende Angebote:
+am 8. M&auml;rz w&auml;hlt M&uuml;nchen. MUCwahl ist ein kostenloses Wahl-Tool, das zwei Dinge anders macht als bestehende Angebote:
 
 1. Die Fragen bilden echte Zielkonflikte ab, nicht Konsens-Aussagen, denen alle zustimmen.
 2. Jede Parteiposition ist mit einem Zitat aus dem Wahlprogramm belegt. Methodik, Scoring und Quellcode liegen offen.
@@ -852,7 +852,7 @@ Frederik Metz</span>
         <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Kurz. Was es ihrer Community bringt.</div>
         <div class="template-box" style="font-size: 12px; line-height: 1.7;">
           <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
-          <span class="msg">Hi! Am 15. M&auml;rz ist Kommunalwahl in M&uuml;nchen. MUCwahl ist ein kostenloses Wahl-Tool mit 25 Thesen, die echte Zielkonflikte abbilden, nicht Fragen, bei denen alle Parteien gleich klingen. Jede Position belegt.
+          <span class="msg">Hi! Am 8. M&auml;rz ist Kommunalwahl in M&uuml;nchen. MUCwahl ist ein kostenloses Wahl-Tool mit 25 Thesen, die echte Zielkonflikte abbilden, nicht Fragen, bei denen alle Parteien gleich klingen. Jede Position belegt.
 
 &#128073; mucwahl.de</span>
         </div>
@@ -884,7 +884,7 @@ Frederik Metz</span>
         <div style="font-size: 11px; color: var(--text3); margin-bottom: 6px;">Betonung: Erstw&auml;hler, konkrete Themen die Studierende betreffen.</div>
         <div class="template-box" style="font-size: 12px; line-height: 1.7;">
           <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.msg').textContent.trim())">Copy</button>
-          <span class="msg">Hi! Am 15. M&auml;rz ist Kommunalwahl in M&uuml;nchen. MUCwahl hat 25 Thesen zu Miete, &Ouml;PNV, Klimaschutz, Nachtleben. Keine Wohlfühlfragen, sondern echte Zielkonflikte. 14 Parteien, jede Position mit Wahlprogramm-Zitat belegt.
+          <span class="msg">Hi! Am 8. M&auml;rz ist Kommunalwahl in M&uuml;nchen. MUCwahl hat 25 Thesen zu Miete, &Ouml;PNV, Klimaschutz, Nachtleben. Keine Wohlfühlfragen, sondern echte Zielkonflikte. 14 Parteien, jede Position mit Wahlprogramm-Zitat belegt.
 
 &#128073; mucwahl.de
 
@@ -1120,6 +1120,75 @@ Kein Tracking, Open Source.</span>
       </div>
     </div>
 
+    <!-- Campaign Performance (Live Audit) -->
+    <div class="card" style="margin-bottom: 24px; border-left: 3px solid var(--red);">
+      <div class="section-title">Campaign Performance <span class="badge badge-red" style="margin-left: 8px;">Audit Feb 28</span></div>
+      <div class="grid">
+        <div class="card" style="text-align: center;">
+          <div class="card-header">Clicks</div>
+          <div class="stat" style="color: var(--blue);">51</div>
+          <div class="stat-label">of 844 impressions</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="card-header">CTR</div>
+          <div class="stat" style="color: var(--green);">6.04%</div>
+          <div class="stat-label">Good for political keywords</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="card-header">Avg CPC</div>
+          <div class="stat" style="color: var(--green);">&euro;0.32</div>
+          <div class="stat-label">Under &euro;0.50 cap</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="card-header">Spent</div>
+          <div class="stat" style="color: var(--orange);">&euro;16.32</div>
+          <div class="stat-label">of &euro;400 budget</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; font-size: 12px; color: var(--text2); line-height: 1.8;">
+        <strong style="color: var(--red);">&#9888; Critical Issues:</strong>
+        <ul style="margin: 8px 0; padding-left: 20px;">
+          <li><strong>Budget exhausting by midday.</strong> Ads stop running afternoons/evenings. Raise daily budget to &euro;30/day.</li>
+          <li><strong>Impression share &lt; 10%.</strong> Your ads show for fewer than 1 in 10 relevant searches. Top-of-page rate only 14.26%.</li>
+          <li><strong>8 of 12 keywords are dead</strong> (zero impressions). Only 4 keywords drive all traffic.</li>
+          <li><strong>No conversion tracking.</strong> Can't measure quiz starts or completions. Add GA4 event or URL-based conversion.</li>
+          <li><strong>Search Console not verified.</strong> Organic search data is invisible. Verify domain via DNS TXT record.</li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 12px; font-size: 12px; color: var(--text2); line-height: 1.8;">
+        <strong style="color: var(--green);">&#9733; Star Keyword:</strong> <code style="background: var(--surface2); padding: 2px 6px; border-radius: 4px;">kommunalwahl munchen 2026</code> &mdash; 12.85% CTR (2&times; campaign average)
+      </div>
+
+      <div style="margin-top: 12px; font-size: 12px; color: var(--text2); line-height: 1.8;">
+        <strong style="color: var(--orange);">&#128161; Audience Surprise:</strong> 55&ndash;64 women are the biggest converting segment, not 18&ndash;24 students. Consider adjusting ad copy and bid adjustments.
+      </div>
+    </div>
+
+    <!-- Urgent Actions -->
+    <div class="card" style="margin-bottom: 24px; border-left: 3px solid var(--orange);">
+      <div class="section-title">Urgent Actions <span class="badge badge-orange" style="margin-left: 8px;">8 days left</span></div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Do This Week</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Raise daily budget &euro;20 &rarr; &euro;30</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add <code>wahlomat m&uuml;nchen 2026</code> as explicit keyword</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add negatives: <code>briefwahl</code>, <code>kreistagswahl</code></div>
+          <div class="check"><div class="check-icon check-warn">!</div> Pause 8 dead keywords (save budget for winners)</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Verify Search Console (DNS TXT via Cloudflare)</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add conversion tracking (quiz start + completion)</div>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Nice To Have</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add ad schedule: concentrate budget 7&ndash;22 Uhr</div>
+          <div class="check"><div class="check-icon check-warn">!</div> +20% bid adjustment for 55&ndash;64 women</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Test <code>wahl-o-mat alternative m&uuml;nchen</code> keyword</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Submit sitemap.xml in Search Console</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Audience Segments -->
     <div class="card" style="margin-bottom: 24px;">
       <div class="section-title">Audience Segments <span class="badge badge-purple" style="margin-left: 8px;">Observation</span></div>
@@ -1230,6 +1299,8 @@ Kein Tracking, Open Source.</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">wahl ergebnisse</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">umfrage</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">prognose</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">briefwahl</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">kreistagswahl</span>
         </div>
         <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">Prevents waste on non-Munich or non-election-tool searches.</div>
       </div>
@@ -1289,14 +1360,14 @@ Kein Tracking, Open Source.</span>
         </div>
         <div>
           <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Google Ads Setup</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Create campaign in Google Ads</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Add 12 keywords + 10 negatives</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Enter 9 headlines + 4 descriptions</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Set bid strategy (&euro;0.50 CPC cap)</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Set geo targeting (M&uuml;nchen + 10km)</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Add sitelink extensions</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Add callout + snippet extensions</div>
-          <div class="check"><div class="check-icon check-warn">!</div> Add audience segments (Observation mode)</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> Campaign live (RSA)</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> 12 keywords + 10 negatives added</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> 8 headlines + 4 descriptions entered</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> Bid strategy set (&euro;0.50 CPC cap)</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> Geo targeting (M&uuml;nchen + 10km)</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Add conversion tracking</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Raise budget &euro;20 &rarr; &euro;30/day</div>
+          <div class="check"><div class="check-icon check-warn">!</div> Pause 8 dead keywords</div>
         </div>
       </div>
     </div>
@@ -1744,7 +1815,7 @@ Kein Tracking, Open Source.</span>
 
 // Election countdown
 (function() {
-  var election = new Date('2026-03-15T00:00:00');
+  var election = new Date('2026-03-08T00:00:00');
   var now = new Date();
   var days = Math.max(0, Math.ceil((election - now) / 86400000));
   var el = document.getElementById('days-left');
