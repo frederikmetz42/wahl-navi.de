@@ -125,7 +125,7 @@ function wahlomatApp() {
 
         get daysUntilElection() {
             const today = new Date(); today.setHours(0,0,0,0);
-            const election = new Date('2026-03-15'); election.setHours(0,0,0,0);
+            const election = new Date('2026-03-08'); election.setHours(0,0,0,0);
             const diff = Math.round((election - today) / 86400000);
             return diff >= 0 ? diff : null;
         },
