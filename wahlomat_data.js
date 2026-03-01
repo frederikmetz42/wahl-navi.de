@@ -7,118 +7,22 @@ window.WAHLOMAT_DATA = {
       "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, auch wenn dies Milliarden kostet und Jahre dauert.",
       "background": "Gemeint sind v.a. der Englischer-Garten-Tunnel (ca. 240 Mio. Euro laut Machbarkeitsstudie 2024) und ein möglicher Tunnel an der Landshuter Allee. Befürworter sehen Entlastung für Anwohner und neue Freiflächen an der Oberfläche. Kritiker verweisen auf jahrelange Bauzeiten und Kostenexplosionen: Der Luise-Kiesselbach-Tunnel (fertig 2015) wurde deutlich teurer als geplant.",
       "axes": {
-        "x": 0.0,
+        "x": 0,
         "y": 0.8
       },
       "tradeoff": "Fluss vs. Kosten"
     },
     {
-      "id": 2,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Autofreie Altstadt",
-      "statement": "Der private Autoverkehr innerhalb des Altstadtrings soll stark eingeschränkt werden.",
-      "background": "Der Altstadtring umschließt das historische Zentrum Münchens (Marienplatz, Viktualienmarkt, Residenz). Die Fußgängerzone ist bereits autofrei, aber auf umliegenden Straßen fließt regulärer Autoverkehr. Befürworter wollen mehr Platz für Fußgänger und Gastronomie. Gegner warnen vor Erreichbarkeitsproblemen für Anwohner, Handwerk und Lieferverkehr.",
+      "id": 20,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Gendersprache",
+      "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
+      "background": "Die Münchner Stadtverwaltung verwendet seit einigen Jahren geschlechtergerechte Formulierungen in offiziellen Dokumenten. Befürworter sehen darin ein Zeichen für Gleichberechtigung und Sichtbarkeit aller Geschlechter. Kritiker halten die Sonderzeichen für unleserlich und sehen einen Eingriff in die Standardsprache. Der Rat für deutsche Rechtschreibung empfiehlt bislang keine Sonderzeichen im amtlichen Gebrauch.",
       "axes": {
-        "x": 0.0,
-        "y": -1.0
+        "x": 0,
+        "y": -1
       },
-      "tradeoff": "Lebensqualität vs. Erreichbarkeit"
-    },
-    {
-      "id": 3,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Parkplätze",
-      "statement": "Bestehende Parkplätze am Straßenrand sollen erhalten bleiben und nicht für Radwege oder Grünflächen umgewandelt werden.",
-      "background": "München hat rund 300.000 öffentliche Parkplätze am Straßenrand. In vielen Vierteln werden diese zunehmend in Radwege, Grünflächen oder Außengastronomie umgewandelt. Befürworter des Umbaus sehen mehr Lebensqualität und Verkehrssicherheit. Anwohner und Gewerbetreibende befürchten Parkplatzmangel und längere Anfahrtswege.",
-      "axes": {
-        "x": 0.0,
-        "y": 0.7
-      },
-      "tradeoff": "Privatbesitz vs. Öffentlicher Raum"
-    },
-    {
-      "id": 4,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Tempo 30",
-      "statement": "Auf den meisten Hauptverkehrsstraßen innerhalb des Mittleren Rings soll Tempo 30 gelten, auch wenn dies längere Fahrzeiten bedeutet.",
-      "background": "Gemeint sind innerstädtische Hauptstraßen wie Rosenheimer Str. oder Lindwurmstraße, nicht Autobahnen oder der Mittlere Ring (Bundesstraße, nicht kommunal). An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. 2024 wurde dort erstmals der NO₂-Grenzwert eingehalten (39 µg/m³). Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
-      "axes": {
-        "x": 0.0,
-        "y": -0.8
-      },
-      "tradeoff": "Sicherheit vs. Schnelligkeit"
-    },
-    {
-      "id": 5,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "ÖPNV-Preise",
-      "statement": "Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dafür an anderer Stelle im Haushalt gespart werden muss.",
-      "background": "Das Deutschlandticket kostet seit Januar 2026 monatlich 63 Euro (vorher 58 Euro, zum Start 2023: 49 Euro). München bezuschusst den ÖPNV bereits mit über 300 Mio. Euro jährlich. Günstigere Tickets könnten mehr Fahrgäste anziehen und Autoverkehr reduzieren, müssten aber durch Einsparungen oder Einnahmen an anderer Stelle gegenfinanziert werden.",
-      "axes": {
-        "x": -0.8,
-        "y": -0.5
-      },
-      "tradeoff": "Sozial vs. Haushaltsdisziplin"
-    },
-    {
-      "id": 6,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Radwege",
-      "statement": "Fahrspuren für Autos sollen erhalten bleiben, auch wenn dadurch weniger Platz für breite Radwege ist.",
-      "background": "München plant den Ausbau des Radwegenetzes, besonders geschützte Radwege (Protected Bike Lanes) an Hauptstraßen. Dafür müssten teilweise Fahrspuren oder Parkplätze wegfallen. Radfahrverbände fordern mehr Sicherheit durch Trennung vom Autoverkehr. Autofahrer und Wirtschaftsverbände warnen vor Stau und eingeschränkter Erreichbarkeit.",
-      "axes": {
-        "x": 0.0,
-        "y": 0.9
-      },
-      "tradeoff": "Umweltverbund vs. Auto"
-    },
-    {
-      "id": 7,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Wohnungs-Rückkauf",
-      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um die Mieten dauerhaft zu kontrollieren, auch wenn das Milliarden kostet und den Haushalt belastet.",
-      "background": "Große Wohnungsunternehmen wie Vonovia und Dawonia besitzen Tausende Wohnungen in München. Einige Parteien fordern den Rückkauf durch die Stadt, um Mieten dauerhaft kontrollieren zu können. Befürworter sehen darin langfristigen Mieterschutz. Kritiker verweisen auf die hohen Kaufpreise (Münchner Immobilienmarkt) und die bereits angespannte Haushaltslage der Stadt.",
-      "axes": {
-        "x": -1.0,
-        "y": 0.0
-      },
-      "tradeoff": "Markt vs. Staat"
-    },
-    {
-      "id": 8,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Städtisches Bauen",
-      "statement": "Die städtische Wohnungsgesellschaft Münchner Wohnen (früher GWG) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
-      "background": "Die Münchner Wohnen (ehemals GWG/GEWOFAG) ist mit rund 70.000 Wohnungen Münchens größter Vermieter. Sie baut sowohl geförderte als auch freifinanzierte Wohnungen. Freifinanzierte Wohnungen erwirtschaften Gewinne, die wiederum in neue Projekte fließen. Die Frage ist, ob die Gesellschaft komplett auf bezahlbaren Wohnraum umschwenken soll, auch wenn das die Investitionsfähigkeit senkt.",
-      "axes": {
-        "x": -0.9,
-        "y": 0.0
-      },
-      "tradeoff": "Rendite vs. Gemeinwohl"
-    },
-    {
-      "id": 9,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Wachstumsbremse",
-      "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
-      "background": "Münchens Bevölkerung ist in 20 Jahren um über 300.000 auf rund 1,6 Mio. gewachsen. Der Zuzug treibt Mieten, Verkehr und Infrastrukturkosten. Befürworter einer Begrenzung wollen die Lebensqualität der bestehenden Bevölkerung schützen. Gegner sehen Wachstum als Motor für Steuereinnahmen und warnen, dass eine Kommune den Zuzug rechtlich kaum steuern kann.",
-      "axes": {
-        "x": -0.5,
-        "y": 0.8
-      },
-      "tradeoff": "Ruhe vs. Wohlstand"
-    },
-    {
-      "id": 10,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Nachverdichtung",
-      "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
-      "background": "Viele Münchner Viertel (z.B. Solln, Obermenzing, Trudering) haben Gartenstadtcharakter mit Einfamilienhäusern und viel Grün. Angesichts des Wohnungsmangels wird diskutiert, ob dort nachverdichtet werden soll. Befürworter sehen brachliegendes Potenzial in der teuersten Stadt Deutschlands. Anwohner verteidigen den Charakter ihrer Viertel und warnen vor Überlastung der Infrastruktur.",
-      "axes": {
-        "x": 0.0,
-        "y": -0.6
-      },
-      "tradeoff": "Bestandsschutz vs. Nachverdichtung"
+      "tradeoff": "Inklusion vs. Tradition"
     },
     {
       "id": 11,
@@ -128,57 +32,9 @@ window.WAHLOMAT_DATA = {
       "background": "Die SEM Nordost (600 Hektar bei Daglfing) soll ab den 2030ern Platz für ca. 30.000 Bewohner und 10.000 Arbeitsplätze schaffen. Die SEM Nord (Feldmoching) ist ebenfalls in Planung. Befürworter sehen dringend benötigten Wohnraum. Kritiker (darunter Landwirte und Naturschützer) warnen vor Flächenversiegelung und dem Verlust der letzten Ackerflächen im Stadtgebiet.",
       "axes": {
         "x": 0.5,
-        "y": 0.0
+        "y": 0
       },
       "tradeoff": "Wohnraum vs. Naturschutz"
-    },
-    {
-      "id": 12,
-      "topic": "Bauen, Klima & Stadtplanung",
-      "short_title": "Hochhäuser",
-      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), auch wenn dies das Stadtbild verändert.",
-      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
-      "axes": {
-        "x": 0.7,
-        "y": -0.3
-      },
-      "tradeoff": "Flächeneffizienz vs. Stadtbild"
-    },
-    {
-      "id": 13,
-      "topic": "Bauen, Klima & Stadtplanung",
-      "short_title": "Solarpflicht",
-      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn Solaranlagen langfristig die Stromkosten senken.",
-      "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Befürworter der Pflicht sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
-      "axes": {
-        "x": 0.4,
-        "y": 0.8
-      },
-      "tradeoff": "Eigentumsfreiheit vs. Klimaschutz"
-    },
-    {
-      "id": 14,
-      "topic": "Bauen, Klima & Stadtplanung",
-      "short_title": "Klima-Vorrang",
-      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
-      "background": "München hat eine Klimaschutzprüfung für alle städtischen Vorhaben eingeführt. In der Praxis entstehen dadurch Zielkonflikte: klimafreundlichere Bauweisen oder Materialien kosten oft mehr. Die Frage ist, ob Klimaschutz bei Zielkonflikten automatisch Vorrang vor dem Budget haben soll oder ob eine Einzelfallabwägung reicht.",
-      "axes": {
-        "x": -0.6,
-        "y": -1.0
-      },
-      "tradeoff": "Ökologie vs. Ökonomie"
-    },
-    {
-      "id": 15,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Gewerbesteuer",
-      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
-      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490% (Bundesdurchschnitt: ca. 400%). Umlandgemeinden wie Grünwald (240%) oder Gräfelfing (250%) locken Unternehmen mit deutlich niedrigeren Sätzen. Befürworter einer Senkung wollen Abwanderung verhindern. Gegner warnen vor Einnahmeausfällen: Die Gewerbesteuer ist Münchens wichtigste Einnahmequelle (über 3 Mrd. Euro jährlich).",
-      "axes": {
-        "x": 1.0,
-        "y": 0.0
-      },
-      "tradeoff": "Standortattraktivität vs. Einnahmen"
     },
     {
       "id": 16,
@@ -193,52 +49,16 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Sparsamkeit vs. Investition"
     },
     {
-      "id": 17,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Digitale Verwaltung",
-      "statement": "Alle Bürgerservices der Stadt (z.B. Anmeldung, Baugenehmigungen) sollen vollständig digital angeboten werden, auch wenn dafür weniger persönliche Beratung vor Ort möglich ist.",
-      "background": "Baugenehmigungen dauern in München 8 bis 18 Monate statt der gesetzlichen drei Monate. Befürworter einer konsequenten Digitalisierung sehen schnellere Prozesse und Einsparpotenziale. Kritiker warnen, dass ältere Menschen, Menschen ohne Internetzugang und Nicht-Muttersprachler auf persönliche Beratung angewiesen sind. Studien zeigen: Nur 12 Prozent der Bürger finden, der Staat mache ihr Leben einfacher.",
+      "id": 7,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Wohnungs-Rückkauf",
+      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um die Mieten dauerhaft zu kontrollieren, auch wenn das Milliarden kostet und den Haushalt belastet.",
+      "background": "Große Wohnungsunternehmen wie Vonovia und Dawonia besitzen Tausende Wohnungen in München. Einige Parteien fordern den Rückkauf durch die Stadt, um Mieten dauerhaft kontrollieren zu können. Befürworter sehen darin langfristigen Mieterschutz. Kritiker verweisen auf die hohen Kaufpreise (Münchner Immobilienmarkt) und die bereits angespannte Haushaltslage der Stadt.",
       "axes": {
-        "x": 0.5,
-        "y": 0.0
+        "x": -1,
+        "y": 0
       },
-      "tradeoff": "Effizienz vs. Zugänglichkeit"
-    },
-    {
-      "id": 18,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Gewerbeflächen",
-      "statement": "München soll Gewerbeflächen schützen und nicht in Wohnraum umwandeln, auch wenn dadurch weniger neue Wohnungen entstehen.",
-      "background": "Das Angebot an Gewerbeflächen in München ist stark geschrumpft, während Unternehmen in Umlandgemeinden mit niedrigerer Gewerbesteuer abwandern (z.B. Grünwald: 240% vs. München: 490%). Die CSU beklagt 'null Komma null neue Gewerbeflächen' unter Grün-Rot. Befürworter des Schutzes sehen Arbeitsplätze und Steuereinnahmen in Gefahr. Gegner verweisen auf den akuten Wohnungsmangel und fordern, dass Wohnungsbau Vorrang hat.",
-      "axes": {
-        "x": 0.8,
-        "y": 0.3
-      },
-      "tradeoff": "Arbeitsplätze vs. Wohnraum"
-    },
-    {
-      "id": 19,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Referate abschaffen",
-      "statement": "Das Mobilitätsreferat und das Klimaschutzreferat sollen wieder abgeschafft und in bestehende Referate integriert werden.",
-      "background": "Die grün-rote Stadtregierung hat 2020/2021 das Mobilitätsreferat und das Referat für Klima- und Umweltschutz neu geschaffen. Befürworter der Abschaffung sehen Doppelstrukturen, zusätzliche Bürokratie und unnötige Personalkosten. Gegner argumentieren, dass eigene Referate Mobilität und Klimaschutz als Querschnittsaufgaben sichtbarer machen und politisch aufwerten, was ohne sie in größeren Referaten untergehen würde.",
-      "axes": {
-        "x": 0.8,
-        "y": 0.6
-      },
-      "tradeoff": "Effizienz vs. Sichtbarkeit"
-    },
-    {
-      "id": 20,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Gendersprache",
-      "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
-      "background": "Die Münchner Stadtverwaltung verwendet seit einigen Jahren geschlechtergerechte Formulierungen in offiziellen Dokumenten. Befürworter sehen darin ein Zeichen für Gleichberechtigung und Sichtbarkeit aller Geschlechter. Kritiker halten die Sonderzeichen für unleserlich und sehen einen Eingriff in die Standardsprache. Der Rat für deutsche Rechtschreibung empfiehlt bislang keine Sonderzeichen im amtlichen Gebrauch.",
-      "axes": {
-        "x": 0.0,
-        "y": -1.0
-      },
-      "tradeoff": "Inklusion vs. Tradition"
+      "tradeoff": "Markt vs. Staat"
     },
     {
       "id": 21,
@@ -247,34 +67,58 @@ window.WAHLOMAT_DATA = {
       "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt Videoüberwachung einsetzen, auch wenn dies die Privatsphäre im öffentlichen Raum einschränkt.",
       "background": "Am Hauptbahnhof gibt es bereits Bundespolizei-Kameras sowie seit 2025 mobile Videotürme mit 360°-Panorama. Der Bahnhof zählt zu den kriminalitätsbelasteten in Deutschland (553 Gewaltdelikte 2025). Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Datenschützer warnen vor Flächenüberwachung und bezweifeln die präventive Wirkung.",
       "axes": {
-        "x": 0.0,
-        "y": 1.0
+        "x": 0,
+        "y": 1
       },
       "tradeoff": "Sicherheit vs. Privatsphäre"
     },
     {
-      "id": 22,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Drogenkonsumräume",
-      "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
-      "background": "Drogenkonsumräume existieren in Frankfurt, Hamburg und Berlin, aber nicht in Bayern. Die CSU-geführte Landesregierung lehnt sie ab und hat im Mai 2025 ihren restriktiven Kurs bestätigt. München fordert seit 2018 eine Erlaubnis vom Freistaat. Befürworter verweisen auf weniger Drogentote und weniger Spritzen im öffentlichen Raum. Gegner befürchten Signalwirkung und Anlaufstellen für die Szene.",
+      "id": 2,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Autofreie Altstadt",
+      "statement": "Der private Autoverkehr innerhalb des Altstadtrings soll stark eingeschränkt werden.",
+      "background": "Der Altstadtring umschließt das historische Zentrum Münchens (Marienplatz, Viktualienmarkt, Residenz). Die Fußgängerzone ist bereits autofrei, aber auf umliegenden Straßen fließt regulärer Autoverkehr. Befürworter wollen mehr Platz für Fußgänger und Gastronomie. Gegner warnen vor Erreichbarkeitsproblemen für Anwohner, Handwerk und Lieferverkehr.",
       "axes": {
-        "x": 0.0,
-        "y": -0.9
+        "x": 0,
+        "y": -1
       },
-      "tradeoff": "Hilfe vs. Ordnung"
+      "tradeoff": "Lebensqualität vs. Erreichbarkeit"
     },
     {
-      "id": 23,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Ordnung im öffentlichen Raum",
-      "statement": "Die Stadt soll Probleme wie Drogenszene, Vermüllung und aggressives Betteln vor allem durch mehr Kontrolle und Ordnungskräfte lösen, statt auf Sozialarbeit und Hilfsangebote zu setzen.",
-      "background": "Rund um den Hauptbahnhof und den Alten Botanischen Garten klagen Anwohner und Gewerbetreibende über Drogenkonsum, Vermüllung und Belästigung. Der Kommunale Außendienst (KAD) patrouilliert seit 2024 dort. Befürworter fordern erweiterte Befugnisse (Platzverweise, Bußgelder) und mehr Präsenz. Gegner argumentieren, dass Obdachlosigkeit und Sucht soziale Probleme sind, die durch Verdrängung nicht gelöst, sondern nur verlagert werden.",
+      "id": 14,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Klima-Vorrang",
+      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
+      "background": "München hat eine Klimaschutzprüfung für alle städtischen Vorhaben eingeführt. In der Praxis entstehen dadurch Zielkonflikte: klimafreundlichere Bauweisen oder Materialien kosten oft mehr. Die Frage ist, ob Klimaschutz bei Zielkonflikten automatisch Vorrang vor dem Budget haben soll oder ob eine Einzelfallabwägung reicht.",
       "axes": {
-        "x": 0.0,
-        "y": 0.8
+        "x": -0.6,
+        "y": -1
       },
-      "tradeoff": "Kontrolle vs. Prävention"
+      "tradeoff": "Ökologie vs. Ökonomie"
+    },
+    {
+      "id": 15,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Gewerbesteuer",
+      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
+      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490% (Bundesdurchschnitt: ca. 400%). Umlandgemeinden wie Grünwald (240%) oder Gräfelfing (250%) locken Unternehmen mit deutlich niedrigeren Sätzen. Befürworter einer Senkung wollen Abwanderung verhindern. Gegner warnen vor Einnahmeausfällen: Die Gewerbesteuer ist Münchens wichtigste Einnahmequelle (über 3 Mrd. Euro jährlich).",
+      "axes": {
+        "x": 1,
+        "y": 0
+      },
+      "tradeoff": "Standortattraktivität vs. Einnahmen"
+    },
+    {
+      "id": 10,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Nachverdichtung",
+      "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
+      "background": "Viele Münchner Viertel (z.B. Solln, Obermenzing, Trudering) haben Gartenstadtcharakter mit Einfamilienhäusern und viel Grün. Angesichts des Wohnungsmangels wird diskutiert, ob dort nachverdichtet werden soll. Befürworter sehen brachliegendes Potenzial in der teuersten Stadt Deutschlands. Anwohner verteidigen den Charakter ihrer Viertel und warnen vor Überlastung der Infrastruktur.",
+      "axes": {
+        "x": 0,
+        "y": -0.6
+      },
+      "tradeoff": "Bestandsschutz vs. Nachverdichtung"
     },
     {
       "id": 24,
@@ -289,6 +133,150 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Kontrolle vs. Freiheit"
     },
     {
+      "id": 4,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Tempo 30",
+      "statement": "Auf den meisten Hauptverkehrsstraßen innerhalb des Mittleren Rings soll Tempo 30 gelten, auch wenn dies längere Fahrzeiten bedeutet.",
+      "background": "Gemeint sind innerstädtische Hauptstraßen wie Rosenheimer Str. oder Lindwurmstraße, nicht Autobahnen oder der Mittlere Ring (Bundesstraße, nicht kommunal). An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. 2024 wurde dort erstmals der NO₂-Grenzwert eingehalten (39 µg/m³). Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
+      "axes": {
+        "x": 0,
+        "y": -0.8
+      },
+      "tradeoff": "Sicherheit vs. Schnelligkeit"
+    },
+    {
+      "id": 12,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Hochhäuser",
+      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), auch wenn dies das Stadtbild verändert.",
+      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
+      "axes": {
+        "x": 0.7,
+        "y": -0.3
+      },
+      "tradeoff": "Flächeneffizienz vs. Stadtbild"
+    },
+    {
+      "id": 17,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Digitale Verwaltung",
+      "statement": "Alle Bürgerservices der Stadt (z.B. Anmeldung, Baugenehmigungen) sollen vollständig digital angeboten werden, auch wenn dafür weniger persönliche Beratung vor Ort möglich ist.",
+      "background": "Baugenehmigungen dauern in München 8 bis 18 Monate statt der gesetzlichen drei Monate. Befürworter einer konsequenten Digitalisierung sehen schnellere Prozesse und Einsparpotenziale. Kritiker warnen, dass ältere Menschen, Menschen ohne Internetzugang und Nicht-Muttersprachler auf persönliche Beratung angewiesen sind. Studien zeigen: Nur 12 Prozent der Bürger finden, der Staat mache ihr Leben einfacher.",
+      "axes": {
+        "x": 0.5,
+        "y": 0
+      },
+      "tradeoff": "Effizienz vs. Zugänglichkeit"
+    },
+    {
+      "id": 8,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Städtisches Bauen",
+      "statement": "Die städtische Wohnungsgesellschaft Münchner Wohnen (früher GWG) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
+      "background": "Die Münchner Wohnen (ehemals GWG/GEWOFAG) ist mit rund 70.000 Wohnungen Münchens größter Vermieter. Sie baut sowohl geförderte als auch freifinanzierte Wohnungen. Freifinanzierte Wohnungen erwirtschaften Gewinne, die wiederum in neue Projekte fließen. Die Frage ist, ob die Gesellschaft komplett auf bezahlbaren Wohnraum umschwenken soll, auch wenn das die Investitionsfähigkeit senkt.",
+      "axes": {
+        "x": -0.9,
+        "y": 0
+      },
+      "tradeoff": "Rendite vs. Gemeinwohl"
+    },
+    {
+      "id": 23,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Ordnung im öffentlichen Raum",
+      "statement": "Die Stadt soll Probleme wie Drogenszene, Vermüllung und aggressives Betteln vor allem durch mehr Kontrolle und Ordnungskräfte lösen, statt auf Sozialarbeit und Hilfsangebote zu setzen.",
+      "background": "Rund um den Hauptbahnhof und den Alten Botanischen Garten klagen Anwohner und Gewerbetreibende über Drogenkonsum, Vermüllung und Belästigung. Der Kommunale Außendienst (KAD) patrouilliert seit 2024 dort. Befürworter fordern erweiterte Befugnisse (Platzverweise, Bußgelder) und mehr Präsenz. Gegner argumentieren, dass Obdachlosigkeit und Sucht soziale Probleme sind, die durch Verdrängung nicht gelöst, sondern nur verlagert werden.",
+      "axes": {
+        "x": 0,
+        "y": 0.8
+      },
+      "tradeoff": "Kontrolle vs. Prävention"
+    },
+    {
+      "id": 5,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "ÖPNV-Preise",
+      "statement": "Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dafür an anderer Stelle im Haushalt gespart werden muss.",
+      "background": "Das Deutschlandticket kostet seit Januar 2026 monatlich 63 Euro (vorher 58 Euro, zum Start 2023: 49 Euro). München bezuschusst den ÖPNV bereits mit über 300 Mio. Euro jährlich. Günstigere Tickets könnten mehr Fahrgäste anziehen und Autoverkehr reduzieren, müssten aber durch Einsparungen oder Einnahmen an anderer Stelle gegenfinanziert werden.",
+      "axes": {
+        "x": -0.8,
+        "y": -0.5
+      },
+      "tradeoff": "Sozial vs. Haushaltsdisziplin"
+    },
+    {
+      "id": 13,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Solarpflicht",
+      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn Solaranlagen langfristig die Stromkosten senken.",
+      "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Befürworter der Pflicht sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
+      "axes": {
+        "x": 0.4,
+        "y": 0.8
+      },
+      "tradeoff": "Eigentumsfreiheit vs. Klimaschutz"
+    },
+    {
+      "id": 18,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Gewerbeflächen",
+      "statement": "München soll Gewerbeflächen schützen und nicht in Wohnraum umwandeln, auch wenn dadurch weniger neue Wohnungen entstehen.",
+      "background": "Das Angebot an Gewerbeflächen in München ist stark geschrumpft, während Unternehmen in Umlandgemeinden mit niedrigerer Gewerbesteuer abwandern (z.B. Grünwald: 240% vs. München: 490%). Die CSU beklagt 'null Komma null neue Gewerbeflächen' unter Grün-Rot. Befürworter des Schutzes sehen Arbeitsplätze und Steuereinnahmen in Gefahr. Gegner verweisen auf den akuten Wohnungsmangel und fordern, dass Wohnungsbau Vorrang hat.",
+      "axes": {
+        "x": 0.8,
+        "y": 0.3
+      },
+      "tradeoff": "Arbeitsplätze vs. Wohnraum"
+    },
+    {
+      "id": 9,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Wachstumsbremse",
+      "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
+      "background": "Münchens Bevölkerung ist in 20 Jahren um über 300.000 auf rund 1,6 Mio. gewachsen. Der Zuzug treibt Mieten, Verkehr und Infrastrukturkosten. Befürworter einer Begrenzung wollen die Lebensqualität der bestehenden Bevölkerung schützen. Gegner sehen Wachstum als Motor für Steuereinnahmen und warnen, dass eine Kommune den Zuzug rechtlich kaum steuern kann.",
+      "axes": {
+        "x": -0.5,
+        "y": 0.8
+      },
+      "tradeoff": "Ruhe vs. Wohlstand"
+    },
+    {
+      "id": 22,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Drogenkonsumräume",
+      "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
+      "background": "Drogenkonsumräume existieren in Frankfurt, Hamburg und Berlin, aber nicht in Bayern. Die CSU-geführte Landesregierung lehnt sie ab und hat im Mai 2025 ihren restriktiven Kurs bestätigt. München fordert seit 2018 eine Erlaubnis vom Freistaat. Befürworter verweisen auf weniger Drogentote und weniger Spritzen im öffentlichen Raum. Gegner befürchten Signalwirkung und Anlaufstellen für die Szene.",
+      "axes": {
+        "x": 0,
+        "y": -0.9
+      },
+      "tradeoff": "Hilfe vs. Ordnung"
+    },
+    {
+      "id": 3,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Parkplätze",
+      "statement": "Bestehende Parkplätze am Straßenrand sollen erhalten bleiben und nicht für Radwege oder Grünflächen umgewandelt werden.",
+      "background": "München hat rund 300.000 öffentliche Parkplätze am Straßenrand. In vielen Vierteln werden diese zunehmend in Radwege, Grünflächen oder Außengastronomie umgewandelt. Befürworter des Umbaus sehen mehr Lebensqualität und Verkehrssicherheit. Anwohner und Gewerbetreibende befürchten Parkplatzmangel und längere Anfahrtswege.",
+      "axes": {
+        "x": 0,
+        "y": 0.7
+      },
+      "tradeoff": "Privatbesitz vs. Öffentlicher Raum"
+    },
+    {
+      "id": 19,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Referate abschaffen",
+      "statement": "Das Mobilitätsreferat und das Klimaschutzreferat sollen wieder abgeschafft und in bestehende Referate integriert werden.",
+      "background": "Die grün-rote Stadtregierung hat 2020/2021 das Mobilitätsreferat und das Referat für Klima- und Umweltschutz neu geschaffen. Befürworter der Abschaffung sehen Doppelstrukturen, zusätzliche Bürokratie und unnötige Personalkosten. Gegner argumentieren, dass eigene Referate Mobilität und Klimaschutz als Querschnittsaufgaben sichtbarer machen und politisch aufwerten, was ohne sie in größeren Referaten untergehen würde.",
+      "axes": {
+        "x": 0.8,
+        "y": 0.6
+      },
+      "tradeoff": "Effizienz vs. Sichtbarkeit"
+    },
+    {
       "id": 25,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Integrationskosten",
@@ -299,6 +287,18 @@ window.WAHLOMAT_DATA = {
         "y": 0.7
       },
       "tradeoff": "Haushaltsdisziplin vs. Integrationsqualität"
+    },
+    {
+      "id": 6,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Radwege",
+      "statement": "Fahrspuren für Autos sollen erhalten bleiben, auch wenn dadurch weniger Platz für breite Radwege ist.",
+      "background": "München plant den Ausbau des Radwegenetzes, besonders geschützte Radwege (Protected Bike Lanes) an Hauptstraßen. Dafür müssten teilweise Fahrspuren oder Parkplätze wegfallen. Radfahrverbände fordern mehr Sicherheit durch Trennung vom Autoverkehr. Autofahrer und Wirtschaftsverbände warnen vor Stau und eingeschränkter Erreichbarkeit.",
+      "axes": {
+        "x": 0,
+        "y": 0.9
+      },
+      "tradeoff": "Umweltverbund vs. Auto"
     }
   ],
   "parties": [

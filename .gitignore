@@ -27,6 +27,7 @@ venv/
 
 # Internal Docs & Private Vault
 _internal/
+_exports/
 
 # Build tools (not deployed)
 tailwindcss

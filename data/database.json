@@ -11,109 +11,21 @@
       "short_title": "Straßentunnel",
       "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, um den oberirdischen Verkehr zu entlasten.",
       "axes": {
-        "x": 0.0,
+        "x": 0,
         "y": 0.8
       },
       "tradeoff": "Fluss vs. Kosten"
     },
     {
-      "id": 2,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Autofreie Altstadt",
-      "statement": "Innerhalb des Altstadtrings soll der private Autoverkehr weitgehend verboten werden.",
+      "id": 20,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Gendersprache",
+      "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
       "axes": {
-        "x": 0.0,
-        "y": -1.0
+        "x": 0,
+        "y": -1
       },
-      "tradeoff": "Lebensqualität vs. Erreichbarkeit"
-    },
-    {
-      "id": 3,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Parkplätze",
-      "statement": "Bestehende Parkplätze am Straßenrand sollen erhalten bleiben und nicht für Radwege oder Grünflächen umgewandelt werden.",
-      "axes": {
-        "x": 0.0,
-        "y": 0.7
-      },
-      "tradeoff": "Privatbesitz vs. Öffentlicher Raum"
-    },
-    {
-      "id": 4,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Tempo 30",
-      "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll ein Tempolimit von 30 km/h gelten.",
-      "axes": {
-        "x": 0.0,
-        "y": -0.8
-      },
-      "tradeoff": "Sicherheit vs. Schnelligkeit"
-    },
-    {
-      "id": 5,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "ÖPNV-Preise",
-      "statement": "Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dafür an anderer Stelle im Haushalt gespart werden muss.",
-      "axes": {
-        "x": -0.8,
-        "y": -0.5
-      },
-      "tradeoff": "Sozial vs. Haushaltsdisziplin"
-    },
-    {
-      "id": 6,
-      "topic": "Mobilität & Verkehr",
-      "short_title": "Radwege",
-      "statement": "Der Ausbau breiter Radwege soll Vorrang vor dem Erhalt von Fahrspuren für Autos haben.",
-      "axes": {
-        "x": 0.0,
-        "y": -0.9
-      },
-      "tradeoff": "Umweltverbund vs. Auto"
-    },
-    {
-      "id": 7,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Wohnungs-Rückkauf",
-      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um dauerhaft bezahlbare Mieten zu garantieren.",
-      "axes": {
-        "x": -1.0,
-        "y": 0.0
-      },
-      "tradeoff": "Markt vs. Staat"
-    },
-    {
-      "id": 8,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Städtisches Bauen",
-      "statement": "Die städtische Wohnungsgesellschaft (Münchner Wohnen) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
-      "axes": {
-        "x": -0.9,
-        "y": 0.0
-      },
-      "tradeoff": "Rendite vs. Gemeinwohl"
-    },
-    {
-      "id": 9,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Wachstumsbremse",
-      "statement": "Die Stadt soll aktiv Maßnahmen ergreifen, um das weitere Wachstum von München (Zuzug von Firmen/Menschen) zu bremsen, auch wenn das Steuereinnahmen kostet.",
-      "axes": {
-        "x": -0.5,
-        "y": 0.8
-      },
-      "tradeoff": "Ruhe vs. Wohlstand"
-    },
-    {
-      "id": 10,
-      "topic": "Wohnen & Mietmarkt",
-      "short_title": "Nachverdichtung",
-      "statement": "In Gartenstadtvierteln soll der Erhalt von Gärten und alten Bäumen wichtiger sein als der Bau neuer Wohnungen durch Nachverdichtung.",
-      "axes": {
-        "x": 0.0,
-        "y": 0.6
-      },
-      "tradeoff": "Bestandsschutz vs. Nachverdichtung"
+      "tradeoff": "Inklusion vs. Tradition"
     },
     {
       "id": 11,
@@ -122,53 +34,9 @@
       "statement": "Die Stadt soll die geplante Bebauung von Ackerflächen am Stadtrand (Feldmoching/Daglfing) für Tausende neue Wohnungen konsequent vorantreiben.",
       "axes": {
         "x": 0.5,
-        "y": 0.0
+        "y": 0
       },
       "tradeoff": "Wohnraum vs. Naturschutz"
-    },
-    {
-      "id": 12,
-      "topic": "Bauen, Klima & Stadtplanung",
-      "short_title": "Hochhäuser",
-      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), um Platz zu sparen.",
-      "axes": {
-        "x": 0.7,
-        "y": -0.3
-      },
-      "tradeoff": "Flächeneffizienz vs. Stadtbild"
-    },
-    {
-      "id": 13,
-      "topic": "Bauen, Klima & Stadtplanung",
-      "short_title": "Solarpflicht",
-      "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein.",
-      "axes": {
-        "x": -0.4,
-        "y": -0.8
-      },
-      "tradeoff": "Klimaschutz vs. Eigentumsfreiheit"
-    },
-    {
-      "id": 14,
-      "topic": "Bauen, Klima & Stadtplanung",
-      "short_title": "Klima-Vorrang",
-      "statement": "Bei städtischen Bau- und Planungsvorhaben sollen Klimaschutzvorgaben im Zweifel schwerer wiegen als Wirtschaftlichkeitsberechnungen.",
-      "axes": {
-        "x": -0.6,
-        "y": -1.0
-      },
-      "tradeoff": "Ökologie vs. Ökonomie"
-    },
-    {
-      "id": 15,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Gewerbesteuer",
-      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, um lokale Unternehmen zu entlasten.",
-      "axes": {
-        "x": 1.0,
-        "y": 0.0
-      },
-      "tradeoff": "Standortattraktivität vs. Einnahmen"
     },
     {
       "id": 16,
@@ -182,48 +50,15 @@
       "tradeoff": "Sparsamkeit vs. Investition"
     },
     {
-      "id": 17,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Digitale Verwaltung",
-      "statement": "Alle Bürgerservices der Stadt (z.B. Anmeldung, Baugenehmigungen) sollen vollständig digital angeboten werden, auch wenn dafür weniger persönliche Beratung vor Ort möglich ist.",
+      "id": 7,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Wohnungs-Rückkauf",
+      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um dauerhaft bezahlbare Mieten zu garantieren.",
       "axes": {
-        "x": 0.5,
-        "y": 0.0
+        "x": -1,
+        "y": 0
       },
-      "tradeoff": "Effizienz vs. Zugänglichkeit"
-    },
-    {
-      "id": 18,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Gewerbeflächen",
-      "statement": "München soll Gewerbeflächen schützen und nicht in Wohnraum umwandeln, auch wenn dadurch weniger neue Wohnungen entstehen.",
-      "axes": {
-        "x": 0.8,
-        "y": 0.3
-      },
-      "tradeoff": "Arbeitsplätze vs. Wohnraum"
-    },
-    {
-      "id": 19,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Referate abschaffen",
-      "statement": "Das Mobilitätsreferat und das Klimaschutzreferat sollen wieder abgeschafft und in bestehende Referate integriert werden.",
-      "axes": {
-        "x": 0.8,
-        "y": 0.6
-      },
-      "tradeoff": "Effizienz vs. Sichtbarkeit"
-    },
-    {
-      "id": 20,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Gendersprache",
-      "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
-      "axes": {
-        "x": 0.0,
-        "y": -1.0
-      },
-      "tradeoff": "Inklusion vs. Tradition"
+      "tradeoff": "Markt vs. Staat"
     },
     {
       "id": 21,
@@ -231,32 +66,54 @@
       "short_title": "Videoüberwachung",
       "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt eigene Videoüberwachung einsetzen.",
       "axes": {
-        "x": 0.0,
-        "y": 1.0
+        "x": 0,
+        "y": 1
       },
       "tradeoff": "Sicherheit vs. Privatsphäre"
     },
     {
-      "id": 22,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Drogenkonsumräume",
-      "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
+      "id": 2,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Autofreie Altstadt",
+      "statement": "Innerhalb des Altstadtrings soll der private Autoverkehr weitgehend verboten werden.",
       "axes": {
-        "x": 0.0,
-        "y": -0.9
+        "x": 0,
+        "y": -1
       },
-      "tradeoff": "Hilfe vs. Ordnung"
+      "tradeoff": "Lebensqualität vs. Erreichbarkeit"
     },
     {
-      "id": 23,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Ordnung im öffentlichen Raum",
-      "statement": "Die Stadt soll Probleme wie Drogenszene, Vermüllung und aggressives Betteln vor allem durch mehr Kontrolle und Ordnungskräfte lösen, statt auf Sozialarbeit und Hilfsangebote zu setzen.",
+      "id": 14,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Klima-Vorrang",
+      "statement": "Bei städtischen Bau- und Planungsvorhaben sollen Klimaschutzvorgaben im Zweifel schwerer wiegen als Wirtschaftlichkeitsberechnungen.",
       "axes": {
-        "x": 0.0,
-        "y": 0.8
+        "x": -0.6,
+        "y": -1
       },
-      "tradeoff": "Kontrolle vs. Prävention"
+      "tradeoff": "Ökologie vs. Ökonomie"
+    },
+    {
+      "id": 15,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Gewerbesteuer",
+      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, um lokale Unternehmen zu entlasten.",
+      "axes": {
+        "x": 1,
+        "y": 0
+      },
+      "tradeoff": "Standortattraktivität vs. Einnahmen"
+    },
+    {
+      "id": 10,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Nachverdichtung",
+      "statement": "In Gartenstadtvierteln soll der Erhalt von Gärten und alten Bäumen wichtiger sein als der Bau neuer Wohnungen durch Nachverdichtung.",
+      "axes": {
+        "x": 0,
+        "y": 0.6
+      },
+      "tradeoff": "Bestandsschutz vs. Nachverdichtung"
     },
     {
       "id": 24,
@@ -270,6 +127,138 @@
       "tradeoff": "Kontrolle vs. Freiheit"
     },
     {
+      "id": 4,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Tempo 30",
+      "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll ein Tempolimit von 30 km/h gelten.",
+      "axes": {
+        "x": 0,
+        "y": -0.8
+      },
+      "tradeoff": "Sicherheit vs. Schnelligkeit"
+    },
+    {
+      "id": 12,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Hochhäuser",
+      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), um Platz zu sparen.",
+      "axes": {
+        "x": 0.7,
+        "y": -0.3
+      },
+      "tradeoff": "Flächeneffizienz vs. Stadtbild"
+    },
+    {
+      "id": 17,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Digitale Verwaltung",
+      "statement": "Alle Bürgerservices der Stadt (z.B. Anmeldung, Baugenehmigungen) sollen vollständig digital angeboten werden, auch wenn dafür weniger persönliche Beratung vor Ort möglich ist.",
+      "axes": {
+        "x": 0.5,
+        "y": 0
+      },
+      "tradeoff": "Effizienz vs. Zugänglichkeit"
+    },
+    {
+      "id": 8,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Städtisches Bauen",
+      "statement": "Die städtische Wohnungsgesellschaft (Münchner Wohnen) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
+      "axes": {
+        "x": -0.9,
+        "y": 0
+      },
+      "tradeoff": "Rendite vs. Gemeinwohl"
+    },
+    {
+      "id": 23,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Ordnung im öffentlichen Raum",
+      "statement": "Die Stadt soll Probleme wie Drogenszene, Vermüllung und aggressives Betteln vor allem durch mehr Kontrolle und Ordnungskräfte lösen, statt auf Sozialarbeit und Hilfsangebote zu setzen.",
+      "axes": {
+        "x": 0,
+        "y": 0.8
+      },
+      "tradeoff": "Kontrolle vs. Prävention"
+    },
+    {
+      "id": 5,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "ÖPNV-Preise",
+      "statement": "Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dafür an anderer Stelle im Haushalt gespart werden muss.",
+      "axes": {
+        "x": -0.8,
+        "y": -0.5
+      },
+      "tradeoff": "Sozial vs. Haushaltsdisziplin"
+    },
+    {
+      "id": 13,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Solarpflicht",
+      "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein.",
+      "axes": {
+        "x": -0.4,
+        "y": -0.8
+      },
+      "tradeoff": "Klimaschutz vs. Eigentumsfreiheit"
+    },
+    {
+      "id": 18,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Gewerbeflächen",
+      "statement": "München soll Gewerbeflächen schützen und nicht in Wohnraum umwandeln, auch wenn dadurch weniger neue Wohnungen entstehen.",
+      "axes": {
+        "x": 0.8,
+        "y": 0.3
+      },
+      "tradeoff": "Arbeitsplätze vs. Wohnraum"
+    },
+    {
+      "id": 9,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Wachstumsbremse",
+      "statement": "Die Stadt soll aktiv Maßnahmen ergreifen, um das weitere Wachstum von München (Zuzug von Firmen/Menschen) zu bremsen, auch wenn das Steuereinnahmen kostet.",
+      "axes": {
+        "x": -0.5,
+        "y": 0.8
+      },
+      "tradeoff": "Ruhe vs. Wohlstand"
+    },
+    {
+      "id": 22,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Drogenkonsumräume",
+      "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
+      "axes": {
+        "x": 0,
+        "y": -0.9
+      },
+      "tradeoff": "Hilfe vs. Ordnung"
+    },
+    {
+      "id": 3,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Parkplätze",
+      "statement": "Bestehende Parkplätze am Straßenrand sollen erhalten bleiben und nicht für Radwege oder Grünflächen umgewandelt werden.",
+      "axes": {
+        "x": 0,
+        "y": 0.7
+      },
+      "tradeoff": "Privatbesitz vs. Öffentlicher Raum"
+    },
+    {
+      "id": 19,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Referate abschaffen",
+      "statement": "Das Mobilitätsreferat und das Klimaschutzreferat sollen wieder abgeschafft und in bestehende Referate integriert werden.",
+      "axes": {
+        "x": 0.8,
+        "y": 0.6
+      },
+      "tradeoff": "Effizienz vs. Sichtbarkeit"
+    },
+    {
       "id": 25,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Integrationskosten",
@@ -279,6 +268,17 @@
         "y": 0.7
       },
       "tradeoff": "Haushaltsdisziplin vs. Integrationsqualität"
+    },
+    {
+      "id": 6,
+      "topic": "Mobilität & Verkehr",
+      "short_title": "Radwege",
+      "statement": "Der Ausbau breiter Radwege soll Vorrang vor dem Erhalt von Fahrspuren für Autos haben.",
+      "axes": {
+        "x": 0,
+        "y": -0.9
+      },
+      "tradeoff": "Umweltverbund vs. Auto"
     }
   ],
   "parties": [
