@@ -37,6 +37,8 @@ function wahlomatApp() {
         shareSheetOpen: false,
         shareFormat: 'feed',
         shareCard: 'results',
+        feedbackGiven: false,
+        exitIntentShown: false,
 
         init() {
             if (window.WAHLOMAT_DATA) {
@@ -51,6 +53,8 @@ function wahlomatApp() {
             }
 
             this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            this.feedbackGiven = !!localStorage.getItem('mucwahl_feedback');
+            this.initExitIntent();
 
             this.$watch('answers', val => {
                 if (!this.isSharedView && !this.isEmbedMode) {
@@ -1483,6 +1487,31 @@ function wahlomatApp() {
             }).catch(() => {
                 alert('Link konnte nicht kopiert werden.');
             });
+        },
+
+        // --- Feedback ---
+        sendFeedback(answer) {
+            this.feedbackGiven = true;
+            localStorage.setItem('mucwahl_feedback', 'true');
+            const formBase = 'https://docs.google.com/forms/d/e/1FAIpQLSfzHyCavD3Orj3BXsIUBdNsi3-R6KhFWJ1XDKgJfkJHOlxNzg/viewform';
+            window.open(`${formBase}?usp=pp_url&entry.2079116199=${encodeURIComponent(answer)}`, '_blank', 'noopener');
+        },
+
+        initExitIntent() {
+            if (localStorage.getItem('mucwahl_feedback')) { this.feedbackGiven = true; return; }
+            let armed = false;
+            setTimeout(() => { armed = true; }, 15000);
+            document.addEventListener('mouseout', (e) => {
+                if (!armed || this.exitIntentShown || this.feedbackGiven || this.step !== 99) return;
+                if (e.clientY > 5 || e.relatedTarget || e.toElement) return;
+                this.exitIntentShown = true;
+            }, { passive: true });
+        },
+
+        dismissExitIntent() {
+            this.exitIntentShown = false;
+            localStorage.setItem('mucwahl_feedback', 'dismissed');
+            this.feedbackGiven = true;
         },
 
         // --- Answer Revision ---
