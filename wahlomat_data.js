@@ -74,55 +74,19 @@ window.WAHLOMAT_DATA = {
     },
     {
       "id": 7,
-      "topic": "Wohnen & Stadtplanung",
-      "short_title": "Große Neubaugebiete (SEM)",
-      "statement": "Die Stadt soll am Stadtrand (Feldmoching/Daglfing) Ackerflächen für den Bau Tausender neuer Wohnungen nutzen.",
-      "background": "Die SEM Nordost (600 Hektar bei Daglfing) soll ab den 2030ern Platz für ca. 30.000 Bewohner und 10.000 Arbeitsplätze schaffen. Die SEM Nord (Feldmoching) ist ebenfalls in Planung. Befürworter sehen dringend benötigten Wohnraum. Kritiker (darunter Landwirte und Naturschützer) warnen vor Flächenversiegelung und dem Verlust der letzten Ackerflächen im Stadtgebiet.",
-      "axes": {
-        "x": 0.5,
-        "y": 0.0
-      },
-      "tradeoff": "Wohnraum vs. Naturschutz"
-    },
-    {
-      "id": 8,
-      "topic": "Wohnen & Stadtplanung",
-      "short_title": "Hochhäuser",
-      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), auch wenn dies das Stadtbild verändert.",
-      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
-      "axes": {
-        "x": 0.7,
-        "y": -0.3
-      },
-      "tradeoff": "Flächeneffizienz vs. Stadtbild"
-    },
-    {
-      "id": 9,
-      "topic": "Wohnen & Stadtplanung",
-      "short_title": "Wohnungsbau vs. Grünflächen",
-      "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
-      "background": "Viele Münchner Viertel (z.B. Solln, Obermenzing, Trudering) haben Gartenstadtcharakter mit Einfamilienhäusern und viel Grün. Angesichts des Wohnungsmangels wird diskutiert, ob dort nachverdichtet werden soll. Befürworter sehen brachliegendes Potenzial in der teuersten Stadt Deutschlands. Anwohner verteidigen den Charakter ihrer Viertel und warnen vor Überlastung der Infrastruktur.",
-      "axes": {
-        "x": 0.0,
-        "y": -0.6
-      },
-      "tradeoff": "Bestandsschutz vs. Nachverdichtung"
-    },
-    {
-      "id": 10,
-      "topic": "Wohnen & Stadtplanung",
+      "topic": "Wohnen & Mietmarkt",
       "short_title": "Wohnungs-Rückkauf",
-      "statement": "Private Wohnungsbestände sollen im Besitz der Eigentümer bleiben und nicht von der Stadt aufgekauft werden.",
+      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um die Mieten dauerhaft zu kontrollieren, auch wenn das Milliarden kostet und den Haushalt belastet.",
       "background": "Große Wohnungsunternehmen wie Vonovia und Dawonia besitzen Tausende Wohnungen in München. Einige Parteien fordern den Rückkauf durch die Stadt, um Mieten dauerhaft kontrollieren zu können. Befürworter sehen darin langfristigen Mieterschutz. Kritiker verweisen auf die hohen Kaufpreise (Münchner Immobilienmarkt) und die bereits angespannte Haushaltslage der Stadt.",
       "axes": {
-        "x": 1.0,
+        "x": -1.0,
         "y": 0.0
       },
       "tradeoff": "Markt vs. Staat"
     },
     {
-      "id": 11,
-      "topic": "Wohnen & Stadtplanung",
+      "id": 8,
+      "topic": "Wohnen & Mietmarkt",
       "short_title": "Städtisches Bauen",
       "statement": "Die städtische Wohnungsgesellschaft Münchner Wohnen (früher GWG) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
       "background": "Die Münchner Wohnen (ehemals GWG/GEWOFAG) ist mit rund 70.000 Wohnungen Münchens größter Vermieter. Sie baut sowohl geförderte als auch freifinanzierte Wohnungen. Freifinanzierte Wohnungen erwirtschaften Gewinne, die wiederum in neue Projekte fließen. Die Frage ist, ob die Gesellschaft komplett auf bezahlbaren Wohnraum umschwenken soll, auch wenn das die Investitionsfähigkeit senkt.",
@@ -133,32 +97,56 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Rendite vs. Gemeinwohl"
     },
     {
-      "id": 12,
-      "topic": "Klima, Umwelt & Energie",
-      "short_title": "Klimaneutralität 2035",
-      "statement": "München soll das Ziel verfolgen, bis 2035 klimaneutral zu sein, auch wenn dies hohe Investitionen erfordert.",
-      "background": "Der Münchner Stadtrat hat 2019 Klimaneutralität bis 2035 beschlossen, 10 Jahre früher als das Bundesziel (2045). Ein Maßnahmenplan des Öko-Instituts umfasst über 250 Einzelmaßnahmen, u.a. Ausbau der Photovoltaik von 75 auf 800 MW und klimaneutrale Fernwärme. Kritiker halten das Ziel für unrealistisch und warnen vor hohen Kosten für Gebäudesanierung und Energieumbau.",
+      "id": 9,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Wachstumsbremse",
+      "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
+      "background": "Münchens Bevölkerung ist in 20 Jahren um über 300.000 auf rund 1,6 Mio. gewachsen. Der Zuzug treibt Mieten, Verkehr und Infrastrukturkosten. Befürworter einer Begrenzung wollen die Lebensqualität der bestehenden Bevölkerung schützen. Gegner sehen Wachstum als Motor für Steuereinnahmen und warnen, dass eine Kommune den Zuzug rechtlich kaum steuern kann.",
       "axes": {
         "x": -0.5,
-        "y": -1.0
+        "y": 0.8
       },
-      "tradeoff": "Ambition vs. Machbarkeit"
+      "tradeoff": "Ruhe vs. Wohlstand"
+    },
+    {
+      "id": 10,
+      "topic": "Wohnen & Mietmarkt",
+      "short_title": "Nachverdichtung",
+      "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
+      "background": "Viele Münchner Viertel (z.B. Solln, Obermenzing, Trudering) haben Gartenstadtcharakter mit Einfamilienhäusern und viel Grün. Angesichts des Wohnungsmangels wird diskutiert, ob dort nachverdichtet werden soll. Befürworter sehen brachliegendes Potenzial in der teuersten Stadt Deutschlands. Anwohner verteidigen den Charakter ihrer Viertel und warnen vor Überlastung der Infrastruktur.",
+      "axes": {
+        "x": 0.0,
+        "y": -0.6
+      },
+      "tradeoff": "Bestandsschutz vs. Nachverdichtung"
+    },
+    {
+      "id": 11,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "SEM/Neubaugebiete",
+      "statement": "Die Stadt soll am Stadtrand (Feldmoching/Daglfing) Ackerflächen für den Bau Tausender neuer Wohnungen nutzen.",
+      "background": "Die SEM Nordost (600 Hektar bei Daglfing) soll ab den 2030ern Platz für ca. 30.000 Bewohner und 10.000 Arbeitsplätze schaffen. Die SEM Nord (Feldmoching) ist ebenfalls in Planung. Befürworter sehen dringend benötigten Wohnraum. Kritiker (darunter Landwirte und Naturschützer) warnen vor Flächenversiegelung und dem Verlust der letzten Ackerflächen im Stadtgebiet.",
+      "axes": {
+        "x": 0.5,
+        "y": 0.0
+      },
+      "tradeoff": "Wohnraum vs. Naturschutz"
+    },
+    {
+      "id": 12,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Hochhäuser",
+      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), auch wenn dies das Stadtbild verändert.",
+      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
+      "axes": {
+        "x": 0.7,
+        "y": -0.3
+      },
+      "tradeoff": "Flächeneffizienz vs. Stadtbild"
     },
     {
       "id": 13,
-      "topic": "Klima, Umwelt & Energie",
-      "short_title": "Klima-Vorrang",
-      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
-      "background": "München hat eine Klimaschutzprüfung für alle städtischen Vorhaben eingeführt. In der Praxis entstehen dadurch Zielkonflikte: klimafreundlichere Bauweisen oder Materialien kosten oft mehr. Die Frage ist, ob Klimaschutz bei Zielkonflikten automatisch Vorrang vor dem Budget haben soll oder ob eine Einzelfallabwägung reicht.",
-      "axes": {
-        "x": -0.6,
-        "y": -1.0
-      },
-      "tradeoff": "Ökologie vs. Ökonomie"
-    },
-    {
-      "id": 14,
-      "topic": "Klima, Umwelt & Energie",
+      "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Solarpflicht",
       "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn Solaranlagen langfristig die Stromkosten senken.",
       "background": "Bayern hat seit 2023 eine Solarpflicht für Gewerbeneubauten. Seit Januar 2025 gilt eine Soll-Vorschrift auch für neue Wohngebäude und Dachsanierungen, mit Ermessensspielraum für Behörden. Befürworter der Pflicht sehen ungenutztes Potenzial auf Münchens Dächern. Kritiker warnen vor Mehrkosten (ca. 10.000–20.000 Euro) und Eingriffen in die Eigentumsfreiheit.",
@@ -169,19 +157,19 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Eigentumsfreiheit vs. Klimaschutz"
     },
     {
-      "id": 15,
-      "topic": "Klima, Umwelt & Energie",
-      "short_title": "Isar naturnah",
-      "statement": "Die Isar soll in weiteren Abschnitten naturnäher gestaltet werden, auch wenn dies Kosten verursacht und Uferbereiche zeitweise einschränkt.",
-      "background": "Der Isar-Plan (2000–2011) hat 8 km Flusslauf zwischen Großhesselohe und Deutschem Museum renaturiert, Kosten: über 20 Mio. Euro. Das Projekt gilt als Erfolg. Diese These betrifft weitere Abschnitte nördlich (Oberföhring) und südlich (Thalkirchen), die noch kanalisiert sind. Kritiker verweisen auf erneute Kosten in zweistelliger Millionenhöhe und mögliche Einschränkungen der Freizeitnutzung.",
+      "id": 14,
+      "topic": "Bauen, Klima & Stadtplanung",
+      "short_title": "Klima-Vorrang",
+      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
+      "background": "München hat eine Klimaschutzprüfung für alle städtischen Vorhaben eingeführt. In der Praxis entstehen dadurch Zielkonflikte: klimafreundlichere Bauweisen oder Materialien kosten oft mehr. Die Frage ist, ob Klimaschutz bei Zielkonflikten automatisch Vorrang vor dem Budget haben soll oder ob eine Einzelfallabwägung reicht.",
       "axes": {
-        "x": 0.0,
-        "y": -0.6
+        "x": -0.6,
+        "y": -1.0
       },
-      "tradeoff": "Natur vs. Freizeitnutzung"
+      "tradeoff": "Ökologie vs. Ökonomie"
     },
     {
-      "id": 16,
+      "id": 15,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbesteuer",
       "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
@@ -193,32 +181,56 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Standortattraktivität vs. Einnahmen"
     },
     {
-      "id": 17,
+      "id": 16,
       "topic": "Wirtschaft & Finanzen",
-      "short_title": "Übernachtungssteuer",
-      "statement": "München soll auf eine Übernachtungssteuer für Touristen verzichten, auch wenn der Stadt dadurch Einnahmen entgehen.",
-      "background": "Anders als Berlin, Hamburg oder Frankfurt erhebt München bislang keine Übernachtungssteuer. Geschätzte Einnahmen: 30–50 Mio. Euro jährlich. Befürworter sehen eine faire Beteiligung von Touristen an der Infrastruktur. Die Hotelbranche warnt vor Wettbewerbsnachteilen und bürokratischem Aufwand. Der Freistaat Bayern hat kommunale Bettensteuer bisher rechtlich blockiert.",
+      "short_title": "Sparkurs",
+      "statement": "Die Stadt München soll ihre Ausgaben deutlich kürzen und die Neuverschuldung stoppen, auch wenn dafür Projekte verschoben oder gestrichen werden.",
+      "background": "Münchens Schuldenstand wird Ende 2026 voraussichtlich 9,76 Milliarden Euro erreichen. Die Zinslast beträgt rund 400 Millionen Euro jährlich. Befürworter eines Sparkurses warnen vor einer Schuldenspirale und fordern Konzentration auf Pflichtaufgaben. Gegner verweisen auf dringend nötige Investitionen in Schulen (9 Mrd. Euro Bildungsbauoffensive), Wohnungsbau und ÖPNV, die gerade jetzt nicht warten dürften.",
       "axes": {
         "x": 0.7,
+        "y": 0.5
+      },
+      "tradeoff": "Sparsamkeit vs. Investition"
+    },
+    {
+      "id": 17,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Digitale Verwaltung",
+      "statement": "Alle Bürgerservices der Stadt (z.B. Anmeldung, Baugenehmigungen) sollen vollständig digital angeboten werden, auch wenn dafür weniger persönliche Beratung vor Ort möglich ist.",
+      "background": "Baugenehmigungen dauern in München 8 bis 18 Monate statt der gesetzlichen drei Monate. Befürworter einer konsequenten Digitalisierung sehen schnellere Prozesse und Einsparpotenziale. Kritiker warnen, dass ältere Menschen, Menschen ohne Internetzugang und Nicht-Muttersprachler auf persönliche Beratung angewiesen sind. Studien zeigen: Nur 12 Prozent der Bürger finden, der Staat mache ihr Leben einfacher.",
+      "axes": {
+        "x": 0.5,
         "y": 0.0
       },
-      "tradeoff": "Tourismusförderung vs. Einnahmen"
+      "tradeoff": "Effizienz vs. Zugänglichkeit"
     },
     {
       "id": 18,
-      "topic": "Wohnen & Stadtplanung",
-      "short_title": "Wachstumsbremse",
-      "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
-      "background": "Münchens Bevölkerung ist in 20 Jahren um über 300.000 auf rund 1,6 Mio. gewachsen. Der Zuzug treibt Mieten, Verkehr und Infrastrukturkosten. Befürworter einer Begrenzung wollen die Lebensqualität der bestehenden Bevölkerung schützen. Gegner sehen Wachstum als Motor für Steuereinnahmen und warnen, dass eine Kommune den Zuzug rechtlich kaum steuern kann.",
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Gewerbeflächen",
+      "statement": "München soll Gewerbeflächen schützen und nicht in Wohnraum umwandeln, auch wenn dadurch weniger neue Wohnungen entstehen.",
+      "background": "Das Angebot an Gewerbeflächen in München ist stark geschrumpft, während Unternehmen in Umlandgemeinden mit niedrigerer Gewerbesteuer abwandern (z.B. Grünwald: 240% vs. München: 490%). Die CSU beklagt 'null Komma null neue Gewerbeflächen' unter Grün-Rot. Befürworter des Schutzes sehen Arbeitsplätze und Steuereinnahmen in Gefahr. Gegner verweisen auf den akuten Wohnungsmangel und fordern, dass Wohnungsbau Vorrang hat.",
       "axes": {
-        "x": -0.5,
-        "y": 0.8
+        "x": 0.8,
+        "y": 0.3
       },
-      "tradeoff": "Ruhe vs. Wohlstand"
+      "tradeoff": "Arbeitsplätze vs. Wohnraum"
     },
     {
       "id": 19,
-      "topic": "Gesellschaft & Sicherheit",
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Referate abschaffen",
+      "statement": "Das Mobilitätsreferat und das Klimaschutzreferat sollen wieder abgeschafft und in bestehende Referate integriert werden.",
+      "background": "Die grün-rote Stadtregierung hat 2020/2021 das Mobilitätsreferat und das Referat für Klima- und Umweltschutz neu geschaffen. Befürworter der Abschaffung sehen Doppelstrukturen, zusätzliche Bürokratie und unnötige Personalkosten. Gegner argumentieren, dass eigene Referate Mobilität und Klimaschutz als Querschnittsaufgaben sichtbarer machen und politisch aufwerten, was ohne sie in größeren Referaten untergehen würde.",
+      "axes": {
+        "x": 0.8,
+        "y": 0.6
+      },
+      "tradeoff": "Effizienz vs. Sichtbarkeit"
+    },
+    {
+      "id": 20,
+      "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Gendersprache",
       "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
       "background": "Die Münchner Stadtverwaltung verwendet seit einigen Jahren geschlechtergerechte Formulierungen in offiziellen Dokumenten. Befürworter sehen darin ein Zeichen für Gleichberechtigung und Sichtbarkeit aller Geschlechter. Kritiker halten die Sonderzeichen für unleserlich und sehen einen Eingriff in die Standardsprache. Der Rat für deutsche Rechtschreibung empfiehlt bislang keine Sonderzeichen im amtlichen Gebrauch.",
@@ -229,8 +241,8 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Inklusion vs. Tradition"
     },
     {
-      "id": 20,
-      "topic": "Gesellschaft & Sicherheit",
+      "id": 21,
+      "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Videoüberwachung",
       "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt Videoüberwachung einsetzen, auch wenn dies die Privatsphäre im öffentlichen Raum einschränkt.",
       "background": "Am Hauptbahnhof gibt es bereits Bundespolizei-Kameras sowie seit 2025 mobile Videotürme mit 360°-Panorama. Der Bahnhof zählt zu den kriminalitätsbelasteten in Deutschland (553 Gewaltdelikte 2025). Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Datenschützer warnen vor Flächenüberwachung und bezweifeln die präventive Wirkung.",
@@ -241,8 +253,8 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Sicherheit vs. Privatsphäre"
     },
     {
-      "id": 21,
-      "topic": "Gesellschaft & Sicherheit",
+      "id": 22,
+      "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Drogenkonsumräume",
       "statement": "In München sollen staatlich kontrollierte Drogenkonsumräume für Abhängige eingerichtet werden.",
       "background": "Drogenkonsumräume existieren in Frankfurt, Hamburg und Berlin, aber nicht in Bayern. Die CSU-geführte Landesregierung lehnt sie ab und hat im Mai 2025 ihren restriktiven Kurs bestätigt. München fordert seit 2018 eine Erlaubnis vom Freistaat. Befürworter verweisen auf weniger Drogentote und weniger Spritzen im öffentlichen Raum. Gegner befürchten Signalwirkung und Anlaufstellen für die Szene.",
@@ -253,9 +265,21 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Hilfe vs. Ordnung"
     },
     {
-      "id": 22,
-      "topic": "Migration & Soziales",
-      "short_title": "Bezahlkarte für Asylbewerber",
+      "id": 23,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Ordnung im öffentlichen Raum",
+      "statement": "Die Stadt soll Probleme wie Drogenszene, Vermüllung und aggressives Betteln vor allem durch mehr Kontrolle und Ordnungskräfte lösen, statt auf Sozialarbeit und Hilfsangebote zu setzen.",
+      "background": "Rund um den Hauptbahnhof und den Alten Botanischen Garten klagen Anwohner und Gewerbetreibende über Drogenkonsum, Vermüllung und Belästigung. Der Kommunale Außendienst (KAD) patrouilliert seit 2024 dort. Befürworter fordern erweiterte Befugnisse (Platzverweise, Bußgelder) und mehr Präsenz. Gegner argumentieren, dass Obdachlosigkeit und Sucht soziale Probleme sind, die durch Verdrängung nicht gelöst, sondern nur verlagert werden.",
+      "axes": {
+        "x": 0.0,
+        "y": 0.8
+      },
+      "tradeoff": "Kontrolle vs. Prävention"
+    },
+    {
+      "id": 24,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Bezahlkarte",
       "statement": "Asylbewerber sollen eine Bezahlkarte erhalten, auch wenn dies ihre persönliche Freiheit einschränkt, über ihr Geld selbst zu verfügen.",
       "background": "Die Bezahlkarte ist in Bayern seit 2024 im Einsatz, über 70.000 Karten wurden ausgegeben (Stand März 2025). Empfänger können damit bei Mastercard-Akzeptanzstellen einkaufen und bis zu 50 Euro/Monat bar abheben. Überweisungen sind nicht möglich. Befürworter sehen weniger Missbrauch und geringere Verwaltungskosten. Kritiker warnen vor Stigmatisierung und Einschränkungen im Alltag.",
       "axes": {
@@ -265,40 +289,16 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Kontrolle vs. Freiheit"
     },
     {
-      "id": 23,
-      "topic": "Kultur & Freizeit",
-      "short_title": "Gasteig-Sanierung",
-      "statement": "Die Sanierung des Gasteig-Kulturzentrums soll wie geplant abgeschlossen werden, auch wenn die Kosten weiter steigen.",
-      "background": "Der Gasteig ist Europas größtes Kulturzentrum (Philharmonie, Stadtbibliothek, VHS). Die geschätzten Sanierungskosten sind von 450 Mio. auf bis zu 900 Mio. Euro gestiegen. Die Bauphase soll 2027 beginnen, Fertigstellung ist für 2033 geplant. Befürworter sehen den Gasteig als unverzichtbar für Münchens Kulturleben. Kritiker fragen, ob die Stadt bei knapper Kasse fast eine Milliarde investieren sollte.",
-      "axes": {
-        "x": -0.4,
-        "y": -0.3
-      },
-      "tradeoff": "Kultur vs. Kosten"
-    },
-    {
-      "id": 24,
-      "topic": "Kultur & Freizeit",
-      "short_title": "Queere Projekte",
-      "statement": "Die finanzielle Förderung für LGBTQ+-Projekte und -Beratungsstellen soll erhöht werden, auch wenn dafür an anderer Stelle im Haushalt gespart wird.",
-      "background": "München fördert queere Einrichtungen wie das Sub (Schwules Kommunikations- und Kulturzentrum), das LeZ (Lesbenberatung) und das diversity-Jugendzentrum. Die Finanzierung deckt laut Trägern nicht den wachsenden Bedarf. Befürworter sehen München in der Verantwortung als weltoffene Stadt. Kritiker fragen, ob Sonderförderung in Zeiten knapper Kassen gerechtfertigt ist.",
-      "axes": {
-        "x": -0.3,
-        "y": -1.0
-      },
-      "tradeoff": "Vielfalt vs. Sparsamkeit"
-    },
-    {
       "id": 25,
-      "topic": "Kultur & Freizeit",
-      "short_title": "Wiesn-Nachhaltigkeit",
-      "statement": "Die Stadt soll für das Oktoberfest verpflichtende Nachhaltigkeitskriterien (z.B. Bio-Quoten) festlegen, auch wenn dies die Preise erhöht.",
-      "background": "Die Wiesn hat bereits Nachhaltigkeitsregeln: Mehrweggeschirr seit 1991, 100% Ökostrom seit 2012, kostenloses Trinkwasser seit 2023. 2025 sank die Abfallmenge um 12% gegenüber dem Vorjahr. Die These fragt, ob darüber hinaus verbindliche Bio-Quoten und regionale Einkaufsstandards gelten sollen. Kritiker warnen vor steigenden Preisen (eine Maß kostet bereits über 15 Euro).",
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Integrationskosten",
+      "statement": "Die Stadt soll die Kosten für die Unterbringung und Integration von Geflüchteten stärker begrenzen, auch wenn dies das Betreuungsangebot einschränkt.",
+      "background": "München bringt mehrere Tausend Geflüchtete in kommunalen Unterkünften unter. Die Kosten für Unterbringung, Sprachkurse und Sozialbetreuung belasten den städtischen Haushalt. Befürworter einer Begrenzung verweisen auf die angespannte Haushaltslage und fordern stärkere Kostenbeteiligung von Bund und Freistaat. Gegner warnen, dass reduzierte Betreuung die Integration erschwert und langfristig teurer wird.",
       "axes": {
-        "x": -0.5,
-        "y": -0.7
+        "x": 0.5,
+        "y": 0.7
       },
-      "tradeoff": "Ökologie vs. Tradition"
+      "tradeoff": "Haushaltsdisziplin vs. Integrationsqualität"
     }
   ],
   "parties": [
@@ -334,79 +334,79 @@ window.WAHLOMAT_DATA = {
         },
         "7": {
           "val": -1,
-          "quote": "Die SEM-Projekte im Münchner Norden und Nordosten wollen wir beenden."
-        },
-        "8": {
-          "val": 1,
-          "quote": "Die starre 100-Meter-Grenze ist überholt. Wir befürworten architektonisch anspruchsvolle Hochhäuser."
-        },
-        "9": {
-          "val": -1,
-          "quote": "Wir stoppen die dauerhafte Nachverdichtung in Gartenstädten... und bekennen uns klar zu diesem Siedlungstyp."
-        },
-        "10": {
-          "val": 1,
           "quote": "Wir verteufeln Eigentum nicht... Anreize zur Privatisierung von Mietwohnungen."
         },
-        "11": {
+        "8": {
           "val": -1,
           "quote": "Die städtische Wohnungsbaugesellschaft muss wirtschaftlich handeln können."
         },
-        "12": {
+        "9": {
           "val": -1,
-          "quote": "Klimaschutz gelingt nur, wenn er machbar und bezahlbar bleibt... Die zwingende Klimaschutzprüfung aller städtischen Aktivitäten und Pläne schaffen wir wieder ab."
+          "quote": "Wir stehen zum Wirtschaftsstandort München. Wohlstand braucht Wachstum und Innovation."
+        },
+        "10": {
+          "val": -1,
+          "quote": "Wir stoppen die dauerhafte Nachverdichtung in Gartenstädten... und bekennen uns klar zu diesem Siedlungstyp."
+        },
+        "11": {
+          "val": -1,
+          "quote": "Die SEM-Projekte im Münchner Norden und Nordosten wollen wir beenden."
+        },
+        "12": {
+          "val": 1,
+          "quote": "Die starre 100-Meter-Grenze ist überholt. Wir befürworten architektonisch anspruchsvolle Hochhäuser."
         },
         "13": {
-          "val": -1,
-          "quote": "Die zwingende Klimaschutzprüfung aller städtischen Aktivitäten und Pläne schaffen wir wieder ab und führen diese Prüfung nur aus begründetem Anlass im Einzelfall durch."
-        },
-        "14": {
           "val": 1,
           "quote": "Die Landeshauptstadt geht voran: Photovoltaik auf allen städtischen Neubauten... Außerhalb der Fernwärme setzen wir auf... Anreize."
         },
-        "15": {
-          "val": 0,
-          "quote": "Wir schützen Frischluftschneisen, Grünflächen und Wasserläufe... Wo sinnvoll, prüfen wir die Rückkehr von Stadtbächen."
+        "14": {
+          "val": -1,
+          "quote": "Die zwingende Klimaschutzprüfung aller städtischen Aktivitäten und Pläne schaffen wir wieder ab und führen diese Prüfung nur aus begründetem Anlass im Einzelfall durch."
         },
-        "16": {
+        "15": {
           "val": 1,
           "quote": "Wir prüfen eine moderate Senkung, wenn sie Ansiedlungen und das Gesamtaufkommen stärkt."
         },
+        "16": {
+          "val": 1,
+          "quote": "Die Stadt hat kein Einnahmeproblem. Prioritäten setzen statt Wunschlisten schreiben."
+        },
         "17": {
           "val": 1,
-          "quote": "Wir erhöhen Münchens Einnahmen ohne neue Belastungen: keine Bettensteuer, keine Verpackungssteuer."
+          "quote": "Prozesse müssen von Anfang bis Ende digitalisiert sein. Digitales Bürgerbüro und E-Akte für schnelleren Service."
+        },
+        "18": {
+          "val": 1,
+          "quote": "Null Komma Null neue Gewerbeflächen unter Grün-Rot. Wir fordern 35 Hektar neue Gewerbeflächen bis 2030."
         },
         "19": {
+          "val": 1,
+          "quote": "Mobilitätsreferat und Klimaschutzreferat haben Doppelstrukturen und unnötige Bürokratie geschaffen."
+        },
+        "20": {
           "val": -1,
           "quote": "In offiziellen Schreiben ist Gendern (*, :, etc.) nicht zulässig. Die Stadtverwaltung verwendet die amtliche deutsche Rechtschreibung."
         },
-        "20": {
+        "21": {
           "val": 1,
           "quote": "Gezielte städtische Videoüberwachung an Kriminalitäts- und Verwahrlosungsschwerpunkten."
         },
-        "21": {
+        "22": {
           "val": -1,
           "quote": "Null-Toleranz-Politik an definierten Brennpunkten... Konsequente Anwendung von Aufenthalts- und Alkoholregelungen."
         },
         "23": {
           "val": 1,
-          "quote": "Den Gasteig... als vielseitige Veranstaltungsorte vollständig erhalten bleiben."
+          "quote": "KAD-Befugnisse erweitern. Null-Toleranz-Politik an Verwahrlosungsschwerpunkten."
         },
         "24": {
-          "val": 0,
-          "quote": "LSBTIQ-Ansprechperson bei Ordnungs- und Sicherheitsbehörden etablieren."
-        },
-        "25": {
-          "val": -1,
-          "quote": "Offen für neue Brauereien... Großveranstaltungen ermöglichen – mit klaren Regeln (Fokus Sicherheit)."
-        },
-        "18": {
-          "val": -1,
-          "quote": "Wir stehen zum Wirtschaftsstandort München. Wohlstand braucht Wachstum und Innovation."
-        },
-        "22": {
           "val": 1,
           "quote": "Wir fordern die konsequente Einführung der Bezahlkarte, um Missbrauch zu verhindern und Anreize für illegale Migration zu senken."
+        },
+        "25": {
+          "val": 1,
+          "quote": "Kommunale Belastungsgrenzen sind erreicht. Bund und Freistaat müssen ihrer finanziellen Verantwortung nachkommen."
         }
       }
     },
@@ -442,79 +442,79 @@ window.WAHLOMAT_DATA = {
         },
         "7": {
           "val": 1,
-          "quote": "Langfristig bekennen wir uns zur Siedlungsentwicklung im Norden und Nordosten."
-        },
-        "8": {
-          "val": 0,
-          "quote": "Bei höheren Gebäuden ab 9 Geschossen (Hochhäuser) muss im Einzelfall nach Abwägung aller Faktoren entschieden werden, ob und wo Hochhäuser sinnvoll sind."
-        },
-        "9": {
-          "val": 1,
-          "quote": "Wir bauen bevorzugt dort, wo bereits Bebauung vorhanden ist... wollen wir mit Augenmaß bewusst in die Höhe nachverdichten."
-        },
-        "10": {
-          "val": -1,
           "quote": "Prüfung weitergehender kommunaler Maßnahmen wie Baugebote oder Rückkaufoptionen."
         },
-        "11": {
+        "8": {
           "val": 1,
           "quote": "Weiterhin faire und bezahlbare Mieten bei der Münchner Wohnen sicherzustellen, ist für uns selbstverständlich."
         },
-        "12": {
+        "9": {
+          "val": 0,
+          "quote": "Wir wollen qualitatives, nachhaltiges Wachstum, keinen blinden Flächenfraß."
+        },
+        "10": {
           "val": 1,
-          "quote": "Wir stehen zu den Pariser Klimazielen und halten Kurs für Münchens Klimaneutralität bis 2035."
+          "quote": "Wir bauen bevorzugt dort, wo bereits Bebauung vorhanden ist... wollen wir mit Augenmaß bewusst in die Höhe nachverdichten."
+        },
+        "11": {
+          "val": 1,
+          "quote": "Langfristig bekennen wir uns zur Siedlungsentwicklung im Norden und Nordosten."
+        },
+        "12": {
+          "val": 0,
+          "quote": "Bei höheren Gebäuden ab 9 Geschossen (Hochhäuser) muss im Einzelfall nach Abwägung aller Faktoren entschieden werden, ob und wo Hochhäuser sinnvoll sind."
         },
         "13": {
-          "val": 1,
-          "quote": "Klimaschutz ist Daseinsvorsorge. Wir stoppen klimaschädliche Großprojekte."
-        },
-        "14": {
           "val": -1,
           "quote": "Solarpflicht für Neubauten und auf kommunalen Gebäuden."
         },
-        "15": {
+        "14": {
           "val": 1,
-          "quote": "Fortsetzung der Renaturierung der Isar in weiteren Abschnitten fortsetzen."
+          "quote": "Klimaschutz ist Daseinsvorsorge. Wir stoppen klimaschädliche Großprojekte."
         },
-        "16": {
+        "15": {
           "val": -1,
           "quote": "Ein Haushalt für die Zukunft – fair investieren... Priorität für Zukunftsinvestitionen: Bildung, Klima, Wohnen."
         },
-        "17": {
+        "16": {
           "val": -1,
-          "quote": "Einführung einer Übernachtungsabgabe."
+          "quote": "Es geht nicht um Zahlen, es geht um Zukunft. Priorität für Zukunftsinvestitionen in Bildung, Klima und Wohnen."
+        },
+        "17": {
+          "val": 0,
+          "quote": "Digitalisierung der Verwaltung vorantreiben, aber persönliche Beratung für alle Bürger*innen erhalten."
+        },
+        "18": {
+          "val": -1,
+          "quote": "Wohnraum hat Vorrang. Keine neuen Gewerbeflächen auf Kosten von Grün- und Wohnflächen."
         },
         "19": {
+          "val": -1,
+          "quote": "Eigene Referate für Mobilität und Klimaschutz machen Querschnittsaufgaben sichtbar und politisch wirksam."
+        },
+        "20": {
           "val": 1,
           "quote": "Wir stehen zur Gleichberechtigung."
         },
-        "20": {
+        "21": {
           "val": -1,
           "quote": "Sicherheit verstehen wir als Gemeinschaftsaufgabe... Kommunaler Außendienst gezielt einsetzen, AKIM stärken."
         },
-        "21": {
+        "22": {
           "val": 1,
           "quote": "Drogenkonsumräume schaffen (Rechtsgrundlage beim Freistaat einfordern)."
         },
         "23": {
-          "val": 1,
-          "quote": "Wir sichern die kulturelle Nutzung des Gasteigs, damit das größte Kulturzentrum Europas bestehen bleibt."
+          "val": -1,
+          "quote": "Sicherheit als Gemeinschaftsaufgabe. Prävention und Sozialarbeit statt Verdrängung."
         },
         "24": {
-          "val": 1,
-          "quote": "Queere Zentren (SUB, LeZ, diversity, Regenbogenfamilienzentrum) sichern... Wohnprojekte für queere Jugendliche."
-        },
-        "25": {
-          "val": 1,
-          "quote": "Verbindliche Nachhaltigkeitsstandards für Großveranstaltungen (Green Host City)... Offen für neue Brauereien."
-        },
-        "18": {
-          "val": 0,
-          "quote": "Wir wollen qualitatives, nachhaltiges Wachstum, keinen blinden Flächenfraß."
-        },
-        "22": {
           "val": -1,
           "quote": "Die Bezahlkarte stigmatisiert Geflüchtete und erschwert das tägliche Leben. Wir stehen für eine humane Asylpolitik."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Integration braucht Investition. Reduzierte Betreuung erschwert das Ankommen und wird langfristig teurer."
         }
       }
     },
@@ -550,79 +550,79 @@ window.WAHLOMAT_DATA = {
         },
         "7": {
           "val": 1,
-          "quote": "Wir führen die städtebauliche Entwicklungsmaßnahme (SEM) im Münchner Nordosten und Norden fort."
-        },
-        "8": {
-          "val": 0,
-          "quote": "Wir bauen keine Schlafstädte, sondern lebendige Quartiere mit kurzen Wegen, die in ihrer Nutzung gemischt sind."
-        },
-        "9": {
-          "val": 1,
-          "quote": "Wir müssen auch die vorhandenen Wohnraumpotentiale im Bestand gezielt nutzen."
-        },
-        "10": {
-          "val": -1,
           "quote": "Wir nutzen jedes Instrument, das wir als Stadt zur Verfügung haben, um Mieterinnen und Mieter zu schützen."
         },
-        "11": {
+        "8": {
           "val": 1,
           "quote": "Es muss dauerhaft bezahlbarer Wohnraum von gemeinnützigen Akteuren geschaffen werden."
         },
-        "12": {
+        "9": {
+          "val": -1,
+          "quote": "München bleibt eine offene Stadt für Arbeitnehmer. Wir müssen die Infrastruktur anpassen, nicht Mauern bauen."
+        },
+        "10": {
           "val": 1,
-          "quote": "Bis 2035 wollen wir klimaneutral sein."
+          "quote": "Wir müssen auch die vorhandenen Wohnraumpotentiale im Bestand gezielt nutzen."
+        },
+        "11": {
+          "val": 1,
+          "quote": "Wir führen die städtebauliche Entwicklungsmaßnahme (SEM) im Münchner Nordosten und Norden fort."
+        },
+        "12": {
+          "val": 0,
+          "quote": "Wir bauen keine Schlafstädte, sondern lebendige Quartiere mit kurzen Wegen, die in ihrer Nutzung gemischt sind."
         },
         "13": {
-          "val": 1,
-          "quote": "Klare Prioritäten bei den Investitionen: ... Klimaschutz und nachhaltige Infrastruktur haben oberste Priorität."
-        },
-        "14": {
           "val": -1,
           "quote": "Solarpflicht für Neubauten und auf kommunalen Gebäuden."
         },
-        "15": {
+        "14": {
           "val": 1,
-          "quote": "Klimaresiliente Stadt als lebenswerte Stadt... Ausbau blauer Infrastruktur."
+          "quote": "Klare Prioritäten bei den Investitionen: ... Klimaschutz und nachhaltige Infrastruktur haben oberste Priorität."
         },
-        "16": {
+        "15": {
           "val": -1,
           "quote": "Kampf gegen Hebesatz-Dumping und Gewerbesteuer-Oasen im Umland."
         },
-        "17": {
+        "16": {
           "val": -1,
-          "quote": "Einführung einer Übernachtungssteuer für Touristinnen und Touristen."
+          "quote": "Klare Prioritäten bei Investitionen: Schulen, Wohnungsbau und Infrastruktur dürfen nicht warten."
+        },
+        "17": {
+          "val": 0,
+          "quote": "Digitale Angebote ausbauen und gleichzeitig persönliche Beratung für alle sicherstellen."
+        },
+        "18": {
+          "val": 0,
+          "quote": "Wir brauchen beides: bezahlbaren Wohnraum und gute Arbeitsplätze in der Stadt."
         },
         "19": {
+          "val": -1,
+          "quote": "Die neuen Referate stärken die politische Handlungsfähigkeit bei Mobilität und Klimaschutz."
+        },
+        "20": {
           "val": 1,
           "quote": ""
         },
-        "20": {
+        "21": {
           "val": -1,
           "quote": "Sozialdemokratische Sicherheitspolitik bedeutet für uns: Angebote vor Verboten, Prävention vor Strafe."
         },
-        "21": {
+        "22": {
           "val": 1,
           "quote": "Einrichtung von Drogenkonsumräumen und Einsatz für eine menschliche Drogenpolitik."
         },
         "23": {
-          "val": 1,
-          "quote": "Wir wollen die städtischen Theater, Museen und Orchester mit fairer Finanzierung dauerhaft absichern."
+          "val": 0,
+          "quote": "Angebote vor Verboten, Prävention vor Strafe. Soziale Ursachen der Verwahrlosung bekämpfen."
         },
         "24": {
-          "val": 1,
-          "quote": "Erhalt und Sicherung queerpolitischer Standards: Bestehende Förderungen... sichern und weiterführen."
-        },
-        "25": {
-          "val": 0,
-          "quote": ""
-        },
-        "18": {
-          "val": -1,
-          "quote": "München bleibt eine offene Stadt für Arbeitnehmer. Wir müssen die Infrastruktur anpassen, nicht Mauern bauen."
-        },
-        "22": {
           "val": -1,
           "quote": "Wir lehnen ein diskriminierendes Bezahlkartensystem ab. Integration braucht Teilhabe, keine Gängelung."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Integration gelingt durch Teilhabe, nicht durch Kürzungen bei Sprachkursen und Betreuung."
         }
       }
     },
@@ -658,79 +658,79 @@ window.WAHLOMAT_DATA = {
         },
         "7": {
           "val": -1,
-          "quote": "Abkehr von Projekten wie... Smart City oder bewegungseinschränkenden 15-Minuten-Stadt. Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten."
+          "quote": "Sofortiger Stopp der investiven Neuverschuldung... Rückführung neu aufgenommener Schulden durch Verkauf des Gasteig-Geländes und weiterer geeigneter städtischer Immobilien."
         },
         "8": {
           "val": -1,
-          "quote": "Megalomanie begrenzen: keine Genehmigung weiterer oder hoher dimensionierter Hochhausprojekte."
+          "quote": "Schuldenabbau mit verbindlichem Tilgungsplan durch Priorisierung und Streichung nicht zwingender Großprojekte."
         },
         "9": {
+          "val": 1,
+          "quote": "Zuzug begrenzen. Heimat bewahren vor Überfremdung und Überlastung der Infrastruktur."
+        },
+        "10": {
           "val": -1,
           "quote": "Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten... Einheitsbauten und überdimensionierte Mietblöcke vermeiden."
         },
-        "10": {
-          "val": 1,
-          "quote": "Sofortiger Stopp der investiven Neuverschuldung... Rückführung neu aufgenommener Schulden durch Verkauf des Gasteig-Geländes und weiterer geeigneter städtischer Immobilien."
-        },
         "11": {
           "val": -1,
-          "quote": "Schuldenabbau mit verbindlichem Tilgungsplan durch Priorisierung und Streichung nicht zwingender Großprojekte."
+          "quote": "Abkehr von Projekten wie... Smart City oder bewegungseinschränkenden 15-Minuten-Stadt. Historische und denkmalgeschützte Bauwerke sowie den eigenständigen Charakter der Stadtteile erhalten."
         },
         "12": {
           "val": -1,
-          "quote": "Energieausrichtung anpassen: Strategiewechsel weg von priorisierten Investitionen in erneuerbare Energien."
+          "quote": "Megalomanie begrenzen: keine Genehmigung weiterer oder hoher dimensionierter Hochhausprojekte."
         },
         "13": {
-          "val": -1,
-          "quote": "Das 'Greenwashing' von nicht regional erzeugter Energie durch die Münchner Stadtwerke beenden... Strategiewechsel weg von priorisierten Investitionen in erneuerbare Energien."
-        },
-        "14": {
           "val": 1,
           "quote": "Keine über bundesweite Vorgaben hinausgehenden Baustandards festlegen (z. B. im energetischen Bereich)."
         },
-        "15": {
-          "val": 0,
-          "quote": "Grünflächen erhalten und erweitern (Parks, Wiesen, Ackerflächen, Straßengrün)."
+        "14": {
+          "val": -1,
+          "quote": "Das 'Greenwashing' von nicht regional erzeugter Energie durch die Münchner Stadtwerke beenden... Strategiewechsel weg von priorisierten Investitionen in erneuerbare Energien."
         },
-        "16": {
+        "15": {
           "val": 0,
           "quote": "Keine Erhöhung der Gewerbesteuer."
         },
-        "17": {
+        "16": {
           "val": 1,
-          "quote": "Keine Einführung einer Tourismusabgabe bzw. Übernachtungssteuer."
+          "quote": "Sofortiger Stopp der investiven Neuverschuldung. Fokussierung auf städtische Pflichtaufgaben."
+        },
+        "17": {
+          "val": 0,
+          "quote": "Bürokratie abbauen und Verwaltung verschlanken, aber keine Smart-City-Überwachungsinfrastruktur."
+        },
+        "18": {
+          "val": 1,
+          "quote": "Erhalt und Ausbau von Gewerbeflächen. Abwanderung von Unternehmen ins Umland stoppen."
         },
         "19": {
+          "val": 1,
+          "quote": "Abschaffung des Mobilitätsreferates. Abbau des Verwaltungswasserkopfes."
+        },
+        "20": {
           "val": -1,
           "quote": "Abschaffung der Gleichstellungsstelle... Erhalt der christlich abendländischen Kultur... durch Pflege von Festen, Brauchtum und deutscher Sprache."
         },
-        "20": {
+        "21": {
           "val": 0,
           "quote": "Konsequentes Vorgehen gegen Verwahrlosung... Null-Toleranz-Politik an definierten Brennpunkten."
         },
-        "21": {
+        "22": {
           "val": -1,
           "quote": "Null-Toleranz-Politik an definierten Brennpunkten."
         },
         "23": {
-          "val": -1,
-          "quote": "Sanierung des Gasteigs aufgrund fehlender Wirtschaftlichkeit ablehnen... Verkauf des Gasteig-Geländes."
+          "val": 1,
+          "quote": "Konsequentes Vorgehen gegen Verwahrlosung. Null-Toleranz-Politik an definierten Brennpunkten."
         },
         "24": {
-          "val": -1,
-          "quote": "Abschaffung der... Koordinierungsstelle für gleichgeschlechtliche Lebensweisen und der Koordinierungstelle LGBTiQ*."
-        },
-        "25": {
-          "val": -1,
-          "quote": "Erhalt der christlich abendländischen Kultur... durch Pflege von Festen, Brauchtum."
-        },
-        "18": {
-          "val": 1,
-          "quote": "Zuzug begrenzen. Heimat bewahren vor Überfremdung und Überlastung der Infrastruktur."
-        },
-        "22": {
           "val": 1,
           "quote": "Geldleistungen streichen. Konsequente Umstellung auf Sachleistungen und Bezahlkarte."
+        },
+        "25": {
+          "val": 1,
+          "quote": "Münchens Aufnahmekapazitäten sind erschöpft. Keine weitere Eröffnung neuer Flüchtlingsunterkünfte."
         }
       }
     },
@@ -765,80 +765,80 @@ window.WAHLOMAT_DATA = {
           "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr."
         },
         "7": {
-          "val": 1,
-          "quote": "Wo München in die Breite wächst, müssen neue Stadtviertel entstehen. ... Stadtentwicklung und Mobilitätsentwicklung müssen dabei gemeinsam gedacht und geplant werden."
-        },
-        "8": {
-          "val": 1,
-          "quote": "Dazu gehören ausdrücklich auch Hochhäuser (höher als 100 Meter) im Einklang mit der Münchner Hochhausstudie."
-        },
-        "9": {
-          "val": 1,
-          "quote": "Nachverdichtung und Gebäudeaufstockung sind als Ansätze zu präferieren."
-        },
-        "10": {
-          "val": 1,
+          "val": -1,
           "quote": "Insbesondere soll München Investitionen in den Neubau zusätzlicher Wohnungen den Vorrang geben vor dem Aufkauf von Bestandswohnungen."
         },
-        "11": {
+        "8": {
           "val": -1,
           "quote": "Wir wollen es mehr Menschen erleichtern, ihren Traum vom Eigenheim zu verwirklichen."
         },
-        "12": {
+        "9": {
           "val": -1,
-          "quote": "Deswegen wird eine Klimaneutralität auch nur sinnvoll 2050 erreichbar sein."
+          "quote": "Wirtschaftswachstum sichert Arbeitsplätze. Wir wollen Unternehmen anziehen, nicht vertreiben."
+        },
+        "10": {
+          "val": 1,
+          "quote": "Nachverdichtung und Gebäudeaufstockung sind als Ansätze zu präferieren."
+        },
+        "11": {
+          "val": 1,
+          "quote": "Wo München in die Breite wächst, müssen neue Stadtviertel entstehen. ... Stadtentwicklung und Mobilitätsentwicklung müssen dabei gemeinsam gedacht und geplant werden."
+        },
+        "12": {
+          "val": 1,
+          "quote": "Dazu gehören ausdrücklich auch Hochhäuser (höher als 100 Meter) im Einklang mit der Münchner Hochhausstudie."
         },
         "13": {
-          "val": -1,
-          "quote": "Wir wollen eine naturwissenschaftlich fundierte Energiepolitik, die auf Innovation, Wettbewerb und hohe gesellschaftliche Akzeptanz setzt."
-        },
-        "14": {
           "val": 1,
           "quote": "Mit Dach- und Fassadenbegrünungen sollen... auch private Gebäudeeigentümer beitragen, alternativ sollen sie die Flächen auch für Photovoltaik nutzen können... auf freiwilliger Basis."
         },
-        "15": {
-          "val": 0,
-          "quote": "Insbesondere der Englische Garten, die Isar und ihre Auen sind dabei als Lebensadern und Naherholungszentren besonders wichtig."
+        "14": {
+          "val": -1,
+          "quote": "Wir wollen eine naturwissenschaftlich fundierte Energiepolitik, die auf Innovation, Wettbewerb und hohe gesellschaftliche Akzeptanz setzt."
         },
-        "16": {
+        "15": {
           "val": 1,
           "quote": "Ziel ist es, die Gewerbesteuer zu senken."
         },
+        "16": {
+          "val": 1,
+          "quote": "Verantwortungsvoller Umgang mit Eurem Geld. Prioritäten setzen statt alles gleichzeitig versprechen."
+        },
         "17": {
           "val": 1,
-          "quote": "Solide Staatsfinanzen... Grundlage für nachhaltiges Wachstum."
+          "quote": "Behördengänge, die online funktionieren. Weniger Bürokratie, mehr Service."
+        },
+        "18": {
+          "val": 1,
+          "quote": "München braucht Gewerbeflächen für Mittelstand und Handwerk. Standortwettbewerb ernst nehmen."
         },
         "19": {
+          "val": 1,
+          "quote": "Referate zusammenlegen: Mobilitätsreferat und Klimaschutzreferat abschaffen. Schlankere Verwaltung."
+        },
+        "20": {
           "val": 0,
           "quote": "München ist bunt. Wir fordern eine Konvention für LGBTI-Rechte."
         },
-        "20": {
+        "21": {
           "val": -1,
           "quote": "Daher befürworten wir etwa mehr Polizeipräsenz... lehnen aber gleichzeitig Massenüberwachung, z.B. durch Videoüberwachung mit Gesichtserkennung, ab."
         },
-        "21": {
+        "22": {
           "val": 1,
           "quote": "München soll Drogenkonsumräume einrichten, um öffentlichen Konsum zu reduzieren und gesundheitliche sowie soziale Hilfeangebote zugänglich zu machen."
         },
         "23": {
-          "val": 1,
-          "quote": "Eine nachhaltige Lösung für Konzerthaus und den Gasteig erhält und entwickelt Münchens Ruf als internationale Kulturstadt."
+          "val": 0,
+          "quote": "Ordnung und Sicherheit im öffentlichen Raum stärken, aber rechtsstaatlich und verhältnismäßig."
         },
         "24": {
           "val": 1,
-          "quote": "Wir fordern eine Konvention für LGBTI-Rechte... Schutz vor Diskriminierung aufgrund der sexuellen Identität."
+          "quote": "Die Bezahlkarte reduziert Bürokratie und verhindert Geldtransfers. Ein sinnvolles digitales Instrument."
         },
         "25": {
-          "val": -1,
-          "quote": ""
-        },
-        "18": {
-          "val": -1,
-          "quote": "Wirtschaftswachstum sichert Arbeitsplätze. Wir wollen Unternehmen anziehen, nicht vertreiben."
-        },
-        "22": {
           "val": 1,
-          "quote": "Die Bezahlkarte reduziert Bürokratie und verhindert Geldtransfers. Ein sinnvolles digitales Instrument."
+          "quote": "Effizientere Mittelverwendung bei der Integration. Bund und Freistaat stärker in die Pflicht nehmen."
         }
       }
     },
@@ -874,79 +874,79 @@ window.WAHLOMAT_DATA = {
         },
         "7": {
           "val": 1,
-          "quote": "Die bestehenden SEM-Projekte Nordost und Nord beschleunigen... in den städtischen Entwicklungsgebieten ausschließlich bezahlbare Wohnungen... schaffen."
-        },
-        "8": {
-          "val": -1,
-          "quote": "Den Bau von Hochhäusern über 60 Meter untersagen, da durch diese keine bezahlbarer Wohnraum entsteht."
-        },
-        "9": {
-          "val": 1,
-          "quote": "verbindliche Regelungen für soziale Nachverdichtungen im Bestand einführen."
-        },
-        "10": {
-          "val": -1,
           "quote": "Die Wohnungsbestände von Dawonia, Vonovia, WSB & Co. zurück in öffentliches Eigentum holen und Initiativen wie 'DW & Co. enteignen' aktiv unterstützen."
         },
-        "11": {
+        "8": {
           "val": 1,
           "quote": "Keine Kürzungen beim geförderten und preisgedämpften Wohnungsbau! Die Münchner Wohnen... müssen stattdessen stärker gefördert werden."
         },
-        "12": {
+        "9": {
           "val": 1,
-          "quote": "München muss in allen Bereichen klimaneutral werden und zwar auf Kosten derer, die am meisten für die Ursachen des Klimawandels verantwortlich sind."
+          "quote": "Investorengetriebenes Wachstum verdrängt Menschen. Vorrang für Soziales statt Konzernansiedlung."
+        },
+        "10": {
+          "val": 1,
+          "quote": "verbindliche Regelungen für soziale Nachverdichtungen im Bestand einführen."
+        },
+        "11": {
+          "val": 1,
+          "quote": "Die bestehenden SEM-Projekte Nordost und Nord beschleunigen... in den städtischen Entwicklungsgebieten ausschließlich bezahlbare Wohnungen... schaffen."
+        },
+        "12": {
+          "val": -1,
+          "quote": "Den Bau von Hochhäusern über 60 Meter untersagen, da durch diese keine bezahlbarer Wohnraum entsteht."
         },
         "13": {
-          "val": 1,
-          "quote": "Stadtentwicklungspläne bezüglich des Klimas und des Umweltschutzes priorisieren."
-        },
-        "14": {
           "val": -1,
           "quote": "Lösungen für eine lokale und stadtviertel-basierte Stromversorgung entwickeln... Verwendung nachhaltiger Baustoffe fördern."
         },
-        "15": {
+        "14": {
           "val": 1,
-          "quote": "Stadtbäche entsiegeln und private Entsiegelung fördern, um eine Schwammstadt zu erschaffen."
+          "quote": "Stadtentwicklungspläne bezüglich des Klimas und des Umweltschutzes priorisieren."
         },
-        "16": {
+        "15": {
           "val": -1,
           "quote": "Seit fast 30 Jahren wurde die Gewerbesteuer in München nicht mehr erhöht. Wir wollen eine Erhöhung um zehn Prozent."
         },
+        "16": {
+          "val": -1,
+          "quote": "Keine Kürzungen bei der Daseinsvorsorge! Öffentliche Aufgaben ausbauen, nicht kaputtsparen."
+        },
         "17": {
           "val": -1,
-          "quote": "Wir wollen ein München, in dem alle zur Verantwortung gezogen werden -- auch Tourist*innen. ... Dafür wollen wir eine Kulturtaxe... einführen."
+          "quote": "Digitalisierung darf nicht auf Kosten persönlicher Beratung und barrierefreier Zugänge gehen."
+        },
+        "18": {
+          "val": -1,
+          "quote": "Wohnraum hat Vorrang vor Gewerbe. Konzerninteressen dürfen den Wohnungsbau nicht blockieren."
         },
         "19": {
+          "val": -1,
+          "quote": "Klimaschutz und Verkehrswende brauchen starke, eigenständige Referate mit eigenem Budget."
+        },
+        "20": {
           "val": 1,
           "quote": "Wir fördern die Gleichberechtigung von Frauen, Männern und queeren/nicht-binären sowie trans* Personengruppen."
         },
-        "20": {
+        "21": {
           "val": -1,
           "quote": "Keine Gesichtserkennung & KI-Massenüberwachung... Wir lehnen automatisierte Gesichtserkennung und andere Formen der flächendeckenden KI-Überwachung im öffentlichen Raum strikt ab."
         },
-        "21": {
+        "22": {
           "val": 1,
           "quote": "Menschen mit Suchterkrankungen unterstützen statt zu kriminalisieren und geschützte 'Druckräume', in denen der Konsum unter ärztlicher Aufsicht erfolgt, einrichten."
         },
         "23": {
-          "val": 1,
-          "quote": "Eine mehrjährige Finanzplanung ohne Spardruck und Stellenkürzungen für Planungssicherheit."
+          "val": -1,
+          "quote": "Obdachlosigkeit und Sucht sind soziale Probleme. Verdrängung löst keine Ursachen."
         },
         "24": {
-          "val": 1,
-          "quote": "Ausreichend öffentliche Mittel für queere Hilfsangebote und Beratungsstellen in der Stadt München... schaffen."
-        },
-        "25": {
-          "val": 1,
-          "quote": "Das Oktoberfest nachhaltiger machen."
-        },
-        "18": {
-          "val": 1,
-          "quote": "Investorengetriebenes Wachstum verdrängt Menschen. Vorrang für Soziales statt Konzernansiedlung."
-        },
-        "22": {
           "val": -1,
           "quote": "Nein zur rassistischen Bezahlkarte. Menschenwürde ist nicht antastbar."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Menschenwürdige Unterbringung und Betreuung sind nicht verhandelbar."
         }
       }
     },
@@ -976,45 +976,45 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Reduzierung von Parkplätzen zugunsten von Wohnraum und Grünflächen... Radnetzes hat oberste Priorität."
         },
-        "7": {
-          "val": -1,
-          "quote": "Keine neuen Stadtentwicklungsprojekte auf der grünen Wiese – klare Ablehnung von SEM Nord, SEM Nordost."
-        },
-        "8": {
-          "val": -1,
-          "quote": "Einhaltung einer 60-Meter-Grenze für Hochhäuser."
-        },
         "9": {
+          "val": 1,
+          "quote": "Ab sofort keine Ausweisung neuer Gewerbeflächen... bis die Wohnungsnot sinkt. München braucht eine Atempause."
+        },
+        "10": {
           "val": -1,
           "quote": "Prüfung von Bebauungsplänen zum Erhalt unserer Stadtviertel mit Gartenstadtcharakter... Maßlose Nachverdichtung darf nicht auf Kosten der Grünflächen erfolgen."
         },
+        "11": {
+          "val": -1,
+          "quote": "Keine neuen Stadtentwicklungsprojekte auf der grünen Wiese – klare Ablehnung von SEM Nord, SEM Nordost."
+        },
         "12": {
-          "val": 1,
-          "quote": "Wir setzen uns als einzige Partei weiterhin für ein 100% klimaneutrales München bis 2035 ein."
+          "val": -1,
+          "quote": "Einhaltung einer 60-Meter-Grenze für Hochhäuser."
         },
         "13": {
-          "val": 1,
-          "quote": "Klimaschutz als Querschnittsaufgabe... Kontrolle aller Stadtratsbeschlüsse auf Klimawirksamkeit."
-        },
-        "14": {
           "val": -1,
           "quote": "Verpflichtung zur Nutzung von Photovoltaik auf Neubauten."
         },
-        "15": {
+        "14": {
           "val": 1,
-          "quote": "Renaturierung von Wasserläufen (z.B. Nordteil der Isar)."
-        },
-        "17": {
-          "val": -1,
-          "quote": "Einführung einer Übernachtungsabgabe, mit der Zielsetzung der Erhöhung der städtischen Einnahmen."
-        },
-        "25": {
-          "val": 1,
-          "quote": "Bio-Gastronomie muss bei Vergaben der Stadt bevorzugt werden, auch auf Dulten, dem Oktoberfest."
+          "quote": "Klimaschutz als Querschnittsaufgabe... Kontrolle aller Stadtratsbeschlüsse auf Klimawirksamkeit."
         },
         "18": {
-          "val": 1,
-          "quote": "Ab sofort keine Ausweisung neuer Gewerbeflächen... bis die Wohnungsnot sinkt. München braucht eine Atempause."
+          "val": -1,
+          "quote": "Ab sofort keine Ausweisung neuer Gewerbeflächen bis die Wohnungsnot sinkt."
+        },
+        "19": {
+          "val": -1,
+          "quote": "Klimaschutz als Querschnittsaufgabe braucht eigene institutionelle Verankerung."
+        },
+        "23": {
+          "val": -1,
+          "quote": "Soziale Hilfsangebote und Prävention statt mehr Kontrolle und Ordnungskräfte."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Integration erfordert langfristige Investitionen. Kürzungen schaffen nur neue Probleme."
         }
       }
     },
@@ -1036,25 +1036,41 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Kein flächendeckendes Tempo-30."
         },
-        "9": {
-          "val": -1,
-          "quote": "Wir müssen die maßlose Nachverdichtung zeitnah stoppen und unser Stadtklima schützen."
-        },
-        "11": {
+        "8": {
           "val": 1,
           "quote": "Mehr Neubauten durch die städtische Münchner Wohnen."
         },
-        "15": {
+        "10": {
+          "val": -1,
+          "quote": "Wir müssen die maßlose Nachverdichtung zeitnah stoppen und unser Stadtklima schützen."
+        },
+        "16": {
           "val": 1,
-          "quote": "Wasserflächen und -elemente in die Stadtplanung integrieren."
+          "quote": "Solide Haushaltspolitik. Pflichtaufgaben priorisieren, freiwillige Leistungen kritisch prüfen."
+        },
+        "17": {
+          "val": 1,
+          "quote": "Beschleunigung der Digitalisierung einschließlich gezieltem Einsatz von KI."
+        },
+        "18": {
+          "val": 1,
+          "quote": "Gewerbeflächen für Mittelstand und Handwerk schützen. Abwanderung ins Umland stoppen."
+        },
+        "19": {
+          "val": 1,
+          "quote": "Schlankere Verwaltungsstrukturen. Weniger Bürokratie, mehr Effizienz."
+        },
+        "23": {
+          "val": 1,
+          "quote": "Mehr Ordnungskräfte und konsequente Durchsetzung von Regeln im öffentlichen Raum."
         },
         "24": {
           "val": 1,
-          "quote": "Schutz der LGBTQ+-Bevölkerung... Lehnen Wertungen bezüglich sexueller Orientierungen ab."
-        },
-        "22": {
-          "val": 1,
           "quote": "Sachleistungen vor Geldleistungen. Die Bezahlkarte ist ein vernünftiges Instrument."
+        },
+        "25": {
+          "val": 1,
+          "quote": "Kosten für Integration müssen gerechter zwischen Kommune, Land und Bund verteilt werden."
         }
       }
     },
@@ -1080,53 +1096,61 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Hauptrouten nach aktuellen Qualitätsstandards ausbauen: breite Wege, getrennt vom motorisierten Verkehr."
         },
-        "7": {
+        "8": {
           "val": 1,
-          "quote": "Großprojekte wie im Münchner Norden konsequenter voranbringen mit verbindlichen Masterplänen bis 2030."
+          "quote": "Städtische Wohnungsbaugesellschaft Münchner Wohnen: Mehr als 2.000 neue Wohnungen pro Jahr; Wiener Modell als Vorbild."
         },
         "9": {
+          "val": -1,
+          "quote": "München als europäischer Innovationsstandort. Offen für Talente und Startups."
+        },
+        "10": {
           "val": 1,
           "quote": "Potenziale im Bestand stärker nutzen: Voraussetzungen für Aufstockungen und kluge Nachverdichtung verbessern."
         },
         "11": {
           "val": 1,
-          "quote": "Städtische Wohnungsbaugesellschaft Münchner Wohnen: Mehr als 2.000 neue Wohnungen pro Jahr; Wiener Modell als Vorbild."
+          "quote": "Großprojekte wie im Münchner Norden konsequenter voranbringen mit verbindlichen Masterplänen bis 2030."
         },
-        "14": {
+        "13": {
           "val": -1,
           "quote": "Verpflichtende Solarquoten auf städtischen Gebäuden."
         },
-        "17": {
+        "16": {
           "val": -1,
-          "quote": "Volt unterstützt rechtliche Schritte gegen Bayerns Verbot eigener kommunaler Einnahmequellen (Bettensteuer...)."
+          "quote": "Investitionen in Zukunftsfähigkeit dürfen nicht dem Rotstift zum Opfer fallen."
+        },
+        "17": {
+          "val": 1,
+          "quote": "Smart City München: Alle Bürgerservices digital und mehrsprachig zugänglich."
         },
         "19": {
+          "val": -1,
+          "quote": "Klimaschutz und Mobilität brauchen eigene politische Zuständigkeiten und Gewicht."
+        },
+        "20": {
           "val": 1,
           "quote": "Gendersensible Sprache in allen Ämtern."
         },
-        "20": {
+        "21": {
           "val": -1,
           "quote": "Passive, deeskalierende Polizeipräsenz."
         },
-        "21": {
+        "22": {
           "val": 1,
           "quote": "Einrichtung von Konsumräumen vorbereiten."
         },
-        "24": {
-          "val": 1,
-          "quote": "Kulturförderung explizit für queere, intersektionale und subkulturelle Projekte."
-        },
-        "25": {
-          "val": 1,
-          "quote": "Einwegverpackungsmüll bis 2027 weitgehend aus dem Stadtbild verbannen... Verpflichtendes Münchner Mehrweg-System."
-        },
-        "18": {
+        "23": {
           "val": -1,
-          "quote": "München als europäischer Innovationsstandort. Offen für Talente und Startups."
+          "quote": "Deeskalation und soziale Arbeit statt Repression. Ursachen bekämpfen."
         },
-        "22": {
+        "24": {
           "val": -1,
           "quote": "Europäische Solidarität statt nationaler Abschottungsinstrumente."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Europäische Solidarität und kommunale Integrationsarbeit müssen Hand in Hand gehen."
         }
       }
     },
@@ -1140,23 +1164,19 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": ""
         },
-        "8": {
-          "val": 1,
-          "quote": "Alle Neubauten Münchens... müssen größer, höher und prächtiger sein als die Frauenkirche."
-        },
-        "19": {
-          "val": 1,
-          "quote": "Wir führen das Generische Femininum als Amtssprache ein."
-        },
-        "25": {
-          "val": -1,
-          "quote": "Das Oktoberfest wird jährlich an den Meistbietenden versteigert."
-        },
         "6": {
           "val": -1,
           "quote": "Wir spannen mit einem stadtweiten Seilbahnnetz ein umfangreiches Mobilitätsangebot. Für Eichhörnchen."
         },
-        "22": {
+        "12": {
+          "val": 1,
+          "quote": "Alle Neubauten Münchens... müssen größer, höher und prächtiger sein als die Frauenkirche."
+        },
+        "20": {
+          "val": 1,
+          "quote": "Wir führen das Generische Femininum als Amtssprache ein."
+        },
+        "24": {
           "val": -1,
           "quote": "Wir fordern die Bezahlkarte für CSU-Stadträte, um Korruption zu verhindern."
         }
@@ -1176,29 +1196,37 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Ausbau von Rad- und Fußgängerwegen... Verkehrssicherheit, vor allem für Fußgänger*innen, Radfahrer*innen."
         },
-        "12": {
-          "val": 1,
-          "quote": "Das ehrgeizige Ziel, Klimaneutralität für die Stadt München im Jahr 2035 zu erreichen."
+        "16": {
+          "val": -1,
+          "quote": "Soziale Sicherung und Gleichstellung dürfen nicht dem Sparkurs geopfert werden."
         },
         "19": {
+          "val": -1,
+          "quote": "Eigenständige Referate sichern den politischen Stellenwert von Klima und Mobilität."
+        },
+        "20": {
           "val": 1,
           "quote": ""
         },
-        "20": {
+        "21": {
           "val": -1,
           "quote": "Rosa Liste fordert, auf eine flächendeckende Videoüberwachung auf öffentlichen Plätzen... zu verzichten."
         },
-        "21": {
+        "22": {
           "val": 1,
           "quote": "Wir fordern die Einrichtung von Drogenkonsumräumen."
         },
-        "24": {
-          "val": 1,
-          "quote": "Sicherung der bestehenden LGBTIQ*-Infrastruktur aus Vereinen, Gruppen und städtisch geförderten Institutionen."
+        "23": {
+          "val": -1,
+          "quote": "Marginalisierte Menschen brauchen Hilfe, nicht Platzverweise."
         },
-        "22": {
+        "24": {
           "val": -1,
           "quote": "Solidarität mit allen Minderheiten. Keine Sondergesetze für Geflüchtete."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Geflüchtete Menschen brauchen Schutz und Betreuung, keine Kostendebatte."
         }
       }
     },
@@ -1216,31 +1244,23 @@ window.WAHLOMAT_DATA = {
           "val": 0,
           "quote": "Verkehrswende aktiv vorantreiben... Rascher Ausbau des schienengebundenen ÖPNV."
         },
-        "7": {
-          "val": -1,
-          "quote": "Wir lehnen die aktiv betriebene Werbung für die 'Metropolregion München' ab... Wachstum ist kein Naturgesetz!"
-        },
-        "8": {
-          "val": -1,
-          "quote": "In die Höhe zu bauen stellt keine Lösung der grundlegenden strukturellen Probleme dar."
-        },
         "9": {
-          "val": -1,
-          "quote": "Nachverdichtung ist ein wesentlicher Preistreiber... Erhalt unserer Grünflächen."
-        },
-        "15": {
-          "val": 1,
-          "quote": "Bodenversiegelung... bei Überlastung gelangt ungereinigtes Abwasser in die Isar."
-        },
-        "17": {
-          "val": -1,
-          "quote": "Zweitwohnungssteuer... sinnvoller Beitrag."
-        },
-        "18": {
           "val": 1,
           "quote": "Wachstum in dieser Größenordnung ist nicht zwingend... Wir lehnen die Werbung für die Metropolregion ab."
         },
-        "22": {
+        "10": {
+          "val": -1,
+          "quote": "Nachverdichtung ist ein wesentlicher Preistreiber... Erhalt unserer Grünflächen."
+        },
+        "11": {
+          "val": -1,
+          "quote": "Wir lehnen die aktiv betriebene Werbung für die 'Metropolregion München' ab... Wachstum ist kein Naturgesetz!"
+        },
+        "12": {
+          "val": -1,
+          "quote": "In die Höhe zu bauen stellt keine Lösung der grundlegenden strukturellen Probleme dar."
+        },
+        "24": {
           "val": 1,
           "quote": ""
         }
@@ -1264,25 +1284,45 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Ideologiefreie und vernünftige Verkehrspolitik... statt einseitiger 'Radl-Dogmatik'."
         },
-        "12": {
-          "val": -1,
-          "quote": "Anerkennung des Klimaschutzziels, aber Warnung vor 'weitreichenden, extrem komplexen Folgen'."
-        },
-        "19": {
-          "val": -1,
-          "quote": "Sprache und Kultur gepflegt werden... Bairischer Dialektunterricht."
-        },
-        "20": {
-          "val": -1,
-          "quote": "Eine personell gut ausgestattete Polizei kann besser arbeiten als flächendeckende Kameraüberwachung."
-        },
-        "18": {
+        "9": {
           "val": 1,
           "quote": "München muss Münchnern dienen, nicht unkontrolliertem Wachstum. Charakter der Stadtviertel erhalten."
         },
-        "22": {
+        "16": {
+          "val": 1,
+          "quote": "Haushalt sanieren, investieren statt konsumieren. Personalkosten in 10 Jahren um 1 Mrd. Euro gestiegen."
+        },
+        "17": {
+          "val": 1,
+          "quote": "Bürokratie abbauen, Verwaltung digitalisieren und schlank halten."
+        },
+        "18": {
+          "val": 1,
+          "quote": "Kleine Parzellen für Handwerk auf Gewerbeflächen. Gewerbehöfe müssen dem Gewerbe dienen."
+        },
+        "19": {
+          "val": 1,
+          "quote": "Aufgeblähte Referatsstruktur zurückbauen. Personalkosten senken."
+        },
+        "20": {
+          "val": -1,
+          "quote": "Sprache und Kultur gepflegt werden... Bairischer Dialektunterricht."
+        },
+        "21": {
+          "val": -1,
+          "quote": "Eine personell gut ausgestattete Polizei kann besser arbeiten als flächendeckende Kameraüberwachung."
+        },
+        "23": {
+          "val": 1,
+          "quote": "Sauberkeit und Ordnung durch mehr Befugnisse für den Kommunalen Außendienst."
+        },
+        "24": {
           "val": 1,
           "quote": "Bayerisches Geld für hiesige Versorgung. Bezahlkarte ja."
+        },
+        "25": {
+          "val": 1,
+          "quote": "Priorität für Münchner bei städtischen Leistungen. Integration heißt Ankommen, nicht Parallelwelten organisieren."
         }
       }
     },
@@ -1296,13 +1336,21 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Städte gehören den Bürgern, nicht den Autos."
         },
-        "17": {
+        "16": {
           "val": -1,
-          "quote": "Das Bündnis fordert eine Kulturabgabe von mindestens 5% auf jede Hotelübernachtung."
+          "quote": "Kultur darf nicht unter die Räder eines Sparkurses geraten."
+        },
+        "19": {
+          "val": -1,
+          "quote": "Zusammenlegungen schwächen alle betroffenen Bereiche."
         },
         "23": {
-          "val": 1,
-          "quote": "Der Gasteig-Umbau schreitet gut voran. Die Stadt muss sich endlich zum Bauen bekennen."
+          "val": -1,
+          "quote": "Kultur im öffentlichen Raum stärken statt nur kontrollieren."
+        },
+        "25": {
+          "val": -1,
+          "quote": "Kulturelle Teilhabe ist Teil gelungener Integration."
         }
       }
     }
