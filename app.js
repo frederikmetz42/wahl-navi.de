@@ -63,7 +63,7 @@ function wahlomatApp() {
             });
 
             this.$watch('step', val => {
-                if (val > 0 && !this.isSharedView && !this.isEmbedMode) {
+                if (val > 0 && val <= this.totalTheses && !this.isSharedView && !this.isEmbedMode) {
                     localStorage.setItem('wn_step', val);
                 }
             });

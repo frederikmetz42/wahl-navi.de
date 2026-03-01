@@ -198,15 +198,15 @@
                     </div>
                     </div>
                     <div class="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12">
-                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base" :class="answers[currentThesis?.id] === 1 && 'ring-2 ring-emerald-500 bg-emerald-50/50'">
+                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span>Zustimmung</span>
                         </button>
-                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base" :class="answers[currentThesis?.id] === 0 && 'ring-2 ring-slate-400 bg-slate-50'">
+                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                             <span>Neutral</span>
                         </button>
-                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base" :class="answers[currentThesis?.id] === -1 && 'ring-2 ring-rose-500 bg-rose-50/50'">
+                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             <span>Ablehnung</span>
                         </button>
