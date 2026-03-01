@@ -64,7 +64,7 @@
       "id": 21,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Videoüberwachung",
-      "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt eigene Videoüberwachung einsetzen.",
+      "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt Videoüberwachung einsetzen, auch wenn dabei KI-gestützte Auswertung und Gesichtserkennung zum Einsatz kommen könnten.",
       "axes": {
         "x": 0,
         "y": 1
@@ -130,7 +130,7 @@
       "id": 4,
       "topic": "Mobilität & Verkehr",
       "short_title": "Tempo 30",
-      "statement": "Auf den meisten Hauptverkehrsstraßen in der Stadt soll ein Tempolimit von 30 km/h gelten.",
+      "statement": "Innerhalb des Mittleren Rings soll Tempo 30 auf deutlich mehr Straßen gelten, auch wenn dies längere Fahrzeiten bedeutet.",
       "axes": {
         "x": 0,
         "y": -0.8
@@ -141,7 +141,7 @@
       "id": 12,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Hochhäuser",
-      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), um Platz zu sparen.",
+      "statement": "München soll Hochhäuser über 100 Meter (Höhe der Frauenkirche) erlauben, auch wenn dies das Stadtbild verändert.",
       "axes": {
         "x": 0.7,
         "y": -0.3

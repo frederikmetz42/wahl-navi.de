@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUCwahl München 2026 – Welche Partei passt zu mir?</title>
-    <meta name="version" content="4.8">
+    <meta name="version" content="4.9">
     <meta name="description" content="25 Thesen, 14 Parteien: Finde heraus, welche Partei deine Interessen im Münchner Stadtrat vertritt. Unabhängig, werbefrei, ohne Tracking.">
     <meta name="theme-color" content="#ffffff">
     <meta property="og:title" content="MUCwahl München 2026 – Welche Partei passt zu mir?">
@@ -347,10 +347,14 @@
 
         <!-- Hero Result: Top Match (always visible, above tabs) -->
         <section x-show="topMatch" class="max-w-2xl mx-auto" aria-label="Dein Top-Ergebnis">
-            <div class="card p-8 text-center bg-gradient-to-br from-white to-slate-50">
+            <div class="card p-8 text-center bg-gradient-to-br from-white to-slate-50 relative overflow-hidden">
+                <!-- Party color accent bar (top edge) -->
+                <div class="absolute top-0 left-0 right-0 h-1 transition-opacity duration-1000" :style="`background-color: ${topMatch ? getPartyColor(topMatch.id) : 'transparent'}`" :class="celebrationActive ? 'opacity-100' : 'opacity-0'"></div>
                 <div class="text-sm text-slate-500 mb-3 font-medium">Höchste Übereinstimmung</div>
                 <div class="flex items-center justify-center gap-4 mb-4">
                     <div class="relative w-24 h-24 flex-shrink-0" x-data="{ displayPct: 0 }" x-effect="if (topMatch && resultsRevealed && !prefersReducedMotion) { let start = performance.now(); let target = Math.round(topMatch.matchPercentage); let dur = 800; let tick = (now) => { let p = Math.min((now - start) / dur, 1); displayPct = Math.round(p * target); if (p < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); } else if (topMatch) { displayPct = Math.round(topMatch.matchPercentage); }">
+                        <!-- Celebration pulse ring -->
+                        <div x-show="celebrationActive && !prefersReducedMotion" class="absolute inset-0 rounded-full animate-celebration-pulse" :style="`border: 3px solid ${topMatch ? getPartyColor(topMatch.id) : '#e2e8f0'}`" aria-hidden="true"></div>
                         <svg aria-hidden="true" class="w-full h-full transform -rotate-90">
                             <circle cx="48" cy="48" r="44" stroke="#e2e8f0" stroke-width="6" fill="none"/>
                             <circle cx="48" cy="48" r="44" :stroke="topMatch ? getPartyColor(topMatch.id) : '#e2e8f0'" stroke-width="6" fill="none" stroke-dasharray="276.5" :stroke-dashoffset="topMatch ? 276.5 - (276.5 * topMatch.matchPercentage / 100) : 276.5" class="transition-all duration-1000 ease-out"/>
@@ -372,8 +376,12 @@
                     </div>
                 </div>
                 <!-- Share + Details actions -->
-                <div class="flex items-center justify-center gap-3 no-print">
-                    <button @click="shareResults()" class="btn btn-primary text-sm px-6 py-2.5 flex items-center gap-2">
+                <div class="flex items-center justify-center gap-3 no-print"
+                     x-show="showShareCTA"
+                     x-transition:enter="transition ease-out duration-500"
+                     x-transition:enter-start="opacity-0 translate-y-4"
+                     x-transition:enter-end="opacity-100 translate-y-0">
+                    <button @click="openShareSheet()" class="btn btn-primary text-sm px-6 py-2.5 flex items-center gap-2">
                         <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                         Ergebnis teilen
                     </button>
@@ -405,7 +413,7 @@
             <div class="space-y-6">
                 <!-- Radar Chart -->
                 <div class="card p-6 relative" x-show="topMatch && Object.keys(topicScores).length > 0">
-                    <button @click="shareRadar()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors no-print" title="Radar teilen">
+                    <button @click="openShareSheet('radar')" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors no-print" title="Radar teilen">
                         <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                     </button>
                     <h3 class="font-bold text-lg mb-2">Themen-Radar</h3>
@@ -419,7 +427,7 @@
 
                 <!-- Compass -->
                 <div class="card p-6 relative">
-                    <button @click="shareCompass()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors no-print" title="Kompass teilen">
+                    <button @click="openShareSheet('compass')" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors no-print" title="Kompass teilen">
                         <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                     </button>
                     <h3 class="font-bold text-lg mb-2">Politischer Kompass</h3>
@@ -682,6 +690,75 @@
             </div>
         </div>
     </footer>
+
+    <!-- Share Sheet -->
+    <div x-show="shareSheetOpen" class="fixed inset-0 z-[90] flex items-end sm:items-center justify-center p-0 sm:p-6 no-print" x-cloak>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" x-show="shareSheetOpen" x-transition.opacity @click="closeShareSheet()"></div>
+        <div role="dialog" aria-modal="true" aria-label="Ergebnis teilen"
+             class="bg-white w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl shadow-2xl relative transform transition-all max-h-[90vh] overflow-y-auto"
+             x-show="shareSheetOpen"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 translate-y-8">
+            <!-- Drag handle (mobile) -->
+            <div class="flex justify-center pt-3 sm:hidden"><div class="w-10 h-1 bg-slate-300 rounded-full"></div></div>
+            <!-- Header -->
+            <div class="flex items-center justify-between px-6 pt-4 pb-2">
+                <h3 class="font-bold text-lg text-slate-900">Ergebnis teilen</h3>
+                <button @click="closeShareSheet()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100" aria-label="Schließen">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="px-6 pb-6 space-y-5">
+                <!-- Format toggle -->
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Format</div>
+                    <div class="flex gap-2">
+                        <button @click="shareFormat = 'feed'" class="flex-1 py-2.5 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareFormat === 'feed' ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Feed 4:5</button>
+                        <button @click="shareFormat = 'story'" class="flex-1 py-2.5 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareFormat === 'story' ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Story 9:16</button>
+                    </div>
+                </div>
+                <!-- Card selection -->
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Karte</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button @click="shareCard = 'results'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'results' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Ergebnis</button>
+                        <button @click="shareCard = 'topmatch'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'topmatch' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Top Match</button>
+                        <button @click="shareCard = 'radar'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'radar' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Radar</button>
+                        <button @click="shareCard = 'compass'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'compass' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Kompass</button>
+                    </div>
+                    <button @click="shareCard = 'surprise'" x-show="surpriseMatches.length > 0"
+                            class="w-full mt-2 py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                            :class="shareCard === 'surprise' ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Überraschungstreffer</button>
+                </div>
+                <!-- Share button -->
+                <button @click="executeShare()" class="w-full btn btn-primary text-sm py-3 flex items-center justify-center gap-2">
+                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    Teilen
+                </button>
+                <!-- Copy link -->
+                <button @click="copyLink(); closeShareSheet()" class="w-full py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">Link kopieren</button>
+                <!-- Direct share buttons -->
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Direkt teilen</div>
+                    <div class="flex gap-2">
+                        <button @click="shareViaWhatsApp()" class="flex-1 py-2.5 rounded-lg text-white text-xs font-bold transition-opacity hover:opacity-90" style="background-color: #25D366">WhatsApp</button>
+                        <button @click="shareViaTelegram()" class="flex-1 py-2.5 rounded-lg text-white text-xs font-bold transition-opacity hover:opacity-90" style="background-color: #0088cc">Telegram</button>
+                        <button @click="shareViaTwitter()" class="flex-1 py-2.5 rounded-lg text-white text-xs font-bold transition-opacity hover:opacity-90 bg-slate-900">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div x-show="modalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6" x-cloak>

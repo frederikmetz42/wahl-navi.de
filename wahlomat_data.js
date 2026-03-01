@@ -64,8 +64,8 @@ window.WAHLOMAT_DATA = {
       "id": 21,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Videoüberwachung",
-      "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt Videoüberwachung einsetzen, auch wenn dies die Privatsphäre im öffentlichen Raum einschränkt.",
-      "background": "Am Hauptbahnhof gibt es bereits Bundespolizei-Kameras sowie seit 2025 mobile Videotürme mit 360°-Panorama. Der Bahnhof zählt zu den kriminalitätsbelasteten in Deutschland (553 Gewaltdelikte 2025). Die Debatte betrifft zusätzliche städtische Kameras an weiteren Orten. Datenschützer warnen vor Flächenüberwachung und bezweifeln die präventive Wirkung.",
+      "statement": "An Kriminalitätsschwerpunkten (z.B. Hauptbahnhof) soll die Stadt verstärkt Videoüberwachung einsetzen, auch wenn dabei KI-gestützte Auswertung und Gesichtserkennung zum Einsatz kommen könnten.",
+      "background": "Am Hauptbahnhof gibt es bereits Bundespolizei-Kameras sowie seit 2025 mobile Videotürme mit 360°-Panorama. Befürworter fordern gezielt mehr Kameras an Brennpunkten. Kritiker warnen vor dem Schritt zu automatisierter Gesichtserkennung und KI-Massenüberwachung im öffentlichen Raum. Die Grüne und Volt lehnen das explizit ab.",
       "axes": {
         "x": 0,
         "y": 1
@@ -136,8 +136,8 @@ window.WAHLOMAT_DATA = {
       "id": 4,
       "topic": "Mobilität & Verkehr",
       "short_title": "Tempo 30",
-      "statement": "Auf den meisten Hauptverkehrsstraßen innerhalb des Mittleren Rings soll Tempo 30 gelten, auch wenn dies längere Fahrzeiten bedeutet.",
-      "background": "Gemeint sind innerstädtische Hauptstraßen wie Rosenheimer Str. oder Lindwurmstraße, nicht Autobahnen oder der Mittlere Ring (Bundesstraße, nicht kommunal). An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. 2024 wurde dort erstmals der NO₂-Grenzwert eingehalten (39 µg/m³). Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
+      "statement": "Innerhalb des Mittleren Rings soll Tempo 30 auf deutlich mehr Straßen gelten, auch wenn dies längere Fahrzeiten bedeutet.",
+      "background": "Befürworter fordern Tempo 30 vor allem an Schulwegen, sozialen Einrichtungen und in Wohngebieten (Grüne, SPD, ÖDP). Die Linke will Tempo 30 sogar als Regelgeschwindigkeit, nimmt aber Hauptverkehrsstraßen explizit aus. An der Landshuter Allee gilt bereits gerichtlich angeordnetes Tempo 30 wegen Stickstoffdioxid-Belastung. Kritiker sehen längere Fahrzeiten und Stau-Verlagerung in Wohnstraßen.",
       "axes": {
         "x": 0,
         "y": -0.8
@@ -148,8 +148,8 @@ window.WAHLOMAT_DATA = {
       "id": 12,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Hochhäuser",
-      "statement": "München soll den Bau von Hochhäusern erlauben, die höher sind als die Frauenkirche (100 Meter), auch wenn dies das Stadtbild verändert.",
-      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m (Höhe der Frauenkirchtürme). Diese Bindung ist formell ausgelaufen, wirkt aber als informelle Leitlinie. 2023 hat der Stadtrat eine neue Hochhausstudie beschlossen, die Hochhäuser in bestimmten Gebieten nach Einzelfallprüfung zulässt. Gegner sehen das Stadtbild in Gefahr. Es gibt bereits Ausnahmen (Highlight Towers: 126 m).",
+      "statement": "München soll Hochhäuser über 100 Meter (Höhe der Frauenkirche) erlauben, auch wenn dies das Stadtbild verändert.",
+      "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m. Die Bindung ist formell ausgelaufen, wirkt aber als Leitlinie. Betroffen sind vor allem Bürotürme und Prestigeprojekte (z.B. Highlight Towers: 126 m, Büro/Hotel), nicht normale Wohnblöcke (typisch 30-40 m). Linke und ÖDP fordern sogar eine strengere 60-Meter-Grenze. 2023 beschloss der Stadtrat eine Hochhausstudie, die Hochhäuser nach Einzelfallprüfung zulassen soll.",
       "axes": {
         "x": 0.7,
         "y": -0.3

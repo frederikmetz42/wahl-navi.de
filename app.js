@@ -32,6 +32,11 @@ function wahlomatApp() {
         prefersReducedMotion: false,
         resultTab: 'compass',
         showBackground: false,
+        showShareCTA: false,
+        celebrationActive: false,
+        shareSheetOpen: false,
+        shareFormat: 'feed',
+        shareCard: 'results',
 
         init() {
             if (window.WAHLOMAT_DATA) {
@@ -65,10 +70,19 @@ function wahlomatApp() {
                 }
             }, { deep: true });
 
-            // Check URL params for shared results
-            const params = new URLSearchParams(window.location.search);
-            const r = params.get('r');
-            const w = params.get('w');
+            // Check URL for shared results: fragment first (#r=), query-params as fallback (?r= for old links)
+            const hash = window.location.hash;
+            let r, w;
+            if (hash && hash.length > 1) {
+                const hp = new URLSearchParams(hash.substring(1));
+                r = hp.get('r');
+                w = hp.get('w');
+            }
+            if (!r) {
+                const qp = new URLSearchParams(window.location.search);
+                r = qp.get('r');
+                w = qp.get('w');
+            }
             if (r && this.decodeResults(r, w)) {
                 this.isSharedView = true;
                 this.calculateResults();
@@ -216,15 +230,20 @@ function wahlomatApp() {
             try {
                 this.resultsRevealed = false;
                 this.compassAnimated = false;
+                this.showShareCTA = false;
+                this.celebrationActive = false;
                 this.calculateResults();
                 this.step = 99;
                 window.scrollTo(0,0);
                 if (!this.prefersReducedMotion) {
                     setTimeout(() => { this.resultsRevealed = true; }, 100);
+                    setTimeout(() => { this.celebrationActive = true; }, 200);
                     setTimeout(() => { this.compassAnimated = true; }, 300);
+                    setTimeout(() => { this.showShareCTA = true; }, 1000);
                 } else {
                     this.resultsRevealed = true;
                     this.compassAnimated = true;
+                    this.showShareCTA = true;
                 }
             } catch (e) {
                 console.error("Calculation error:", e);
@@ -602,7 +621,7 @@ function wahlomatApp() {
 
         getShareUrl() {
             const { r, w } = this.encodeResults();
-            return `https://mucwahl.de/?r=${r}&w=${w}`;
+            return `https://mucwahl.de/#r=${r}&w=${w}`;
         },
 
         startOwnQuiz() {
@@ -667,6 +686,10 @@ function wahlomatApp() {
         // --- Keyboard Navigation ---
 
         handleKeydown(event) {
+            if (this.shareSheetOpen) {
+                if (event.key === 'Escape') { this.closeShareSheet(); event.preventDefault(); }
+                return;
+            }
             if (this.modalOpen) {
                 if (event.key === 'Escape') { this.closeModal(); event.preventDefault(); }
                 return;
@@ -860,24 +883,8 @@ function wahlomatApp() {
             ctx.textBaseline = 'alphabetic';
             ctx.fillText('mucwahl.de · Kommunalwahl München 2026', W / 2, H - 36);
 
-            const shareUrl = this.getShareUrl();
-            canvas.toBlob(blob => {
-                if (!blob) { this._shareTextFallback(); return; }
-                const file = new File([blob], 'mucwahl-ergebnis.png', { type: 'image/png' });
-                const shareData = {
-                    files: [file],
-                    title: 'Mein MUCwahl Ergebnis',
-                    text: `Mein Wahl-Check für München: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%). Mach auch den Test: ${shareUrl}`
-                };
-                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-                    navigator.share(shareData).catch(() => {});
-                } else {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url; a.download = 'mucwahl-ergebnis.png'; a.click();
-                    URL.revokeObjectURL(url);
-                }
-            }, 'image/png');
+            this._shareCanvas(canvas, 'mucwahl-ergebnis.png', 'Mein MUCwahl Ergebnis',
+                `Mein Wahl-Check für München: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%). Mach auch den Test:`);
         },
 
         _shareTextFallback() {
@@ -998,24 +1005,8 @@ function wahlomatApp() {
             ctx.textAlign = 'right';
             ctx.fillText('mucwahl.de', size - 20 * s, barY + 36 * s);
 
-            const shareUrl = this.getShareUrl();
-            canvas.toBlob(blob => {
-                if (!blob) return;
-                const file = new File([blob], 'kompass.png', { type: 'image/png' });
-                const shareData = {
-                    files: [file],
-                    title: 'Mein Politischer Kompass',
-                    text: `Mein Politischer Kompass zur Münchner Kommunalwahl 2026. Mach auch den Test: ${shareUrl}`
-                };
-                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-                    navigator.share(shareData).catch(() => {});
-                } else {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url; a.download = 'kompass.png'; a.click();
-                    URL.revokeObjectURL(url);
-                }
-            }, 'image/png');
+            this._shareCanvas(canvas, 'kompass.png', 'Mein Politischer Kompass',
+                'Mein Politischer Kompass zur Münchner Kommunalwahl 2026. Mach auch den Test:');
         },
 
         shareRadar() {
@@ -1099,24 +1090,388 @@ function wahlomatApp() {
             ctx.textAlign = 'right';
             ctx.fillText('mucwahl.de', svgSize - 20 * s, barY + 36 * s);
 
+            this._shareCanvas(canvas, 'radar.png', 'Mein Themen-Radar',
+                'Mein Themen-Radar zur Münchner Kommunalwahl 2026. Mach auch den Test:');
+        },
+
+        _shareCanvas(canvas, filename, title, text) {
             const shareUrl = this.getShareUrl();
+            const fullText = `${text} ${shareUrl}`;
             canvas.toBlob(blob => {
-                if (!blob) return;
-                const file = new File([blob], 'radar.png', { type: 'image/png' });
-                const shareData = {
-                    files: [file],
-                    title: 'Mein Themen-Radar',
-                    text: `Mein Themen-Radar zur Münchner Kommunalwahl 2026. Mach auch den Test: ${shareUrl}`
-                };
+                if (!blob) { this._shareTextFallback(); return; }
+                const file = new File([blob], filename, { type: 'image/png' });
+                const shareData = { files: [file], title, text: fullText };
                 if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
                     navigator.share(shareData).catch(() => {});
                 } else {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
-                    a.href = url; a.download = 'radar.png'; a.click();
+                    a.href = url; a.download = filename; a.click();
                     URL.revokeObjectURL(url);
                 }
             }, 'image/png');
+        },
+
+        shareResultsStory() {
+            if (!this.topMatch) return;
+            const fontReady = document.fonts ? document.fonts.check('bold 32px Inter') : true;
+            if (!fontReady) { this._shareTextFallback(); return; }
+
+            const W = 1080, H = 1920;
+            const canvas = document.createElement('canvas');
+            canvas.width = W; canvas.height = H;
+            const ctx = canvas.getContext('2d');
+            const matchColor = this.getPartyColor(this.topMatch.id);
+
+            // Dark background
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, W, H);
+
+            // Header
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 36px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('MUCwahl München 2026', 60, 100);
+            ctx.fillStyle = '#64748b';
+            ctx.font = '24px Inter, system-ui, sans-serif';
+            ctx.fillText('Kommunalwahl · Mein Ergebnis', 60, 140);
+
+            // Top match - oversized
+            ctx.fillStyle = matchColor;
+            this._roundRectFill(ctx, 60, 200, W - 120, 380, 32);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '28px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Höchste Übereinstimmung', 100, 260);
+            ctx.font = 'bold 72px Inter, system-ui, sans-serif';
+            ctx.fillText(this.topMatch.name, 100, 360);
+
+            // Percentage ring
+            const circX = W - 200, circY = 390, circR = 90;
+            ctx.beginPath(); ctx.arc(circX, circY, circR, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.15)'; ctx.fill();
+            const pct = this.topMatch.matchPercentage / 100;
+            ctx.beginPath(); ctx.arc(circX, circY, circR, -Math.PI / 2, -Math.PI / 2 + pct * Math.PI * 2);
+            ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 52px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(Math.round(this.topMatch.matchPercentage) + '%', circX, circY + 18);
+
+            // Top 3 bars
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 26px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('TOP 3', 60, 660);
+
+            const top3 = this.results.slice(0, 3);
+            top3.forEach((party, i) => {
+                const y = 700 + i * 110;
+                const barW = W - 120;
+                const color = this.getPartyColor(party.id);
+
+                ctx.fillStyle = '#e2e8f0';
+                ctx.font = '26px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(party.name, 60, y + 30);
+                ctx.font = 'bold 26px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(Math.round(party.matchPercentage) + '%', W - 60, y + 30);
+
+                ctx.fillStyle = '#1e293b';
+                this._roundRectFill(ctx, 60, y + 46, barW, 28, 14);
+                ctx.fillStyle = color;
+                this._roundRectFill(ctx, 60, y + 46, Math.max(28, (party.matchPercentage / 100) * barW), 28, 14);
+            });
+
+            // Compact radar
+            if (this.topics.length > 0) {
+                const radarCx = W / 2, radarCy = 1300, radarR = 220;
+                const n = this.topics.length;
+
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 1;
+                [0.25, 0.5, 0.75, 1.0].forEach(frac => {
+                    ctx.beginPath();
+                    for (let i = 0; i <= n; i++) {
+                        const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                        const rr = frac * radarR;
+                        const x = radarCx + rr * Math.cos(angle);
+                        const y = radarCy + rr * Math.sin(angle);
+                        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath(); ctx.stroke();
+                });
+
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = '20px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                this.topics.forEach((topic, i) => {
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    ctx.strokeStyle = '#475569'; ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.moveTo(radarCx, radarCy);
+                    ctx.lineTo(radarCx + radarR * Math.cos(angle), radarCy + radarR * Math.sin(angle)); ctx.stroke();
+                    const labelR = radarR + 32;
+                    ctx.fillText(topic.split(/[\s,&]+/)[0], radarCx + labelR * Math.cos(angle), radarCy + labelR * Math.sin(angle));
+                });
+
+                ctx.beginPath();
+                this.topics.forEach((topic, i) => {
+                    const topicPct = (this.topicScores[topic]?.parties[this.topMatch.id]?.percent || 0) / 100;
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    const rr = topicPct * radarR;
+                    const x = radarCx + rr * Math.cos(angle);
+                    const y = radarCy + rr * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.fillStyle = matchColor + '44'; ctx.fill();
+                ctx.strokeStyle = matchColor; ctx.lineWidth = 3; ctx.stroke();
+            }
+
+            // Watermark
+            ctx.fillStyle = '#64748b';
+            ctx.font = '22px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillText('mucwahl.de · Kommunalwahl München 2026', W / 2, H - 50);
+
+            this._shareCanvas(canvas, 'mucwahl-story.png', 'Mein MUCwahl Ergebnis',
+                `Mein Wahl-Check für München: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%). Mach auch den Test:`);
+        },
+
+        shareTopMatchCard() {
+            if (!this.topMatch) return;
+            const W = 1080, H = 1080;
+            const canvas = document.createElement('canvas');
+            canvas.width = W; canvas.height = H;
+            const ctx = canvas.getContext('2d');
+            const matchColor = this.getPartyColor(this.topMatch.id);
+
+            // Background
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, W, H);
+
+            // Color accent bar
+            ctx.fillStyle = matchColor;
+            ctx.fillRect(0, 0, W, 8);
+
+            // Label
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 28px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('MEIN TOP-MATCH', W / 2, 200);
+
+            // Party name
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 80px Inter, system-ui, sans-serif';
+            ctx.fillText(this.topMatch.name, W / 2, 440);
+
+            // Percentage
+            ctx.fillStyle = matchColor;
+            ctx.font = 'bold 160px Inter, system-ui, sans-serif';
+            ctx.fillText(Math.round(this.topMatch.matchPercentage) + '%', W / 2, 640);
+
+            // Subtitle
+            ctx.fillStyle = '#64748b';
+            ctx.font = '26px Inter, system-ui, sans-serif';
+            ctx.fillText('Übereinstimmung', W / 2, 700);
+
+            // Branding
+            ctx.fillStyle = '#475569';
+            ctx.font = '24px Inter, system-ui, sans-serif';
+            ctx.fillText('MUCwahl · Kommunalwahl München 2026', W / 2, H - 60);
+            ctx.fillStyle = '#64748b';
+            ctx.font = '20px Inter, system-ui, sans-serif';
+            ctx.fillText('mucwahl.de', W / 2, H - 30);
+
+            this._shareCanvas(canvas, 'mucwahl-topmatch.png', 'Mein Top-Match',
+                `Mein Top-Match: ${this.topMatch.name} (${Math.round(this.topMatch.matchPercentage)}%). Mach auch den Test:`);
+        },
+
+        shareRadarCard() {
+            if (!this.topMatch || this.topics.length === 0) return;
+            const W = 1080, H = 1080;
+            const canvas = document.createElement('canvas');
+            canvas.width = W; canvas.height = H;
+            const ctx = canvas.getContext('2d');
+            const matchColor = this.getPartyColor(this.topMatch.id);
+            const n = this.topics.length;
+            const cx = W / 2, cy = 480, r = 300;
+
+            // Background
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, W, H);
+
+            // Title
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 40px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Themen-Radar', W / 2, 70);
+            ctx.fillStyle = '#64748b';
+            ctx.font = '24px Inter, system-ui, sans-serif';
+            ctx.fillText('Dein politisches Profil nach Themengebieten', W / 2, 110);
+
+            // Grid rings
+            ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+            [0.25, 0.5, 0.75, 1.0].forEach(frac => {
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                    const rr = frac * r;
+                    const x = cx + rr * Math.cos(angle);
+                    const y = cy + rr * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath(); ctx.stroke();
+            });
+
+            // Axes + labels
+            ctx.fillStyle = '#64748b';
+            ctx.font = '22px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            this.topics.forEach((topic, i) => {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle)); ctx.stroke();
+                const labelR = r + 36;
+                ctx.fillText(topic.split(/[\s,&]+/)[0], cx + labelR * Math.cos(angle), cy + labelR * Math.sin(angle));
+            });
+
+            // Polygon
+            ctx.beginPath();
+            this.topics.forEach((topic, i) => {
+                const topicPct = (this.topicScores[topic]?.parties[this.topMatch.id]?.percent || 0) / 100;
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                const rr = topicPct * r;
+                const x = cx + rr * Math.cos(angle);
+                const y = cy + rr * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.closePath();
+            ctx.fillStyle = matchColor + '33'; ctx.fill();
+            ctx.strokeStyle = matchColor; ctx.lineWidth = 3; ctx.stroke();
+
+            // Legend
+            ctx.fillStyle = matchColor;
+            this._roundRectFill(ctx, W / 2 - 100, 840, 16, 16, 4);
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 22px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+            ctx.fillText(this.topMatch.name + ' · ' + Math.round(this.topMatch.matchPercentage) + '%', W / 2 - 76, 849);
+
+            // Watermark
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '20px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+            ctx.fillText('mucwahl.de · Kommunalwahl München 2026', W / 2, H - 30);
+
+            this._shareCanvas(canvas, 'mucwahl-radar.png', 'Mein Themen-Radar',
+                `Mein Themen-Radar zur Münchner Kommunalwahl 2026. Mach auch den Test:`);
+        },
+
+        shareSurpriseCard() {
+            if (!this.surpriseMatches || this.surpriseMatches.length === 0) return;
+            const surprise = this.surpriseMatches[0];
+            const W = 1080, H = 1080;
+            const canvas = document.createElement('canvas');
+            canvas.width = W; canvas.height = H;
+            const ctx = canvas.getContext('2d');
+            const matchColor = this.getPartyColor(surprise.id);
+
+            // Background
+            ctx.fillStyle = '#fffbeb';
+            ctx.fillRect(0, 0, W, H);
+
+            // Accent bar
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillRect(0, 0, W, 8);
+
+            // Lightbulb icon area
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = '120px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('💡', W / 2, 260);
+
+            // Title
+            ctx.fillStyle = '#92400e';
+            ctx.font = 'bold 36px Inter, system-ui, sans-serif';
+            ctx.fillText('Unerwartetes Match', W / 2, 360);
+
+            // Party name
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 72px Inter, system-ui, sans-serif';
+            ctx.fillText(surprise.name, W / 2, 520);
+
+            // Percentage
+            ctx.fillStyle = matchColor;
+            ctx.font = 'bold 140px Inter, system-ui, sans-serif';
+            ctx.fillText(Math.round(surprise.matchPercentage) + '%', W / 2, 720);
+
+            // Subtitle
+            ctx.fillStyle = '#92400e';
+            ctx.font = '26px Inter, system-ui, sans-serif';
+            ctx.fillText('Übereinstimmung', W / 2, 780);
+
+            // Branding
+            ctx.fillStyle = '#b45309';
+            ctx.font = '22px Inter, system-ui, sans-serif';
+            ctx.fillText('mucwahl.de · Kommunalwahl München 2026', W / 2, H - 40);
+
+            this._shareCanvas(canvas, 'mucwahl-surprise.png', 'Mein Überraschungstreffer',
+                `Mein Überraschungstreffer: ${surprise.name} (${Math.round(surprise.matchPercentage)}%). Mach auch den Test:`);
+        },
+
+        openShareSheet(preselect) {
+            if (preselect) this.shareCard = preselect;
+            this.shareSheetOpen = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        closeShareSheet() {
+            this.shareSheetOpen = false;
+            document.body.style.overflow = '';
+        },
+
+        executeShare() {
+            const card = this.shareCard;
+            const format = this.shareFormat;
+
+            if (card === 'results' && format === 'story') { this.shareResultsStory(); }
+            else if (card === 'results') { this.shareResults(); }
+            else if (card === 'topmatch') { this.shareTopMatchCard(); }
+            else if (card === 'radar') { this.shareRadarCard(); }
+            else if (card === 'compass') { this.shareCompass(); }
+            else if (card === 'surprise') { this.shareSurpriseCard(); }
+
+            this.closeShareSheet();
+        },
+
+        get hasNativeShare() {
+            return !!(navigator.share);
+        },
+
+        shareViaWhatsApp() {
+            const url = this.getShareUrl();
+            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test: ${url}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            this.closeShareSheet();
+        },
+
+        shareViaTelegram() {
+            const url = this.getShareUrl();
+            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test!`;
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+            this.closeShareSheet();
+        },
+
+        shareViaTwitter() {
+            const url = this.getShareUrl();
+            const text = `Mein Wahl-Check für München: ${this.topMatch?.name} (${Math.round(this.topMatch?.matchPercentage)}%). Mach auch den Test!`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+            this.closeShareSheet();
         },
 
         copyLink() {
