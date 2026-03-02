@@ -1,5 +1,28 @@
 # Changelog
 
+## v4.9.5 — 2026-03-02
+### Methodik-Seite + Grüne-Outreach
+- T20 (Gendersprache): Neues Statement "geschlechtergerechte Sprache nutzen, auch wenn nicht den amtlichen Rechtschreibregeln entspricht" + Background (Bayern-Verbot, München gendert weiter)
+- Methodik-Seite: Zustimmungs-Balance (~11:10:4 progressiv:konservativ:ambivalent) dokumentiert
+- Methodik-Seite: KI-gestützte Delphi-Panels mit simulierten Wählerprofilen als Validierungsmethode ergänzt
+- Methodik-Seite: Polarity Flips korrigiert (veraltete "3 Flips, 15:8" entfernt)
+- Methodik-Seite: "Auch wenn"-Klauseln als eigene Neutralitätsmethode dokumentiert
+- Google Sheet "MUCwahl – Grüne Positionen" erstellt und öffentlich geteilt
+
+## v4.9.4 — 2026-03-02
+### Neutralitäts-Überarbeitung
+- 7 Thesen reformuliert für bessere Neutralität (T3, T7, T12, T18, T20, T23, T24)
+- T3 (Parkplätze) + T18 (Gewerbeflächen): Polarity komplett geflippt, alle 9 Party-Vals invertiert
+- T18 mit Recherche-Daten unterlegt (1,9 Mio. m² Leerstand, 8,5% Quote, Werksviertel/Domagkpark)
+- T20 (Gendersprache): Neues Statement mit "auch wenn"-Klausel + Background-Text
+- T23 (Ordnung): False Binary "statt" → Priority-Kontrast "stärker... als"
+- T24 (Bezahlkarte): Konkreter, weniger verfassungsrechtlich
+- T12 (Hochhäuser): Klargestellt Büro-/Hotelhochhäuser (nicht Wohnblöcke)
+- T7 (Wohnungs-Rückkauf): "Milliarden" entfernt, Sprache neutraler
+- "Auch wenn"-Klauseln: 11 → 18 von 25 Thesen
+- Polaritätsbalance: ~11:10:4 (progressiv:konservativ:ambivalent)
+- Tradeoff-Labels aktualisiert, beide Datendateien synchronisiert
+
 ## v4.9.3 — 2026-03-02
 ### Ordnung
 - Root-Folder aufgeräumt: Images → `assets/`, Alpine.js → `vendor/`, Build-Tools → `_build/` (gitignored)
