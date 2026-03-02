@@ -16,8 +16,8 @@ window.WAHLOMAT_DATA = {
       "id": 20,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Gendersprache",
-      "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
-      "background": "Die Münchner Stadtverwaltung verwendet seit einigen Jahren geschlechtergerechte Formulierungen in offiziellen Dokumenten. Befürworter sehen darin ein Zeichen für Gleichberechtigung und Sichtbarkeit aller Geschlechter. Kritiker halten die Sonderzeichen für unleserlich und sehen einen Eingriff in die Standardsprache. Der Rat für deutsche Rechtschreibung empfiehlt bislang keine Sonderzeichen im amtlichen Gebrauch.",
+      "statement": "Die Stadtverwaltung soll geschlechtergerechte Sprache nutzen, auch wenn diese nicht den amtlichen Rechtschreibregeln entspricht.",
+      "background": "München verwendet seit 1991 geschlechtergerechte Sprache in der Verwaltung. 2024 verbot Bayern Sonderzeichen (Gender-Stern, Doppelpunkt) in Landesbehörden und Schulen — das Verbot gilt aber nicht für Kommunen. München gendert bewusst weiter. Befürworter sehen darin ein Zeichen für Gleichberechtigung und Sichtbarkeit. Kritiker verweisen auf den Rat für deutsche Rechtschreibung, der Sonderzeichen im amtlichen Gebrauch nicht empfiehlt.",
       "axes": {
         "x": 0,
         "y": -1
