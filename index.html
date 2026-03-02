@@ -198,15 +198,15 @@
                     </div>
                     </div>
                     <div class="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12">
-                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
+                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-all duration-150 text-[10px] md:text-base" :class="selectedAnswer === 1 && 'bg-slate-200 scale-95'">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span>Zustimmung</span>
                         </button>
-                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
+                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-all duration-150 text-[10px] md:text-base" :class="selectedAnswer === 0 && 'bg-slate-200 scale-95'">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
                             <span>Neutral</span>
                         </button>
-                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-transform duration-150 text-[10px] md:text-base">
+                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-all duration-150 text-[10px] md:text-base" :class="selectedAnswer === -1 && 'bg-slate-200 scale-95'">
                             <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             <span>Ablehnung</span>
                         </button>

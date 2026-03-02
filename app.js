@@ -39,6 +39,7 @@ function wahlomatApp() {
         shareCard: 'results',
         feedbackGiven: false,
         exitIntentShown: false,
+        selectedAnswer: null,
 
         init() {
             if (window.WAHLOMAT_DATA) {
@@ -180,11 +181,15 @@ function wahlomatApp() {
         },
 
         answer(value) {
-            if (!this.currentThesis) return;
+            if (!this.currentThesis || this.selectedAnswer !== null) return;
             this.showBackground = false;
             document.activeElement?.blur();
+            this.selectedAnswer = value;
             this.answers[this.currentThesis.id] = value;
-            this.nextStep();
+            setTimeout(() => {
+                this.selectedAnswer = null;
+                this.nextStep();
+            }, 150);
         },
 
         skip() {
