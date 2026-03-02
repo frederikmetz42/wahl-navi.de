@@ -182,6 +182,7 @@ function wahlomatApp() {
         answer(value) {
             if (!this.currentThesis) return;
             this.showBackground = false;
+            document.activeElement?.blur();
             this.answers[this.currentThesis.id] = value;
             this.nextStep();
         },

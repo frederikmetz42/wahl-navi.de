@@ -1,5 +1,19 @@
 # Changelog
 
+## v4.9.2 — 2026-03-02
+### Analytics, Ads, Bugfixes
+- GoatCounter: Privacy-freundliche Besucherzählung (keine Cookies, kein Tracking, GDPR-konform)
+- Google Ads: Week-1-Analyse ausgewertet, 4 Keywords pausiert, 3 Negatives hinzugefügt, Zeitplan + Budget optimiert
+- Fix: Weitermachen landete auf Wahl-Info statt Quiz-Frage (wn_step speichert nur noch Schritte 1–25)
+- Fix: Antwort-Vorauswahl entfernt (ring-2 Highlight konnte als Nudging wahrgenommen werden)
+
+## v4.9.1 — 2026-03-01
+### Feedback, Impressum, OG-Image
+- Inline-Feedback: Ja/Teilweise/Nein Pill-Buttons nach Ergebnis, pre-fillen Google Form
+- Exit-Intent: Desktop Slide-in nach 15s, einmalig, localStorage-persistent
+- Impressum: E-Mail + Adresse per JS obfusziert (Anti-Scraper, DOM-Assembly)
+- OG-Image komplett neu: hell, Logo + Orange/Blau Branding, "Welche Partei passt zu dir?", 76px Headline, 420px Kompass
+
 ## v4.9 — 2026-03-01
 ### Share UX Overhaul
 - Fragment-Encoding: Share-URLs nutzen `#r=` statt `?r=` (Privacy, Fragment nie an Server gesendet). Alte `?r=`-Links funktionieren weiterhin.

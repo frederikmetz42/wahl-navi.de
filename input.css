@@ -53,7 +53,13 @@ body {
 }
 
 .btn-answer {
-  @apply bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 focus:ring-slate-400;
+  @apply bg-slate-100 text-slate-700 border border-slate-200 active:bg-slate-200 focus:ring-0 focus:ring-offset-0 focus:shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400;
+}
+
+@media (hover: hover) {
+  .btn-answer:hover {
+    @apply bg-slate-200 shadow-md;
+  }
 }
 
 .btn-neutral {
