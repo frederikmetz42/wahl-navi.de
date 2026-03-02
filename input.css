@@ -45,15 +45,15 @@ body {
 }
 
 .btn {
-  @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2;
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
 }
 
 .btn-primary {
-  @apply bg-orange-600 text-white hover:bg-orange-700 focus:ring-orange-600;
+  @apply bg-orange-600 text-white hover:bg-orange-700 hover:shadow-md focus:ring-orange-600;
 }
 
 .btn-answer {
-  @apply bg-slate-100 text-slate-700 border border-slate-200 active:bg-slate-200 hover:shadow-sm focus:ring-0 focus:ring-offset-0 focus:shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400;
+  @apply bg-slate-100 text-slate-700 border border-slate-200 active:bg-slate-200 focus:ring-0 focus:ring-offset-0 focus:shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400;
 }
 
 @media (hover: hover) {
@@ -63,7 +63,7 @@ body {
 }
 
 .btn-neutral {
-  @apply bg-slate-200 text-slate-700 hover:bg-slate-300 focus:ring-slate-400;
+  @apply bg-slate-200 text-slate-700 hover:bg-slate-300 hover:shadow-md focus:ring-slate-400;
 }
 
 [x-cloak] {
