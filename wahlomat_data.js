@@ -52,7 +52,7 @@ window.WAHLOMAT_DATA = {
       "id": 7,
       "topic": "Wohnen & Mietmarkt",
       "short_title": "Wohnungs-Rückkauf",
-      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um die Mieten dauerhaft zu kontrollieren, auch wenn das Milliarden kostet und den Haushalt belastet.",
+      "statement": "Die Stadt soll Wohnungen großer Immobilienkonzerne zurückkaufen, um die Mieten dauerhaft zu kontrollieren, auch wenn dies den städtischen Haushalt erheblich belastet.",
       "background": "Große Wohnungsunternehmen wie Vonovia und Dawonia besitzen Tausende Wohnungen in München. Einige Parteien fordern den Rückkauf durch die Stadt, um Mieten dauerhaft kontrollieren zu können. Befürworter sehen darin langfristigen Mieterschutz. Kritiker verweisen auf die hohen Kaufpreise (Münchner Immobilienmarkt) und die bereits angespannte Haushaltslage der Stadt.",
       "axes": {
         "x": -1,
@@ -124,7 +124,7 @@ window.WAHLOMAT_DATA = {
       "id": 24,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Bezahlkarte",
-      "statement": "Asylbewerber sollen eine Bezahlkarte erhalten, auch wenn dies ihre persönliche Freiheit einschränkt, über ihr Geld selbst zu verfügen.",
+      "statement": "Asylbewerber sollen eine Bezahlkarte statt Bargeld erhalten, auch wenn sie damit nicht frei über ihr Geld verfügen können.",
       "background": "Die Bezahlkarte ist in Bayern seit 2024 im Einsatz, über 70.000 Karten wurden ausgegeben (Stand März 2025). Empfänger können damit bei Mastercard-Akzeptanzstellen einkaufen und bis zu 50 Euro/Monat bar abheben. Überweisungen sind nicht möglich. Befürworter sehen weniger Missbrauch und geringere Verwaltungskosten. Kritiker warnen vor Stigmatisierung und Einschränkungen im Alltag.",
       "axes": {
         "x": 0.3,
@@ -148,7 +148,7 @@ window.WAHLOMAT_DATA = {
       "id": 12,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Hochhäuser",
-      "statement": "München soll Hochhäuser über 100 Meter (Höhe der Frauenkirche) erlauben, auch wenn dies das Stadtbild verändert.",
+      "statement": "München soll Büro- und Hotelhochhäuser über 100 Meter (Höhe der Frauenkirche) erlauben, auch wenn dies das Stadtbild verändert.",
       "background": "Ein Bürgerentscheid 2004 begrenzte Gebäude auf 100 m. Die Bindung ist formell ausgelaufen, wirkt aber als Leitlinie. Betroffen sind vor allem Bürotürme und Prestigeprojekte (z.B. Highlight Towers: 126 m, Büro/Hotel), nicht normale Wohnblöcke (typisch 30-40 m). Linke und ÖDP fordern sogar eine strengere 60-Meter-Grenze. 2023 beschloss der Stadtrat eine Hochhausstudie, die Hochhäuser nach Einzelfallprüfung zulassen soll.",
       "axes": {
         "x": 0.7,
@@ -184,7 +184,7 @@ window.WAHLOMAT_DATA = {
       "id": 23,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Ordnung im öffentlichen Raum",
-      "statement": "Die Stadt soll Probleme wie Drogenszene, Vermüllung und aggressives Betteln vor allem durch mehr Kontrolle und Ordnungskräfte lösen, statt auf Sozialarbeit und Hilfsangebote zu setzen.",
+      "statement": "Bei Drogenszene und Vermüllung soll die Stadt stärker auf Kontrolle und Ordnungskräfte setzen als auf Sozialarbeit und Hilfsangebote.",
       "background": "Rund um den Hauptbahnhof und den Alten Botanischen Garten klagen Anwohner und Gewerbetreibende über Drogenkonsum, Vermüllung und Belästigung. Der Kommunale Außendienst (KAD) patrouilliert seit 2024 dort. Befürworter fordern erweiterte Befugnisse (Platzverweise, Bußgelder) und mehr Präsenz. Gegner argumentieren, dass Obdachlosigkeit und Sucht soziale Probleme sind, die durch Verdrängung nicht gelöst, sondern nur verlagert werden.",
       "axes": {
         "x": 0,
@@ -220,13 +220,13 @@ window.WAHLOMAT_DATA = {
       "id": 18,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbeflächen",
-      "statement": "München soll Gewerbeflächen schützen und nicht in Wohnraum umwandeln, auch wenn dadurch weniger neue Wohnungen entstehen.",
-      "background": "Das Angebot an Gewerbeflächen in München ist stark geschrumpft, während Unternehmen in Umlandgemeinden mit niedrigerer Gewerbesteuer abwandern (z.B. Grünwald: 240% vs. München: 490%). Die CSU beklagt 'null Komma null neue Gewerbeflächen' unter Grün-Rot. Befürworter des Schutzes sehen Arbeitsplätze und Steuereinnahmen in Gefahr. Gegner verweisen auf den akuten Wohnungsmangel und fordern, dass Wohnungsbau Vorrang hat.",
+      "statement": "München soll leerstehende Büro- und Gewerbeflächen in Wohnraum umwandeln, auch wenn die Stadt damit auf mögliche künftige Gewerbesteuer-Einnahmen verzichtet.",
+      "background": "In München stehen rund 1,9 Millionen Quadratmeter Bürofläche leer (Leerstandsquote 8,5%, Stand Q4 2025). Der Leerstand konzentriert sich auf veraltete Bürogebäude in Randlagen, während zentrale Lagen weiter gefragt sind. Ein Bundesförderprogramm 'Gewerbe zu Wohnen' startet 2026 mit 360 Mio. Euro. Erfolgreiche Umwidmungen wie das Werksviertel oder der Domagkpark zeigen, dass Mischnutzung funktioniert. Kritiker warnen, dass Gewerbe-Flächen langfristig Steuereinnahmen sichern (München: ~3,4 Mrd. Euro Gewerbesteuer jährlich). Befürworter verweisen darauf, dass leerstehende Flächen bereits keine Einnahmen generieren und Unternehmen ohnehin per Briefkastenadresse nach Grünwald (Hebesatz 240% vs. München 490%) abwandern.",
       "axes": {
-        "x": 0.8,
-        "y": 0.3
+        "x": -0.8,
+        "y": -0.3
       },
-      "tradeoff": "Arbeitsplätze vs. Wohnraum"
+      "tradeoff": "Wohnraum vs. Gewerbesteuer-Potenzial"
     },
     {
       "id": 9,
@@ -256,13 +256,13 @@ window.WAHLOMAT_DATA = {
       "id": 3,
       "topic": "Mobilität & Verkehr",
       "short_title": "Parkplätze",
-      "statement": "Bestehende Parkplätze am Straßenrand sollen erhalten bleiben und nicht für Radwege oder Grünflächen umgewandelt werden.",
+      "statement": "Straßenparkplätze sollen für Radwege, Grünflächen und Außengastronomie umgewandelt werden, auch wenn Anwohner und Gewerbetreibende dadurch Stellplätze verlieren.",
       "background": "München hat rund 300.000 öffentliche Parkplätze am Straßenrand. In vielen Vierteln werden diese zunehmend in Radwege, Grünflächen oder Außengastronomie umgewandelt. Befürworter des Umbaus sehen mehr Lebensqualität und Verkehrssicherheit. Anwohner und Gewerbetreibende befürchten Parkplatzmangel und längere Anfahrtswege.",
       "axes": {
         "x": 0,
-        "y": 0.7
+        "y": -0.7
       },
-      "tradeoff": "Privatbesitz vs. Öffentlicher Raum"
+      "tradeoff": "Radverkehr vs. Stellplätze"
     },
     {
       "id": 19,
@@ -317,7 +317,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir setzen auf Anreize statt Fahrverbote – damit der Umstieg möglich ist, ohne Freiheit und Alltagstauglichkeit zu verlieren."
         },
         "3": {
-          "val": 1,
+          "val": -1,
           "quote": "Die systematische Umwandlung von Kfz-Stellplätzen lehnen wir ab."
         },
         "4": {
@@ -377,7 +377,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Prozesse müssen von Anfang bis Ende digitalisiert sein. Digitales Bürgerbüro und E-Akte für schnelleren Service."
         },
         "18": {
-          "val": 1,
+          "val": -1,
           "quote": "Null Komma Null neue Gewerbeflächen unter Grün-Rot. Wir fordern 35 Hektar neue Gewerbeflächen bis 2030."
         },
         "19": {
@@ -425,7 +425,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Perspektivisch weitgehend autofreie Zonen innerhalb des Mittleren Rings."
         },
         "3": {
-          "val": -1,
+          "val": 1,
           "quote": "Wir pflanzen mehr Bäume und entsiegeln Flächen... Wir schaffen Platz für Carsharing."
         },
         "4": {
@@ -485,7 +485,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Digitalisierung der Verwaltung vorantreiben, aber persönliche Beratung für alle Bürger*innen erhalten."
         },
         "18": {
-          "val": -1,
+          "val": 1,
           "quote": "Wohnraum hat Vorrang. Keine neuen Gewerbeflächen auf Kosten von Grün- und Wohnflächen."
         },
         "19": {
@@ -533,7 +533,7 @@ window.WAHLOMAT_DATA = {
           "quote": "In der Münchner Altstadt reduzieren wir den nicht notwendigen Autoverkehr."
         },
         "3": {
-          "val": -1,
+          "val": 1,
           "quote": "Wir stehen für eine Umverteilung des städtischen Raumes zu Gunsten des Umweltverbundes – also Fuß-, Radverkehr, Bus- und Tram und U-Bahn."
         },
         "4": {
@@ -641,7 +641,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Erhalt bzw. Wiederherstellung der Erreichbarkeit von Gewerbebetrieben und Einzelhandel mit dem PKW."
         },
         "3": {
-          "val": 1,
+          "val": -1,
           "quote": "Parkmöglichkeiten in allen Stadtteilen bedarfsgerecht ausbauen."
         },
         "4": {
@@ -701,7 +701,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Bürokratie abbauen und Verwaltung verschlanken, aber keine Smart-City-Überwachungsinfrastruktur."
         },
         "18": {
-          "val": 1,
+          "val": -1,
           "quote": "Erhalt und Ausbau von Gewerbeflächen. Abwanderung von Unternehmen ins Umland stoppen."
         },
         "19": {
@@ -749,7 +749,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Autos, die nicht nach München müssen, sollen die Stadt umfahren."
         },
         "3": {
-          "val": 1,
+          "val": -1,
           "quote": "Parkgebühren müssen sich künftig an der Nachfrage orientieren... Vermehrt Gehwegparken bei ausreichender Restwegbreite... ermöglichen."
         },
         "4": {
@@ -809,7 +809,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Behördengänge, die online funktionieren. Weniger Bürokratie, mehr Service."
         },
         "18": {
-          "val": 1,
+          "val": -1,
           "quote": "München braucht Gewerbeflächen für Mittelstand und Handwerk. Standortwettbewerb ernst nehmen."
         },
         "19": {
@@ -857,7 +857,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir streben eine Auto-arme Stadt an... Bis auf Lieferzonen... sollen keine Autos im Stadtgebiet verkehren."
         },
         "3": {
-          "val": -1,
+          "val": 1,
           "quote": "Den Parkplatzanspruch zugunsten von Fahrradparkplätzen aufheben und das Gehwegparken abschaffen."
         },
         "4": {
@@ -917,7 +917,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Digitalisierung darf nicht auf Kosten persönlicher Beratung und barrierefreier Zugänge gehen."
         },
         "18": {
-          "val": -1,
+          "val": 1,
           "quote": "Wohnraum hat Vorrang vor Gewerbe. Konzerninteressen dürfen den Wohnungsbau nicht blockieren."
         },
         "19": {
@@ -961,7 +961,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Autofreie Zone innerhalb des Altstadtrings ab 2030."
         },
         "3": {
-          "val": -1,
+          "val": 1,
           "quote": "Parkplätze im öffentlichen Raum werden umgewandelt in Grün und Fuß- und Radwege."
         },
         "4": {
@@ -1001,7 +1001,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Klimaschutz als Querschnittsaufgabe... Kontrolle aller Stadtratsbeschlüsse auf Klimawirksamkeit."
         },
         "18": {
-          "val": -1,
+          "val": 1,
           "quote": "Ab sofort keine Ausweisung neuer Gewerbeflächen bis die Wohnungsnot sinkt."
         },
         "19": {
@@ -1029,7 +1029,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr."
         },
         "3": {
-          "val": 1,
+          "val": -1,
           "quote": "Vermehrt Gehwegparken bei ausreichender Restwegbreite... ermöglichen."
         },
         "4": {
@@ -1053,7 +1053,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Beschleunigung der Digitalisierung einschließlich gezieltem Einsatz von KI."
         },
         "18": {
-          "val": 1,
+          "val": -1,
           "quote": "Gewerbeflächen für Mittelstand und Handwerk schützen. Abwanderung ins Umland stoppen."
         },
         "19": {
@@ -1085,7 +1085,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Schrittweise Reduktion des Parkraums für Privatfahrzeuge in der Altstadt... Altstadt zu einem öffentlichen Raum für alle machen."
         },
         "3": {
-          "val": -1,
+          "val": 1,
           "quote": "Parkflächen im öffentlichen Raum umwidmen zugunsten von Bewegungsfreiheit."
         },
         "4": {
@@ -1297,7 +1297,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Bürokratie abbauen, Verwaltung digitalisieren und schlank halten."
         },
         "18": {
-          "val": 1,
+          "val": -1,
           "quote": "Kleine Parzellen für Handwerk auf Gewerbeflächen. Gewerbehöfe müssen dem Gewerbe dienen."
         },
         "19": {

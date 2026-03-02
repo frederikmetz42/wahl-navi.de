@@ -1,11 +1,19 @@
 # Changelog
 
+## v4.9.3 — 2026-03-02
+### Ordnung
+- Root-Folder aufgeräumt: Images → `assets/`, Alpine.js → `vendor/`, Build-Tools → `_build/` (gitignored)
+- Alle HTML-Referenzen aktualisiert (favicon, icon, og-image, alpine.min.js)
+- Build-Kommando: `npx tailwindcss@3 -i _build/input.css -o styles.css --minify --config _build/tailwind.config.js`
+- `research-wirtschaft-thesen.md` → `_internal/`
+- 226 verwaiste QA-Screenshots (21.9MB) aus Vault-Root gelöscht
+
 ## v4.9.2 — 2026-03-02
 ### Analytics, Ads, Bugfixes
 - GoatCounter: Privacy-freundliche Besucherzählung (keine Cookies, kein Tracking, GDPR-konform)
 - Google Ads: Week-1-Analyse ausgewertet, 4 Keywords pausiert, 3 Negatives hinzugefügt, Zeitplan + Budget optimiert
 - Fix: Weitermachen landete auf Wahl-Info statt Quiz-Frage (wn_step speichert nur noch Schritte 1–25)
-- Fix: Antwort-Vorauswahl entfernt (ring-2 Highlight konnte als Nudging wahrgenommen werden)
+- Fix: Antwort-Nudging eliminiert — Focus-Ring, sticky Hover (Mobile Safari), Alpine `:class`-Bindings entfernt (`focus:ring-0`, `@media (hover: hover)`, `blur()` nach Antwort)
 
 ## v4.9.1 — 2026-03-01
 ### Feedback, Impressum, OG-Image
