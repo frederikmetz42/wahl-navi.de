@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-03-01",
+    "last_updated": "2026-03-02",
     "version": "1.0",
     "election": "Kommunalwahl München 2026"
   },
@@ -9,7 +9,7 @@
       "id": 1,
       "topic": "Mobilität & Verkehr",
       "short_title": "Straßentunnel",
-      "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, um den oberirdischen Verkehr zu entlasten.",
+      "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, auch wenn dies Milliarden kostet und Jahre dauert.",
       "axes": {
         "x": 0,
         "y": 0.8
@@ -20,7 +20,7 @@
       "id": 20,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Gendersprache",
-      "statement": "Die Stadtverwaltung soll weiterhin geschlechtergerechte Sprache (z.B. Gender-Stern oder Doppelpunkt) in ihrer Kommunikation nutzen dürfen.",
+      "statement": "Die Stadtverwaltung soll geschlechtergerechte Sprache nutzen, auch wenn diese nicht den amtlichen Rechtschreibregeln entspricht.",
       "axes": {
         "x": 0,
         "y": -1
@@ -31,7 +31,7 @@
       "id": 11,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "SEM/Neubaugebiete",
-      "statement": "Die Stadt soll die geplante Bebauung von Ackerflächen am Stadtrand (Feldmoching/Daglfing) für Tausende neue Wohnungen konsequent vorantreiben.",
+      "statement": "Die Stadt soll am Stadtrand (Feldmoching/Daglfing) Ackerflächen für den Bau Tausender neuer Wohnungen nutzen.",
       "axes": {
         "x": 0.5,
         "y": 0
@@ -75,7 +75,7 @@
       "id": 2,
       "topic": "Mobilität & Verkehr",
       "short_title": "Autofreie Altstadt",
-      "statement": "Innerhalb des Altstadtrings soll der private Autoverkehr weitgehend verboten werden.",
+      "statement": "Der private Autoverkehr innerhalb des Altstadtrings soll stark eingeschränkt werden.",
       "axes": {
         "x": 0,
         "y": -1
@@ -86,7 +86,7 @@
       "id": 14,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Klima-Vorrang",
-      "statement": "Bei städtischen Bau- und Planungsvorhaben sollen Klimaschutzvorgaben im Zweifel schwerer wiegen als Wirtschaftlichkeitsberechnungen.",
+      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten.",
       "axes": {
         "x": -0.6,
         "y": -1
@@ -97,7 +97,7 @@
       "id": 15,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbesteuer",
-      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, um lokale Unternehmen zu entlasten.",
+      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
       "axes": {
         "x": 1,
         "y": 0
@@ -108,10 +108,10 @@
       "id": 10,
       "topic": "Wohnen & Mietmarkt",
       "short_title": "Nachverdichtung",
-      "statement": "In Gartenstadtvierteln soll der Erhalt von Gärten und alten Bäumen wichtiger sein als der Bau neuer Wohnungen durch Nachverdichtung.",
+      "statement": "In Vierteln mit Einfamilienhäusern und Gärten soll der Bau zusätzlicher Wohnungen Vorrang vor dem Erhalt von Grünflächen haben.",
       "axes": {
         "x": 0,
-        "y": 0.6
+        "y": -0.6
       },
       "tradeoff": "Bestandsschutz vs. Nachverdichtung"
     },
@@ -163,7 +163,7 @@
       "id": 8,
       "topic": "Wohnen & Mietmarkt",
       "short_title": "Städtisches Bauen",
-      "statement": "Die städtische Wohnungsgesellschaft (Münchner Wohnen) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
+      "statement": "Die städtische Wohnungsgesellschaft Münchner Wohnen (früher GWG) soll ausschließlich bezahlbare Wohnungen bauen, auch wenn dies nicht gewinnbringend ist.",
       "axes": {
         "x": -0.9,
         "y": 0
@@ -196,12 +196,12 @@
       "id": 13,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Solarpflicht",
-      "statement": "Die Nutzung von Solarenergie auf Dächern soll für alle Neubauten und Dachsanierungen verpflichtend sein.",
+      "statement": "Die bestehende Solarpflicht für Neubauten und Dachsanierungen soll abgeschafft werden, auch wenn Solaranlagen langfristig die Stromkosten senken.",
       "axes": {
-        "x": -0.4,
-        "y": -0.8
+        "x": 0.4,
+        "y": 0.8
       },
-      "tradeoff": "Klimaschutz vs. Eigentumsfreiheit"
+      "tradeoff": "Eigentumsfreiheit vs. Klimaschutz"
     },
     {
       "id": 18,
@@ -218,7 +218,7 @@
       "id": 9,
       "topic": "Wohnen & Mietmarkt",
       "short_title": "Wachstumsbremse",
-      "statement": "Die Stadt soll aktiv Maßnahmen ergreifen, um das weitere Wachstum von München (Zuzug von Firmen/Menschen) zu bremsen, auch wenn das Steuereinnahmen kostet.",
+      "statement": "Die Stadt soll das weitere Wachstum Münchens (Zuzug von Firmen und Menschen) aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.",
       "axes": {
         "x": -0.5,
         "y": 0.8
@@ -245,7 +245,7 @@
         "x": 0,
         "y": -0.7
       },
-      "tradeoff": "Privatbesitz vs. Öffentlicher Raum"
+      "tradeoff": "Radverkehr vs. Stellplätze"
     },
     {
       "id": 19,
@@ -273,10 +273,10 @@
       "id": 6,
       "topic": "Mobilität & Verkehr",
       "short_title": "Radwege",
-      "statement": "Der Ausbau breiter Radwege soll Vorrang vor dem Erhalt von Fahrspuren für Autos haben.",
+      "statement": "Fahrspuren für Autos sollen erhalten bleiben, auch wenn dadurch weniger Platz für breite Radwege ist.",
       "axes": {
         "x": 0,
-        "y": -0.9
+        "y": 0.9
       },
       "tradeoff": "Umweltverbund vs. Auto"
     }
