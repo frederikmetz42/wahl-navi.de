@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta property="og:title" content="MUCwahl München 2026 – Welche Partei passt zu mir?">
     <meta property="og:description" content="25 Thesen, 14 Parteien: Vergleiche deine Positionen zur Münchner Kommunalwahl 2026. Unabhängig und ohne Tracking.">
-    <meta property="og:image" content="https://mucwahl.de/og-image.png">
+    <meta property="og:image" content="https://mucwahl.de/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
@@ -19,12 +19,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MUCwahl München 2026 – Welche Partei passt zu mir?">
     <meta name="twitter:description" content="25 Thesen, 14 Parteien: Vergleiche deine Positionen zur Münchner Kommunalwahl 2026. Unabhängig und ohne Tracking.">
-    <meta name="twitter:image" content="https://mucwahl.de/og-image.png">
+    <meta name="twitter:image" content="https://mucwahl.de/assets/og-image.png">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
     <script src="wahlomat_data.js"></script>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
     <link rel="canonical" href="https://mucwahl.de/">
     <script type="application/ld+json">
     {
@@ -73,7 +73,7 @@
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2 cursor-pointer" @click="reset()">
                 <div class="w-10 h-10 flex items-center justify-center">
-                    <img src="icon.png" class="w-full h-full object-contain" alt="MUCwahl Logo">
+                    <img src="assets/icon.png" class="w-full h-full object-contain" alt="MUCwahl Logo">
                 </div>
                 <div class="leading-tight">
                     <span class="text-xl tracking-tight"><span class="font-extrabold text-slate-900">MUC</span><span class="font-light text-slate-900">wahl</span></span>
@@ -140,7 +140,7 @@
         <!-- Intro -->
         <div x-show="step === 0" x-transition.opacity class="max-w-2xl mx-auto text-center space-y-8 mt-4">
             <div class="inline-flex items-center justify-center w-24 h-24 mb-6">
-                <img src="icon.png" class="w-full h-full object-contain drop-shadow-sm" alt="MUCwahl Logo">
+                <img src="assets/icon.png" class="w-full h-full object-contain drop-shadow-sm" alt="MUCwahl Logo">
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">Orientierung <span class="text-slate-400 font-light">für München.</span></h1>
             <p class="text-base text-slate-600 leading-relaxed max-w-lg mx-auto" style="text-wrap: balance">Vergleiche deine Positionen mit 14 Parteien zur Kommunalwahl 2026.</p>
@@ -856,7 +856,7 @@
         </div>
     </div>
 
-    <script defer src="alpine.min.js"></script>
+    <script defer src="vendor/alpine.min.js"></script>
     <script src="app.js"></script>
     <script data-goatcounter="https://mucwahl.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

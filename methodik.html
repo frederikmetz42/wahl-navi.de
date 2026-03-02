@@ -14,8 +14,8 @@
     <meta property="og:locale" content="de_DE">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
     <link rel="canonical" href="https://mucwahl.de/methodik.html">
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col" x-data="{ expandCalc: false, expandTheses: false, expandSources: false, expandAllTheses: false, expandedThesis: null, get theses() { return window.WAHLOMAT_DATA ? window.WAHLOMAT_DATA.theses : [] } }">
@@ -221,7 +221,7 @@
     </footer>
 
     <script src="wahlomat_data.js"></script>
-    <script defer src="alpine.min.js"></script>
+    <script defer src="vendor/alpine.min.js"></script>
 
 </body>
 </html>

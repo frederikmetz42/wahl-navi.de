@@ -30,9 +30,7 @@ _internal/
 _exports/
 
 # Build tools (not deployed)
-tailwindcss
-input.css
-tailwind.config.js
+_build/
 
 # Local IDE
 .vscode/
