@@ -76,6 +76,7 @@
                 <h2 class="text-lg font-bold text-slate-900 mb-4">Wie die 25 Thesen ausgewählt wurden</h2>
                 <div class="space-y-3">
                     <p>Die Auswahl folgt vier Kriterien: <strong>Lokaler Bezug</strong> (Münchner Kommunalpolitik, nicht Bundesthemen), <strong>Trennschärfe</strong> (Thesen, bei denen die Parteien unterschiedlicher Meinung sind), <strong>Themenbreite</strong> (Abdeckung von 5 Politikfeldern) und <strong>echte Zielkonflikte</strong> (keine „Wir wollen alles"-Aussagen).</p>
+                    <p>Die Thesen wurden in mehreren Runden validiert: KI-gestützte Delphi-Panels mit simulierten Wählerprofilen über alle Parteien hinweg haben jede These auf Verständlichkeit, Neutralität und Trennschärfe geprüft. Schwache Thesen (geringe politische Differenzierung über alle 14 Parteien) wurden systematisch durch trennschärfere ersetzt.</p>
                     <p>25 Thesen aus hunderten möglichen Themen sind immer eine Auswahl. Andere Themen (z.B. Kulturförderung, Schulpolitik, Energiepreise) fehlen nicht, weil sie unwichtig sind, sondern weil sie entweder zu wenig Trennschärfe bieten oder nicht primär kommunal entschieden werden.</p>
                 </div>
 
@@ -86,21 +87,29 @@
                 </button>
                 <div x-show="expandTheses" x-transition.opacity class="mt-4 bg-slate-50 rounded-lg p-5 text-sm text-slate-700 space-y-4 border border-slate-100">
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-1">Polarity Flips (Ja-Tendenz reduzieren)</h3>
-                        <p>Menschen stimmen Aussagen tendenziell eher zu als ab (Acquiescence Bias). Um das auszugleichen, habe ich 3 Thesen bewusst so formuliert, dass die „konservative" Position die Zustimmung ist, nicht nur die „progressive". So liegt das Verhältnis bei 15:8 statt 18:5.</p>
-                        <p class="mt-2 text-slate-500">Beispiel: These 6 (Radwege) fragt nicht „Soll München mehr Radwege bauen?", sondern „Sollen Fahrspuren erhalten bleiben, auch wenn weniger Platz für Radwege ist?" Zustimmung bedeutet hier: Status quo beibehalten.</p>
+                        <h3 class="font-bold text-slate-900 mb-1">Zustimmungs-Balance (progressiv vs. konservativ)</h3>
+                        <p>Bei naiven Umfragen stimmen Menschen Aussagen tendenziell eher zu als ab (Acquiescence Bias). Wenn „Zustimmung" überwiegend progressive Positionen abbildet, entsteht eine systematische Verzerrung. Deshalb wurde die Polarität der Thesen aktiv optimiert.</p>
+                        <p class="mt-2">Aktuell führt „Zustimmung" bei etwa 11 Thesen zu einer progressiven Position, bei 10 zu einer konservativen, und bei 4 ist die Zuordnung ambivalent. Dieses Gleichgewicht wurde durch zwei Maßnahmen erreicht:</p>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-900 mb-1">Umformulierung für Klarheit</h3>
-                        <p>11 Thesen wurden überarbeitet, um führende Sprache zu entfernen. Vage Aussagen wie „München soll nachhaltiger werden" wurden durch konkrete Zielkonflikte ersetzt, die eine echte Entscheidung verlangen.</p>
+                        <h3 class="font-bold text-slate-900 mb-1">Polarity Flips</h3>
+                        <p>Mehrere Thesen wurden bewusst so formuliert, dass die konservative oder marktliberale Position die Zustimmung ist. Beispiel: Die Radwege-These fragt nicht „Soll München mehr Radwege bauen?", sondern „Sollen Fahrspuren erhalten bleiben, auch wenn weniger Platz für Radwege ist?" Ebenso wurde die Solarpflicht-These umgedreht: „Soll die Solarpflicht abgeschafft werden?" Zustimmung bedeutet hier jeweils: Status quo beibehalten oder Regulierung zurücknehmen.</p>
                     </div>
                     <div>
                         <h3 class="font-bold text-slate-900 mb-1">Spektrum-Abdeckung</h3>
-                        <p>Thesen wie Sparkurs (16), Integrationskosten (25) und Bezahlkarte (24) wurden bewusst aufgenommen, um das konservative und wirtschaftsliberale Spektrum abzudecken. Ohne sie wäre die Thesenauswahl einseitig zugunsten progressiver Positionen.</p>
+                        <p>Thesen wie Sparkurs, Gewerbesteuer senken, Integrationskosten begrenzen und Referate abschaffen wurden gezielt aufgenommen, um das konservative und wirtschaftsliberale Spektrum angemessen abzudecken. Ohne sie wäre die Thesenauswahl einseitig zugunsten progressiver Positionen.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 mb-1">„Auch wenn"-Klauseln</h3>
+                        <p>12 der 25 Thesen enthalten eine explizite „auch wenn"-Klausel, die den Preis der Zustimmung benennt (z.B. „auch wenn dies Milliarden kostet", „auch wenn dafür an anderer Stelle gespart werden muss"). Das zwingt zur Abwägung statt zur reflexhaften Zustimmung.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 mb-1">Delphi-Panels</h3>
+                        <p>Jede These wurde KI-gestützt mit simulierten Wählerprofilen über das gesamte Parteienspektrum geprüft. Die Panels bewerteten vier Kriterien: Neutralität (keine wertende Sprache), Klarheit (eindeutig, was Zustimmung/Ablehnung bedeutet), sichtbarer Trade-off und keine Suggestivwirkung. Thesen, die über alle 14 Parteien hinweg zu wenig differenzierten, wurden durch trennschärfere ersetzt.</p>
                     </div>
                     <div>
                         <h3 class="font-bold text-slate-900 mb-1">Trade-off-Labels</h3>
-                        <p>Jede These hat ein Label, das den Kernkonflikt benennt (z.B. „Wohnraum vs. Naturschutz"). Das sind Vereinfachungen, keine absoluten Dichotomien. Sie sollen den Zielkonflikt sichtbar machen, nicht suggerieren, dass es nur zwei Seiten gibt.</p>
+                        <p>Jede These hat ein Label, das den Kernkonflikt benennt (z.B. „Inklusion vs. Tradition"). Das sind Vereinfachungen, keine absoluten Dichotomien. Sie sollen den Zielkonflikt sichtbar machen, nicht suggerieren, dass es nur zwei Seiten gibt.</p>
                     </div>
                 </div>
             </div>
@@ -155,7 +164,7 @@
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
-                        <span><strong>Ein-Personen-Projekt.</strong> Ich habe die Thesen allein ausgewählt und zugeordnet. Kein Gremium, kein Advisory Board hat gegengeprüft. Meine eigenen Blind Spots sind unvermeidlich.</span>
+                        <span><strong>Ein-Personen-Projekt.</strong> Ich habe die Thesen ausgewählt und die Partei-Positionen zugeordnet. KI-gestützte Delphi-Panels haben die Formulierungen validiert, aber kein institutionelles Gremium steht dahinter. Meine eigenen Blind Spots sind unvermeidlich.</span>
                     </li>
                 </ul>
             </div>
@@ -206,7 +215,7 @@
 
             <!-- Section 8: Footer meta -->
             <div class="text-center text-xs text-slate-400 pt-4">
-                Methodik zuletzt aktualisiert: 1. März 2026
+                Methodik zuletzt aktualisiert: 2. März 2026
             </div>
 
         </div>
