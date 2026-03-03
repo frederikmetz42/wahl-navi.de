@@ -541,7 +541,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Mehr Tempo 30 in der Stadt, priorisiert an Schulwegen und sozialen Einrichtungen."
         },
         "5": {
-          "val": 1,
+          "val": 0,
           "quote": "Nulltarif für Kinder bis zum 7. Geburtstag ausweiten und kostenlose Mitnahme von Kindern bei der IsarCard."
         },
         "6": {
@@ -569,8 +569,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir führen die städtebauliche Entwicklungsmaßnahme (SEM) im Münchner Nordosten und Norden fort."
         },
         "12": {
-          "val": 0,
-          "quote": "Wir bauen keine Schlafstädte, sondern lebendige Quartiere mit kurzen Wegen, die in ihrer Nutzung gemischt sind."
+          "val": 1,
+          "quote": "Wenn ein Hochhaus geplant wird, muss es einen stadtgesellschaftlichen Mehrwert liefern und vor allem dauerhaft bezahlbares Wohnen schaffen."
         },
         "13": {
           "val": -1,
@@ -613,7 +613,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Einrichtung von Drogenkonsumräumen und Einsatz für eine menschliche Drogenpolitik."
         },
         "23": {
-          "val": 0,
+          "val": -1,
           "quote": "Angebote vor Verboten, Prävention vor Strafe. Soziale Ursachen der Verwahrlosung bekämpfen."
         },
         "24": {
@@ -1117,7 +1117,7 @@ window.WAHLOMAT_DATA = {
           "quote": "Verpflichtende Solarquoten auf städtischen Gebäuden."
         },
         "16": {
-          "val": -1,
+          "val": 0,
           "quote": "Investitionen in Zukunftsfähigkeit dürfen nicht dem Rotstift zum Opfer fallen."
         },
         "17": {

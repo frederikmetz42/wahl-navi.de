@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.9.9 — 2026-03-03
+### Reddit-Feedback + SPD-Direktfeedback
+- SPD T12 Hochhäuser: val 0→1, neues Zitat (SPD-Direktfeedback: Ja mit Bedingung bezahlbares Wohnen)
+- SPD T23 Ordnung: val 0→-1 (SPD-Direktfeedback: Nein)
+- SPD T5 ÖPNV-Preise: val 1→0 (SPD-Direktfeedback: neutral; Zitat betrifft nur Kinderfahrkarten)
+- Volt T16 Sparkurs: val -1→0 (Reddit: Zitat schützt nur Investitionen, nicht Gesamtausgaben)
+- SPD T17 + Grüne T17 Digitale Verwaltung: bewusst bei val 0 belassen (beide wollen digital + persönlich; val -1 wäre irreführend anti-digital)
+
 ## v4.9.8 — 2026-03-03
 ### Reddit-Feedback
 - Kompass: Hinweis ergänzt, dass Kompass-Nähe und Prozent-Rangliste verschiedene Dinge messen
