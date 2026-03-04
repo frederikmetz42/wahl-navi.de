@@ -4,7 +4,7 @@ window.WAHLOMAT_DATA = {
       "id": 1,
       "topic": "Mobilität & Verkehr",
       "short_title": "Straßentunnel",
-      "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, auch wenn dies Milliarden kostet.",
+      "statement": "Die Stadt München soll neue Straßentunnel (z.B. am Englischen Garten oder der Landshuter Allee) bauen, auch wenn dies hohe Baukosten verursacht.",
       "background": "Gemeint sind v.a. der Englischer-Garten-Tunnel (ca. 240 Mio. Euro laut Machbarkeitsstudie 2024) und ein möglicher Tunnel an der Landshuter Allee. Befürworter sehen Entlastung für Anwohner und neue Freiflächen an der Oberfläche. Kritiker verweisen auf jahrelange Bauzeiten und Kostenexplosionen: Der Luise-Kiesselbach-Tunnel (fertig 2015) wurde deutlich teurer als geplant.",
       "axes": {
         "x": 0,
@@ -88,7 +88,7 @@ window.WAHLOMAT_DATA = {
       "id": 14,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Klima-Vorrang",
-      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten, auch wenn dadurch städtische Bauprojekte deutlich teurer werden.",
+      "statement": "Wenn die Stadt baut oder plant, soll der Klimaschutz im Zweifel wichtiger sein als die Kosten, auch wenn dadurch städtische Bauprojekte teurer werden.",
       "background": "München hat eine Klimaschutzprüfung für alle städtischen Vorhaben eingeführt. In der Praxis entstehen dadurch Zielkonflikte: klimafreundlichere Bauweisen oder Materialien kosten oft mehr. Die Frage ist, ob Klimaschutz bei Zielkonflikten automatisch Vorrang vor dem Budget haben soll oder ob eine Einzelfallabwägung reicht.",
       "axes": {
         "x": -0.6,
@@ -157,16 +157,16 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Flächeneffizienz vs. Stadtbild"
     },
     {
-      "id": 17,
+      "id": 26,
       "topic": "Wirtschaft & Finanzen",
-      "short_title": "Digitale Verwaltung",
-      "statement": "Alle Bürgerservices der Stadt (z.B. Anmeldung, Baugenehmigungen) sollen vollständig digital angeboten werden, auch wenn dafür weniger persönliche Beratung vor Ort möglich ist.",
-      "background": "Baugenehmigungen dauern in München 8 bis 18 Monate statt der gesetzlichen drei Monate. Befürworter einer konsequenten Digitalisierung sehen schnellere Prozesse und Einsparpotenziale. Kritiker warnen, dass ältere Menschen, Menschen ohne Internetzugang und Nicht-Muttersprachler auf persönliche Beratung angewiesen sind. Studien zeigen: Nur 12 Prozent der Bürger finden, der Staat mache ihr Leben einfacher.",
+      "short_title": "Kostenlose Krippe",
+      "statement": "Die Stadt soll die Krippengebühren für Kinder unter drei Jahren komplett abschaffen, auch wenn dies den städtischen Haushalt jährlich mit einem hohen zweistelligen Millionenbetrag belastet.",
+      "background": "Kindergärten (3–6 Jahre) sind in München bereits gebührenfrei. Krippenplätze für unter Dreijährige kosten Eltern bis zu 250 Euro pro Monat plus 105 Euro Verpflegungsgeld. Befürworter fordern, diese Lücke zu schließen und die Gebührenfreiheit auf alle Altersgruppen auszuweiten. Kritiker verweisen auf die angespannte Haushaltslage und fordern zunächst den Ausbau der Plätze statt Gebührenfreiheit.",
       "axes": {
-        "x": 0.5,
-        "y": 0
+        "x": -0.3,
+        "y": 0.3
       },
-      "tradeoff": "Effizienz vs. Zugänglichkeit"
+      "tradeoff": "Familienhilfe vs. Haushaltsdisziplin"
     },
     {
       "id": 8,
@@ -205,6 +205,18 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Sozial vs. Haushaltsdisziplin"
     },
     {
+      "id": 27,
+      "topic": "Gesellschaft, Migration & Sicherheit",
+      "short_title": "Deutsch in Kitas",
+      "statement": "In städtischen Kindertagesstätten soll Deutsch als verbindliche Umgangssprache gelten, auch wenn dies die Mehrsprachigkeit der Kinder einschränkt.",
+      "background": "Über 40 Prozent der Münchner Kinder haben einen Migrationshintergrund. Bayern führt ab der Einschulung 2026 verpflichtende Sprachtests ein. Befürworter einer verbindlichen Umgangssprache argumentieren mit besserer Integration und Schulreife. Gegner warnen vor Ausgrenzung und dem Verlust sprachlicher Vielfalt, da Mehrsprachigkeit der Erzieherinnen auch als Ressource gesehen wird.",
+      "axes": {
+        "x": 0.8,
+        "y": 0.6
+      },
+      "tradeoff": "Integration vs. Sprachliche Vielfalt"
+    },
+    {
       "id": 13,
       "topic": "Bauen, Klima & Stadtplanung",
       "short_title": "Solarpflicht",
@@ -241,6 +253,18 @@ window.WAHLOMAT_DATA = {
       "tradeoff": "Ruhe vs. Wohlstand"
     },
     {
+      "id": 28,
+      "topic": "Wirtschaft & Finanzen",
+      "short_title": "Kostenloses Schulessen",
+      "statement": "Alle Kinder an Münchner Schulen und Kitas sollen ein kostenloses Mittagessen erhalten, auch wenn die Stadt dafür jährlich mehrere hundert Millionen Euro aufwenden muss.",
+      "background": "Das monatliche Verpflegungsgeld an Münchner Kitas beträgt 105 Euro, unabhängig vom Einkommen. Bedürftige Familien können bereits kostenloses Essen über das Bildungs- und Teilhabepaket beantragen. Ab 2026 steigt durch den Ganztags-Rechtsanspruch die Zahl der Kinder, die in der Schule essen. Befürworter wollen Stigmatisierung vermeiden, indem alle Kinder gleich behandelt werden. Kritiker warnen vor einer universellen Subvention, die auch wohlhabende Familien entlastet, statt gezielt Bedürftige zu unterstützen.",
+      "axes": {
+        "x": -0.4,
+        "y": 0.2
+      },
+      "tradeoff": "Universelle Versorgung vs. gezielte Hilfe"
+    },
+    {
       "id": 22,
       "topic": "Gesellschaft, Migration & Sicherheit",
       "short_title": "Drogenkonsumräume",
@@ -251,18 +275,6 @@ window.WAHLOMAT_DATA = {
         "y": -0.9
       },
       "tradeoff": "Hilfe vs. Ordnung"
-    },
-    {
-      "id": 3,
-      "topic": "Gesellschaft, Migration & Sicherheit",
-      "short_title": "Schulen & Kita",
-      "statement": "Die Stadt soll den Ausbau von Ganztagsschulen und Kita-Plätzen Vorrang vor anderen Bauprojekten geben, auch wenn andere Investitionen dafür warten müssen.",
-      "background": "Ab 2026 gilt ein Rechtsanspruch auf ganztägige Betreuung für Grundschulkinder. München investiert über 9 Milliarden Euro in Schulbau und plant 8.500 neue Kita-Plätze. Die Wartelisten sind lang, der Fachkräftemangel gravierend. Befürworter sehen Bildung als Grundlage für Chancengleichheit. Kritiker fragen, ob der Vorrang eines Bereichs andere dringende Projekte gefährdet.",
-      "axes": {
-        "x": 0.1,
-        "y": 0.2
-      },
-      "tradeoff": "Bildungspriorität vs. Investitionsbreite"
     },
     {
       "id": 19,
@@ -287,18 +299,6 @@ window.WAHLOMAT_DATA = {
         "y": 0.7
       },
       "tradeoff": "Haushaltsdisziplin vs. Integrationsqualität"
-    },
-    {
-      "id": 6,
-      "topic": "Wirtschaft & Finanzen",
-      "short_title": "Sozialtarif Energie",
-      "statement": "Die Stadtwerke München sollen einen Sozialtarif für Strom und Fernwärme einführen, auch wenn dies die Gewinne des städtischen Unternehmens schmälert.",
-      "background": "Die Fernwärmepreise in München sind in zwei Jahren um über 200 Prozent gestiegen. Über 250.000 Haushalte beziehen Fernwärme ohne Wechselmöglichkeit. Befürworter fordern einen Sozialtarif, um einkommensschwache Haushalte zu entlasten. Kritiker warnen, dass geringere SWM-Gewinne den städtischen Haushalt belasten, da die SWM jährlich über 100 Millionen Euro an die Stadt abführen.",
-      "axes": {
-        "x": 0.5,
-        "y": 0.3
-      },
-      "tradeoff": "Soziale Entlastung vs. Stadtfinanzen"
     }
   ],
   "parties": [
@@ -316,10 +316,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Wir setzen auf Anreize statt Fahrverbote – damit der Umstieg möglich ist, ohne Freiheit und Alltagstauglichkeit zu verlieren."
         },
-        "3": {
-          "val": 0,
-          "quote": "München braucht eine Ganztagsschulinitiative. Die Stadt investiert in die Bildungsbauoffensive."
-        },
         "4": {
           "val": -1,
           "quote": "Notwendige Fahrspuren erhalten wir – weil München funktionieren muss. [...] Vision Zero darf kein Vorwand für den Rückbau von Infrastruktur oder die Behinderung des Verkehrs sein."
@@ -327,10 +323,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": -1,
           "quote": "Wir erhöhen Münchens Einnahmen durch Wachstum statt Gebühren... Prioritäten setzen statt Wunschlisten schreiben."
-        },
-        "6": {
-          "val": -1,
-          "quote": "Die SWM müssen wirtschaftlich arbeiten und Transparenz bei der Fernwärmepreisbildung schaffen."
         },
         "7": {
           "val": -1,
@@ -372,10 +364,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Die Stadt hat kein Einnahmeproblem. Prioritäten setzen statt Wunschlisten schreiben."
         },
-        "17": {
-          "val": 1,
-          "quote": "Prozesse müssen von Anfang bis Ende digitalisiert sein. Digitales Bürgerbüro und E-Akte für schnelleren Service."
-        },
         "18": {
           "val": -1,
           "quote": "Null Komma Null neue Gewerbeflächen unter Grün-Rot. Wir fordern 35 Hektar neue Gewerbeflächen bis 2030."
@@ -407,6 +395,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": 1,
           "quote": "Kommunale Belastungsgrenzen sind erreicht. Bund und Freistaat müssen ihrer finanziellen Verantwortung nachkommen."
+        },
+        "26": {
+          "val": -1,
+          "quote": "Wir setzen auf den Ausbau von Betreuungsplätzen und Wahlfreiheit für Familien statt pauschaler Gebührenfreiheit."
+        },
+        "27": {
+          "val": 1,
+          "quote": "Deutsche Sprache ist der Schlüssel zur Integration. Verpflichtende Sprachtests und gezielte Förderung ab der Kita."
+        },
+        "28": {
+          "val": -1,
+          "quote": "Gezielte Hilfe für bedürftige Familien statt flächendeckender Subventionen. Eigenverantwortung stärken."
         }
       }
     },
@@ -424,10 +424,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Perspektivisch weitgehend autofreie Zonen innerhalb des Mittleren Rings."
         },
-        "3": {
-          "val": 0,
-          "quote": "Mehr Kita-Plätze schaffen und Schulen mit kooperativem Ganztag modernisieren, aber nicht auf Kosten von Klimainvestitionen."
-        },
         "4": {
           "val": 1,
           "quote": "Mehr Tempo 30 in der Stadt, priorisiert an Schulwegen und sozialen Einrichtungen."
@@ -435,10 +431,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": 1,
           "quote": "Nulltarif für Kinder bis zum 7. Geburtstag ausweiten... Finanziell geförderte D-Tickets statt zeitlich eingeschränkter Isarcard Sozial."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Wohn- und Heizkosten durch Solar- und Sanierungsoffensive dauerhaft senken statt Gewinne umverteilen."
         },
         "7": {
           "val": 0,
@@ -480,10 +472,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Es geht nicht um Zahlen, es geht um Zukunft. Priorität für Zukunftsinvestitionen in Bildung, Klima und Wohnen."
         },
-        "17": {
-          "val": 0,
-          "quote": "Digitalisierung der Verwaltung vorantreiben, aber persönliche Beratung für alle Bürger*innen erhalten."
-        },
         "18": {
           "val": 1,
           "quote": "Wohnraum hat Vorrang. Keine neuen Gewerbeflächen auf Kosten von Grün- und Wohnflächen."
@@ -515,6 +503,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Integration braucht Investition. Reduzierte Betreuung erschwert das Ankommen und wird langfristig teurer."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Kitas sollen langfristig beitragsfrei werden. Aktuell hat der Ausbau der Plätze Priorität."
+        },
+        "27": {
+          "val": -1,
+          "quote": "Mehrsprachigkeit ist eine Ressource, kein Problem. Sprachförderung ja, Verbote nein."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Höhere Zuschüsse zum Mittagessen und gesundes Essen an Schulen. Eine vollständige Kostenübernahme muss finanzierbar sein."
         }
       }
     },
@@ -532,10 +532,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "In der Münchner Altstadt reduzieren wir den nicht notwendigen Autoverkehr."
         },
-        "3": {
-          "val": 1,
-          "quote": "Von der Kita bis zur Berufsschule: Gute Bildung öffnet Türen. Moderne Schulen, verlässliche Betreuung und Ganztagsangebote."
-        },
         "4": {
           "val": 1,
           "quote": "Mehr Tempo 30 in der Stadt, priorisiert an Schulwegen und sozialen Einrichtungen."
@@ -543,10 +539,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": 0,
           "quote": "Nulltarif für Kinder bis zum 7. Geburtstag ausweiten und kostenlose Mitnahme von Kindern bei der IsarCard."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Energie muss bezahlbar sein. Wir setzen auf den Wärmefonds, um einkommensschwache Haushalte gezielt zu entlasten."
         },
         "7": {
           "val": 0,
@@ -588,10 +580,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Klare Prioritäten bei Investitionen: Schulen, Wohnungsbau und Infrastruktur dürfen nicht warten."
         },
-        "17": {
-          "val": 0,
-          "quote": "Digitale Angebote ausbauen und gleichzeitig persönliche Beratung für alle sicherstellen."
-        },
         "18": {
           "val": 0,
           "quote": "Wir brauchen beides: bezahlbaren Wohnraum und gute Arbeitsplätze in der Stadt."
@@ -623,6 +611,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Integration gelingt durch Teilhabe, nicht durch Kürzungen bei Sprachkursen und Betreuung."
+        },
+        "26": {
+          "val": 1,
+          "quote": "Kostenfreie Kitas für alle, von der Krippe bis zum Hort. Gute Bildung darf nicht vom Geldbeutel abhängen."
+        },
+        "27": {
+          "val": -1,
+          "quote": "Sprachförderung stärken, aber Mehrsprachigkeit als Chance begreifen. Kein Verbot von Herkunftssprachen."
+        },
+        "28": {
+          "val": 1,
+          "quote": "Gute Ernährung für alle Kinder, unabhängig vom Einkommen der Eltern. Kostenloses Mittagessen an Schulen und Kitas."
         }
       }
     },
@@ -640,10 +640,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Erhalt bzw. Wiederherstellung der Erreichbarkeit von Gewerbebetrieben und Einzelhandel mit dem PKW."
         },
-        "3": {
-          "val": 0,
-          "quote": "Erhalt der christlich abendländischen Kultur in Kindertagesstätten und Schulen. Deutsche Sprache verbindlich verankern."
-        },
         "4": {
           "val": -1,
           "quote": "Einheitliche Höchstgeschwindigkeiten auf Hauptverkehrsstraßen: durchgehend Tempo 50, wo verkehrssicher möglich auch Tempo 60."
@@ -651,10 +647,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": -1,
           "quote": "Schuldenabbau... durch Priorisierung und Streichung nicht zwingender Großprojekte (z. B. der U9, diverser Trambahnprojekte)."
-        },
-        "6": {
-          "val": -1,
-          "quote": "Strategiewechsel weg von priorisierten Investitionen in erneuerbare Energien. Stabile Energieversorgung statt Umverteilung."
         },
         "7": {
           "val": -1,
@@ -696,10 +688,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Sofortiger Stopp der investiven Neuverschuldung. Fokussierung auf städtische Pflichtaufgaben."
         },
-        "17": {
-          "val": 0,
-          "quote": "Bürokratie abbauen und Verwaltung verschlanken, aber keine Smart-City-Überwachungsinfrastruktur."
-        },
         "18": {
           "val": -1,
           "quote": "Erhalt und Ausbau von Gewerbeflächen. Abwanderung von Unternehmen ins Umland stoppen."
@@ -731,6 +719,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": 1,
           "quote": "Münchens Aufnahmekapazitäten sind erschöpft. Keine weitere Eröffnung neuer Flüchtlingsunterkünfte."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Familien stärken durch Wahlfreiheit. Keine Position zur vollständigen Gebührenfreiheit bei Krippen."
+        },
+        "27": {
+          "val": 1,
+          "quote": "Deutsch als verbindliche Umgangssprache in Kindertagesstätten. Deutsche Sprache und Kultur verbindlich verankern."
+        },
+        "28": {
+          "val": -1,
+          "quote": "Keine staatliche Vollversorgung. Familien sollen selbst für die Verpflegung ihrer Kinder sorgen können."
         }
       }
     },
@@ -748,10 +748,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Autos, die nicht nach München müssen, sollen die Stadt umfahren."
         },
-        "3": {
-          "val": 1,
-          "quote": "Schulen ausbauen, Ganztag sichern und Familien Planungssicherheit geben."
-        },
         "4": {
           "val": -1,
           "quote": "Kein flächendeckendes Tempo-30."
@@ -759,10 +755,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": -1,
           "quote": "Bezahlbarer ÖPNV... Eine kluge Haushaltsführung ist essenziell... anstelle kostenintensiver Komfortlösungen."
-        },
-        "6": {
-          "val": -1,
-          "quote": "SWM brauchen Preistransparenz und Wettbewerb, keine staatlich verordneten Sozialtarife."
         },
         "7": {
           "val": -1,
@@ -804,10 +796,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Verantwortungsvoller Umgang mit Eurem Geld. Prioritäten setzen statt alles gleichzeitig versprechen."
         },
-        "17": {
-          "val": 1,
-          "quote": "Behördengänge, die online funktionieren. Weniger Bürokratie, mehr Service."
-        },
         "18": {
           "val": -1,
           "quote": "München braucht Gewerbeflächen für Mittelstand und Handwerk. Standortwettbewerb ernst nehmen."
@@ -839,6 +827,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": 1,
           "quote": "Effizientere Mittelverwendung bei der Integration. Bund und Freistaat stärker in die Pflicht nehmen."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Langfristig soll Kinderbetreuung beitragsfrei sein. Kurzfristig muss der Ausbau der Plätze Vorrang haben."
+        },
+        "27": {
+          "val": 1,
+          "quote": "Frühkindliche Sprachförderung in Deutsch ist entscheidend für gleiche Startchancen in der Schule."
+        },
+        "28": {
+          "val": -1,
+          "quote": "Eigenverantwortung der Familien. Gezielte Unterstützung über bestehende Sozialsysteme statt universeller Gratisleistungen."
         }
       }
     },
@@ -856,10 +856,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Wir streben eine Auto-arme Stadt an... Bis auf Lieferzonen... sollen keine Autos im Stadtgebiet verkehren."
         },
-        "3": {
-          "val": 1,
-          "quote": "Garantierte, gebührenfreie Kita- und Hortplätze sowie kostenloses Mittagessen für alle Kinder."
-        },
         "4": {
           "val": 1,
           "quote": "fordern wir mehr Tempo-30-Zonen, weniger Autospuren."
@@ -867,10 +863,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": 1,
           "quote": "Den ÖPNV nach Luxemburger Vorbild ticketfrei gestalten."
-        },
-        "6": {
-          "val": 1,
-          "quote": "Die SWM muss sofort einen Sozialtarif einführen und perspektivisch ein komplett entgeltfreies Energie-Grundkontingent."
         },
         "7": {
           "val": 1,
@@ -912,10 +904,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Keine Kürzungen bei der Daseinsvorsorge! Öffentliche Aufgaben ausbauen, nicht kaputtsparen."
         },
-        "17": {
-          "val": -1,
-          "quote": "Digitalisierung darf nicht auf Kosten persönlicher Beratung und barrierefreier Zugänge gehen."
-        },
         "18": {
           "val": 1,
           "quote": "Wohnraum hat Vorrang vor Gewerbe. Konzerninteressen dürfen den Wohnungsbau nicht blockieren."
@@ -947,6 +935,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Menschenwürdige Unterbringung und Betreuung sind nicht verhandelbar."
+        },
+        "26": {
+          "val": 1,
+          "quote": "Garantierte, gebührenfreie Kita- und Hortplätze für alle Kinder, von Anfang an."
+        },
+        "27": {
+          "val": -1,
+          "quote": "Sprachliche Vielfalt ist Reichtum, keine Bedrohung. Gegen Zwangsgermanisierung in Kitas."
+        },
+        "28": {
+          "val": 1,
+          "quote": "Kostenloses Mittagessen für alle Kinder in Schulen und Kitas. Gute Ernährung ist ein Grundrecht."
         }
       }
     },
@@ -960,10 +960,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Autofreie Zone innerhalb des Altstadtrings ab 2030."
         },
-        "3": {
-          "val": 0,
-          "quote": "Schulen müssen ein Ort der Ermutigung sein. Echte Wahlfreiheit für Eltern zwischen Betreuung und Erziehungsgehalt."
-        },
         "4": {
           "val": 1,
           "quote": "Tempo 30 als Regelgeschwindigkeit; Ausnahmen nur auf Hauptverkehrsstraßen."
@@ -971,10 +967,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": 1,
           "quote": "Kostenloser ÖPNV für Kinder und Jugendliche... Änderung der Finanzierung... um ein kostenloses Angebot zu ermöglichen."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Effektives Leistungscontrolling für die Stadtwerke München. Nachhaltig und sozial wirtschaften."
         },
         "9": {
           "val": 1,
@@ -1015,6 +1007,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Integration erfordert langfristige Investitionen. Kürzungen schaffen nur neue Probleme."
+        },
+        "26": {
+          "val": -1,
+          "quote": "Echte Wahlfreiheit für Eltern: Erziehungsgehalt statt noch mehr Druck zur institutionellen Betreuung."
+        },
+        "27": {
+          "val": 0,
+          "quote": "Sprachförderung ist wichtig, aber sie muss kindgerecht und wertschätzend erfolgen."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Gesunde Ernährung an Schulen fördern. Die Finanzierung muss nachhaltig gesichert sein."
         }
       }
     },
@@ -1028,17 +1032,9 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Praktikable Lösungen für Auto, ÖPNV, Rad und Fußverkehr."
         },
-        "3": {
-          "val": 1,
-          "quote": "Ausbau von Kitas, Horten und Tagespflegeplätzen. Stärkung der Ausbildung von Erzieherinnen und Erziehern."
-        },
         "4": {
           "val": -1,
           "quote": "Kein flächendeckendes Tempo-30."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Solide Haushaltspolitik. Soziale Absicherung durch gezielte Maßnahmen."
         },
         "8": {
           "val": 1,
@@ -1051,10 +1047,6 @@ window.WAHLOMAT_DATA = {
         "16": {
           "val": 1,
           "quote": "Solide Haushaltspolitik. Pflichtaufgaben priorisieren, freiwillige Leistungen kritisch prüfen."
-        },
-        "17": {
-          "val": 1,
-          "quote": "Beschleunigung der Digitalisierung einschließlich gezieltem Einsatz von KI."
         },
         "18": {
           "val": -1,
@@ -1075,6 +1067,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": 1,
           "quote": "Kosten für Integration müssen gerechter zwischen Kommune, Land und Bund verteilt werden."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Ausbau von Kitas, Horten und Tagespflegeplätzen. Stärkung der Ausbildung von Erzieherinnen und Erziehern."
+        },
+        "27": {
+          "val": 1,
+          "quote": "Integration beginnt mit Sprache. Deutsch als Grundlage für den Bildungserfolg aller Kinder."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Solide Haushaltspolitik. Soziale Absicherung durch gezielte Maßnahmen statt pauschaler Transfers."
         }
       }
     },
@@ -1088,17 +1092,9 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Schrittweise Reduktion des Parkraums für Privatfahrzeuge in der Altstadt... Altstadt zu einem öffentlichen Raum für alle machen."
         },
-        "3": {
-          "val": 1,
-          "quote": "Schulen, die ganztägiges Lernen ermöglichen. Ausbau von Krippen-, Kita- und Ganztagsplätzen."
-        },
         "4": {
           "val": 1,
           "quote": "Weitere Tempo 30 Zonen an kritischen Stellen."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Geothermie und Photovoltaik schneller ausbauen, damit Energie langfristig bezahlbar bleibt."
         },
         "8": {
           "val": 1,
@@ -1123,10 +1119,6 @@ window.WAHLOMAT_DATA = {
         "16": {
           "val": 0,
           "quote": "Investitionen in Zukunftsfähigkeit dürfen nicht dem Rotstift zum Opfer fallen."
-        },
-        "17": {
-          "val": 1,
-          "quote": "Smart City München: Alle Bürgerservices digital und mehrsprachig zugänglich."
         },
         "19": {
           "val": -1,
@@ -1155,6 +1147,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Europäische Solidarität und kommunale Integrationsarbeit müssen Hand in Hand gehen."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Chancengleichheit von Anfang an. Ausbau und Qualität der Betreuung haben Vorrang."
+        },
+        "27": {
+          "val": -1,
+          "quote": "Mehrsprachigkeit ist eine europäische Stärke. Sprachförderung statt Sprachverbote."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Chancengleichheit in der Bildung stärken. Die Finanzierung universeller Gratisleistungen muss realistisch sein."
         }
       }
     },
@@ -1168,14 +1172,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "50 % Autobahn und 50 % Parkplatz sind 100% Erfolg!"
         },
-        "3": {
-          "val": 0,
-          "quote": "Einführung des G1-Schulsystems: ein Jahr Schule für alle."
-        },
-        "6": {
-          "val": 1,
-          "quote": "Sozialtarif für armutsgefährdete Kund*innen der Münchner Stadtwerke als Sofortmaßnahme gegen Energiearmut."
-        },
         "12": {
           "val": 1,
           "quote": "Alle Neubauten Münchens... müssen größer, höher und prächtiger sein als die Frauenkirche."
@@ -1187,6 +1183,18 @@ window.WAHLOMAT_DATA = {
         "24": {
           "val": -1,
           "quote": "Wir fordern die Bezahlkarte für CSU-Stadträte, um Korruption zu verhindern."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Kinder sind die Zukunft. Oder so ähnlich."
+        },
+        "27": {
+          "val": 0,
+          "quote": "Bairisch als verbindliche Umgangssprache in Kitas."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Kostenloses Essen für alle. Aber nur wenn es schmeckt."
         }
       }
     },
@@ -1199,14 +1207,6 @@ window.WAHLOMAT_DATA = {
         "2": {
           "val": 1,
           "quote": "Entlastung vom Durchgangsverkehr... Stärkere Nutzung von öffentlichen Straßen und Plätzen für ein urbanes Leben."
-        },
-        "3": {
-          "val": 0,
-          "quote": "Bildungspolitik hat Einfluss auf Teilhabe und Chancengleichheit in der Stadtgesellschaft."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Soziale Gerechtigkeit in allen Lebensbereichen sicherstellen."
         },
         "16": {
           "val": -1,
@@ -1239,6 +1239,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Geflüchtete Menschen brauchen Schutz und Betreuung, keine Kostendebatte."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Teilhabe und Chancengleichheit beginnen in der frühkindlichen Bildung."
+        },
+        "27": {
+          "val": -1,
+          "quote": "Sprachliche Vielfalt respektieren. Gegen Ausgrenzung durch einsprachige Normen."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Soziale Gerechtigkeit in allen Lebensbereichen sicherstellen."
         }
       }
     },
@@ -1251,14 +1263,6 @@ window.WAHLOMAT_DATA = {
         "1": {
           "val": 0,
           "quote": "Wir sind gegen einen maßlosen Flächenverbrauch für Gewerbe, Siedlungen und Verkehr."
-        },
-        "3": {
-          "val": 0,
-          "quote": "Infrastruktur kann mit dem Wachstum nicht Schritt halten. Ursache ist das überhitzte Wachstum."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Kommunale Kontrolle über Versorgungsunternehmen stärken."
         },
         "9": {
           "val": 1,
@@ -1279,6 +1283,18 @@ window.WAHLOMAT_DATA = {
         "24": {
           "val": 0,
           "quote": "In Zeiten knapper Kassen müssen alle Leistungen auf den Prüfstand."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Infrastruktur kann mit dem Wachstum nicht Schritt halten. Platzausbau vor Gebührendebatte."
+        },
+        "27": {
+          "val": 0,
+          "quote": "Keine spezifische Position zur Kita-Sprachpflicht."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Kommunale Infrastruktur kann mit dem Wachstum nicht Schritt halten."
         }
       }
     },
@@ -1296,10 +1312,6 @@ window.WAHLOMAT_DATA = {
           "val": -1,
           "quote": "Innenstadt für Autos unzugänglich machen... Ideologie."
         },
-        "3": {
-          "val": 0,
-          "quote": "Starke Schulen, die Wissen und soziale Kompetenzen vermitteln. Priorisierung von Münchner Familien bei Kita-Plätzen."
-        },
         "4": {
           "val": -1,
           "quote": "Begrüßung der Aufhebung von Tempo 30 auf der Landshuter Allee."
@@ -1307,10 +1319,6 @@ window.WAHLOMAT_DATA = {
         "5": {
           "val": 0,
           "quote": "Fokus auf Qualität, Zuverlässigkeit und Netzausbau statt auf kurzfristige Preis- oder Prestigeprojekte."
-        },
-        "6": {
-          "val": 0,
-          "quote": "SWM sollen im Interesse der Münchner Bürger wirtschaften."
         },
         "7": {
           "val": -1,
@@ -1352,10 +1360,6 @@ window.WAHLOMAT_DATA = {
           "val": 1,
           "quote": "Haushalt sanieren, investieren statt konsumieren. Personalkosten in 10 Jahren um 1 Mrd. Euro gestiegen."
         },
-        "17": {
-          "val": 1,
-          "quote": "Bürokratie abbauen, Verwaltung digitalisieren und schlank halten."
-        },
         "18": {
           "val": -1,
           "quote": "Kleine Parzellen für Handwerk auf Gewerbeflächen. Gewerbehöfe müssen dem Gewerbe dienen."
@@ -1387,6 +1391,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": 1,
           "quote": "Priorität für Münchner bei städtischen Leistungen. Integration heißt Ankommen, nicht Parallelwelten organisieren."
+        },
+        "26": {
+          "val": -1,
+          "quote": "Solide Haushaltsführung und gezielte Unterstützung für bedürftige Familien statt Gießkannenprinzip."
+        },
+        "27": {
+          "val": 1,
+          "quote": "Deutsche Sprache und bayerischer Dialekt sollen in Kitas gestärkt werden."
+        },
+        "28": {
+          "val": -1,
+          "quote": "Eigenverantwortung und gezielte Hilfe für Bedürftige. Keine Gratis-Mentalität auf Kosten der Allgemeinheit."
         }
       }
     },
@@ -1400,14 +1416,6 @@ window.WAHLOMAT_DATA = {
         "2": {
           "val": 1,
           "quote": "Städte gehören den Bürgern, nicht den Autos."
-        },
-        "3": {
-          "val": 0,
-          "quote": "Kulturbegriff im städtischen Schulwesen neu denken, ab Kindergarten."
-        },
-        "6": {
-          "val": 0,
-          "quote": "Kultur und soziale Teilhabe gehören zusammen."
         },
         "16": {
           "val": -1,
@@ -1424,6 +1432,18 @@ window.WAHLOMAT_DATA = {
         "25": {
           "val": -1,
           "quote": "Kulturelle Teilhabe ist Teil gelungener Integration."
+        },
+        "26": {
+          "val": 0,
+          "quote": "Kulturelle Bildung beginnt im Kindergarten."
+        },
+        "27": {
+          "val": 0,
+          "quote": "Kultur und Sprache gehören zusammen. Dialog statt Vorschriften."
+        },
+        "28": {
+          "val": 0,
+          "quote": "Kultur und Bildung gehören zusammen, auch in der Schulverpflegung."
         }
       }
     }

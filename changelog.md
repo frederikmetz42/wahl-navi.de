@@ -1,5 +1,15 @@
 # Changelog
 
+## v4.9.12 — 2026-03-04
+### Schwache Thesen ersetzen + Klausel-Fixes
+- 3 Thesen gelöscht wegen mangelnder Differenzierung: T3 Schulen/Kita (9×Neutral, 0×Dagegen), T6 Sozialtarif (9×Neutral, 6 generische Zitate), T17 Digitale Verwaltung (nur 1 Partei dagegen)
+- 3 neue Thesen mit höherer Differenzierung: T26 Kostenlose Krippe (Spread 5), T27 Deutsch in Kitas (Spread 10, perfekte 5:5-Teilung), T28 Kostenloses Schulessen (Spread 6)
+- 42 neue Partei-Positionen (14 Parteien × 3 Thesen)
+- T1 Straßentunnel: "dies Milliarden kostet" → "dies hohe Baukosten verursacht" (Fear-Word entfernt)
+- T14 Klima-Vorrang: "deutlich teurer werden" → "teurer werden" (Intensifier entfernt)
+- Gelöschte Thesen mit allen Positionen in _internal/archiv-geloeschte-thesen.md archiviert
+- Kategorieverteilung unverändert: Mobilität 4, Wohnen 4, Bauen 4, Wirtschaft 6, Gesellschaft 7
+
 ## v4.9.11 — 2026-03-04
 ### Tradeoff-Klauseln entschärfen + T3/T6 ersetzen
 - 13 "auch wenn"-Klauseln entschärft: Nein-Bias, Angst-Trigger und Sympathie-Gruppen neutralisiert (T1, T2, T5, T7, T10, T11, T13, T19, T20, T21, T22, T23, T24)
