@@ -1,12 +1,13 @@
 # Changelog
 
 ## v4.9.13 — 2026-03-04
-### Schwache Thesen ersetzen (Pre-Flight Check)
+### Schwache Thesen ersetzen + Gewerbesteuer-Reframe (Pre-Flight Check)
 - T26 Kostenlose Krippe → **Kitaplatz-Vergabe** (Spread 14, Balance 0.75, 0 Neutrals). Quelle: München-O-Mat T36. Überraschende Splits: Grüne FOR (Bedarfsprinzip), SPD AGAINST (Alleinerziehende benachteiligt).
 - T28 Kostenloses Schulessen → **Übernachtungsabgabe** (Spread 14, Balance 0.40, 0 Neutrals). Quelle: München-O-Mat T71. Dokumentierter Stadtratsbeschluss 2023.
+- T15 Gewerbesteuer: Reframe "senken" → "erhöhen" (Spread 5→14, Strength 4.0→10.9, 0 Neutrals). Quelle: München-O-Mat T69. "Senken" produzierte Neutrals, "erhöhen" erzwingt Positionierung.
 - Alte T26/T28 in _internal/archiv-geloeschte-thesen.md archiviert
 - Pre-Flight-Check als HARD-Kriterien in _internal/editorial-rules.md dokumentiert: Spread≥7, Neutrals≤6, Balance≥0.4, Stärke≥5.0
-- 4 verbleibende Thesen unter HARD-Schwelle identifiziert: T7 Wohnungs-Rückkauf, T21 Videoüberwachung, T1 Straßentunnel, T15 Gewerbesteuer
+- 3 verbleibende Thesen unter HARD-Schwelle: T7 Wohnungs-Rückkauf, T21 Videoüberwachung, T1 Straßentunnel
 
 ## v4.9.12 — 2026-03-04
 ### Schwache Thesen ersetzen + Klausel-Fixes

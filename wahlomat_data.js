@@ -100,13 +100,13 @@ window.WAHLOMAT_DATA = {
       "id": 15,
       "topic": "Wirtschaft & Finanzen",
       "short_title": "Gewerbesteuer",
-      "statement": "Der Gewerbesteuersatz in München soll gesenkt werden, auch wenn dies die städtischen Einnahmen verringert.",
-      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490% (Bundesdurchschnitt: ca. 400%). Umlandgemeinden wie Grünwald (240%) oder Gräfelfing (250%) locken Unternehmen mit deutlich niedrigeren Sätzen. Befürworter einer Senkung wollen Abwanderung verhindern. Gegner warnen vor Einnahmeausfällen: Die Gewerbesteuer ist Münchens wichtigste Einnahmequelle (über 3 Mrd. Euro jährlich).",
+      "statement": "Der Gewerbesteuersatz in München soll erhöht werden, auch wenn dies Unternehmen dazu bewegen könnte, ihren Sitz zu verlagern.",
+      "background": "Münchens Gewerbesteuer-Hebesatz liegt bei 490 Prozent und wurde seit Jahrzehnten nicht erhöht. Gleichzeitig sind die Anforderungen an die städtische Infrastruktur durch das Bevölkerungswachstum stark gestiegen. Befürworter einer Erhöhung verweisen auf die gestiegenen Kosten und die Gewinne der ansässigen Konzerne. Kritiker warnen vor einer Abwanderung von Unternehmen in Umlandgemeinden mit niedrigeren Hebesätzen.",
       "axes": {
-        "x": 1,
-        "y": 0
+        "x": -0.6,
+        "y": 0.2
       },
-      "tradeoff": "Standortattraktivität vs. Einnahmen"
+      "tradeoff": "Einnahmen vs. Standortattraktivität"
     },
     {
       "id": 10,
@@ -357,8 +357,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Die zwingende Klimaschutzprüfung aller städtischen Aktivitäten und Pläne schaffen wir wieder ab und führen diese Prüfung nur aus begründetem Anlass im Einzelfall durch."
         },
         "15": {
-          "val": 0,
-          "quote": "Wir prüfen eine moderate Senkung, wenn sie Ansiedlungen und das Gesamtaufkommen stärkt."
+          "val": -1,
+          "quote": "Großkonzerne zahlen bereits Steuern und Abgaben. Eine Erhöhung gefährdet den Wirtschaftsstandort."
         },
         "16": {
           "val": 1,
@@ -465,8 +465,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Klimaschutz ist Daseinsvorsorge. Wir stoppen klimaschädliche Großprojekte."
         },
         "15": {
-          "val": -1,
-          "quote": "Ein Haushalt für die Zukunft – fair investieren... Priorität für Zukunftsinvestitionen: Bildung, Klima, Wohnen."
+          "val": 1,
+          "quote": "Wir setzen auf eine faire Beteiligung von Unternehmen an Infrastrukturprojekten. Die Gewerbesteuer wird maßgeblich von großen Konzernen mitbestimmt."
         },
         "16": {
           "val": -1,
@@ -573,8 +573,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Klare Prioritäten bei den Investitionen: ... Klimaschutz und nachhaltige Infrastruktur haben oberste Priorität."
         },
         "15": {
-          "val": -1,
-          "quote": "Kampf gegen Hebesatz-Dumping und Gewerbesteuer-Oasen im Umland."
+          "val": 1,
+          "quote": "Unternehmen, die von der Münchner Infrastruktur profitieren, sollen einen fairen Beitrag zu deren Erhalt leisten."
         },
         "16": {
           "val": -1,
@@ -681,8 +681,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Das 'Greenwashing' von nicht regional erzeugter Energie durch die Münchner Stadtwerke beenden... Strategiewechsel weg von priorisierten Investitionen in erneuerbare Energien."
         },
         "15": {
-          "val": 0,
-          "quote": "Keine Erhöhung der Gewerbesteuer."
+          "val": -1,
+          "quote": "Großkonzerne zahlen bereits hohe Gewerbesteuern. Wohnungsbauunternehmen sind zudem schon jetzt zu Abgaben verpflichtet."
         },
         "16": {
           "val": 1,
@@ -789,8 +789,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir wollen eine naturwissenschaftlich fundierte Energiepolitik, die auf Innovation, Wettbewerb und hohe gesellschaftliche Akzeptanz setzt."
         },
         "15": {
-          "val": 1,
-          "quote": "Ziel ist es, die Gewerbesteuer zu senken."
+          "val": -1,
+          "quote": "Keine Steuererhöhungen. München muss als Wirtschaftsstandort attraktiv bleiben."
         },
         "16": {
           "val": 1,
@@ -897,8 +897,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Stadtentwicklungspläne bezüglich des Klimas und des Umweltschutzes priorisieren."
         },
         "15": {
-          "val": -1,
-          "quote": "Seit fast 30 Jahren wurde die Gewerbesteuer in München nicht mehr erhöht. Wir wollen eine Erhöhung um zehn Prozent."
+          "val": 1,
+          "quote": "Die Gewerbesteuer wurde seit fast 30 Jahren nicht erhöht. Wir wollen eine Erhöhung um 10 Prozent. Unternehmen, die diese Stadt für Gewinne nutzen, müssen auch Verantwortung tragen."
         },
         "16": {
           "val": -1,
@@ -1019,6 +1019,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "München ist bei Touristen beliebt. Sie an den Unterhaltskosten der Stadt über eine Übernachtungsabgabe zu beteiligen ist sinnvoll."
+        },
+        "15": {
+          "val": 1,
+          "quote": "Wenn Großkonzerne besondere Ansprüche an die Infrastruktur haben, ist es nur Recht und Billig, sie auch an den Kosten zu beteiligen."
         }
       }
     },
@@ -1079,6 +1083,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "Kommunale Einnahmequellen stärken, um die städtische Infrastruktur zu finanzieren."
+        },
+        "15": {
+          "val": -1,
+          "quote": "Solide Haushaltspolitik ohne Steuererhöhungen. Unternehmen sind bereits an der Finanzierung beteiligt."
         }
       }
     },
@@ -1159,6 +1167,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "Viele deutsche und europäische Großstädte finanzieren städtische Infrastruktur erfolgreich über eine Übernachtungsabgabe. Auch München sollte diese Möglichkeit haben."
+        },
+        "15": {
+          "val": 1,
+          "quote": "Bestehende Beiträge der Unternehmen verlässlich sichern und weiterentwickeln. Ein starker Wirtschaftsstandort ist die Grundlage für Infrastruktur und Soziales."
         }
       }
     },
@@ -1195,6 +1207,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "Bei so vielen Übernachtungen wie im schönen München kann man auf so eine Pauschale absolut nicht verzichten!"
+        },
+        "15": {
+          "val": 1,
+          "quote": "Wir müssen die Subventionen schließlich refinanzieren."
         }
       }
     },
@@ -1251,6 +1267,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "Faire Beteiligung der Touristen an den Kosten der städtischen Infrastruktur."
+        },
+        "15": {
+          "val": 1,
+          "quote": "Faire Beteiligung der Wirtschaft an den Kosten der städtischen Infrastruktur."
         }
       }
     },
@@ -1295,6 +1315,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "Wir würden eine Übernachtungsabgabe begrüßen. Die Münchner müssen solche Abgaben bei Besuchen in anderen Städten entrichten."
+        },
+        "15": {
+          "val": 1,
+          "quote": "Großkonzerne locken Menschen nach München, die Wohnraum, Kitas und ÖPNV brauchen. An den Investitionen sollten sie mit einem fairen Anteil beitragen."
         }
       }
     },
@@ -1353,8 +1377,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Umwelt- und Klimaschutz muss praktisch wirksam sein, bezahlbar bleiben und breite Akzeptanz finden."
         },
         "15": {
-          "val": 1,
-          "quote": "Senkung der Gewerbesteuer zur Stärkung des Wirtschaftsstandorts München."
+          "val": -1,
+          "quote": "Unternehmen werden bereits durch Steuern beteiligt. Sie schaffen Arbeitsplätze und generieren Einnahmen für die Kommune."
         },
         "16": {
           "val": 1,
@@ -1444,6 +1468,10 @@ window.WAHLOMAT_DATA = {
         "28": {
           "val": 1,
           "quote": "Touristen an den Kosten der kulturellen Infrastruktur beteiligen."
+        },
+        "15": {
+          "val": 1,
+          "quote": "Wirtschaftliche Akteure an den kulturellen und sozialen Kosten der Stadt beteiligen."
         }
       }
     }
