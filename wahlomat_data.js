@@ -159,14 +159,14 @@ window.WAHLOMAT_DATA = {
     {
       "id": 26,
       "topic": "Wirtschaft & Finanzen",
-      "short_title": "Kostenlose Krippe",
-      "statement": "Die Stadt soll die Krippengebühren für Kinder unter drei Jahren komplett abschaffen, auch wenn dies den städtischen Haushalt jährlich mit einem hohen zweistelligen Millionenbetrag belastet.",
-      "background": "Kindergärten (3–6 Jahre) sind in München bereits gebührenfrei. Krippenplätze für unter Dreijährige kosten Eltern bis zu 250 Euro pro Monat plus 105 Euro Verpflegungsgeld. Befürworter fordern, diese Lücke zu schließen und die Gebührenfreiheit auf alle Altersgruppen auszuweiten. Kritiker verweisen auf die angespannte Haushaltslage und fordern zunächst den Ausbau der Plätze statt Gebührenfreiheit.",
+      "short_title": "Kitaplatz-Vergabe",
+      "statement": "Familien, in denen beide Elternteile in Vollzeit arbeiten, sollen bevorzugt einen Kitaplatz bekommen, auch wenn dies Alleinerziehende und Teilzeit-Familien benachteiligt.",
+      "background": "In München fehlen trotz massivem Ausbau tausende Kitaplätze. Das aktuelle Vergabesystem vergibt Plätze nach Punkten, die Faktoren wie Berufstätigkeit, Alleinerziehend-Status und Wohnortnähe berücksichtigen. Befürworter einer Vollzeit-Bevorzugung argumentieren mit dem höchsten Betreuungsbedarf und der Vereinbarkeit von Familie und Beruf. Kritiker warnen, dass Alleinerziehende und Familien mit Teilzeitmodellen systematisch benachteiligt würden.",
       "axes": {
-        "x": -0.3,
-        "y": 0.3
+        "x": 0.3,
+        "y": 0.4
       },
-      "tradeoff": "Familienhilfe vs. Haushaltsdisziplin"
+      "tradeoff": "Vereinbarkeit vs. Chancengleichheit"
     },
     {
       "id": 8,
@@ -255,14 +255,14 @@ window.WAHLOMAT_DATA = {
     {
       "id": 28,
       "topic": "Wirtschaft & Finanzen",
-      "short_title": "Kostenloses Schulessen",
-      "statement": "Alle Kinder an Münchner Schulen und Kitas sollen ein kostenloses Mittagessen erhalten, auch wenn die Stadt dafür jährlich mehrere hundert Millionen Euro aufwenden muss.",
-      "background": "Das monatliche Verpflegungsgeld an Münchner Kitas beträgt 105 Euro, unabhängig vom Einkommen. Bedürftige Familien können bereits kostenloses Essen über das Bildungs- und Teilhabepaket beantragen. Ab 2026 steigt durch den Ganztags-Rechtsanspruch die Zahl der Kinder, die in der Schule essen. Befürworter wollen Stigmatisierung vermeiden, indem alle Kinder gleich behandelt werden. Kritiker warnen vor einer universellen Subvention, die auch wohlhabende Familien entlastet, statt gezielt Bedürftige zu unterstützen.",
+      "short_title": "Übernachtungsabgabe",
+      "statement": "Die Stadt München soll eine Übernachtungsabgabe für Hotelgäste einführen, auch wenn dies die Übernachtungspreise erhöht.",
+      "background": "Viele deutsche Großstädte erheben bereits eine Bettensteuer, darunter Berlin, Hamburg und Frankfurt. München hat bislang keine solche Abgabe. Befürworter sehen darin eine faire Beteiligung der Touristen an den Kosten der städtischen Infrastruktur. Kritiker warnen vor steigenden Übernachtungspreisen und zusätzlicher Bürokratie in einer Stadt, deren Tourismusbranche viele Arbeitsplätze schafft.",
       "axes": {
-        "x": -0.4,
-        "y": 0.2
+        "x": -0.3,
+        "y": 0.3
       },
-      "tradeoff": "Universelle Versorgung vs. gezielte Hilfe"
+      "tradeoff": "Infrastruktur-Finanzierung vs. Tourismuswirtschaft"
     },
     {
       "id": 22,
@@ -397,8 +397,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Kommunale Belastungsgrenzen sind erreicht. Bund und Freistaat müssen ihrer finanziellen Verantwortung nachkommen."
         },
         "26": {
-          "val": -1,
-          "quote": "Wir setzen auf den Ausbau von Betreuungsplätzen und Wahlfreiheit für Familien statt pauschaler Gebührenfreiheit."
+          "val": 1,
+          "quote": "Die Vereinbarkeit von Familie und Beruf ist enorm wichtig."
         },
         "27": {
           "val": 1,
@@ -406,7 +406,7 @@ window.WAHLOMAT_DATA = {
         },
         "28": {
           "val": -1,
-          "quote": "Gezielte Hilfe für bedürftige Familien statt flächendeckender Subventionen. Eigenverantwortung stärken."
+          "quote": "München braucht keine zusätzlichen Belastungen für die Tourismuswirtschaft."
         }
       }
     },
@@ -505,16 +505,16 @@ window.WAHLOMAT_DATA = {
           "quote": "Integration braucht Investition. Reduzierte Betreuung erschwert das Ankommen und wird langfristig teurer."
         },
         "26": {
-          "val": 0,
-          "quote": "Kitas sollen langfristig beitragsfrei werden. Aktuell hat der Ausbau der Plätze Priorität."
+          "val": 1,
+          "quote": "Grundsätzlich hat jedes Kind einen Anspruch auf einen Betreuungsplatz. Wenn beide Eltern berufstätig sind, kann sich dies bei der Platzvergabe positiv auswirken."
         },
         "27": {
           "val": -1,
           "quote": "Mehrsprachigkeit ist eine Ressource, kein Problem. Sprachförderung ja, Verbote nein."
         },
         "28": {
-          "val": 0,
-          "quote": "Höhere Zuschüsse zum Mittagessen und gesundes Essen an Schulen. Eine vollständige Kostenübernahme muss finanzierbar sein."
+          "val": 1,
+          "quote": "Die Einführung einer Übernachtungsabgabe zur Finanzierung der touristischen Infrastruktur nach dem Vorbild anderer Großstädte wurde durch die Staatsregierung verboten. Wir bleiben bei unserer Forderung."
         }
       }
     },
@@ -613,8 +613,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Integration gelingt durch Teilhabe, nicht durch Kürzungen bei Sprachkursen und Betreuung."
         },
         "26": {
-          "val": 1,
-          "quote": "Kostenfreie Kitas für alle, von der Krippe bis zum Hort. Gute Bildung darf nicht vom Geldbeutel abhängen."
+          "val": -1,
+          "quote": "Bevorzugung nicht gegenüber Alleinerziehenden. Das derzeitige System der Platzvergabe über Punkte ist aus unserer Sicht das, was am gerechtesten ist."
         },
         "27": {
           "val": -1,
@@ -622,7 +622,7 @@ window.WAHLOMAT_DATA = {
         },
         "28": {
           "val": 1,
-          "quote": "Gute Ernährung für alle Kinder, unabhängig vom Einkommen der Eltern. Kostenloses Mittagessen an Schulen und Kitas."
+          "quote": "Wir setzen uns für eine Übernachtungssteuer ein, mit der Gäste einen fairen Beitrag zum Erhalt und Ausbau der Münchner Infrastruktur leisten."
         }
       }
     },
@@ -721,8 +721,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Münchens Aufnahmekapazitäten sind erschöpft. Keine weitere Eröffnung neuer Flüchtlingsunterkünfte."
         },
         "26": {
-          "val": 0,
-          "quote": "Familien stärken durch Wahlfreiheit. Keine Position zur vollständigen Gebührenfreiheit bei Krippen."
+          "val": 1,
+          "quote": "Denn bei diesen Familien ist der Bedarf am größten."
         },
         "27": {
           "val": 1,
@@ -730,7 +730,7 @@ window.WAHLOMAT_DATA = {
         },
         "28": {
           "val": -1,
-          "quote": "Keine staatliche Vollversorgung. Familien sollen selbst für die Verpflegung ihrer Kinder sorgen können."
+          "quote": "Es muss endlich aufhören, den Leuten immer mehr Geld aus der Tasche zu ziehen, ohne die städtischen Ausgaben zu senken."
         }
       }
     },
@@ -829,8 +829,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Effizientere Mittelverwendung bei der Integration. Bund und Freistaat stärker in die Pflicht nehmen."
         },
         "26": {
-          "val": 0,
-          "quote": "Langfristig soll Kinderbetreuung beitragsfrei sein. Kurzfristig muss der Ausbau der Plätze Vorrang haben."
+          "val": 1,
+          "quote": "Vereinbarkeit von Familie und Beruf durch bedarfsgerechte Kitaplatz-Vergabe stärken."
         },
         "27": {
           "val": 1,
@@ -838,7 +838,7 @@ window.WAHLOMAT_DATA = {
         },
         "28": {
           "val": -1,
-          "quote": "Eigenverantwortung der Familien. Gezielte Unterstützung über bestehende Sozialsysteme statt universeller Gratisleistungen."
+          "quote": "Keine neuen Steuern und Abgaben. Der Tourismussektor schafft Arbeitsplätze."
         }
       }
     },
@@ -937,8 +937,8 @@ window.WAHLOMAT_DATA = {
           "quote": "Menschenwürdige Unterbringung und Betreuung sind nicht verhandelbar."
         },
         "26": {
-          "val": 1,
-          "quote": "Garantierte, gebührenfreie Kita- und Hortplätze für alle Kinder, von Anfang an."
+          "val": -1,
+          "quote": "Wir dürfen die Lebensrealitäten der verschiedenen Familien nicht gegeneinander ausspielen. Alle, die einen Kita-Platz brauchen, sollen ihn bekommen können."
         },
         "27": {
           "val": -1,
@@ -946,7 +946,7 @@ window.WAHLOMAT_DATA = {
         },
         "28": {
           "val": 1,
-          "quote": "Kostenloses Mittagessen für alle Kinder in Schulen und Kitas. Gute Ernährung ist ein Grundrecht."
+          "quote": "Auch Touristen sollen zur Verantwortung gezogen werden, wenn sie die Stadt und ihre Angebote nutzen."
         }
       }
     },
@@ -1010,15 +1010,15 @@ window.WAHLOMAT_DATA = {
         },
         "26": {
           "val": -1,
-          "quote": "Echte Wahlfreiheit für Eltern: Erziehungsgehalt statt noch mehr Druck zur institutionellen Betreuung."
+          "quote": "Solange Kitaplätze fehlen, sollen vorrangig Kinder von Alleinerziehenden sowie Kinder im Vorschulalter und mit Förderbedarf aufgenommen werden."
         },
         "27": {
           "val": 0,
           "quote": "Sprachförderung ist wichtig, aber sie muss kindgerecht und wertschätzend erfolgen."
         },
         "28": {
-          "val": 0,
-          "quote": "Gesunde Ernährung an Schulen fördern. Die Finanzierung muss nachhaltig gesichert sein."
+          "val": 1,
+          "quote": "München ist bei Touristen beliebt. Sie an den Unterhaltskosten der Stadt über eine Übernachtungsabgabe zu beteiligen ist sinnvoll."
         }
       }
     },
@@ -1069,16 +1069,16 @@ window.WAHLOMAT_DATA = {
           "quote": "Kosten für Integration müssen gerechter zwischen Kommune, Land und Bund verteilt werden."
         },
         "26": {
-          "val": 0,
-          "quote": "Ausbau von Kitas, Horten und Tagespflegeplätzen. Stärkung der Ausbildung von Erzieherinnen und Erziehern."
+          "val": 1,
+          "quote": "Eine bevorzugte Vergabe an Familien mit beiden Elternteilen in Vollzeit erleichtert die Vereinbarkeit von Beruf und Familie und hat einen finanziell positiven Aspekt für die Stadt."
         },
         "27": {
           "val": 1,
           "quote": "Integration beginnt mit Sprache. Deutsch als Grundlage für den Bildungserfolg aller Kinder."
         },
         "28": {
-          "val": 0,
-          "quote": "Solide Haushaltspolitik. Soziale Absicherung durch gezielte Maßnahmen statt pauschaler Transfers."
+          "val": 1,
+          "quote": "Kommunale Einnahmequellen stärken, um die städtische Infrastruktur zu finanzieren."
         }
       }
     },
@@ -1149,16 +1149,16 @@ window.WAHLOMAT_DATA = {
           "quote": "Europäische Solidarität und kommunale Integrationsarbeit müssen Hand in Hand gehen."
         },
         "26": {
-          "val": 0,
-          "quote": "Chancengleichheit von Anfang an. Ausbau und Qualität der Betreuung haben Vorrang."
+          "val": -1,
+          "quote": "Bei der Vergabe von Kitaplätzen müssen Familien in besonders herausfordernden Situationen zuerst unterstützt werden, etwa Alleinerziehende sowie Eltern in Ausbildung."
         },
         "27": {
           "val": -1,
           "quote": "Mehrsprachigkeit ist eine europäische Stärke. Sprachförderung statt Sprachverbote."
         },
         "28": {
-          "val": 0,
-          "quote": "Chancengleichheit in der Bildung stärken. Die Finanzierung universeller Gratisleistungen muss realistisch sein."
+          "val": 1,
+          "quote": "Viele deutsche und europäische Großstädte finanzieren städtische Infrastruktur erfolgreich über eine Übernachtungsabgabe. Auch München sollte diese Möglichkeit haben."
         }
       }
     },
@@ -1185,16 +1185,16 @@ window.WAHLOMAT_DATA = {
           "quote": "Wir fordern die Bezahlkarte für CSU-Stadträte, um Korruption zu verhindern."
         },
         "26": {
-          "val": 0,
-          "quote": "Kinder sind die Zukunft. Oder so ähnlich."
+          "val": 1,
+          "quote": "Wir denken ans Bruttosozialprodukt! Doppelverdiener sind auch Doppelsteuerzahler."
         },
         "27": {
           "val": 0,
           "quote": "Bairisch als verbindliche Umgangssprache in Kitas."
         },
         "28": {
-          "val": 0,
-          "quote": "Kostenloses Essen für alle. Aber nur wenn es schmeckt."
+          "val": 1,
+          "quote": "Bei so vielen Übernachtungen wie im schönen München kann man auf so eine Pauschale absolut nicht verzichten!"
         }
       }
     },
@@ -1241,16 +1241,16 @@ window.WAHLOMAT_DATA = {
           "quote": "Geflüchtete Menschen brauchen Schutz und Betreuung, keine Kostendebatte."
         },
         "26": {
-          "val": 0,
-          "quote": "Teilhabe und Chancengleichheit beginnen in der frühkindlichen Bildung."
+          "val": 1,
+          "quote": "Vielfältige Familienmodelle unterstützen. Betreuungsbedarf berufstätiger Eltern anerkennen."
         },
         "27": {
           "val": -1,
           "quote": "Sprachliche Vielfalt respektieren. Gegen Ausgrenzung durch einsprachige Normen."
         },
         "28": {
-          "val": 0,
-          "quote": "Soziale Gerechtigkeit in allen Lebensbereichen sicherstellen."
+          "val": 1,
+          "quote": "Faire Beteiligung der Touristen an den Kosten der städtischen Infrastruktur."
         }
       }
     },
@@ -1285,16 +1285,16 @@ window.WAHLOMAT_DATA = {
           "quote": "In Zeiten knapper Kassen müssen alle Leistungen auf den Prüfstand."
         },
         "26": {
-          "val": 0,
-          "quote": "Infrastruktur kann mit dem Wachstum nicht Schritt halten. Platzausbau vor Gebührendebatte."
+          "val": -1,
+          "quote": "Die Stadt hat einen Bonus für alleinerziehende Elternteile eingeführt. Hier scheint uns ein Bonus bei der Vergabe noch dringlicher als bei Vollzeit-Familien."
         },
         "27": {
           "val": 0,
           "quote": "Keine spezifische Position zur Kita-Sprachpflicht."
         },
         "28": {
-          "val": 0,
-          "quote": "Kommunale Infrastruktur kann mit dem Wachstum nicht Schritt halten."
+          "val": 1,
+          "quote": "Wir würden eine Übernachtungsabgabe begrüßen. Die Münchner müssen solche Abgaben bei Besuchen in anderen Städten entrichten."
         }
       }
     },
@@ -1394,7 +1394,7 @@ window.WAHLOMAT_DATA = {
         },
         "26": {
           "val": -1,
-          "quote": "Solide Haushaltsführung und gezielte Unterstützung für bedürftige Familien statt Gießkannenprinzip."
+          "quote": "Alle Familien sollen frei entscheiden können, was das beste Kinderbetreuungsmodell ist, und ein passendes Angebot bekommen."
         },
         "27": {
           "val": 1,
@@ -1402,7 +1402,7 @@ window.WAHLOMAT_DATA = {
         },
         "28": {
           "val": -1,
-          "quote": "Eigenverantwortung und gezielte Hilfe für Bedürftige. Keine Gratis-Mentalität auf Kosten der Allgemeinheit."
+          "quote": "Die Übernachtungssteuer bringt wenig Einnahmen für viel Bürokratie. Touristen bringen viel Geld in unsere Stadt und schaffen Arbeitsplätze."
         }
       }
     },
@@ -1434,16 +1434,16 @@ window.WAHLOMAT_DATA = {
           "quote": "Kulturelle Teilhabe ist Teil gelungener Integration."
         },
         "26": {
-          "val": 0,
-          "quote": "Kulturelle Bildung beginnt im Kindergarten."
+          "val": 1,
+          "quote": "Gleiches soll gelten für Alleinerziehende, Teilzeitbeschäftigung beider Elternteile sowie Familien, in denen ein Elternteil nicht erwerbstätig ist."
         },
         "27": {
           "val": 0,
           "quote": "Kultur und Sprache gehören zusammen. Dialog statt Vorschriften."
         },
         "28": {
-          "val": 0,
-          "quote": "Kultur und Bildung gehören zusammen, auch in der Schulverpflegung."
+          "val": 1,
+          "quote": "Touristen an den Kosten der kulturellen Infrastruktur beteiligen."
         }
       }
     }

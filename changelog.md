@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.9.13 — 2026-03-04
+### Schwache Thesen ersetzen (Pre-Flight Check)
+- T26 Kostenlose Krippe → **Kitaplatz-Vergabe** (Spread 14, Balance 0.75, 0 Neutrals). Quelle: München-O-Mat T36. Überraschende Splits: Grüne FOR (Bedarfsprinzip), SPD AGAINST (Alleinerziehende benachteiligt).
+- T28 Kostenloses Schulessen → **Übernachtungsabgabe** (Spread 14, Balance 0.40, 0 Neutrals). Quelle: München-O-Mat T71. Dokumentierter Stadtratsbeschluss 2023.
+- Alte T26/T28 in _internal/archiv-geloeschte-thesen.md archiviert
+- Pre-Flight-Check als HARD-Kriterien in _internal/editorial-rules.md dokumentiert: Spread≥7, Neutrals≤6, Balance≥0.4, Stärke≥5.0
+- 4 verbleibende Thesen unter HARD-Schwelle identifiziert: T7 Wohnungs-Rückkauf, T21 Videoüberwachung, T1 Straßentunnel, T15 Gewerbesteuer
+
 ## v4.9.12 — 2026-03-04
 ### Schwache Thesen ersetzen + Klausel-Fixes
 - 3 Thesen gelöscht wegen mangelnder Differenzierung: T3 Schulen/Kita (9×Neutral, 0×Dagegen), T6 Sozialtarif (9×Neutral, 6 generische Zitate), T17 Digitale Verwaltung (nur 1 Partei dagegen)
