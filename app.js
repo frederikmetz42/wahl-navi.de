@@ -30,7 +30,7 @@ function wahlomatApp() {
         compassAnimated: false,
         milestoneShown: null,
         prefersReducedMotion: false,
-        resultTab: 'compass',
+        resultTab: 'parties',
         showBackground: false,
         showShareCTA: false,
         celebrationActive: false,
@@ -38,6 +38,7 @@ function wahlomatApp() {
         shareFormat: 'feed',
         shareCard: 'results',
         feedbackGiven: false,
+        bannerDismissed: false,
         exitIntentShown: false,
         selectedAnswer: null,
 
@@ -55,6 +56,7 @@ function wahlomatApp() {
 
             this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             this.feedbackGiven = !!localStorage.getItem('mucwahl_feedback');
+            this.bannerDismissed = !!localStorage.getItem('mucwahl_banner_dismissed');
             this.initExitIntent();
 
             this.$watch('answers', val => {
@@ -1500,6 +1502,12 @@ function wahlomatApp() {
             }).catch(() => {
                 alert('Link konnte nicht kopiert werden.');
             });
+        },
+
+        // --- Banner ---
+        dismissBanner() {
+            this.bannerDismissed = true;
+            localStorage.setItem('mucwahl_banner_dismissed', 'true');
         },
 
         // --- Feedback ---

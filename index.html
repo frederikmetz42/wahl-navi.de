@@ -118,6 +118,12 @@
                      class="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-slate-200 py-1 z-50">
                     <button @click="goToStimmzettel(); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Wahl-Info</button>
                     <a href="methodik.html" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Offene Karten</a>
+                    <template x-if="step === 99">
+                        <div class="border-t border-slate-100">
+                            <button @click="step = 98; window.scrollTo(0,0); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Gewichtung anpassen</button>
+                            <button @click="reset(); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Neu starten</button>
+                        </div>
+                    </template>
                 </div>
             </div>
             <div class="text-xs text-slate-400 font-mono" x-show="step > 0 && step <= totalTheses">
@@ -384,6 +390,98 @@
         <!-- Results -->
         <div x-show="step === 99" x-transition.opacity class="space-y-6">
 
+        <!--
+        === PROJECT SPEC — Donation Banner ===
+        WORKFLOW: Read this block → update changelog → implement → verify features.
+
+        ## FEATURES (v1.3)
+        ### Donation Banner (results page, step 99)
+        - Standalone closable donation banner: "MUCwahl hat viele Nachtschichten gekostet. Spezi spendieren?"
+        - Links to paypal.me/frederikmetz (new tab)
+        - X close button, dismisses via localStorage (mucwahl_banner_dismissed)
+        - 44px touch targets on all interactive elements
+
+        ### Voting Countdown (hero card, results page)
+        - Dynamic countdown inside hero card: "Noch X Tage bis zur Wahl!"
+        - On election day: "Heute ist Wahltag!"
+        - After election: hidden
+        - "→ So wählst du richtig" link navigates to step 97 (Wahl-Info)
+
+        ### Results page UX
+        - Default tab: Parteien (was Kompass)
+        - Vergleich tab: party switcher dropdown in header (replaces bottom text link)
+        - Feedback buttons: distinct colors at rest (green/amber/red)
+        - Compass axis labels: 12px (was 9px)
+        - Compass footnotes: 12px (was 10px)
+
+        ### Footer (all pages)
+        - "Unterstützen" link to paypal.me on index, methodik, datenschutz, impressum
+
+        ### Hamburger menu (results page only)
+        - "Gewichtung anpassen" and "Neu starten" items shown when step === 99
+
+        ### Share sheet
+        - "Link kopieren" + "Als PDF" side by side
+        - "Einbetten ..." collapsible embed code panel
+
+        ## CHANGELOG
+        ### v1.3 — QA audit fixes (UX expert + user panel)
+        - CHANGED: Separated donation banner from voting countdown (banner = donation only, countdown = hero card)
+        - CHANGED: Default tab Kompass → Parteien (more immediately rewarding)
+        - ADDED: Party switcher dropdown in Vergleich tab header
+        - CHANGED: Feedback buttons now have distinct colors at rest (emerald/amber/red)
+        - CHANGED: Compass axis labels 9px → 12px, footnotes 10px → 12px
+        - CHANGED: Donation framing from pill button to "viele Nachtschichten" narrative
+        - REMOVED: Bottom "Andere Partei vergleichen?" text link (replaced by dropdown)
+        - UNCHANGED: everything else
+
+        ### v1.2 — Mobile optimisation + dynamic countdown
+        - CHANGED: Static "Kommunalwahl am 8. März" → dynamic "Noch X Tage bis zur Wahl!"
+        - ADDED: Election day variant ("Heute ist Wahltag!")
+        - ADDED: Post-election hide (daysUntilElection < 0)
+        - CHANGED: Mobile layout now stacks with full-width elements and 44px touch targets
+        - UNCHANGED: everything else
+
+        ### v1.1 — UX cleanup
+        - MOVED: PDF + Embed to share sheet
+        - MOVED: Gewichtung/Neu starten to hamburger menu
+        - REMOVED: bottom orphan buttons section
+        - FIXED: X button placement (inline instead of absolute overlay)
+        - FIXED: Date corrected to 8. März
+
+        ### v1.0 — Initial build
+        - CREATED: Closable donation + voting reminder banner on results page
+        - CREATED: "Unterstützen" footer link on all pages
+        - CREATED: bannerDismissed state + dismissBanner() in app.js
+
+        ## KNOWN ISSUES
+        ### Active
+        - (none)
+        ### Fixed
+        - X button was awkwardly placed as absolute overlay (v1.1)
+        - Date was wrong (15. März instead of 8. März) (v1.1)
+        ### Design Decisions
+        - Variant A (flat slate) chosen over Variant B (split amber/slate)
+        - Plain <a> links only, zero CSP changes, Fortress Zero preserved
+        - Banner only on results page (not during quiz)
+        === END PROJECT SPEC ===
+        -->
+
+        <!-- Donation Banner (standalone, closable) -->
+        <div x-show="step === 99 && !bannerDismissed" x-transition.opacity class="max-w-2xl mx-auto no-print" x-cloak>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+                <div class="flex items-center justify-between gap-3">
+                    <a href="https://paypal.me/frederikmetz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-800 transition-colors" style="min-height:44px">
+                        <span aria-hidden="true" class="text-lg">🍾</span>
+                        <span>MUCwahl hat viele Nachtschichten gekostet. <span class="font-medium text-slate-700 underline underline-offset-2">Spezi spendieren?</span></span>
+                    </a>
+                    <button @click="dismissBanner()" class="text-slate-300 hover:text-slate-500 active:text-slate-600 transition-colors p-2 flex items-center justify-center rounded-full hover:bg-slate-100 flex-shrink-0" style="min-width:44px;min-height:44px" aria-label="Banner schließen">
+                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Hero Result: Top Match (always visible, above tabs) -->
         <section x-show="topMatch" class="max-w-2xl mx-auto" aria-label="Dein Top-Ergebnis">
             <div class="card p-8 text-center bg-gradient-to-br from-white to-slate-50 relative overflow-hidden">
@@ -429,14 +527,23 @@
                         <svg aria-hidden="true" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
+                <!-- Voting Countdown (inside hero, after share buttons) -->
+                <div class="mt-4 no-print" x-show="daysUntilElection >= 0 && showShareCTA"
+                     x-transition:enter="transition ease-out duration-500 delay-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                    <div class="inline-flex items-center gap-2 text-sm text-slate-500">
+                        <span aria-hidden="true">🗳️</span>
+                        <span x-text="daysUntilElection === 0 ? 'Heute ist Wahltag!' : 'Noch ' + daysUntilElection + (daysUntilElection === 1 ? ' Tag' : ' Tage') + ' bis zur Wahl!'"></span>
+                        <a @click.prevent="step = 97; window.scrollTo(0,0)" href="#" class="text-blue-600 hover:text-blue-800 font-medium" style="min-height:44px;display:inline-flex;align-items:center">→ So wählst du richtig</a>
+                    </div>
+                </div>
                 <!-- Inline Feedback -->
                 <div class="mt-5 no-print" x-show="showShareCTA && !feedbackGiven"
                      x-transition:enter="transition ease-out duration-500 delay-500" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
                     <p class="text-xs text-slate-400 text-center mb-2">War MUCwahl hilfreich?</p>
                     <div class="flex justify-center gap-2">
-                        <button @click="sendFeedback('Ja')" class="px-4 py-1.5 text-xs rounded-full border border-slate-200 text-slate-500 hover:border-emerald-400 hover:text-emerald-600 hover:bg-emerald-50 transition-all">Ja</button>
-                        <button @click="sendFeedback('Teilweise')" class="px-4 py-1.5 text-xs rounded-full border border-slate-200 text-slate-500 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50 transition-all">Teilweise</button>
-                        <button @click="sendFeedback('Nein')" class="px-4 py-1.5 text-xs rounded-full border border-slate-200 text-slate-500 hover:border-red-400 hover:text-red-600 hover:bg-red-50 transition-all">Nein</button>
+                        <button @click="sendFeedback('Ja')" class="px-4 py-2.5 text-xs rounded-full border border-emerald-200 text-emerald-600 bg-emerald-50 hover:border-emerald-400 hover:bg-emerald-100 active:bg-emerald-200 transition-all" style="min-height:44px">Ja</button>
+                        <button @click="sendFeedback('Teilweise')" class="px-4 py-2.5 text-xs rounded-full border border-amber-200 text-amber-600 bg-amber-50 hover:border-amber-400 hover:bg-amber-100 active:bg-amber-200 transition-all" style="min-height:44px">Teilweise</button>
+                        <button @click="sendFeedback('Nein')" class="px-4 py-2.5 text-xs rounded-full border border-red-200 text-red-500 bg-red-50 hover:border-red-400 hover:bg-red-100 active:bg-red-200 transition-all" style="min-height:44px">Nein</button>
                     </div>
                 </div>
                 <div class="mt-3 no-print text-center" x-show="feedbackGiven && showShareCTA" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
@@ -508,10 +615,10 @@
                             </div>
                         </div>
                         <!-- Axis labels -->
-                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20 pointer-events-none">Konservativ</div>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm z-20 pointer-events-none">Progressiv</div>
-                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm -rotate-90 z-20 pointer-events-none">Links</div>
-                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-[9px] text-center font-bold text-slate-500 uppercase bg-white/80 px-1 rounded shadow-sm rotate-90 z-20 pointer-events-none">Rechts</div>
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm z-20 pointer-events-none">Konservativ</div>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm z-20 pointer-events-none">Progressiv</div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm -rotate-90 z-20 pointer-events-none">Links</div>
+                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm rotate-90 z-20 pointer-events-none">Rechts</div>
 
                         <!-- User dot -->
                         <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * compassDisplayScale)}%; top: ${50 - (userCoords.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
@@ -535,29 +642,11 @@
                         </template>
                     </div>
 
-                    <p class="text-[10px] text-slate-400 mt-3 text-center leading-relaxed">Nähe im Kompass bedeutet inhaltliche Übereinstimmung, keine politische Empfehlung. Basiert auf deinen Antworten zu 25 Thesen.</p>
-                    <p class="text-[10px] text-slate-400 mt-1 text-center leading-relaxed">Die meisten Parteien liegen auf einer Diagonale (links-progressiv bis rechts-konservativ). Das ist typisch für westliche Parteiensysteme, nicht ein Fehler der Darstellung.</p>
-                    <p class="text-[10px] text-slate-400 mt-1 text-center leading-relaxed">Der Kompass zeigt deine politische Grundrichtung auf zwei Achsen. Die Prozentzahl in der Rangliste misst dagegen, wie oft du bei konkreten Thesen mit einer Partei übereinstimmst — deshalb können Reihenfolge und Kompass-Nähe voneinander abweichen.</p>
+                    <p class="text-xs text-slate-400 mt-3 text-center leading-relaxed">Nähe im Kompass bedeutet inhaltliche Übereinstimmung, keine politische Empfehlung. Basiert auf deinen Antworten zu 25 Thesen.</p>
+                    <p class="text-xs text-slate-400 mt-1 text-center leading-relaxed">Die meisten Parteien liegen auf einer Diagonale (links-progressiv bis rechts-konservativ). Das ist typisch für westliche Parteiensysteme, nicht ein Fehler der Darstellung.</p>
+                    <p class="text-xs text-slate-400 mt-1 text-center leading-relaxed">Der Kompass zeigt deine politische Grundrichtung auf zwei Achsen. Die Prozentzahl in der Rangliste misst dagegen, wie oft du bei konkreten Thesen mit einer Partei übereinstimmst — deshalb können Reihenfolge und Kompass-Nähe voneinander abweichen.</p>
                     <p class="text-[10px] text-center mt-2"><a href="methodik.html" class="text-blue-500 hover:text-blue-700 hover:underline transition-colors">Wie wird das berechnet? →</a></p>
                 </div>
-            </div>
-
-            <!-- Compact secondary actions -->
-            <div class="flex items-center justify-center gap-3 text-sm text-slate-500 no-print">
-                <button @click="copyLink()" class="hover:text-slate-700 transition-colors">
-                    <span x-text="shareTextStatus || 'Link kopieren'"></span>
-                </button>
-                <span class="text-slate-300" aria-hidden="true">&middot;</span>
-                <button @click="printResults()" class="hover:text-slate-700 transition-colors">PDF</button>
-                <span class="text-slate-300" aria-hidden="true">&middot;</span>
-                <button @click="embedCodeVisible = !embedCodeVisible" class="hover:text-slate-700 transition-colors">Embed</button>
-            </div>
-
-            <!-- Embed panel -->
-            <div x-show="embedCodeVisible" x-transition.opacity class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3 no-print">
-                <p class="text-xs text-slate-500">Quiz auf Ihrer Website einbetten:</p>
-                <code class="block text-[11px] bg-white border border-slate-200 rounded-lg p-3 text-slate-700 break-all select-all" x-text="getEmbedCode()"></code>
-                <button @click="copyEmbedCode()" class="w-full py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">Code kopieren</button>
             </div>
 
         </div>
@@ -672,8 +761,14 @@
             <div class="card p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
                     <div class="w-4 h-4 rounded-full flex-shrink-0" :style="`background-color: ${getPartyColor(selectedPartyId)}`"></div>
-                    <span class="font-bold text-slate-900" x-text="getSelectedParty()?.name"></span>
-                    <span class="text-sm font-mono font-medium text-slate-500" x-text="getSelectedParty() ? Math.round(getSelectedParty().matchPercentage) + '%' : ''"></span>
+                    <select @change="selectedPartyId = $event.target.value; detailFilter = detailFilter"
+                            class="font-bold text-slate-900 bg-transparent border-none pr-6 py-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                            :value="selectedPartyId"
+                            aria-label="Partei zum Vergleichen auswählen">
+                        <template x-for="party in results" :key="'sel-' + party.id">
+                            <option :value="party.id" x-text="party.name + ' (' + Math.round(party.matchPercentage) + '%)'"></option>
+                        </template>
+                    </select>
                 </div>
                 <div class="flex bg-slate-200/50 p-1 rounded-lg" role="group" aria-label="Filter">
                     <button @click="detailFilter = 'all'" class="px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'all' ? 'true' : 'false'">Alle</button>
@@ -717,18 +812,12 @@
                 </template>
             </div>
 
-            <!-- Other parties CTA -->
-            <div class="text-center text-sm text-slate-500">
-                <span>Andere Partei vergleichen? </span>
-                <button @click="resultTab = 'parties'" class="text-blue-600 hover:underline font-medium">Zur Parteienliste</button>
+            <!-- Party switcher hint -->
+            <div class="text-center text-xs text-slate-400">
+                Partei wechseln über das Dropdown oben
             </div>
         </div>
 
-        <!-- Bottom buttons -->
-        <div class="flex justify-center gap-3 no-print">
-            <button @click="step = 98; window.scrollTo(0,0)" class="btn btn-neutral">Gewichtung anpassen</button>
-            <button @click="reset()" class="btn btn-neutral">Neu starten</button>
-        </div>
         </div>
     </main>
 
@@ -739,6 +828,7 @@
                 <a href="impressum.html" class="hover:text-slate-900 transition-colors py-2">Impressum</a>
                 <a href="datenschutz.html" class="hover:text-slate-900 transition-colors py-2">Datenschutz</a>
                 <a href="methodik.html" class="hover:text-slate-900 transition-colors py-2">Offene Karten</a>
+                <a href="https://paypal.me/frederikmetz" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors py-2">Unterstützen</a>
                 <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors p-2" title="GitHub"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
             </div>
         </div>
@@ -798,8 +888,16 @@
                     <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                     Teilen
                 </button>
-                <!-- Copy link -->
-                <button @click="copyLink(); closeShareSheet()" class="w-full py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">Link kopieren</button>
+                <!-- Secondary actions -->
+                <div class="flex gap-2">
+                    <button @click="copyLink(); closeShareSheet()" class="flex-1 py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">Link kopieren</button>
+                    <button @click="printResults(); closeShareSheet()" class="flex-1 py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">Als PDF</button>
+                </div>
+                <button @click="embedCodeVisible = !embedCodeVisible" class="w-full py-2 text-xs text-slate-400 hover:text-slate-600 transition-colors">Einbetten &hellip;</button>
+                <div x-show="embedCodeVisible" x-transition.opacity class="bg-slate-50 border border-slate-200 rounded-lg p-3 space-y-2">
+                    <code class="block text-[11px] bg-white border border-slate-200 rounded-lg p-2 text-slate-700 break-all select-all" x-text="getEmbedCode()"></code>
+                    <button @click="copyEmbedCode()" class="w-full py-1.5 bg-slate-900 text-white rounded-lg text-xs font-medium hover:bg-slate-800 transition-colors">Code kopieren</button>
+                </div>
                 <!-- Direct share buttons -->
                 <div>
                     <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Direkt teilen</div>
