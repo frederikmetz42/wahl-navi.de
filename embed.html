@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUCwahl München 2026</title>
     <meta name="version" content="4.9.13">
+    <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; frame-ancestors *; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
-    <script src="wahlomat_data.js"></script>
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body class="antialiased min-h-screen flex flex-col bg-white" x-data="wahlomatApp()" x-cloak x-init="isEmbedMode = true" @keydown.window="handleKeydown($event)">
@@ -108,7 +108,8 @@
         </div>
     </main>
 
-    <script defer src="vendor/alpine.min.js"></script>
+    <script src="wahlomat_data.js"></script>
     <script src="app.js"></script>
+    <script defer src="vendor/alpine.min.js"></script>
 </body>
 </html>

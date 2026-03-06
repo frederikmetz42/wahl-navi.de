@@ -19,7 +19,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src https://mucwahl.goatcounter.com; base-uri 'self'; form-action 'none';">
     <link rel="stylesheet" href="styles.css">
-    <script src="wahlomat_data.js"></script>
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/icon.png">
     <link rel="canonical" href="https://mucwahl.de/">
@@ -73,7 +74,7 @@
                 "name": "Wann ist Kommunalwahl in München 2026?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Die Kommunalwahl in München findet am 9. März 2026 statt. Gewählt werden Oberbürgermeister, Stadtrat und Bezirksausschüsse."
+                    "text": "Die Kommunalwahl in München findet am 8. März 2026 statt. Gewählt werden Oberbürgermeister, Stadtrat und Bezirksausschüsse."
                 }
             }
         ]
@@ -85,7 +86,7 @@
     <noscript>
         <div style="max-width:600px;margin:2rem auto;padding:2rem;font-family:sans-serif;text-align:center">
             <h1>MUCwahl – Kommunalwahl München 2026</h1>
-            <p>Welche Partei passt zu mir? Vergleiche deine Positionen mit 14 Parteien zur Münchner Kommunalwahl am 9. März 2026.</p>
+            <p>Welche Partei passt zu mir? Vergleiche deine Positionen mit 14 Parteien zur Münchner Kommunalwahl am 8. März 2026.</p>
             <p>25 Thesen zu Mobilität, Wohnen, Klima, Wirtschaft und Gesellschaft. Mit politischem Kompass und Themen-Gewichtung.</p>
             <p>Alle 14 Parteien im Vergleich: CSU, SPD, Grüne, FDP, AfD, Die Linke, Volt, ÖDP, Die PARTEI, Rosa Liste, Münchner Liste, Bayernpartei, Bündnis Kultur, Freie Wähler.</p>
             <p>Kostenlos, unabhängig, werbefrei, ohne Tracking. Alle Daten bleiben lokal in deinem Browser.</p>
@@ -985,8 +986,9 @@
         </div>
     </div>
 
-    <script defer src="vendor/alpine.min.js"></script>
+    <script src="wahlomat_data.js"></script>
     <script src="app.js"></script>
+    <script defer src="vendor/alpine.min.js"></script>
     <script data-goatcounter="https://mucwahl.goatcounter.com/count" async src="vendor/count.js"></script>
 </body>
 </html>
