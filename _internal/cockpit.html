@@ -186,7 +186,7 @@
     <div class="meta">
       <span><span class="dot"></span> Live on GitHub Pages</span>
       <span>mucwahl.de</span>
-      <span>Updated: 2026-03-04</span>
+      <span>Updated: 2026-03-06</span>
       <button onclick="let t=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=t;localStorage.setItem('cockpit-theme',t)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:4px 8px;cursor:pointer;color:var(--text2);font-size:13px" title="Toggle theme">&#9680;</button>
     </div>
   </header>
@@ -630,6 +630,11 @@
             <td style="font-size: 12px; color: var(--text2);">UX-Beobachtung</td>
             <td><span class="badge badge-blue">OPEN</span></td>
           </tr>
+          <tr>
+            <td><strong>&bdquo;Ein 60-Sekunden-Schnellcheck mit 8 bin&auml;ren Fragen hat eine h&ouml;here Completion-Rate als 25 Thesen&ldquo;</strong></td>
+            <td style="font-size: 12px; color: var(--text2);">Prototyp gebaut (v4.10). 8 Thesen via 5-Gate-Filter ausgew&auml;hlt. Farbkodierte A/B-Karten mit Tradeoff-Labels. Noch nicht deployed.</td>
+            <td><span class="badge badge-yellow">PROTOTYPE</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -699,6 +704,11 @@
         </thead>
         <tbody>
           <tr>
+            <td><span class="badge badge-blue">v4.10</span></td>
+            <td>5-Gate-Filter f&uuml;r bin&auml;re Konvertierung: Nur 8/25 Thesen &uuml;berleben (2 PASS + 6 CONDITIONAL). Thesen mit Neutral-Klumpen oder asymmetrischer Verteilung funktionieren nicht bin&auml;r.</td>
+            <td><span class="badge badge-yellow">TESTING</span></td>
+          </tr>
+          <tr>
             <td><span class="badge badge-green">v4.7</span></td>
             <td>Solar-Polarity-Flip validiert: &bdquo;abschaffen&ldquo;-Framing klarer als doppelte Verneinung</td>
             <td><span class="badge badge-green">VALIDIERT</span></td>
@@ -733,7 +743,7 @@
         <div class="card-header">Version</div>
         <div style="display: flex; gap: 16px; align-items: baseline;">
           <div>
-            <div class="stat" style="color: var(--green)">4.9.13</div>
+            <div class="stat" style="color: var(--green)">4.10</div>
             <div class="stat-label">Local</div>
           </div>
           <div style="font-size: 20px; color: var(--text3);">&rarr;</div>
@@ -751,13 +761,13 @@
       </div>
       <div class="card">
         <div class="card-header">Open Bugs</div>
-        <div class="stat" style="color: var(--green)">1</div>
-        <div class="stat-label">CSP frame-ancestors only (harmless)</div>
+        <div class="stat" style="color: var(--yellow)">2</div>
+        <div class="stat-label">Schnellcheck untracked + CSP frame-ancestors</div>
       </div>
       <div class="card">
         <div class="card-header">Last Ship</div>
-        <div class="stat" style="color: var(--blue)">v4.9.13</div>
-        <div class="stat-label">Pre-Flight Check, T15 Reframe</div>
+        <div class="stat" style="color: var(--blue)">v4.10</div>
+        <div class="stat-label">Schnellcheck-Prototyp (Either-Or MVP)</div>
       </div>
     </div>
 
@@ -820,6 +830,11 @@
         <thead><tr><th>P</th><th>Issue</th><th>Impact</th></tr></thead>
         <tbody>
           <tr>
+            <td><span class="priority-med">MED</span></td>
+            <td>Schnellcheck nicht deployed (untracked in git)</td>
+            <td>schnellcheck.html + schnellcheck.js existieren lokal, sind aber nicht committed/deployed. Kein Link von index.html.</td>
+          </tr>
+          <tr>
             <td><span class="priority-low">LOW</span></td>
             <td>CSP <code>frame-ancestors</code> warning</td>
             <td>Harmless. GitHub Pages limitation. Nicht behebbar ohne Cloudflare.</td>
@@ -834,6 +849,14 @@
       <table>
         <thead><tr><th>Version</th><th>Features</th></tr></thead>
         <tbody>
+          <tr>
+            <td><span class="badge badge-green">v4.10</span></td>
+            <td>Schnellcheck-Prototyp: 8 bin&auml;re Fragen, farbkodierte Karten, A/B-Randomisierung, vereinfachtes Scoring</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">v4.9.14</span></td>
+            <td>SEO-Optimierung: Title/Description, FAQPage structured data, Noscript-Content, Sitemap, Outreach-Tracker</td>
+          </tr>
           <tr>
             <td><span class="badge badge-green">v4.9.13</span></td>
             <td>T26 Kitaplatz-Vergabe, T28 &Uuml;bernachtungsabgabe, T15 Gewerbesteuer-Reframe, Pre-Flight-Check</td>
@@ -1406,7 +1429,7 @@ Kein Tracking, Open Source.</span>
         <ul style="margin: 8px 0; padding-left: 20px;">
           <li><strong>&ldquo;kommunalwahl bayern 2026&rdquo; switched to Phrase Match.</strong> Was Broad, eating 50% budget on irrelevant terms.</li>
           <li><strong>3 paused keywords re-enabled:</strong> wahlhilfe m&uuml;nchen, wen w&auml;hlen m&uuml;nchen, parteien vergleich m&uuml;nchen.</li>
-          <li><strong>22 negative keywords live.</strong> Added ergebnis, termin, dachau, anleitung, wie viele stimmen + existing city/election negatives.</li>
+          <li><strong>25 negative keywords live.</strong> Added ergebnis, termin, dachau, anleitung, wie viele stimmen + existing city/election negatives. +3 on Mar 1: kandidaten, burgermeisterwahl, oberburgermeister.</li>
           <li><strong>Budget raised &euro;40 &rarr; &euro;60/day.</strong> Campaign was budget-constrained by 16:00.</li>
           <li><strong>Ad schedule set to 06:00&ndash;20:00.</strong> No more spending on 00:00&ndash;06:00 clicks (&euro;0.35&ndash;0.40 CPC vs &euro;0.18 daytime).</li>
         </ul>
@@ -1474,13 +1497,16 @@ Kein Tracking, Open Source.</span>
             <td><div style="height: 8px; border-radius: 4px; background: var(--surface2); overflow: hidden;"><div style="width: 100%; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--red));"></div></div></td>
           </tr>
           <tr>
-            <td style="white-space: nowrap;"><span style="color: var(--text3); font-size: 11px;">Mo</span> 2 Mar <span class="badge badge-green" style="font-size: 9px; padding: 1px 6px; margin-left: 4px;">Heute</span></td>
+            <td style="white-space: nowrap;"><span style="color: var(--text3); font-size: 11px;">Mo</span> 2 Mar</td>
             <td style="text-align: right;">725</td>
             <td style="text-align: right; font-weight: 700;">175</td>
             <td style="text-align: right;"><span style="color: var(--green); font-weight: 700;">24.14%</span></td>
             <td style="text-align: right;">&euro;28.73</td>
             <td style="text-align: right;"><span style="color: var(--green); font-weight: 700;">&euro;0.16</span></td>
             <td><div style="height: 8px; border-radius: 4px; background: var(--surface2); overflow: hidden;"><div style="width: 27%; height: 100%; border-radius: 4px; background: var(--green);"></div></div></td>
+          </tr>
+          <tr>
+            <td colspan="7" style="text-align: center; font-size: 11px; color: var(--text3); padding: 8px 12px; font-style: italic;">Mar 3&ndash;6 Daten fehlen. Budget seit 5. M&auml;rz auf &euro;70/Tag erh&ouml;ht. Tabelle manuell aktualisieren.</td>
           </tr>
         </tbody>
         <tfoot>
@@ -1498,7 +1524,7 @@ Kein Tracking, Open Source.</span>
       <div style="display: flex; gap: 16px; margin-top: 16px; font-size: 11px; color: var(--text3);">
         <div>CTR: <span style="color: var(--green);">&bull;</span> &gt;10% <span style="color: var(--yellow);">&bull;</span> 5&ndash;10% <span style="color: var(--red);">&bull;</span> &lt;5%</div>
         <div>CPC: <span style="color: var(--green);">&bull;</span> &lt;&euro;0.25 <span style="color: var(--yellow);">&bull;</span> &euro;0.25&ndash;0.35 <span style="color: var(--red);">&bull;</span> &gt;&euro;0.35</div>
-        <div style="margin-left: auto;">Budget: &euro;30/Tag</div>
+        <div style="margin-left: auto;">Budget: &euro;70/Tag (seit 5. M&auml;rz; vorher &euro;30)</div>
       </div>
     </div>
 
@@ -1510,7 +1536,7 @@ Kein Tracking, Open Source.</span>
           <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Done (Mar 1)</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> Budget raised &euro;20 &rarr; &euro;40 &rarr; &euro;60/day</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> &ldquo;kommunalwahl bayern 2026&rdquo; Broad &rarr; Phrase Match</div>
-          <div class="check"><div class="check-icon check-pass">&#10003;</div> 22 negative keywords live (cities, election types, info queries)</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> 25 negative keywords live (cities, election types, info queries, +3 Mar 1)</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> 3 paused keywords re-enabled</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> Ad schedule set: 06:00&ndash;20:00 all days</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> Search Console verified + sitemap submitted</div>
@@ -1623,7 +1649,7 @@ Kein Tracking, Open Source.</span>
       </div>
 
       <div class="card">
-        <div class="section-title">Negative Keywords <span class="badge badge-red" style="margin-left: 8px;">22 live</span></div>
+        <div class="section-title">Negative Keywords <span class="badge badge-red" style="margin-left: 8px;">25 live</span></div>
         <div style="display: flex; flex-wrap: wrap; gap: 4px;">
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">bundestagswahl</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">landtagswahl</span>
@@ -1647,6 +1673,9 @@ Kein Tracking, Open Source.</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">anleitung</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">wahl ergebnisse</span>
           <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">wie viele stimmen</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">kandidaten</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">burgermeisterwahl</span>
+          <span class="keyword-tag" style="border-color: var(--red); color: var(--red);">oberburgermeister</span>
         </div>
         <div style="font-size: 11px; color: var(--text3); margin-top: 8px;">Blocks non-Munich cities, wrong election types, and info-only queries.</div>
       </div>
@@ -1707,7 +1736,7 @@ Kein Tracking, Open Source.</span>
         <div>
           <div style="font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Google Ads Setup</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> Campaign live (RSA)</div>
-          <div class="check"><div class="check-icon check-pass">&#10003;</div> 11 keywords active + 22 negatives</div>
+          <div class="check"><div class="check-icon check-pass">&#10003;</div> 11 keywords active + 25 negatives</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> 8 headlines + 4 descriptions entered</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> Maximize Clicks bid strategy</div>
           <div class="check"><div class="check-icon check-pass">&#10003;</div> Geo targeting (M&uuml;nchen + 10km)</div>
@@ -1902,6 +1931,9 @@ Kein Tracking, Open Source.</span>
         </a>
         <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
           <span style="font-size: 18px;">&#128025;</span> GitHub Repo
+        </a>
+        <a href="https://mucwahl.de/schnellcheck.html" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
+          <span style="font-size: 18px;">&#9889;</span> Schnellcheck
         </a>
         <a href="https://github.com/frederikmetz42/mucwahl.de/actions" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.15s;">
           <span style="font-size: 18px;">&#9654;</span> GitHub Actions
@@ -2138,7 +2170,7 @@ Kein Tracking, Open Source.</span>
   </section>
 
   <footer style="text-align: center; padding: 24px 0; font-size: 11px; color: var(--text3); border-top: 1px solid var(--border); margin-top: 8px;">
-    Internal project dashboard &middot; Not for public distribution &middot; Updated 2026-03-05
+    Internal project dashboard &middot; Not for public distribution &middot; Updated 2026-03-06
   </footer>
 </div>
 
@@ -2381,7 +2413,7 @@ var GC_VISITS = 1993;  // Update from https://mucwahl.goatcounter.com (2026-03-0
 
 // Version sync
 (async function() {
-  var LOCAL = '4.9.13';
+  var LOCAL = '4.10';
   var el = document.getElementById('live-version');
   var status = document.getElementById('version-status');
   function setStatus(text, cls) {

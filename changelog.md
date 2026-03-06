@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.10 — 2026-03-06 — Schnellcheck-Prototyp (Either-Or MVP)
+- **Added:** `schnellcheck.html` — Standalone 8-Fragen-Quiz im binären "A oder B?"-Format
+- **Added:** `schnellcheck.js` — Quizlogik mit Scoring gegen 14 Parteien, A/B-Randomisierung
+- **Added:** Farbkodierte Optionskarten (Teal vs. Amber) mit Tradeoff-Labels (z.B. "Sparsamkeit" vs. "Investition")
+- **Added:** "Beides wichtig"-Escape mit halbem Gewicht
+- **Added:** Ergebnisseite mit Top-Match-Hero und sortiertem Balkendiagramm
+
 ## v4.9.14 — 2026-03-05
 ### SEO-Optimierung + Outreach
 - Title + Description: "Kommunalwahl München 2026" als Keyword vorne eingefügt
