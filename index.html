@@ -143,7 +143,7 @@
             <div class="bg-orange-50 border border-orange-300 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div class="flex items-center gap-3">
                     <svg aria-hidden="true" class="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
-                    <span class="text-sm text-orange-800 font-bold">Heute ist Wahltag!</span>
+                    <span class="text-sm text-orange-800 font-bold">🎉 Heute wird gewählt!</span>
                 </div>
                 <button @click="goToStimmzettel()" class="text-sm px-5 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 transition-colors whitespace-nowrap">Finde dein Wahllokal</button>
             </div>
@@ -191,7 +191,8 @@
                 <button @click="start()" class="btn btn-primary text-lg px-10 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Starten</button>
             </div>
             <div x-show="isElectionSeason && !isElectionDay" x-transition.opacity class="text-sm text-slate-500 font-medium" x-cloak>
-                Noch <span class="text-orange-600 font-bold" x-text="daysUntilElection"></span> <span x-text="daysUntilElection === 1 ? 'Tag' : 'Tage'"></span> bis zur Wahl.
+                <span x-show="daysUntilElection === 1" class="text-orange-600 font-bold">🗳️ Morgen ist Wahl!</span>
+                <span x-show="daysUntilElection > 1">Noch <span class="text-orange-600 font-bold" x-text="daysUntilElection"></span> Tage bis zur Wahl.</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 text-left">
                 <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
@@ -533,7 +534,7 @@
                      x-transition:enter="transition ease-out duration-500 delay-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
                     <div class="inline-flex items-center gap-2 text-sm text-slate-500">
                         <span aria-hidden="true">🗳️</span>
-                        <span x-text="daysUntilElection === 0 ? 'Heute ist Wahltag!' : 'Noch ' + daysUntilElection + (daysUntilElection === 1 ? ' Tag' : ' Tage') + ' bis zur Wahl!'"></span>
+                        <span x-text="daysUntilElection === 0 ? '🎉 Heute wird gewählt!' : (daysUntilElection === 1 ? '🗳️ Morgen ist Wahl!' : 'Noch ' + daysUntilElection + ' Tage bis zur Wahl!')"></span>
                         <a @click.prevent="step = 97; window.scrollTo(0,0)" href="#" class="text-blue-600 hover:text-blue-800 font-medium" style="min-height:44px;display:inline-flex;align-items:center">→ So wählst du richtig</a>
                     </div>
                 </div>
