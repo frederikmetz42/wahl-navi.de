@@ -23,6 +23,32 @@
   .topic-card { transition: all 0.2s ease; }
   .topic-card.selected { border-color: #ea580c; background: #fff7ed; }
   .clash-badge { background: linear-gradient(135deg, #fef2f2, #f0fdf4); }
+
+  /* Swipe card */
+  .swipe-container { position: relative; overflow: hidden; touch-action: pan-y; user-select: none; }
+  .swipe-card {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+    will-change: transform, opacity;
+  }
+  .swipe-card.dragging { transition: none; }
+  .swipe-card.exit-left { transform: translateX(-120%) rotate(-8deg); opacity: 0; }
+  .swipe-card.exit-right { transform: translateX(120%) rotate(8deg); opacity: 0; }
+  .swipe-card.enter { animation: cardEnter 0.35s ease-out; }
+  @keyframes cardEnter { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .swipe-hint { transition: opacity 0.2s ease; }
+  .swipe-hint-left { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+  .swipe-hint-right { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+
+  /* Archetype reveal */
+  @keyframes archetypeReveal {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .archetype-reveal { animation: archetypeReveal 0.6s 0.2s ease-out both; }
+
+  /* Factoid */
+  .factoid { border-left: 3px solid #f59e0b; }
 </style>
 </head>
 <body class="bg-stone-50 text-stone-800 min-h-screen font-[Inter,system-ui,sans-serif]" x-data="deineWahl()" x-cloak>
@@ -57,22 +83,22 @@
           </div>
         </div>
         <p class="text-stone-600 leading-relaxed">
-          In 60 Sekunden siehst du, wo sich die beiden Kandidaten bei <strong>deinen</strong> Themen unterscheiden. Keine Empfehlung, nur Klarheit.
+          In 90 Sekunden siehst du, wo sich die beiden Kandidaten bei <strong>deinen</strong> Themen unterscheiden. Keine Empfehlung, nur Klarheit.
         </p>
       </div>
 
       <div class="space-y-3 mb-8 text-sm text-stone-500">
         <div class="flex items-start gap-3">
           <span class="flex-shrink-0 w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center text-xs font-bold text-stone-600">1</span>
-          <span>Wähle deine zwei wichtigsten Themen</span>
+          <span>Markiere die Themen, die dir wichtig sind</span>
         </div>
         <div class="flex items-start gap-3">
           <span class="flex-shrink-0 w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center text-xs font-bold text-stone-600">2</span>
-          <span>Drei Fragen zu Erfahrung und Veränderung</span>
+          <span>Drei Fragen zu Führungsstil und Prioritäten</span>
         </div>
         <div class="flex items-start gap-3">
           <span class="flex-shrink-0 w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center text-xs font-bold text-stone-600">3</span>
-          <span>Dein persönlicher Vergleich</span>
+          <span>Dein persönlicher Vergleich + Typ</span>
         </div>
       </div>
 
@@ -83,12 +109,13 @@
     </div>
   </template>
 
-  <!-- ==================== TOPIC PICK (pick 2) ==================== -->
+  <!-- ==================== TOPIC STAR (pick 1-5) ==================== -->
   <template x-if="screen === 'topics'">
     <div class="flex-1 flex flex-col pt-8 fade-in">
       <div class="mb-6">
-        <p class="text-sm font-medium text-orange-600 mb-1" x-text="selectedTopics.length + ' von 2 gewählt'"></p>
-        <h2 class="text-xl font-bold">Welche zwei Themen sind dir am wichtigsten?</h2>
+        <p class="text-sm font-medium text-orange-600 mb-1" x-text="selectedTopics.length === 0 ? 'Mindestens 1 Thema' : selectedTopics.length + ' von 5 markiert'"></p>
+        <h2 class="text-xl font-bold">Welche Themen sind dir wichtig?</h2>
+        <p class="text-sm text-stone-400 mt-1">Markiere alle, die dich betreffen. Je mehr du auswählst, desto breiter der Vergleich.</p>
       </div>
 
       <div class="flex-1 flex flex-col gap-3 justify-center">
@@ -113,94 +140,98 @@
       </div>
 
       <button
-        @click="if (selectedTopics.length === 2) { currentQ = 0; screen = 'questions'; }"
+        @click="if (selectedTopics.length >= 1) { currentQ = 0; cardState = 'enter'; screen = 'questions'; }"
         class="w-full font-semibold py-4 rounded-xl transition-colors text-lg mt-6"
-        :class="selectedTopics.length === 2 ? 'bg-stone-800 text-white hover:bg-stone-700' : 'bg-stone-200 text-stone-400 cursor-not-allowed'">
+        :class="selectedTopics.length >= 1 ? 'bg-stone-800 text-white hover:bg-stone-700' : 'bg-stone-200 text-stone-400 cursor-not-allowed'">
         Weiter
       </button>
     </div>
   </template>
 
-  <!-- ==================== ERFAHRUNG vs VERÄNDERUNG ==================== -->
+  <!-- ==================== SWIPE QUESTIONS ==================== -->
   <template x-if="screen === 'questions'">
-    <div class="flex-1 flex flex-col pt-8 fade-in" :key="'q-' + currentQ">
+    <div class="flex-1 flex flex-col pt-8 fade-in">
       <div class="mb-6">
         <p class="text-sm font-medium text-orange-600 mb-1">Frage <span x-text="currentQ + 1"></span> von 3</p>
-        <h2 class="text-xl font-bold">Erfahrung vs. Veränderung</h2>
+        <h2 class="text-xl font-bold" x-text="currentQuestion.title"></h2>
       </div>
 
       <div class="flex-1 flex flex-col justify-center">
-        <div class="bg-white rounded-2xl border border-stone-200 p-6 mb-6">
-          <p class="text-lg font-medium leading-relaxed" x-text="currentQuestion.statement"></p>
+        <!-- Swipe card -->
+        <div class="swipe-container relative mb-6" style="min-height: 220px;">
+          <!-- Swipe hints (visible during drag) -->
+          <div class="swipe-hint swipe-hint-left rounded-xl bg-orange-500 text-white px-3 py-2 text-sm font-bold"
+            :style="'opacity:' + Math.min(1, Math.max(0, -swipeX / 80))">
+            <span x-text="currentQuestion.left_label"></span>
+          </div>
+          <div class="swipe-hint swipe-hint-right rounded-xl bg-orange-500 text-white px-3 py-2 text-sm font-bold"
+            :style="'opacity:' + Math.min(1, Math.max(0, swipeX / 80))">
+            <span x-text="currentQuestion.right_label"></span>
+          </div>
+
+          <div class="swipe-card bg-white rounded-2xl border-2 border-stone-200 p-6 shadow-sm"
+            :class="cardState"
+            :style="cardState === 'dragging' ? 'transform: translateX(' + swipeX + 'px) rotate(' + (swipeX * 0.06) + 'deg)' : ''"
+            @mousedown="startSwipe($event)"
+            @mousemove.window="moveSwipe($event)"
+            @mouseup.window="endSwipe()"
+            @touchstart="startSwipe($event)"
+            @touchmove="moveSwipe($event)"
+            @touchend="endSwipe()">
+            <p class="text-lg font-medium leading-relaxed mb-4" x-text="currentQuestion.statement"></p>
+            <p class="text-sm text-stone-400 text-center">Wische oder tippe</p>
+          </div>
         </div>
 
+        <!-- Tap buttons (always visible as alternative) -->
         <div class="grid grid-cols-2 gap-3">
-          <button @click="answerQ('chance')"
-            class="card-hover bg-white border-2 border-stone-200 rounded-xl py-4 px-4 text-center hover:border-green-400 hover:bg-green-50 active:bg-green-100 transition-colors">
-            <span class="block font-semibold mb-1">Eher Chance</span>
-            <span class="text-xs text-stone-400" x-text="currentQuestion.chance_hint"></span>
+          <button @click="answerSwipe('left')"
+            class="card-hover bg-white border-2 border-stone-200 rounded-xl py-4 px-4 text-center hover:border-orange-400 hover:bg-orange-50 active:bg-orange-100 transition-colors">
+            <span class="block text-lg mb-1" x-text="currentQuestion.left_emoji"></span>
+            <span class="block font-semibold text-sm" x-text="currentQuestion.left_label"></span>
+            <span class="text-xs text-stone-400" x-text="currentQuestion.left_hint"></span>
           </button>
-          <button @click="answerQ('risiko')"
-            class="card-hover bg-white border-2 border-stone-200 rounded-xl py-4 px-4 text-center hover:border-red-400 hover:bg-red-50 active:bg-red-100 transition-colors">
-            <span class="block font-semibold mb-1">Eher Risiko</span>
-            <span class="text-xs text-stone-400" x-text="currentQuestion.risiko_hint"></span>
+          <button @click="answerSwipe('right')"
+            class="card-hover bg-white border-2 border-stone-200 rounded-xl py-4 px-4 text-center hover:border-orange-400 hover:bg-orange-50 active:bg-orange-100 transition-colors">
+            <span class="block text-lg mb-1" x-text="currentQuestion.right_emoji"></span>
+            <span class="block font-semibold text-sm" x-text="currentQuestion.right_label"></span>
+            <span class="text-xs text-stone-400" x-text="currentQuestion.right_hint"></span>
           </button>
         </div>
       </div>
     </div>
   </template>
 
-  <!-- ==================== RESULTS ==================== -->
+  <!-- ==================== RESULTS (reflow: archetype → agreement → diffs → tendenz reveal) ==================== -->
   <template x-if="screen === 'results'">
     <div class="flex-1 pt-8 fade-in">
-      <div class="mb-5">
-        <h2 class="text-2xl font-bold mb-1">Dein Vergleich</h2>
-        <p class="text-stone-500 text-sm">Basierend auf deinen zwei Themen und drei Einschätzungen</p>
-      </div>
 
-      <!-- Tendenz Scale -->
-      <div class="bg-white rounded-2xl border border-stone-200 p-5 mb-4">
-        <!-- Candidate row -->
-        <div class="flex justify-between items-center mb-3">
-          <div class="flex items-center gap-2">
-            <span class="w-8 h-8 rounded-full bg-red-600 text-white text-xs font-bold flex items-center justify-center">R</span>
-            <div>
-              <span class="text-sm font-semibold">Reiter</span>
-              <span class="text-xs text-stone-400 ml-1">SPD</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="text-right">
-              <span class="text-sm font-semibold">Krause</span>
-              <span class="text-xs text-stone-400 ml-1">Grüne</span>
-            </div>
-            <span class="w-8 h-8 rounded-full bg-green-600 text-white text-xs font-bold flex items-center justify-center">K</span>
+      <!-- Archetype Reveal -->
+      <div class="text-center mb-6 archetype-reveal">
+        <p class="text-sm text-stone-400 mb-2">Dein Münchner Wahl-Typ</p>
+        <div class="inline-flex items-center gap-3 bg-white border-2 border-orange-300 rounded-2xl px-6 py-4 shadow-sm">
+          <span class="text-3xl" x-text="archetype.emoji"></span>
+          <div class="text-left">
+            <p class="text-lg font-bold text-stone-800" x-text="archetype.label"></p>
+            <p class="text-sm text-stone-500" x-text="archetype.desc"></p>
           </div>
         </div>
-
-        <!-- Bar -->
-        <div class="relative mb-2">
-          <div class="tendenz-bar h-3.5 rounded-full"></div>
-          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-3.5 bg-stone-400/30"></div>
-          <div class="tendenz-marker marker-animate absolute -top-1 w-5 h-5 rounded-full bg-white border-[3px] shadow-md"
-            :class="tendenzColor"
-            :style="'left:' + tendenzPct + '%'"
-            style="transform: translateX(-50%);">
-          </div>
-        </div>
-
-        <!-- Label -->
-        <p class="text-center text-sm font-semibold mt-3" x-text="tendenzShort"></p>
-        <p class="text-center text-xs text-stone-400 mt-1">Basierend auf Programmpositionen. Führungsqualität, Erfahrung und Koalitionsfähigkeit fließen nicht ein.</p>
       </div>
 
-      <!-- Topic summary line -->
+      <!-- Agreement-first intro -->
+      <div class="bg-green-50 border border-green-200 rounded-2xl p-5 mb-4">
+        <p class="font-semibold text-green-800 mb-1">Einig bei 18 von 25 Themen</p>
+        <p class="text-sm text-green-700">Autofreie Altstadt, Tempo 30, Gewerbesteuer, Solarpflicht, Drogenkonsumräume, Bezahlkarte, Deutsch in Kitas und mehr.</p>
+      </div>
+
+      <!-- Transition to diffs -->
       <div class="px-1 mb-4">
-        <p class="text-sm text-stone-500">
-          Bei deinen Themen
-          (<span x-text="selectedTopics.map(t => TOPICS[t].label).join(' und ')"></span>)
-          gibt es <strong x-text="relevantDiffs.length"></strong> Unterschied<span x-show="relevantDiffs.length !== 1">e</span>
-          und <strong x-text="relevantAgreements"></strong> Übereinstimmung<span x-show="relevantAgreements !== 1">en</span>.
+        <p class="text-sm text-stone-600 font-medium">
+          Aber bei
+          <template x-for="(t, i) in selectedTopics" :key="t">
+            <span><span x-show="i > 0 && i < selectedTopics.length - 1">, </span><span x-show="i === selectedTopics.length - 1 && i > 0"> und </span><span x-text="TOPICS[t].label"></span></span>
+          </template>
+          gibt es <strong x-text="relevantDiffs.length"></strong> Unterschied<span x-show="relevantDiffs.length !== 1">e</span>:
         </p>
       </div>
 
@@ -232,6 +263,12 @@
                 <p class="text-xs text-stone-600 leading-relaxed" x-text="comp.gruene_quote || 'Keine konkrete Aussage'"></p>
               </div>
             </div>
+            <!-- Wusstest-du factoid -->
+            <template x-if="comp.factoid">
+              <div class="factoid bg-amber-50 mt-4 px-4 py-2.5 rounded-r-lg">
+                <p class="text-xs text-amber-800"><strong>Wusstest du?</strong> <span x-text="comp.factoid"></span></p>
+              </div>
+            </template>
           </div>
         </div>
       </template>
@@ -246,7 +283,7 @@
           <div class="p-4">
             <p class="text-sm text-stone-600 mb-3" x-text="comp.statement"></p>
             <div class="grid grid-cols-2 gap-3">
-              <div class="rounded-lg p-2.5" :class="comp.spd_val === 1 ? 'bg-red-50 border border-red-100' : comp.spd_val === -1 ? 'bg-stone-50 border border-stone-200' : 'bg-stone-50 border border-stone-200'">
+              <div class="rounded-lg p-2.5" :class="comp.spd_val === 1 ? 'bg-red-50 border border-red-100' : 'bg-stone-50 border border-stone-200'">
                 <div class="flex items-center gap-1.5 mb-1.5">
                   <span class="w-5 h-5 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">R</span>
                   <span class="font-semibold text-xs">Reiter</span>
@@ -256,7 +293,7 @@
                 </div>
                 <p class="text-[11px] text-stone-500 leading-relaxed" x-text="comp.spd_quote || 'Keine konkrete Aussage'"></p>
               </div>
-              <div class="rounded-lg p-2.5" :class="comp.gruene_val === 1 ? 'bg-green-50 border border-green-100' : comp.gruene_val === -1 ? 'bg-stone-50 border border-stone-200' : 'bg-stone-50 border border-stone-200'">
+              <div class="rounded-lg p-2.5" :class="comp.gruene_val === 1 ? 'bg-green-50 border border-green-100' : 'bg-stone-50 border border-stone-200'">
                 <div class="flex items-center gap-1.5 mb-1.5">
                   <span class="w-5 h-5 rounded-full bg-green-600 text-white text-[10px] font-bold flex items-center justify-center">K</span>
                   <span class="font-semibold text-xs">Krause</span>
@@ -267,15 +304,48 @@
                 <p class="text-[11px] text-stone-500 leading-relaxed" x-text="comp.gruene_quote || 'Keine konkrete Aussage'"></p>
               </div>
             </div>
+            <!-- Wusstest-du factoid -->
+            <template x-if="comp.factoid">
+              <div class="factoid bg-amber-50 mt-3 px-4 py-2.5 rounded-r-lg">
+                <p class="text-xs text-amber-800"><strong>Wusstest du?</strong> <span x-text="comp.factoid"></span></p>
+              </div>
+            </template>
           </div>
         </div>
       </template>
 
-      <!-- Agreement Summary -->
-      <div class="bg-stone-100 rounded-xl p-4 mb-5">
-        <p class="text-sm text-stone-600">
-          <strong>Einig bei 18 von 25 Themen</strong>, darunter: Autofreie Altstadt, Tempo 30, Gewerbesteuer, Solarpflicht, Drogenkonsumräume, Bezahlkarte und Deutsch in Kitas.
-        </p>
+      <!-- Tendenz Scale (the reveal, at the bottom) -->
+      <div class="bg-white rounded-2xl border border-stone-200 p-5 mb-4 mt-2">
+        <p class="text-center text-sm font-medium text-stone-400 mb-4">Deine Tendenz basierend auf Themen + Führungsstil</p>
+        <!-- Candidate row -->
+        <div class="flex justify-between items-center mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-red-600 text-white text-xs font-bold flex items-center justify-center">R</span>
+            <div>
+              <span class="text-sm font-semibold">Reiter</span>
+              <span class="text-xs text-stone-400 ml-1">SPD</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="text-right">
+              <span class="text-sm font-semibold">Krause</span>
+              <span class="text-xs text-stone-400 ml-1">Grüne</span>
+            </div>
+            <span class="w-8 h-8 rounded-full bg-green-600 text-white text-xs font-bold flex items-center justify-center">K</span>
+          </div>
+        </div>
+        <!-- Bar -->
+        <div class="relative mb-2">
+          <div class="tendenz-bar h-3.5 rounded-full"></div>
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-3.5 bg-stone-400/30"></div>
+          <div class="tendenz-marker marker-animate absolute -top-1 w-5 h-5 rounded-full bg-white border-[3px] shadow-md"
+            :class="tendenzColor"
+            :style="'left:' + tendenzPct + '%'"
+            style="transform: translateX(-50%);">
+          </div>
+        </div>
+        <p class="text-center text-sm font-semibold mt-3" x-text="tendenzShort"></p>
+        <p class="text-center text-xs text-stone-400 mt-1">Basierend auf Programmpositionen und deinem Führungsstil-Profil. Keine Wahlempfehlung.</p>
       </div>
 
       <!-- Share -->
@@ -319,64 +389,85 @@ function deineWahl() {
       statement: 'Familien, in denen beide Elternteile Vollzeit arbeiten, sollen bevorzugt einen Kitaplatz bekommen.',
       spd_val: -1, gruene_val: 1,
       spd_quote: 'Das derzeitige Punktesystem ist am gerechtesten. Keine Bevorzugung gegenüber Alleinerziehenden.',
-      gruene_quote: 'Jedes Kind hat Anspruch auf Betreuung. Berufstätigkeit beider Eltern kann sich positiv auswirken.' },
+      gruene_quote: 'Jedes Kind hat Anspruch auf Betreuung. Berufstätigkeit beider Eltern kann sich positiv auswirken.',
+      factoid: 'München hat über 80.000 Kitaplätze, aber 2024 fehlten laut Stadtratsbericht noch rund 5.000 Plätze für unter Dreijährige.' },
     { id: 1, topic: 'mobilitaet', short_title: 'Straßentunnel', gap: 1,
       statement: 'Die Stadt soll neue Straßentunnel (z.B. am Englischen Garten) bauen, auch wenn dies hohe Baukosten verursacht.',
       spd_val: 0, gruene_val: -1,
       spd_quote: '',
-      gruene_quote: 'Die oberirdische Tram-Nordtangente ist schneller und günstiger als ein 240-Mio-Tunnel mit 900 Baumfällungen.' },
+      gruene_quote: 'Die oberirdische Tram-Nordtangente ist schneller und günstiger als ein 240-Mio-Tunnel mit 900 Baumfällungen.',
+      factoid: 'Der geplante Englischer-Garten-Tunnel würde den Park erstmals seit 1966 wieder vereinen, kostet aber geschätzte 240 Mio. Euro.' },
     { id: 5, topic: 'mobilitaet', short_title: 'ÖPNV-Preise', gap: 1,
       statement: 'Die Ticketpreise für Bus und Bahn sollen deutlich gesenkt werden, auch wenn dies den Haushalt belastet.',
       spd_val: 0, gruene_val: 1,
       spd_quote: 'Nulltarif für Kinder bis 7. Kostenlose Mitnahme bei der IsarCard.',
-      gruene_quote: 'Nulltarif für Kinder bis 7. Geförderte D-Tickets statt eingeschränkter Isarcard Sozial.' },
+      gruene_quote: 'Nulltarif für Kinder bis 7. Geförderte D-Tickets statt eingeschränkter Isarcard Sozial.',
+      factoid: 'Das MVV-Netz befördert täglich 1,9 Mio. Fahrgäste. Ein Nulltarif würde München schätzungsweise 500 Mio. Euro pro Jahr kosten.' },
     { id: 10, topic: 'wohnen', short_title: 'Nachverdichtung', gap: 1,
       statement: 'In Einfamilienhaus-Vierteln soll Wohnungsbau Vorrang vor Grünflächenerhalt haben.',
       spd_val: 0, gruene_val: 1,
       spd_quote: 'Wohnraumpotentiale im Bestand gezielt nutzen.',
-      gruene_quote: 'Bevorzugt bauen, wo Bebauung ist — mit Augenmaß in die Höhe nachverdichten.' },
+      gruene_quote: 'Bevorzugt bauen, wo Bebauung ist — mit Augenmaß in die Höhe nachverdichten.',
+      factoid: 'Einfamilienhäuser belegen 22% der Münchner Siedlungsfläche, beherbergen aber nur 8% der Bevölkerung.' },
     { id: 12, topic: 'klima', short_title: 'Hochhäuser', gap: 1,
       statement: 'München soll Büro- und Hotelgebäude über 100 Meter erlauben.',
       spd_val: 1, gruene_val: 0,
       spd_quote: 'Hochhäuser brauchen stadtgesellschaftlichen Mehrwert und bezahlbares Wohnen.',
-      gruene_quote: 'Einzelfallentscheidung nach Abwägung aller Faktoren.' },
+      gruene_quote: 'Einzelfallentscheidung nach Abwägung aller Faktoren.',
+      factoid: 'Seit dem Bürgerentscheid von 2004 gilt in München die 100-Meter-Grenze (Höhe der Frauenkirche). Nur der O2-Tower überragt sie.' },
     { id: 18, topic: 'wirtschaft', short_title: 'Gewerbeflächen', gap: 1,
       statement: 'Leerstehende Büroflächen sollen in Wohnraum umgewandelt werden.',
       spd_val: 0, gruene_val: 1,
       spd_quote: 'Wir brauchen beides: Wohnraum und Arbeitsplätze.',
-      gruene_quote: 'Wohnraum hat Vorrang. Keine Gewerbeflächen auf Kosten von Grün- und Wohnflächen.' },
+      gruene_quote: 'Wohnraum hat Vorrang. Keine Gewerbeflächen auf Kosten von Grün- und Wohnflächen.',
+      factoid: 'In München standen 2025 rund 1,2 Mio. Quadratmeter Bürofläche leer, ein Drittel mehr als vor Corona.' },
     { id: 9, topic: 'wohnen', short_title: 'Wachstumsbremse', gap: 1,
       statement: 'Die Stadt soll Münchens Wachstum aktiv begrenzen, auch wenn dies Steuereinnahmen kostet.',
       spd_val: -1, gruene_val: 0,
       spd_quote: 'München bleibt offen. Infrastruktur anpassen, nicht Mauern bauen.',
-      gruene_quote: 'Qualitatives, nachhaltiges Wachstum statt blindem Flächenfraß.' }
+      gruene_quote: 'Qualitatives, nachhaltiges Wachstum statt blindem Flächenfraß.',
+      factoid: 'München wuchs seit 2010 um über 200.000 Einwohner auf 1,6 Mio. Bei gleichem Tempo wäre 2035 die 1,8-Mio.-Grenze erreicht.' }
   ];
 
-  // All theses count per topic (for agreement counting)
   const THESES_PER_TOPIC = { mobilitaet: 4, wohnen: 4, klima: 4, wirtschaft: 6, gesellschaft: 7 };
   const DIFFS_PER_TOPIC = {};
   for (const t of DIFF_THESES) { DIFFS_PER_TOPIC[t.topic] = (DIFFS_PER_TOPIC[t.topic] || 0) + 1; }
 
+  // New orthogonal questions: Verwaltung/Vision, Kompromiss/Kante, Bürgernähe/Großprojekte
   const QUESTIONS = [
-    { id: 'q1',
-      statement: 'Ein Kandidat, der seit 12 Jahren im Amt ist, kennt die Verwaltung — aber möglicherweise fehlt frischer Blick.',
-      chance_hint: 'Erfahrung zählt',
-      risiko_hint: 'Zu lange im Amt',
-      // chance = pro continuity = pro Reiter; risiko = anti continuity = pro Krause
-      reiter_weight: 1 },
-    { id: 'q2',
-      statement: 'Ein Kandidat ohne OB-Erfahrung bringt neue Ideen — aber muss sich erst einarbeiten.',
-      chance_hint: 'Frischer Wind',
-      risiko_hint: 'Zu unerfahren',
-      // chance = pro new = pro Krause; risiko = anti new = pro Reiter
-      reiter_weight: -1 },
-    { id: 'q3',
-      statement: 'Die Stadtspitze zu wechseln bedeutet Veränderung — aber auch Unsicherheit in der Übergangszeit.',
-      chance_hint: 'Wechsel wagen',
-      risiko_hint: 'Stabilität bewahren',
-      // chance = pro change = pro Krause; risiko = anti change = pro Reiter
-      reiter_weight: -1 }
+    { id: 'q1', title: 'Verwaltung vs. Vision',
+      statement: 'Was braucht München mehr: eine Stadtspitze, die den Laden am Laufen hält, oder eine, die groß denkt und Neues anstößt?',
+      left_label: 'Verwaltung', left_hint: 'Stabilität, Erfahrung', left_emoji: '\u{1F3DB}',
+      right_label: 'Vision', right_hint: 'Neue Ideen, Aufbruch', right_emoji: '\u{1F52D}',
+      // left (Verwaltung) = continuity = Reiter; right (Vision) = change = Krause
+      reiter_dir: 'left' },
+    { id: 'q2', title: 'Kompromiss vs. Kante',
+      statement: 'Soll der OB möglichst viele Parteien einbinden, oder klare eigene Linie zeigen?',
+      left_label: 'Kompromiss', left_hint: 'Breite Koalitionen', left_emoji: '\u{1F91D}',
+      right_label: 'Kante', right_hint: 'Klare Haltung', right_emoji: '\u{1F3AF}',
+      // left (Kompromiss) = broad coalition = Reiter style; right (Kante) = programmatic = Krause style
+      reiter_dir: 'left' },
+    { id: 'q3', title: 'Bürgernähe vs. Großprojekte',
+      statement: 'Was ist wichtiger: Stadtteil-Probleme direkt lösen, oder große Infrastrukturprojekte vorantreiben?',
+      left_label: 'Bürgernähe', left_hint: 'Lokale Lösungen', left_emoji: '\u{1F3E1}',
+      right_label: 'Großprojekte', right_hint: 'Stadtweite Infrastruktur', right_emoji: '\u{1F680}',
+      // This axis is genuinely cross-cutting: Reiter has done big projects but also local presence
+      // Krause pushes infrastructure change but from a local/Bezirk perspective
+      // Kept balanced: no strong reiter_dir, but slight Reiter lean for Großprojekte (tunnel etc.)
+      reiter_dir: 'right' }
   ];
+
+  // Archetype system: based on question answers + topic count
+  const ARCHETYPES = {
+    'VKB': { emoji: '\u{1F9ED}', label: 'Münchens Kompass', desc: 'Du willst klare Richtung und nahe Lösungen.' },
+    'VKG': { emoji: '\u{26A1}', label: 'Münchens Antrieb', desc: 'Vision trifft Großprojekt. Du denkst in Jahrzehnten.' },
+    'VCB': { emoji: '\u{1F331}', label: 'Münchens Brückenbauer:in', desc: 'Neue Wege, aber gemeinsam. Du verbindest Ideen und Menschen.' },
+    'VCG': { emoji: '\u{1F680}', label: 'Münchens Zukunftsmacher:in', desc: 'Große Vision, breiter Konsens, große Projekte.' },
+    'AKB': { emoji: '\u{1F3DB}', label: 'Münchens Anker', desc: 'Stabilität mit Haltung. Du schätzt, was funktioniert.' },
+    'AKG': { emoji: '\u{2699}', label: 'Münchens Strateg:in', desc: 'Erfahrung trifft Entschlossenheit. Du baust auf Bewährtem auf.' },
+    'ACB': { emoji: '\u{2615}', label: 'Münchens gute Seele', desc: 'Zusammenhalt und Kümmern. Du willst, dass der Laden läuft.' },
+    'ACG': { emoji: '\u{1F3D7}', label: 'Münchens Macher:in', desc: 'Pragmatisch und ehrgeizig. Hauptsache, es wird was.' }
+  };
 
   return {
     screen: 'intro',
@@ -386,6 +477,12 @@ function deineWahl() {
     currentQ: 0,
     qAnswers: [],
     copied: false,
+
+    // Swipe state
+    swipeX: 0,
+    swipeStartX: 0,
+    swiping: false,
+    cardState: 'enter',
 
     get progressPct() {
       if (this.screen === 'topics') return 15;
@@ -402,16 +499,55 @@ function deineWahl() {
       const idx = this.selectedTopics.indexOf(key);
       if (idx >= 0) {
         this.selectedTopics.splice(idx, 1);
-      } else if (this.selectedTopics.length < 2) {
+      } else {
         this.selectedTopics.push(key);
       }
     },
 
-    answerQ(answer) {
-      this.qAnswers.push({ id: QUESTIONS[this.currentQ].id, answer, ...QUESTIONS[this.currentQ] });
+    // Swipe mechanics
+    startSwipe(e) {
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      this.swipeStartX = x;
+      this.swiping = true;
+      this.cardState = 'dragging';
+    },
+
+    moveSwipe(e) {
+      if (!this.swiping) return;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      this.swipeX = x - this.swipeStartX;
+    },
+
+    endSwipe() {
+      if (!this.swiping) return;
+      this.swiping = false;
+      const threshold = 80;
+      if (this.swipeX < -threshold) {
+        this.cardState = 'exit-left';
+        setTimeout(() => this.commitAnswer('left'), 300);
+      } else if (this.swipeX > threshold) {
+        this.cardState = 'exit-right';
+        setTimeout(() => this.commitAnswer('right'), 300);
+      } else {
+        this.cardState = '';
+        this.swipeX = 0;
+      }
+    },
+
+    answerSwipe(dir) {
+      this.cardState = dir === 'left' ? 'exit-left' : 'exit-right';
+      setTimeout(() => this.commitAnswer(dir), 300);
+    },
+
+    commitAnswer(dir) {
+      const q = QUESTIONS[this.currentQ];
+      this.qAnswers.push({ id: q.id, answer: dir, reiter_dir: q.reiter_dir });
       this.currentQ++;
+      this.swipeX = 0;
       if (this.currentQ >= QUESTIONS.length) {
         this.screen = 'results';
+      } else {
+        this.cardState = 'enter';
       }
     },
 
@@ -424,7 +560,6 @@ function deineWahl() {
     // --- Results computations ---
 
     get relevantDiffs() {
-      // Diffs in user's selected topics + hard clashes from any topic
       return DIFF_THESES.filter(t =>
         this.selectedTopics.includes(t.topic) || t.gap >= 2
       );
@@ -450,7 +585,7 @@ function deineWahl() {
 
     // Tendenz: negative = Reiter, positive = Krause
     get tendenz() {
-      // Thesis-based score (weighted: selected topics count 3x, others 1x)
+      // Thesis-based score (weighted: selected topics count 3x, others 0.5x)
       let score = 0;
       let maxScore = 0;
       for (const t of DIFF_THESES) {
@@ -460,19 +595,16 @@ function deineWahl() {
         maxScore += 2 * w;
       }
 
-      // Question-based score (capped at 20% influence)
+      // Question-based score (capped at 25% influence, up from 20% with new orthogonal questions)
       let qScore = 0;
       for (const a of this.qAnswers) {
-        // chance on a reiter_weight=1 question means pro-Reiter → negative
-        // risiko on a reiter_weight=1 question means anti-Reiter → positive
-        if (a.answer === 'chance') qScore -= a.reiter_weight;
-        if (a.answer === 'risiko') qScore += a.reiter_weight;
+        // If answer matches reiter_dir → pro-Reiter → negative score
+        if (a.answer === a.reiter_dir) qScore -= 1;
+        else qScore += 1;
       }
-      // Normalize q influence: 3 questions, max |qScore| = 3, cap at 20%
-      const qInfluence = (qScore / 3) * 0.2 * maxScore;
+      const qInfluence = (qScore / 3) * 0.25 * maxScore;
       score += qInfluence;
 
-      // Normalize to -1..+1, then apply power curve for visual stretching
       const raw = maxScore > 0 ? Math.max(-1, Math.min(1, score / maxScore)) : 0;
       return Math.sign(raw) * Math.pow(Math.abs(raw), 0.6);
     },
@@ -497,9 +629,18 @@ function deineWahl() {
       return 'Beide nah beieinander';
     },
 
+    // Archetype based on 3 question answers
+    get archetype() {
+      // Encode: Q1 V(ision) or A(dmin), Q2 K(ante) or C(ompromiss), Q3 B(ürgernähe) or G(roßprojekte)
+      const q1 = this.qAnswers[0]?.answer === 'right' ? 'V' : 'A';
+      const q2 = this.qAnswers[1]?.answer === 'right' ? 'K' : 'C';
+      const q3 = this.qAnswers[2]?.answer === 'left' ? 'B' : 'G';
+      const key = q1 + q2 + q3;
+      return ARCHETYPES[key] || ARCHETYPES['ACB'];
+    },
+
     get shareText() {
-      const t = this.tendenzShort;
-      return t + '. Meine Themen: ' + this.selectedTopics.map(k => TOPICS[k].label).join(' und ') + '. Was sagt das Tool bei dir? mucwahl.de/stichwahl';
+      return this.archetype.emoji + ' ' + this.archetype.label + '. ' + this.tendenzShort + '. Was bist du? mucwahl.de/stichwahl';
     },
 
     async copyShare() {
@@ -516,6 +657,8 @@ function deineWahl() {
       this.currentQ = 0;
       this.qAnswers = [];
       this.copied = false;
+      this.swipeX = 0;
+      this.cardState = 'enter';
     }
   };
 }
