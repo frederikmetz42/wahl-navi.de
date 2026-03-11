@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bilanz-Check — Was wurde aus den Versprechen? | Stichwahl München 2026</title>
-<meta name="description" content="6 Versprechen aus dem Koalitionsvertrag 2020. Was wurde geliefert? Und was sagen Reiter und Krause jetzt dazu?">
+<meta name="description" content="8 Versprechen und Ergebnisse aus dem Koalitionsvertrag 2020. Was wurde geliefert? Und was sagen Reiter und Krause jetzt dazu?">
 <meta name="robots" content="noindex">
 <link rel="icon" href="assets/favicon.png">
 <script src="vendor/alpine.min.js" defer></script>
@@ -23,9 +23,6 @@
   .count-reveal { animation: countUp 0.5s 0.3s ease-out both; }
   @keyframes cardEntry { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .card-enter { animation: cardEntry 0.35s ease-out both; }
-  .shock-card { border: 2px solid #dc2626; background: linear-gradient(135deg, #fef2f2 0%, #fff 100%); }
-  .shock-badge { animation: pulse 2s infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
   .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
   .status-red { background: #dc2626; }
   .status-yellow { background: #f59e0b; }
@@ -55,17 +52,17 @@
 
       <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 mb-6">
         <p class="text-stone-600 leading-relaxed mb-4">
-          Reiter und Krause haben <strong>6 Jahre zusammen regiert</strong>. SPD stellte den OB, Grüne das Mobilitätsreferat. Beide tragen Verantwortung.
+          Reiter und Krause haben <strong>6 Jahre zusammen regiert</strong>, davon zwei in der Corona-Krise und eins im Energiepreisschock. SPD stellte den OB, Grüne das Mobilitätsreferat. Beide tragen Verantwortung.
         </p>
         <p class="text-stone-600 leading-relaxed">
-          6 Versprechen aus dem Koalitionsvertrag 2020. Was wurde daraus? Und wer überzeugt dich jetzt mehr?
+          8 Versprechen und Ergebnisse aus dem Koalitionsvertrag 2020. Was wurde daraus? Und wer überzeugt dich jetzt mehr?
         </p>
       </div>
 
       <div class="space-y-3 mb-8 text-sm text-stone-500">
         <div class="flex items-start gap-3">
           <span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center text-xs font-bold text-amber-700">1</span>
-          <span>6 Versprechen, 6 Bilanzen (2 Min.)</span>
+          <span>8 Themen, 8 Bilanzen (3 Min.)</span>
         </div>
         <div class="flex items-start gap-3">
           <span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center text-xs font-bold text-amber-700">2</span>
@@ -88,21 +85,13 @@
   <template x-if="screen === 'cards'">
     <div class="flex-1 pt-8 fade-in" :key="'c-' + currentQ">
       <div class="mb-4">
-        <p class="text-sm font-medium text-amber-600 mb-1">Versprechen <span x-text="currentQ + 1"></span> von 6</p>
+        <p class="text-sm font-medium text-amber-600 mb-1">Thema <span x-text="currentQ + 1"></span> von 8</p>
         <p class="text-xs text-stone-400" x-text="promises[currentQ].category"></p>
       </div>
 
       <div class="flex-1 flex flex-col">
         <!-- Promise card -->
-        <div class="rounded-2xl border overflow-hidden mb-4"
-          :class="promises[currentQ].isShock ? 'shock-card' : 'bg-white border-stone-200'">
-
-          <!-- Shock badge -->
-          <template x-if="promises[currentQ].isShock">
-            <div class="bg-red-600 text-white text-xs font-bold px-4 py-1.5 text-center shock-badge">
-              Größte Lücke
-            </div>
-          </template>
+        <div class="rounded-2xl border overflow-hidden mb-4 bg-white border-stone-200">
 
           <div class="p-5">
             <!-- Promise -->
@@ -113,15 +102,15 @@
             </div>
 
             <!-- Status + what happened -->
-            <div class="rounded-xl p-4 mb-4" :class="promises[currentQ].status === 'red' ? 'bg-red-50' : 'bg-amber-50'">
+            <div class="rounded-xl p-4 mb-4" :class="promises[currentQ].status === 'red' ? 'bg-red-50' : promises[currentQ].status === 'green' ? 'bg-green-50' : 'bg-amber-50'">
               <div class="flex items-center gap-2 mb-2">
                 <span class="status-dot" :class="'status-' + promises[currentQ].status"></span>
-                <span class="text-xs font-bold" :class="promises[currentQ].status === 'red' ? 'text-red-700' : 'text-amber-700'"
-                  x-text="promises[currentQ].status === 'red' ? 'Nicht geliefert' : 'Teilweise geliefert'"></span>
+                <span class="text-xs font-bold" :class="promises[currentQ].status === 'red' ? 'text-red-700' : promises[currentQ].status === 'green' ? 'text-green-700' : 'text-amber-700'"
+                  x-text="promises[currentQ].status === 'red' ? 'Nicht geliefert' : promises[currentQ].status === 'green' ? 'Geliefert' : 'Teilweise geliefert'"></span>
               </div>
-              <p class="text-sm leading-relaxed" :class="promises[currentQ].status === 'red' ? 'text-red-800' : 'text-amber-800'"
+              <p class="text-sm leading-relaxed" :class="promises[currentQ].status === 'red' ? 'text-red-800' : promises[currentQ].status === 'green' ? 'text-green-800' : 'text-amber-800'"
                 x-text="promises[currentQ].reality"></p>
-              <p class="text-[10px] mt-2" :class="promises[currentQ].status === 'red' ? 'text-red-400' : 'text-amber-400'"
+              <p class="text-[10px] mt-2" :class="promises[currentQ].status === 'red' ? 'text-red-400' : promises[currentQ].status === 'green' ? 'text-green-400' : 'text-amber-400'"
                 x-text="promises[currentQ].realitySource"></p>
             </div>
 
@@ -153,17 +142,17 @@
         <div class="grid grid-cols-3 gap-2">
           <button @click="vote('r')"
             class="vote-btn border-2 border-stone-200 rounded-xl py-3 px-2 text-center"
-            :class="{ 'active-r': votes[currentQ] === 'r' }">
+            :class="{ 'active-r': activeVote === 'r' }">
             <span class="block text-xs font-bold text-red-600">Reiter</span>
           </button>
           <button @click="vote('b')"
             class="vote-btn border-2 border-stone-200 rounded-xl py-3 px-2 text-center"
-            :class="{ 'active-b': votes[currentQ] === 'b' }">
+            :class="{ 'active-b': activeVote === 'b' }">
             <span class="block text-xs font-bold text-amber-600">Beide gleich</span>
           </button>
           <button @click="vote('k')"
             class="vote-btn border-2 border-stone-200 rounded-xl py-3 px-2 text-center"
-            :class="{ 'active-k': votes[currentQ] === 'k' }">
+            :class="{ 'active-k': activeVote === 'k' }">
             <span class="block text-xs font-bold text-green-600">Krause</span>
           </button>
         </div>
@@ -198,17 +187,17 @@
             <div class="text-lg font-extrabold" x-text="scoreK"></div>
           </div>
         </div>
-        <p class="text-center text-xs text-stone-400">von 6 Versprechen</p>
+        <p class="text-center text-xs text-stone-400">von 8 Themen</p>
         <!-- Bar -->
         <div class="flex h-2.5 rounded-full overflow-hidden bg-stone-100 mt-3">
-          <div class="bg-red-500 transition-all" :style="'width:' + (scoreR/6*100) + '%'"></div>
-          <div class="bg-amber-400 transition-all" :style="'width:' + (scoreB/6*100) + '%'"></div>
-          <div class="bg-green-500 transition-all" :style="'width:' + (scoreK/6*100) + '%'"></div>
+          <div class="bg-red-500 transition-all" :style="'width:' + (scoreR/8*100) + '%'"></div>
+          <div class="bg-amber-400 transition-all" :style="'width:' + (scoreB/8*100) + '%'"></div>
+          <div class="bg-green-500 transition-all" :style="'width:' + (scoreK/8*100) + '%'"></div>
         </div>
       </div>
 
       <!-- Per-promise breakdown -->
-      <p class="text-sm font-semibold text-stone-500 mb-3 px-1">Deine 6 Bewertungen</p>
+      <p class="text-sm font-semibold text-stone-500 mb-3 px-1">Deine 8 Bewertungen</p>
       <template x-for="(p, i) in promises" :key="i">
         <div class="bg-white rounded-xl border border-stone-200 px-4 py-3 mb-2 flex items-center gap-3 card-enter">
           <span class="status-dot flex-shrink-0" :class="'status-' + p.status"></span>
@@ -222,7 +211,7 @@
       <!-- Context note -->
       <div class="bg-stone-100 rounded-xl p-4 mt-3 mb-4">
         <p class="text-xs text-stone-500 leading-relaxed">
-          <strong>Kontext:</strong> Reiter regiert seit 12 Jahren, entsprechend mehr lässt sich überprüfen. Krauses Bilanz als 2. Bürgermeister (seit 2023) ist kürzer, aber nicht leer. Beide tragen als Grün-Rot-Koalition Verantwortung für die Ergebnisse.
+          <strong>Kontext:</strong> Reiter regiert seit 12 Jahren, entsprechend mehr lässt sich überprüfen. Krauses Bilanz als 2. Bürgermeister (seit 2023) ist kürzer, aber nicht leer. Beide tragen als Grün-Rot-Koalition Verantwortung für die Ergebnisse. Die Amtszeit fiel in Corona-Krise (2020-22) und Energiepreisschock (2022-23), was viele Vorhaben verzögert hat.
         </p>
       </div>
 
@@ -279,7 +268,7 @@ function bilanzCheck() {
       realitySource: 'Mietspiegel 2025, Planungsreferat München',
       reiterNow: 'Keine konkreten Neubauzahlen im neuen Programm. "Bezahlbar bauen, wo Platz ist."',
       reiterSource: 'SPD Wahlprogramm 2026',
-      krauseNow: '50.000 neue Wohnungen in 3 Säulen. 10.000 davon aus 1,9 Mio. m² Büroleerstand.',
+      krauseNow: '50.000 neue Wohnungen in 3 Säulen. 10.000 davon aus Büroleerstand. Konkrete Finanzierung offen.',
       krauseSource: 'dominik-krause.de/themen',
       isShock: false
     },
@@ -292,8 +281,8 @@ function bilanzCheck() {
       realitySource: 'tramreport.de, MVG Bauprojekte',
       reiterNow: 'Unterstützt U5 und U9 Großprojekte. Tram-Ausbau nicht prominent im Programm.',
       reiterSource: 'SPD Wahlprogramm 2026',
-      krauseNow: 'Tram + U-Bahn + eigene Busspuren. Konkreter ÖPNV-Ausbauplan.',
-      krauseSource: 'dominik-krause.de/themen',
+      krauseNow: 'Tram + U-Bahn + eigene Busspuren. Grüne hatten das Mobilitätsreferat — konnten den Ausbau nicht beschleunigen.',
+      krauseSource: 'dominik-krause.de/themen, Mobilitätsreferat München',
       isShock: false
     },
     {
@@ -307,7 +296,7 @@ function bilanzCheck() {
       reiterSource: 'AZ München, SPD Wahlprogramm 2026',
       krauseNow: 'Radentscheid vollständig umsetzen. Grüne hatten das Mobilitätsreferat — tragen Mitverantwortung für das Tempo.',
       krauseSource: 'dominik-krause.de/themen, Grüne Fraktion',
-      isShock: true
+      isShock: false
     },
     {
       shortTitle: 'Klimaneutralität 2035',
@@ -333,6 +322,32 @@ function bilanzCheck() {
       reiterSource: 'SPD Wahlprogramm 2026',
       krauseNow: 'Kita-Gebühren senken. Ausbau fortsetzen, aber auch Qualität der Betreuung verbessern.',
       krauseSource: 'dominik-krause.de/themen',
+      isShock: false
+    },
+    {
+      shortTitle: 'Bildungsbauoffensive',
+      category: 'Bildung & Infrastruktur',
+      promise: 'München sollte massiv in Schulen und Kitas investieren — das größte kommunale Schulbauprogramm Deutschlands.',
+      status: 'green',
+      reality: '9,4 Milliarden Euro bewilligt. Dutzende Schulen und Kitas gebaut oder saniert. Größtes kommunales Bildungsbauprogramm der Republik.',
+      realitySource: 'Referat für Bildung und Sport, Stadtratsbeschluss',
+      reiterNow: 'Programm fortsetzen und beschleunigen. Bildung bleibt Kernthema.',
+      reiterSource: 'SPD Wahlprogramm 2026',
+      krauseNow: 'Investitionen beibehalten, Qualität stärken. Grüne haben das Programm mitgetragen und mitbeschlossen.',
+      krauseSource: 'dominik-krause.de/themen, Grüne Fraktion',
+      isShock: false
+    },
+    {
+      shortTitle: 'Ökostrom & Geothermie',
+      category: 'Klima & Energie',
+      promise: 'Die Stadtwerke sollten München mit erneuerbarer Energie versorgen und die Geothermie ausbauen.',
+      status: 'green',
+      reality: 'SWM erzeugt rechnerisch 100% Ökostrom aus eigenen Anlagen weltweit. Geothermie-Ausbau macht München zum Vorreiter unter den deutschen Großstädten.',
+      realitySource: 'SWM Geschäftsbericht, Geothermie-Allianz München',
+      reiterNow: 'Geothermie weiter ausbauen. SWM als Treiber der Energiewende erhalten.',
+      reiterSource: 'SPD Wahlprogramm 2026',
+      krauseNow: 'Ausbau beschleunigen, Fernwärme aus Geothermie verdoppeln. Grüne haben den Geothermie-Ausbau im Koalitionsvertrag verankert.',
+      krauseSource: 'dominik-krause.de/themen, Koalitionsvertrag 2020',
       isShock: false
     }
   ];
@@ -363,26 +378,29 @@ function bilanzCheck() {
   return {
     screen: 'intro',
     currentQ: 0,
-    votes: [null, null, null, null, null, null],
+    votes: [null, null, null, null, null, null, null, null],
     promises: PROMISES,
     copied: false,
+    activeVote: null,
 
     get progressPct() {
       if (this.screen === 'intro') return 0;
-      if (this.screen === 'cards') return 5 + (this.currentQ / 6) * 85;
+      if (this.screen === 'cards') return 5 + (this.currentQ / 8) * 85;
       return 100;
     },
 
     vote(choice) {
       if (this.votes[this.currentQ] !== null) return;
       this.votes[this.currentQ] = choice;
+      this.activeVote = choice;
+      setTimeout(() => { this.activeVote = null; }, 200);
       setTimeout(() => {
-        if (this.currentQ >= 5) {
+        if (this.currentQ >= 7) {
           this.screen = 'results';
         } else {
           this.currentQ++;
         }
-      }, 350);
+      }, 400);
     },
 
     get scoreR() { return this.votes.filter(v => v === 'r').length; },
@@ -391,9 +409,9 @@ function bilanzCheck() {
 
     get archetype() {
       const r = this.scoreR, k = this.scoreK, b = this.scoreB;
-      if (k >= 4) return ARCHETYPES.wechsel;
-      if (r >= 4) return ARCHETYPES.pragmatiker;
-      if (b >= 3) return ARCHETYPES.skeptiker;
+      if (k >= 5) return ARCHETYPES.wechsel;
+      if (r >= 5) return ARCHETYPES.pragmatiker;
+      if (b >= 4) return ARCHETYPES.skeptiker;
       return ARCHETYPES.abwaegend;
     },
 
@@ -413,8 +431,9 @@ function bilanzCheck() {
     restart() {
       this.screen = 'intro';
       this.currentQ = 0;
-      this.votes = [null, null, null, null, null, null];
+      this.votes = [null, null, null, null, null, null, null, null];
       this.copied = false;
+      this.activeVote = null;
     }
   };
 }

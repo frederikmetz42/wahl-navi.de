@@ -1,5 +1,40 @@
 # Changelog
 
+## v4.14 — 2026-03-11 — Fairness-Audit + Nudge-Fix
+### Bilanz-Check (stichwahl2)
+- **Added:** 2 grüne Erfolgskarten: Bildungsbauoffensive (9,4 Mrd EUR), Ökostrom/Geothermie
+- **Added:** Corona-/Energiekrisen-Kontext in Intro + Ergebnis-Note
+- **Changed:** 6→8 Karten (3 rot, 3 gelb, 2 grün), Scoring + Archetyp-Schwellen angepasst
+- **Changed:** Krause-Scrutiny geschärft: "Finanzierung offen" (Wohnen), "Mobilitätsreferat-Verantwortung" (Tram)
+- **Fixed:** Nudging-Bug: Vote-Button-Highlight bleibt nicht mehr für nächste Karte stehen
+- **Removed:** Schock-Karte (roter Rahmen + "Größte Lücke" Banner auf Radentscheid)
+### Deine Wahl (stichwahl)
+- **Changed:** Q1 "Verwaltung vs Vision" → "Erfahrung vs Aufbruch" (neutralere Formulierung)
+### Dein München 2032 (stichwahl3)
+- **Changed:** Kandidatenvektoren: Reiter Mobilität 12→15, Kultur 16→13; Krause Sicherheit 10→13, Kultur 12→9
+### Research
+- **Added:** `_internal/stichwahl3/fairness-audit.md` — Fairness-Bewertung aller 3 Tools
+- **Added:** `_internal/stichwahl3/research-reiter-full-record.md` — Vollständige Reiter-Bilanz
+- **Added:** `_internal/stichwahl3/research-krause-full-record.md` — Vollständige Krause-Bilanz
+- **Added:** `_internal/stichwahl3/research-missing-sources.md` — Ungenutzte Datenquellen
+
+## v4.13 — 2026-03-11 — Bilanz-Check + Dein München 2032
+### Bilanz-Check (stichwahl2)
+- **Changed:** Redesigned from blind dilemma to sourced Koalitionsvertrag-Audit
+- **Added:** 6 Versprechen mit Traffic-Light-Status (rot/gelb), Kandidatenpositionen mit Quellen
+- **Added:** Schock-Karte (Radentscheid: 4,4% von 1,6 Mrd umgesetzt)
+- **Added:** 4 Wählertyp-Archetypen (Wechselwähler/Pragmatiker/Skeptiker/Abwägende)
+- **Added:** Koalitions-Neutralitätsframing ("Beide tragen Verantwortung")
+### Dein München 2032 (stichwahl3)
+- **Added:** `stichwahl3.html` — Budget-Simulator (100 Punkte auf 6 Themen)
+- **Added:** CSS-Stadtpostkarte (Gebäude, Bäume, Tram, Laternen, Wifi)
+- **Added:** Cosine-Similarity-Kandidaten-Match (Indigo/Teal, randomisierte Reihenfolge)
+- **Added:** 5-Screen-Flow (Intro → Slider → Postkarte → Match → Teilen)
+### Research
+- **Added:** `_internal/stichwahl2/research-*.md` — Öffentliche Daten, Mobilität, Head-to-Head
+- **Added:** `_internal/stichwahl3/workshop-concepts.md` — 3 Konzepte, Scoring-Matrix
+- **Added:** `_internal/stichwahl3/design-directions.md` — 3 Designrichtungen
+
 ## v4.12 — 2026-03-10 — Stichwahl-Tool "Deine Wahl" v3
 - **Added:** `stichwahl.html` — Standalone Stichwahl-Entscheidungshilfe für OB-Stichwahl Reiter (SPD) vs Krause (Grüne)
 - **Added:** Star-any topic selection (1-5 Themen statt forced pick-2)
