@@ -1,0 +1,427 @@
+<!--
+=== PROJECT SPEC - DO NOT REMOVE ===
+WORKFLOW: Read this block → update changelog entry → implement changes → update features → write UNCHANGED line → verify against previous features list.
+
+## FEATURES (v1.0)
+### Purpose
+Methodology and transparency page for stichwahl4.html (Prioritäten-Check).
+Explains the Kano dual-question method, the 5 categories, the classification matrix,
+the 8 topics with candidate assignment and sources, and the tool's limitations.
+
+### Design
+- Matches methodik.html: same CSS, layout patterns, fonts, footer
+- Fortress Zero: no backend, no cookies, no tracking, no CDN
+- Mobile-first, max-w-lg centred
+- German language throughout
+- Alpine.js for expandable sections
+- Tailwind via shared styles.css
+
+### Sections
+1. Header with Stichwahl badge
+2. Warum zwei Fragen pro Thema (Kano asymmetry with Anna/Clara example)
+3. Die 5 Kano-Kategorien (plain German, election context)
+4. Die Kano-Matrix (5x5 table, colour-coded cells)
+5. Die 8 Themen und Kandidatenzuordnung (table with sources, Krause-tilt transparency)
+6. Quellen (bulleted source list)
+7. Was der Check nicht ist (limitations)
+8. Footer (links to stichwahl4, methodik, index)
+
+## UNCHANGED: n/a (v1.0 initial build)
+=== END PROJECT SPEC ===
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offene Karten: Prioritäten-Check – MUCwahl München</title>
+    <meta name="description" content="So funktioniert der Prioritäten-Check: Warum zwei Fragen pro Thema, die 5 Kano-Kategorien, alle 8 Themen mit Quellen und was der Check nicht kann.">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none';">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+    <style>
+        .kano-cell { font-size: 11px; font-weight: 600; padding: 6px 4px; text-align: center; }
+        .kano-bg-begeisterung { background: #d1fae5; color: #065f46; }
+        .kano-bg-leistung { background: #dbeafe; color: #1e40af; }
+        .kano-bg-basis { background: #e7e5e4; color: #44403c; }
+        .kano-bg-indifferent { background: #f5f5f4; color: #78716c; }
+        .kano-bg-rueckweisung { background: #fee2e2; color: #991b1b; }
+        .kano-bg-fraglich { background: #fef3c7; color: #92400e; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col" x-data="{ expandMatrix: false, expandTopics: false }">
+
+    <nav class="bg-white border-b border-slate-200" role="navigation" aria-label="Zurück-Navigation">
+        <div class="max-w-lg mx-auto px-6 h-16 flex items-center">
+            <a href="stichwahl4.html" class="flex items-center gap-2 font-bold text-slate-900 hover:opacity-70 transition-opacity">
+                <svg aria-hidden="true" class="w-5 h-5 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                Zurück zum Check
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-lg mx-auto px-6 py-12 flex-grow w-full" role="main">
+
+        <!-- 1. Header -->
+        <div class="mb-10">
+            <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+                Stichwahl 22. März
+            </div>
+            <h1 class="text-3xl font-bold mb-2">Offene Karten: Prioritäten-Check</h1>
+            <p class="text-slate-500">So funktioniert der Check, und warum wir zwei Fragen pro Thema stellen.</p>
+        </div>
+
+        <div class="space-y-6">
+
+            <!-- 2. Warum zwei Fragen pro Thema -->
+            <div class="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm leading-relaxed text-slate-800">
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Warum zwei Fragen pro Thema?</h2>
+                <div class="space-y-3">
+                    <p>Normale Umfragen stellen eine Frage: „Findest du das gut?" Die Antwort verrät aber nur die halbe Wahrheit. Denn „finde ich gut" und „vermisse ich, wenn es fehlt" sind zwei verschiedene Dinge.</p>
+                    <p>Ein Beispiel:</p>
+                </div>
+                <div class="bg-slate-50 rounded-lg p-5 my-4 text-sm text-slate-700 space-y-3 border border-slate-100">
+                    <p>Anna findet „50.000 Wohnungen bauen" begeisternd. Clara findet es „akzeptabel". Beide fänden es störend, wenn nichts gebaut wird.</p>
+                    <p>Eine normale Umfrage hätte Anna als „dafür" und Clara als „neutral" eingestuft. In Wahrheit ist Wohnen für beide unverzichtbar, nur unterschiedlich aufregend.</p>
+                </div>
+                <div class="space-y-3">
+                    <p>Der Prioritäten-Check stellt deshalb pro Thema zwei Fragen: „Was wäre, wenn?" und „Was wäre, wenn nicht?" Aus der Kombination beider Antworten entsteht ein differenzierteres Bild.</p>
+                    <p class="font-medium text-slate-900">Der zentrale Gedanke: Zufriedenheit und Unzufriedenheit sind zwei unabhängige Achsen, nicht zwei Enden einer Skala.</p>
+                    <p class="text-sm text-slate-500">Dieses Prinzip stammt aus dem Kano-Modell, einer Methode aus der Produktentwicklung (entwickelt von Noriaki Kano in den 1980er Jahren). Wir wenden es hier auf politische Themen an.</p>
+                </div>
+            </div>
+
+            <!-- 3. Die 5 Kano-Kategorien -->
+            <div class="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm leading-relaxed text-slate-800">
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Die 5 Kategorien</h2>
+                <p class="mb-4">Je nachdem, wie du die beiden Fragen beantwortest, fällt ein Thema in eine von fünf Kategorien (plus eine sechste für widersprüchliche Antworten).</p>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 mt-0.5" style="background:#d1fae5;color:#065f46;">Begeisterung</span>
+                        <p class="text-sm">Das Thema reißt dich mit. Wenn ein Kandidat hier liefert, gewinnst du ihn. Wenn nicht, vermisst du es nicht bewusst.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 mt-0.5" style="background:#dbeafe;color:#1e40af;">Leistung</span>
+                        <p class="text-sm">Je mehr hier passiert, desto zufriedener bist du. Klassischer Wahlkampf-Hebel.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 mt-0.5" style="background:#e7e5e4;color:#44403c;">Basis</span>
+                        <p class="text-sm">Pflicht. Ohne das wählst du keinen, aber es reißt dich auch nicht vom Hocker. Wie Strom aus der Steckdose.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 mt-0.5" style="background:#f5f5f4;color:#78716c;">Indifferent</span>
+                        <p class="text-sm">Egal ob vorhanden oder nicht. Kein Faktor für deine Entscheidung.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 mt-0.5" style="background:#fee2e2;color:#991b1b;">Rückweisung</span>
+                        <p class="text-sm">Du willst das Gegenteil. Der Kandidat verliert dich aktiv mit dieser Position.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold flex-shrink-0 mt-0.5" style="background:#fef3c7;color:#92400e;">Fraglich</span>
+                        <p class="text-sm">Deine Antworten widersprechen sich. Vielleicht hast du das Thema anders verstanden als gemeint.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Die Kano-Matrix -->
+            <div class="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm leading-relaxed text-slate-800">
+                <h2 class="text-lg font-bold text-slate-900 mb-2">Die Kano-Matrix (volle Transparenz)</h2>
+                <p class="text-sm text-slate-500 mb-4">So wird aus deinen zwei Antworten eine Kategorie. Zeile: deine Antwort auf „Was wäre, wenn nicht?" Spalte: deine Antwort auf „Was wäre, wenn?"</p>
+
+                <button @click="expandMatrix = !expandMatrix" class="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                    <svg aria-hidden="true" class="w-4 h-4 transition-transform" :class="expandMatrix ? 'rotate-90' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <span x-text="expandMatrix ? 'Matrix ausblenden' : '5×5-Matrix anzeigen'"></span>
+                </button>
+
+                <div x-show="expandMatrix" x-transition.opacity class="mt-4 overflow-x-auto">
+                    <table class="w-full border-collapse text-xs">
+                        <thead>
+                            <tr>
+                                <th class="p-2 text-left text-slate-400 font-normal border-b border-slate-200" style="min-width:80px;"></th>
+                                <th class="p-2 text-center font-semibold text-slate-600 border-b border-slate-200">Begeistert</th>
+                                <th class="p-2 text-center font-semibold text-slate-600 border-b border-slate-200">Erwarte ich</th>
+                                <th class="p-2 text-center font-semibold text-slate-600 border-b border-slate-200">Egal</th>
+                                <th class="p-2 text-center font-semibold text-slate-600 border-b border-slate-200">Akzeptabel</th>
+                                <th class="p-2 text-center font-semibold text-slate-600 border-b border-slate-200">Stört mich</th>
+                            </tr>
+                            <tr>
+                                <td class="p-1"></td>
+                                <td colspan="5" class="text-center text-[10px] text-slate-400 pb-2">↑ Antwort auf „Was wäre, wenn?"</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row: Begeistert -->
+                            <tr>
+                                <td class="p-2 font-semibold text-slate-600 border-b border-slate-100">Begeistert</td>
+                                <td class="kano-cell kano-bg-fraglich border-b border-slate-100 rounded">Fraglich</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                            </tr>
+                            <!-- Row: Erwarte ich -->
+                            <tr>
+                                <td class="p-2 font-semibold text-slate-600 border-b border-slate-100">Erwarte ich</td>
+                                <td class="kano-cell kano-bg-begeisterung border-b border-slate-100 rounded">Begeis.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                            </tr>
+                            <!-- Row: Egal -->
+                            <tr>
+                                <td class="p-2 font-semibold text-slate-600 border-b border-slate-100">Egal</td>
+                                <td class="kano-cell kano-bg-begeisterung border-b border-slate-100 rounded">Begeis.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                            </tr>
+                            <!-- Row: Akzeptabel -->
+                            <tr>
+                                <td class="p-2 font-semibold text-slate-600 border-b border-slate-100">Akzeptabel</td>
+                                <td class="kano-cell kano-bg-begeisterung border-b border-slate-100 rounded">Begeis.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-indifferent border-b border-slate-100 rounded">Indiff.</td>
+                                <td class="kano-cell kano-bg-rueckweisung border-b border-slate-100 rounded">Rückw.</td>
+                            </tr>
+                            <!-- Row: Stört mich -->
+                            <tr>
+                                <td class="p-2 font-semibold text-slate-600">Stört mich</td>
+                                <td class="kano-cell kano-bg-begeisterung rounded">Begeis.</td>
+                                <td class="kano-cell kano-bg-leistung rounded">Leistung</td>
+                                <td class="kano-cell kano-bg-basis rounded">Basis</td>
+                                <td class="kano-cell kano-bg-basis rounded">Basis</td>
+                                <td class="kano-cell kano-bg-fraglich rounded">Fraglich</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-[10px] text-slate-400 mt-2">← Antwort auf „Was wäre, wenn nicht?"</p>
+                    <p class="text-xs text-slate-500 mt-3">Lesebeispiel: Du findest die positive Variante „begeisternd" und die negative „störend"? Dann ist das Thema für dich eine Begeisterung. Du findest beide Varianten „egal"? Dann ist es indifferent.</p>
+                </div>
+            </div>
+
+            <!-- 5. Die 8 Themen und Kandidatenzuordnung -->
+            <div class="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm leading-relaxed text-slate-800">
+                <h2 class="text-lg font-bold text-slate-900 mb-2">Die 8 Themen und Kandidatenzuordnung</h2>
+                <p class="text-sm text-slate-500 mb-4">Welches Thema welchem Kandidaten zugeordnet ist, und warum.</p>
+
+                <button @click="expandTopics = !expandTopics" class="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                    <svg aria-hidden="true" class="w-4 h-4 transition-transform" :class="expandTopics ? 'rotate-90' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <span x-text="expandTopics ? 'Themen ausblenden' : 'Alle 8 Themen anzeigen'"></span>
+                </button>
+
+                <div x-show="expandTopics" x-transition.opacity class="mt-4 space-y-4">
+
+                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 text-sm text-slate-700 mb-2">
+                        <p>Krause hat in Wahlprogramm und Reddit-AMA konkretere, spezifischere Positionen formuliert. 5 von 8 Themen sind deshalb Krause zugeordnet, 2 Reiter, 1 beiden. Das ist keine Wertung, sondern eine Beobachtung: Wer sich stärker positioniert, dem lassen sich mehr Themen zuordnen.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <!-- Topic 1 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">🏠</span>
+                                <div>
+                                    <p class="font-bold text-sm">Wohnen</p>
+                                    <p class="text-xs text-teal-600 font-semibold">Schwerpunkt: Krause</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">50.000 neue bezahlbare Wohnungen, SEM Nord, Umwandlungsagentur gegen Leerstand. Krause hat das Thema als zentralen Unterschied zu Reiter benannt.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: Reddit AMA (4. März 2026), dominik-krause.de/themen</p>
+                        </div>
+
+                        <!-- Topic 2 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">🚋</span>
+                                <div>
+                                    <p class="font-bold text-sm">ÖPNV & Mobilität</p>
+                                    <p class="text-xs text-teal-600 font-semibold">Schwerpunkt: Krause</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Tramlinien ausbauen vor Gratisticket. Krause hat im AMA erklärt, warum kostenloser ÖPNV als Kommune nicht finanzierbar ist und Netzausbau Priorität hat.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: Reddit AMA (4. März 2026), dominik-krause.de/themen</p>
+                        </div>
+
+                        <!-- Topic 3 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">🚶</span>
+                                <div>
+                                    <p class="font-bold text-sm">Verkehr & Straßenraum</p>
+                                    <p class="text-xs text-teal-600 font-semibold">Schwerpunkt: Krause</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Autoverkehr zugunsten Fuß/Rad zurückbauen. Krauses Positionen zu Vision Zero, Abstellzonen für E-Roller und pragmatischem Kurs bei Bewohnerparken sind konkreter als Reiters „ausgewogener Verkehrsmix".</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: Reddit AMA (4. März 2026), dominik-krause.de/themen, SPD Wahlprogramm München 2026</p>
+                        </div>
+
+                        <!-- Topic 4 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">☀️</span>
+                                <div>
+                                    <p class="font-bold text-sm">Klima & Energie</p>
+                                    <p class="text-xs text-teal-600 font-semibold">Schwerpunkt: Krause</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Klimaneutral 2035, PV auf städtischen Dächern. Krause nennt ein festes Jahresziel, Reiter formuliert „sozial verträglich" ohne konkreten Zeitplan.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: dominik-krause.de/themen, SPD Wahlprogramm München 2026</p>
+                        </div>
+
+                        <!-- Topic 5 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">🛡️</span>
+                                <div>
+                                    <p class="font-bold text-sm">Sicherheit & Ordnung</p>
+                                    <p class="text-xs text-slate-600 font-semibold">Beide Kandidaten</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Polizeipräsenz plus Sozialarbeit und Prävention. Beide Kandidaten betonen das Thema, mit unterschiedlicher Akzentuierung. Keine klare Zuordnung zu einem Kandidaten möglich.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: SPD Wahlprogramm München 2026, dominik-krause.de/themen, Koalitionsvertrag SPD/Grüne 2020</p>
+                        </div>
+
+                        <!-- Topic 6 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">📱</span>
+                                <div>
+                                    <p class="font-bold text-sm">Digitale Verwaltung</p>
+                                    <p class="text-xs text-indigo-600 font-semibold">Schwerpunkt: Reiter</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Alle Behördengänge digital, München-App. Reiter hat ein laufendes Digitalisierungsprogramm und nutzt seine Amtserfahrung als Hebel.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: SPD Wahlprogramm München 2026, Koalitionsvertrag SPD/Grüne 2020</p>
+                        </div>
+
+                        <!-- Topic 7 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">🎨</span>
+                                <div>
+                                    <p class="font-bold text-sm">Kultur & Subkultur</p>
+                                    <p class="text-xs text-teal-600 font-semibold">Schwerpunkt: Krause</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Subkultur schützen, Zwischennutzung fördern, bezahlbare Ateliers sichern. Krause hat sich konkret für das Backstage eingesetzt und die Zwischennutzung des alten Gasteigs ermöglicht.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: Reddit AMA (4. März 2026), dominik-krause.de/themen</p>
+                        </div>
+
+                        <!-- Topic 8 -->
+                        <div class="border border-slate-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3 mb-2">
+                                <span class="text-lg">🏛️</span>
+                                <div>
+                                    <p class="font-bold text-sm">Amtserfahrung & Kontinuität</p>
+                                    <p class="text-xs text-indigo-600 font-semibold">Schwerpunkt: Reiter</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600">Ein OB, der den Laden kennt, gewachsene Netzwerke hat und sofort loslegen kann. 12 Jahre Amtserfahrung sind Reiters stärkstes Argument.</p>
+                            <p class="text-[10px] text-slate-400 mt-2">Quellen: SPD Wahlprogramm München 2026, Koalitionsvertrag SPD/Grüne 2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Quellen -->
+            <div class="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm leading-relaxed text-slate-800">
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Quellen</h2>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><a href="https://dominik-krause.de/themen" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">dominik-krause.de/themen</a></span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><a href="https://www.reddit.com/r/Munich/comments/1rksnun/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Reddit AMA</a> (r/Munich, 4. März 2026, u/DominikKrause)</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span>SPD Wahlprogramm München 2026</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span>Koalitionsvertrag SPD/Grüne München 2020</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><a href="https://muenchen-o-mat.de" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">München-O-Mat</a> Thesenbuch</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 7. Was der Check nicht ist -->
+            <div class="bg-slate-100 p-6 md:p-8 rounded-xl border border-slate-200 leading-relaxed text-slate-800">
+                <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <svg aria-hidden="true" class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>
+                    Was der Check nicht ist
+                </h2>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><strong>Keine Wahlempfehlung.</strong> Der Check zeigt dir dein Prioritätenprofil, nicht wen du wählen sollst.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><strong>Kein vollständiges Bild.</strong> 8 Themen von vielen möglichen. Wichtige Bereiche (Bildung, Finanzen, Integration) fehlen bewusst, weil sie bei der Stichwahl weniger trennscharf sind.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><strong>Vereinfachte Kandidatenzuordnung.</strong> Die meisten Themen haben Nuancen bei beiden Kandidaten. Die Zuordnung zeigt den Schwerpunkt, nicht ein Monopol.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-slate-400 mt-0.5 flex-shrink-0">&bull;</span>
+                        <span><strong>Kein wissenschaftliches Instrument.</strong> Keine repräsentative Stichprobe, keine externe Validierung. Das Kano-Modell stammt aus der Produktentwicklung und wird hier experimentell auf politische Themen angewandt.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 8. Footer navigation -->
+            <div class="bg-white p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm leading-relaxed text-slate-800">
+                <div class="flex flex-col gap-3">
+                    <a href="stichwahl4.html" class="flex items-center gap-3 bg-stone-800 text-white rounded-lg px-4 py-3 hover:bg-stone-700 transition-colors group font-medium text-sm justify-center">
+                        Zurück zum Prioritäten-Check
+                    </a>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="methodik.html" class="flex items-center gap-3 border border-slate-200 rounded-lg px-4 py-3 hover:border-slate-400 hover:shadow-sm transition-all text-sm">
+                            <div>
+                                <div class="font-bold text-slate-900">Methodik Hauptquiz</div>
+                                <div class="text-xs text-slate-500">25 Thesen, 14 Parteien</div>
+                            </div>
+                        </a>
+                        <a href="index.html" class="flex items-center gap-3 border border-slate-200 rounded-lg px-4 py-3 hover:border-slate-400 hover:shadow-sm transition-all text-sm">
+                            <div>
+                                <div class="font-bold text-slate-900">MUCwahl Startseite</div>
+                                <div class="text-xs text-slate-500">Alle Tools im Überblick</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer meta -->
+            <div class="text-center text-xs text-slate-400 pt-4">
+                Methodik zuletzt aktualisiert: 11. März 2026
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-8 text-slate-400 text-sm" role="contentinfo">
+        <div class="flex items-center justify-center gap-4 flex-wrap">
+            <a href="impressum.html" class="hover:text-slate-600 transition-colors">Impressum</a>
+            <a href="datenschutz.html" class="hover:text-slate-600 transition-colors">Datenschutz</a>
+            <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="hover:text-slate-600 transition-colors" title="GitHub"><svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+    </footer>
+
+    <script defer src="vendor/alpine.min.js"></script>
+
+</body>
+</html>
