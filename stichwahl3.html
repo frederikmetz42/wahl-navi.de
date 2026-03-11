@@ -1,0 +1,611 @@
+<!--
+=== PROJECT SPEC - DO NOT REMOVE ===
+WORKFLOW: Read this block → update changelog entry → implement changes → update features → write UNCHANGED line → verify against previous features list.
+
+## FEATURES (v2.0)
+### Core Mechanic
+- Budget simulator: 100 Munchen-Punkte distributed across 6 sliders
+- Sliders: Wohnen, Mobilitat, Klima & Grun, Sicherheit & Ordnung, Digital & Wirtschaft, Kultur & Freizeit
+- Each slider range 0-40, default ~17 (balanced start)
+- Manual allocation: remaining points counter, no auto-redistribution
+- Over-allocation blocked: slider capped when remaining = 0
+- Under-allocation allowed: "Noch X Punkte" shown, match still calculates
+
+### Candidate Match (LIVE)
+- Cosine similarity algorithm comparing user vector to candidate priority vectors
+- Reiter vector: Wohnen 22, Mobilitat 15, Klima 14, Sicherheit 18, Digital 18, Kultur 13
+- Krause vector: Wohnen 20, Mobilitat 22, Klima 22, Sicherheit 13, Digital 14, Kultur 9
+- Non-partisan colours: indigo-500 for candidate A, teal-500 for candidate B
+- Candidate order randomised per session (prevent primacy bias)
+- Match shown as percentage bars, updating LIVE as sliders move
+- Top matching + diverging categories shown live
+- No celebratory framing
+
+### Postcard / Cityscape (LIVE)
+- CSS/SVG layered Munich cityscape that morphs based on slider values
+- Visual layers: buildings (Wohnen), tram/bike lanes (Mobilitat), trees/solar (Klima), streetlights (Sicherheit), wifi/screens (Digital), beer garden/Isar (Kultur)
+- Each layer's opacity/height proportional to that category's point allocation
+- "Dein Munchen 2032" text overlay on postcard
+- Visible simultaneously with sliders and match (single-screen layout)
+
+### Screens (3 total, was 5)
+- Screen 1 (Intro): Tagline, "100 Punkte" explanation, Munich skyline silhouette, CTA
+- Screen 2 (Instrument): Single-screen with sliders, live cityscape, live match bars, divergence categories - everything updates in real-time
+- Screen 3 (Share): Postcard recap, match summary, native share + clipboard, cross-nav
+
+### Design System (Direction C + B hybrid)
+- White base background, topic-tinted slider sections (full-width)
+- Indigo-500 / Teal-500 candidate colours (not red/green, not SPD/Grune)
+- Amber-500 accent for interactive elements and user position marker
+- Inter font family, tabular-nums for counters
+- Spring animations on markers, smooth transitions on live updates
+- Mobile-first (375px), max-w-lg centred
+
+### Share
+- Share text with match percentages + top priority + mucwahl.de/stichwahl3 link
+- navigator.share() with clipboard fallback
+- Cross-nav links to stichwahl.html, stichwahl2.html, index.html
+
+### Architecture
+- Single file: stichwahl3.html
+- Alpine.js (vendor/alpine.min.js, deferred)
+- Tailwind via styles.css (shared)
+- Fortress Zero: no backend, no cookies, no tracking, no CDN
+
+## CHANGELOG
+### v2.0 - Kano redesign: live instrument
+- ADDED: Live candidate match updating as sliders move (was one-shot reveal)
+- ADDED: Manual budget allocation with "Noch X Punkte" counter
+- ADDED: Single-screen layout (sliders + cityscape + match all visible)
+- ADDED: Live divergence/match category display
+- REMOVED: Auto-redistribution (Kano reverse-feature risk)
+- REMOVED: Separate postcard screen (merged into instrument screen)
+- REMOVED: Separate match reveal screen (now live)
+- REMOVED: Dot navigation (only 3 screens now, not needed)
+- REMOVED: "Verteilt" confirm button (meaningless with manual allocation)
+- CHANGED: 5 screens → 3 screens (intro, instrument, share)
+- UNCHANGED: Cosine similarity algorithm, candidate vectors, non-partisan colours, randomised order, share mechanics, cross-nav, Fortress Zero, intro screen design
+
+### v1.0 - Initial build
+- CREATED: Budget simulator with 6 sliders, auto-redistribution, CSS cityscape postcard, cosine similarity candidate match, randomised candidate order, 5-screen flow, dot navigation, share with clipboard fallback, cross-nav, mobile-first responsive, Fortress Zero compliant
+
+## KNOWN ISSUES
+### Active
+- (none)
+### Fixed (regression-test these)
+- Auto-redistribution felt like losing control (replaced with manual allocation)
+- Match reveal was disconnected from slider interaction (now live)
+- Postcard dominated experience over the actual match (now secondary to live match)
+### Design Decisions (do NOT change without asking user)
+- Non-partisan candidate colours (indigo/teal, NOT red/green or SPD/Grune colours)
+- Candidate order randomised per session (primacy bias prevention)
+- No celebratory framing on results ("information, not achievement")
+- Forward-looking framing ("Dein Munchen 2032") not backward-looking
+- Budget mechanic (sliders, not quiz/binary) - the user builds, not answers
+- Fortress Zero: no backend, cookies, tracking, CDN
+- Manual allocation preferred over auto-redistribution (user agency)
+- Single-screen instrument layout (no screen-hopping to reach the interesting part)
+
+=== END PROJECT SPEC ===
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dein München 2032: Bau dir deine Stadt | Stichwahl München 2026</title>
+<meta name="description" content="100 Punkte, 6 Prioritäten. Bau dir dein München 2032 und sieh live, welcher Kandidat deine Stadt baut.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.png">
+<script src="vendor/alpine.min.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+[x-cloak] { display: none !important; }
+
+/* Slider styling */
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 3px; outline: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; border-radius: 50%; background: #f59e0b; cursor: pointer; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: #f59e0b; cursor: pointer; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+
+/* Screen transitions */
+.screen-enter { animation: screenIn 0.4s ease-out both; }
+@keyframes screenIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Postcard */
+.cityscape { position: relative; width: 100%; height: 200px; border-radius: 12px; overflow: hidden; background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 40%, #f0fdf4 100%); }
+.city-layer { position: absolute; bottom: 0; left: 0; right: 0; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Buildings (Wohnen) */
+.layer-wohnen { display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 0 10px; z-index: 2; }
+.building { background: #78716c; border-radius: 3px 3px 0 0; transition: height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Trees (Klima) */
+.layer-klima { display: flex; align-items: flex-end; justify-content: space-around; padding: 0 16px; z-index: 3; }
+.tree { width: 14px; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tree-top { background: #22c55e; border-radius: 50%; margin: 0 auto; }
+.tree-trunk { width: 3px; background: #92400e; margin: 0 auto; }
+
+/* Tram/Bike (Mobilität) */
+.layer-mobil { height: 20px; z-index: 4; display: flex; align-items: center; padding: 0 12px; }
+.tram-line { height: 2px; background: #0ea5e9; border-radius: 2px; transition: width 0.4s ease; }
+.bike-dot { width: 6px; height: 6px; border-radius: 50%; background: #0ea5e9; margin-left: 4px; transition: opacity 0.3s; }
+
+/* Streetlights (Sicherheit) */
+.layer-sicher { display: flex; align-items: flex-end; justify-content: space-around; padding: 0 24px; z-index: 5; }
+.streetlight { width: 2px; background: #fbbf24; border-radius: 2px; transition: height 0.4s ease; }
+.light-glow { width: 10px; height: 10px; background: radial-gradient(circle, rgba(251,191,36,0.6) 0%, transparent 70%); border-radius: 50%; margin: 0 auto -3px auto; transition: opacity 0.3s; }
+
+/* Wifi (Digital) */
+.layer-digital { position: absolute; top: 14px; right: 14px; z-index: 6; }
+.wifi-arc { border: 2px solid rgba(99,102,241,0.5); border-radius: 50%; border-bottom: none; border-left: none; transition: opacity 0.3s; }
+
+/* Kultur (Beer garden / Isar) */
+.layer-kultur { z-index: 1; }
+.isar-stripe { height: 6px; background: linear-gradient(90deg, #67e8f9, #22d3ee, #67e8f9); transition: opacity 0.4s; }
+
+/* Postcard overlay */
+.postcard-label { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; z-index: 10; }
+
+/* Match bars */
+.match-bar { height: 32px; border-radius: 8px; transition: width 0.3s ease-out; min-width: 40px; display: flex; align-items: center; padding: 0 10px; }
+
+/* Category pills */
+.cat-pill { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; }
+
+/* Budget counter pulse */
+@keyframes pulse-amber { 0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } 50% { box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15); } }
+.budget-pulse { animation: pulse-amber 2s ease-in-out infinite; }
+</style>
+</head>
+<body class="bg-white text-stone-800 min-h-screen font-[Inter,system-ui,sans-serif]" x-data="deinMuenchen()" x-cloak>
+
+<div class="max-w-lg mx-auto px-4 py-6 min-h-screen flex flex-col">
+
+  <!-- ==================== INTRO ==================== -->
+  <template x-if="screen === 'intro'">
+    <div class="flex-1 flex flex-col justify-center screen-enter">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+          Stichwahl 22. März
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Dein München 2032</h1>
+        <p class="text-stone-500 text-lg">Bau dir deine Stadt. Sieh live, wer sie baut.</p>
+      </div>
+
+      <!-- Munich skyline silhouette -->
+      <div class="flex justify-center mb-8">
+        <svg viewBox="0 0 320 80" class="w-64 text-stone-200" fill="currentColor">
+          <rect x="10" y="40" width="20" height="40" rx="2"/>
+          <rect x="35" y="25" width="16" height="55" rx="2"/>
+          <rect x="56" y="35" width="24" height="45" rx="2"/>
+          <rect x="85" y="20" width="14" height="60" rx="2"/>
+          <rect x="104" y="30" width="30" height="50" rx="2"/>
+          <rect x="140" y="15" width="12" height="65" rx="2"/>
+          <circle cx="146" cy="12" r="7"/>
+          <rect x="158" y="18" width="12" height="62" rx="2"/>
+          <circle cx="164" cy="15" r="7"/>
+          <rect x="180" y="35" width="22" height="45" rx="2"/>
+          <rect x="207" y="28" width="18" height="52" rx="2"/>
+          <rect x="230" y="40" width="26" height="40" rx="2"/>
+          <rect x="261" y="32" width="14" height="48" rx="2"/>
+          <rect x="280" y="42" width="30" height="38" rx="2"/>
+        </svg>
+      </div>
+
+      <div class="bg-stone-50 rounded-2xl p-6 mb-6">
+        <p class="text-stone-600 leading-relaxed mb-3">
+          Du hast <strong>100 Punkte</strong>. Verteile sie auf 6 Themen, die dir für Münchens Zukunft wichtig sind.
+        </p>
+        <p class="text-stone-500 text-sm leading-relaxed">
+          Deine Stadt baut sich live vor deinen Augen, und du siehst sofort, welcher Kandidat deine Prioritäten teilt.
+        </p>
+      </div>
+
+      <button @click="screen = 'instrument'" class="w-full bg-stone-800 text-white font-semibold py-4 rounded-xl hover:bg-stone-700 active:bg-stone-900 transition-colors text-lg">
+        Stadt bauen
+      </button>
+      <p class="text-center text-xs text-stone-400 mt-3">Keine Cookies. Kein Tracking. Alle Quellen verlinkt.</p>
+    </div>
+  </template>
+
+  <!-- ==================== INSTRUMENT (single-screen) ==================== -->
+  <template x-if="screen === 'instrument'">
+    <div class="flex-1 screen-enter">
+
+      <!-- Budget counter (sticky) -->
+      <div class="sticky top-2 z-40 bg-white/95 backdrop-blur-sm rounded-full px-5 py-2 mb-4 flex items-center justify-between border border-stone-200 shadow-sm"
+           :class="{ 'budget-pulse border-amber-300': remaining > 0 && remaining < 100 }">
+        <span class="text-sm font-semibold text-stone-500">Noch verteilen</span>
+        <span class="text-lg font-extrabold tabular-nums"
+              :class="remaining === 0 ? 'text-emerald-600' : remaining < 0 ? 'text-red-500' : 'text-amber-600'"
+              x-text="remaining + ' Punkte'"></span>
+      </div>
+
+      <!-- === SLIDERS === -->
+      <div class="space-y-1 mb-4">
+        <template x-for="(cat, i) in categories" :key="cat.id">
+          <div class="rounded-xl p-4" :style="'background:' + cat.tint">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-base" x-text="cat.icon"></span>
+                <span class="font-semibold text-sm" x-text="cat.name"></span>
+              </div>
+              <span class="text-lg font-extrabold tabular-nums text-stone-800" x-text="cat.value"></span>
+            </div>
+            <input type="range" min="0" max="40" :value="cat.value"
+              @input="setSlider(i, parseInt($event.target.value))"
+              class="w-full" :style="'background: linear-gradient(to right, #f59e0b ' + (cat.value/40*100) + '%, #e7e5e4 ' + (cat.value/40*100) + '%)'">
+          </div>
+        </template>
+      </div>
+
+      <!-- === LIVE CITYSCAPE === -->
+      <div class="mb-4">
+        <div class="cityscape shadow-md">
+          <!-- Kultur: Isar stripe -->
+          <div class="city-layer layer-kultur" style="bottom: 0;">
+            <div class="isar-stripe" :style="'opacity:' + (getVal('kultur') / 40)"></div>
+          </div>
+          <!-- Mobilität: tram line + bike dots -->
+          <div class="city-layer layer-mobil" style="bottom: 8px;">
+            <div class="tram-line" :style="'width:' + (getVal('mobil') * 2.5) + '%'"></div>
+            <template x-for="n in Math.min(Math.floor(getVal('mobil') / 8), 4)">
+              <div class="bike-dot"></div>
+            </template>
+          </div>
+          <!-- Wohnen: buildings -->
+          <div class="city-layer layer-wohnen" style="bottom: 24px;">
+            <div class="building" :style="'width:14px; height:' + (16 + getVal('wohnen') * 2) + 'px; background:#78716c'"></div>
+            <div class="building" :style="'width:11px; height:' + (24 + getVal('wohnen') * 2.4) + 'px; background:#a8a29e'"></div>
+            <div class="building" :style="'width:17px; height:' + (12 + getVal('wohnen') * 1.6) + 'px; background:#57534e'"></div>
+            <div class="building" :style="'width:13px; height:' + (20 + getVal('wohnen') * 2.2) + 'px; background:#78716c'"></div>
+            <div class="building" :style="'width:16px; height:' + (14 + getVal('wohnen') * 1.8) + 'px; background:#a8a29e'"></div>
+            <div class="building" :style="'width:10px; height:' + (28 + getVal('wohnen') * 2.6) + 'px; background:#57534e'"></div>
+            <div class="building" :style="'width:18px; height:' + (10 + getVal('wohnen') * 1.4) + 'px; background:#78716c'"></div>
+            <div class="building" :style="'width:12px; height:' + (22 + getVal('wohnen') * 2) + 'px; background:#a8a29e'"></div>
+          </div>
+          <!-- Klima: trees -->
+          <div class="city-layer layer-klima" style="bottom: 22px;">
+            <template x-for="n in Math.min(Math.floor(getVal('klima') / 5) + 1, 8)">
+              <div class="tree">
+                <div class="tree-top" :style="'width:' + (8 + getVal('klima') * 0.25) + 'px; height:' + (8 + getVal('klima') * 0.25) + 'px'"></div>
+                <div class="tree-trunk" :style="'height:' + (5 + getVal('klima') * 0.12) + 'px'"></div>
+              </div>
+            </template>
+          </div>
+          <!-- Sicherheit: streetlights -->
+          <div class="city-layer layer-sicher" style="bottom: 24px;">
+            <template x-for="n in Math.min(Math.floor(getVal('sicher') / 10) + 1, 4)">
+              <div>
+                <div class="light-glow" :style="'opacity:' + (getVal('sicher') / 40)"></div>
+                <div class="streetlight" :style="'height:' + (16 + getVal('sicher') * 1.2) + 'px'"></div>
+              </div>
+            </template>
+          </div>
+          <!-- Digital: wifi arcs -->
+          <div class="layer-digital">
+            <div class="wifi-arc" :style="'width:16px; height:16px; opacity:' + Math.min(getVal('digital') / 20, 1)"></div>
+            <div class="wifi-arc" :style="'width:26px; height:26px; margin-top:-22px; margin-left:-5px; opacity:' + Math.min(getVal('digital') / 30, 1)"></div>
+            <div class="wifi-arc" :style="'width:36px; height:36px; margin-top:-32px; margin-left:-10px; opacity:' + Math.min(getVal('digital') / 40, 1)"></div>
+          </div>
+          <!-- Postcard label -->
+          <div class="postcard-label">
+            <p class="text-white font-bold text-sm drop-shadow-lg">Dein München 2032</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- === LIVE MATCH === -->
+      <div class="bg-stone-50 rounded-xl p-4 mb-3">
+        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-3">Deine Prioritäten passen zu</p>
+
+        <!-- Match bars -->
+        <template x-for="(c, i) in displayCandidates" :key="c.key">
+          <div class="mb-3 last:mb-0">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-semibold" x-text="c.name"></span>
+              <span class="text-sm font-extrabold tabular-nums" :style="'color:' + c.color" x-text="c.pct + '%'"></span>
+            </div>
+            <div class="bg-stone-200 rounded-lg h-8 overflow-hidden">
+              <div class="match-bar text-white text-xs font-bold" :style="'width:' + c.pct + '%; background:' + c.color">
+                <span x-text="c.party" class="opacity-80"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Where you match / differ (live) -->
+      <div class="grid grid-cols-2 gap-2 mb-4">
+        <div class="bg-stone-50 rounded-xl p-3">
+          <p class="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-2">Gemeinsam</p>
+          <template x-for="cat in topMatchCategories" :key="cat.id">
+            <div class="flex items-center gap-1.5 mb-1.5 last:mb-0">
+              <span class="text-xs" x-text="cat.icon"></span>
+              <span class="text-xs font-medium truncate" x-text="cat.name"></span>
+            </div>
+          </template>
+        </div>
+        <div class="bg-stone-50 rounded-xl p-3">
+          <p class="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-2">Unterschied</p>
+          <template x-for="cat in topDiffCategories" :key="cat.id">
+            <div class="flex items-center gap-1.5 mb-1.5 last:mb-0">
+              <span class="text-xs" x-text="cat.icon"></span>
+              <span class="text-xs font-medium truncate" x-text="cat.name"></span>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Factoid -->
+      <div class="border-l-2 border-amber-400 pl-3 mb-4">
+        <p class="text-xs text-stone-600 leading-relaxed" x-text="factoid"></p>
+        <p class="text-[10px] text-stone-400 mt-0.5" x-text="factoidSource"></p>
+      </div>
+
+      <!-- CTA -->
+      <button @click="screen = 'share'" class="w-full bg-stone-800 text-white font-semibold py-4 rounded-xl hover:bg-stone-700 active:bg-stone-900 transition-colors text-lg">
+        Ergebnis teilen
+      </button>
+    </div>
+  </template>
+
+  <!-- ==================== SHARE ==================== -->
+  <template x-if="screen === 'share'">
+    <div class="flex-1 pt-4 screen-enter">
+      <p class="text-xs font-semibold text-stone-400 uppercase tracking-widest text-center mb-4">Teile dein München 2032</p>
+
+      <!-- Mini postcard recap -->
+      <div class="cityscape shadow-md mb-4" style="height: 140px;">
+        <div class="city-layer layer-kultur" style="bottom: 0;">
+          <div class="isar-stripe" :style="'opacity:' + (getVal('kultur') / 40)"></div>
+        </div>
+        <div class="city-layer layer-wohnen" style="bottom: 14px;">
+          <div class="building" :style="'width:12px; height:' + (12 + getVal('wohnen') * 1.6) + 'px; background:#78716c'"></div>
+          <div class="building" :style="'width:9px; height:' + (18 + getVal('wohnen') * 2) + 'px; background:#a8a29e'"></div>
+          <div class="building" :style="'width:14px; height:' + (8 + getVal('wohnen') * 1.2) + 'px; background:#57534e'"></div>
+          <div class="building" :style="'width:10px; height:' + (15 + getVal('wohnen') * 1.7) + 'px; background:#78716c'"></div>
+          <div class="building" :style="'width:13px; height:' + (10 + getVal('wohnen') * 1.4) + 'px; background:#a8a29e'"></div>
+        </div>
+        <div class="city-layer layer-klima" style="bottom: 12px;">
+          <template x-for="n in Math.min(Math.floor(getVal('klima') / 8) + 1, 5)">
+            <div class="tree">
+              <div class="tree-top" style="width:7px; height:7px;"></div>
+              <div class="tree-trunk" style="height:4px;"></div>
+            </div>
+          </template>
+        </div>
+        <div class="postcard-label">
+          <p class="text-white font-bold text-sm drop-shadow-lg">Dein München 2032</p>
+        </div>
+      </div>
+
+      <!-- Match summary -->
+      <div class="bg-stone-50 rounded-xl p-4 mb-4">
+        <template x-for="(c, i) in displayCandidates" :key="c.key">
+          <div class="flex items-center justify-between" :class="i === 0 ? 'mb-2' : ''">
+            <span class="text-sm font-semibold" x-text="c.name"></span>
+            <span class="text-sm font-extrabold tabular-nums" :style="'color:' + c.color" x-text="c.pct + '%'"></span>
+          </div>
+        </template>
+        <p class="text-xs text-stone-400 mt-2">Übereinstimmung mit deinen Prioritäten</p>
+      </div>
+
+      <!-- Priority pills -->
+      <div class="flex flex-wrap gap-2 justify-center mb-4">
+        <template x-for="cat in sortedCategories" :key="cat.id">
+          <div class="cat-pill" :style="'background:' + cat.tint + '; color: #44403c;'" x-show="cat.value >= 12">
+            <span x-text="cat.icon + ' ' + cat.name + ' ' + cat.value"></span>
+          </div>
+        </template>
+      </div>
+
+      <!-- Share text -->
+      <div class="bg-stone-50 rounded-xl p-4 mb-3">
+        <p class="text-sm text-stone-600 leading-relaxed" x-text="shareText"></p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 mb-5">
+        <button @click="nativeShare()" class="bg-stone-800 text-white font-medium py-3 rounded-xl hover:bg-stone-700 active:bg-stone-900 transition-colors text-sm">
+          Teilen
+        </button>
+        <button @click="copyShare()" class="border-2 border-stone-200 text-stone-600 font-medium py-3 rounded-xl hover:bg-stone-50 active:bg-stone-100 transition-colors text-sm">
+          <span x-text="copied ? 'Kopiert!' : 'Text kopieren'"></span>
+        </button>
+      </div>
+
+      <!-- Cross-nav -->
+      <div class="bg-stone-50 rounded-xl p-4 mb-4">
+        <p class="text-sm font-semibold text-stone-600 mb-2">Weitere Tools</p>
+        <a href="stichwahl.html" class="block text-amber-600 font-medium text-sm hover:underline mb-1">Deine Wahl: Thesen-Vergleich</a>
+        <p class="text-xs text-stone-400 mb-3">25 Thesen, Kandidaten im direkten Vergleich.</p>
+        <a href="stichwahl2.html" class="block text-amber-600 font-medium text-sm hover:underline mb-1">Bilanz-Check: Versprochen. Geliefert?</a>
+        <p class="text-xs text-stone-400 mb-3">8 Koalitionsversprechen auf dem Prüfstand.</p>
+        <a href="index.html" class="block text-amber-600 font-medium text-sm hover:underline">Alle 25 Thesen auf mucwahl.de</a>
+        <p class="text-xs text-stone-400">Der vollständige Überblick mit 14 Parteien.</p>
+      </div>
+
+      <button @click="restart()" class="w-full border-2 border-stone-200 text-stone-600 font-medium py-3 rounded-xl hover:bg-stone-100 transition-colors text-sm mb-4">
+        Nochmal starten
+      </button>
+    </div>
+  </template>
+
+</div>
+
+<script>
+function deinMuenchen() {
+  const CANDIDATES = {
+    reiter: {
+      name: 'Dieter Reiter', shortName: 'Reiter', party: 'SPD',
+      color: '#6366f1',
+      vector: { wohnen: 22, mobil: 15, klima: 14, sicher: 18, digital: 18, kultur: 13 }
+    },
+    krause: {
+      name: 'Dominik Krause', shortName: 'Krause', party: 'Grüne',
+      color: '#14b8a6',
+      vector: { wohnen: 20, mobil: 22, klima: 22, sicher: 13, digital: 14, kultur: 9 }
+    }
+  };
+
+  const candidateOrder = Math.random() < 0.5 ? ['reiter', 'krause'] : ['krause', 'reiter'];
+
+  const CATEGORIES = [
+    { id: 'wohnen', name: 'Wohnen', icon: '🏠', value: 17, tint: '#e7e5e4', tooltip: 'Bezahlbare Wohnungen, Neubau, Mieterschutz' },
+    { id: 'mobil', name: 'Mobilität', icon: '🚊', value: 17, tint: '#e0f2fe', tooltip: 'ÖPNV, Radwege, Verkehrswende, Autoverkehr' },
+    { id: 'klima', name: 'Klima & Grün', icon: '🌿', value: 17, tint: '#dcfce7', tooltip: 'Klimaneutralität, Bäume, Energie, Grünflächen' },
+    { id: 'sicher', name: 'Sicherheit & Ordnung', icon: '🛡️', value: 17, tint: '#f1f5f9', tooltip: 'Polizei, Sauberkeit, Prävention, Nachtleben' },
+    { id: 'digital', name: 'Digital & Wirtschaft', icon: '💻', value: 16, tint: '#fef9c3', tooltip: 'Digitale Verwaltung, Start-ups, Fachkräfte' },
+    { id: 'kultur', name: 'Kultur & Freizeit', icon: '🎵', value: 16, tint: '#ffe4e6', tooltip: 'Kultur, Sport, Isar, Nachtleben, Vereine' }
+  ];
+
+  function cosineSimilarity(a, b) {
+    const keys = Object.keys(a);
+    let dot = 0, magA = 0, magB = 0;
+    for (const k of keys) {
+      dot += a[k] * b[k];
+      magA += a[k] * a[k];
+      magB += b[k] * b[k];
+    }
+    return dot / (Math.sqrt(magA) * Math.sqrt(magB));
+  }
+
+  return {
+    screen: 'intro',
+    categories: JSON.parse(JSON.stringify(CATEGORIES)),
+    copied: false,
+
+    get totalPoints() {
+      return this.categories.reduce((sum, c) => sum + c.value, 0);
+    },
+
+    get remaining() {
+      return 100 - this.totalPoints;
+    },
+
+    setSlider(index, newVal) {
+      const oldVal = this.categories[index].value;
+      const diff = newVal - oldVal;
+      if (diff === 0) return;
+
+      // Block over-allocation: cap at remaining + current value
+      const maxAllowed = this.categories[index].value + this.remaining;
+      if (newVal > maxAllowed) {
+        newVal = Math.max(0, maxAllowed);
+      }
+
+      this.categories[index].value = newVal;
+    },
+
+    getVal(id) {
+      const cat = this.categories.find(c => c.id === id);
+      return cat ? cat.value : 0;
+    },
+
+    get sortedCategories() {
+      return [...this.categories].sort((a, b) => b.value - a.value);
+    },
+
+    get userVector() {
+      const v = {};
+      for (const c of this.categories) v[c.id] = c.value;
+      return v;
+    },
+
+    candidateMatch(key) {
+      const sim = cosineSimilarity(this.userVector, CANDIDATES[key].vector);
+      return Math.round(sim * 100);
+    },
+
+    get displayCandidates() {
+      return candidateOrder.map(key => ({
+        key,
+        ...CANDIDATES[key],
+        pct: this.candidateMatch(key)
+      }));
+    },
+
+    get closerCandidate() {
+      const [a, b] = this.displayCandidates;
+      return a.pct >= b.pct ? a : b;
+    },
+
+    get topMatchCategories() {
+      const closer = this.closerCandidate;
+      const vec = CANDIDATES[closer.key].vector;
+      return this.categories
+        .map(c => ({ ...c, candidateVal: vec[c.id], diff: Math.abs(c.value - vec[c.id]) }))
+        .sort((a, b) => a.diff - b.diff)
+        .slice(0, 2);
+    },
+
+    get topDiffCategories() {
+      const closer = this.closerCandidate;
+      const vec = CANDIDATES[closer.key].vector;
+      return this.categories
+        .map(c => ({ ...c, candidateVal: vec[c.id], diff: Math.abs(c.value - vec[c.id]) }))
+        .sort((a, b) => b.diff - a.diff)
+        .slice(0, 2);
+    },
+
+    get factoid() {
+      const top = this.sortedCategories[0];
+      const facts = {
+        wohnen: 'Krause plant 50.000 neue Wohnungen in 3 Säulen. Reiter nennt keine konkrete Zahl im neuen Programm.',
+        mobil: 'Nur 1 von 5 versprochenen Tramlinien wurde gebaut. Der Radentscheid ist zu 4,4% umgesetzt.',
+        klima: 'SWM erzeugt rechnerisch 100% Ökostrom. Aber der PV-Ausbau liegt unter dem bayerischen Landesdurchschnitt.',
+        sicher: 'München ist die sicherste Großstadt Deutschlands. Krause will das mit Polizei + Sozialarbeit kombiniert halten.',
+        digital: 'Münchens Verwaltung landet bei Digitalisierungsrankings regelmäßig im Mittelfeld deutscher Großstädte.',
+        kultur: 'München hat 80+ Museen und Theater. Die Gasteig-Sanierung ist das größte Kulturprojekt Europas.'
+      };
+      return facts[top.id] || facts.wohnen;
+    },
+
+    get factoidSource() {
+      const top = this.sortedCategories[0];
+      const sources = {
+        wohnen: 'dominik-krause.de/themen, SPD Wahlprogramm 2026',
+        mobil: 'tramreport.de, Radentscheid München',
+        klima: 'SWM Energiewende, Öko-Institut München',
+        sicher: 'PKS 2024, dominik-krause.de/themen',
+        digital: 'Bitkom Smart City Index 2024',
+        kultur: 'stadt.muenchen.de, Gasteig HP8'
+      };
+      return sources[top.id] || sources.wohnen;
+    },
+
+    get shareText() {
+      const top = this.sortedCategories[0];
+      const [c1, c2] = this.displayCandidates;
+      return 'Mein München 2032: ' + top.icon + ' ' + top.name + ' ist mir am wichtigsten. ' + c1.pct + '% ' + c1.shortName + ', ' + c2.pct + '% ' + c2.shortName + '. Bau deine Stadt: mucwahl.de/stichwahl3';
+    },
+
+    async nativeShare() {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Dein München 2032', text: this.shareText, url: 'https://mucwahl.de/stichwahl3' });
+        } catch(e) {}
+      } else {
+        this.copyShare();
+      }
+    },
+
+    async copyShare() {
+      try {
+        await navigator.clipboard.writeText(this.shareText);
+        this.copied = true;
+        setTimeout(() => this.copied = false, 2000);
+      } catch(e) {}
+    },
+
+    restart() {
+      this.screen = 'intro';
+      this.categories = JSON.parse(JSON.stringify(CATEGORIES));
+      this.copied = false;
+    }
+  };
+}
+</script>
+
+</body>
+</html>
