@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUCwahl – Kommunalwahl München 2026: Welche Partei passt zu mir?</title>
+    <meta name="version" content="4.9.13">
+    <meta name="description" content="Kommunalwahl München 2026: 25 Thesen, 14 Parteien. Finde in 5 Minuten heraus, welche Partei zu dir passt. Kostenloser Wahlchecker, unabhängig, ohne Tracking.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="MUCwahl – Kommunalwahl München 2026: Welche Partei passt zu mir?">
+    <meta property="og:description" content="Kommunalwahl München 2026: Vergleiche deine Positionen mit 14 Parteien zu 25 Thesen. Kostenloser Wahlchecker, unabhängig und ohne Tracking.">
+    <meta property="og:image" content="https://mucwahl.de/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mucwahl.de/kommunalwahl.html">
+    <meta property="og:site_name" content="MUCwahl">
+    <meta property="og:locale" content="de_DE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src https://mucwahl.goatcounter.com; base-uri 'self'; form-action 'none';">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+    <link rel="canonical" href="https://mucwahl.de/kommunalwahl.html">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "MUCwahl München 2026",
+        "url": "https://mucwahl.de/",
+        "description": "25 Thesen, 14 Parteien: Finde heraus, welche Partei deine Interessen im Münchner Stadtrat vertritt.",
+        "applicationCategory": "Civic Engagement",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Frederik Metz",
+            "url": "https://mucwahl.de/methodik.html"
+        },
+        "inLanguage": "de",
+        "isAccessibleForFree": true,
+        "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Welche Parteien treten zur Kommunalwahl München 2026 an?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "14 Parteien treten an: CSU, SPD, Grüne, FDP, AfD, Die Linke, Volt, ÖDP, Die PARTEI, Rosa Liste, Münchner Liste, Bayernpartei, Bündnis Kultur und Freie Wähler."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Was ist MUCwahl?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "MUCwahl ist ein kostenloser, unabhängiger Wahlchecker für die Münchner Kommunalwahl 2026. In 5 Minuten vergleichst du deine Positionen zu 25 Thesen mit 14 Parteien. Ohne Tracking, ohne Werbung."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wann ist Kommunalwahl in München 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Die Kommunalwahl in München findet am 8. März 2026 statt. Gewählt werden Oberbürgermeister, Stadtrat und Bezirksausschüsse."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col" x-data="wahlomatApp()" x-cloak @keydown.window="handleKeydown($event)">
+
+    <noscript>
+        <div style="max-width:600px;margin:2rem auto;padding:2rem;font-family:sans-serif;text-align:center">
+            <h1>MUCwahl – Kommunalwahl München 2026</h1>
+            <p>Welche Partei passt zu mir? Vergleiche deine Positionen mit 14 Parteien zur Münchner Kommunalwahl am 8. März 2026.</p>
+            <p>25 Thesen zu Mobilität, Wohnen, Klima, Wirtschaft und Gesellschaft. Mit politischem Kompass und Themen-Gewichtung.</p>
+            <p>Alle 14 Parteien im Vergleich: CSU, SPD, Grüne, FDP, AfD, Die Linke, Volt, ÖDP, Die PARTEI, Rosa Liste, Münchner Liste, Bayernpartei, Bündnis Kultur, Freie Wähler.</p>
+            <p>Kostenlos, unabhängig, werbefrei, ohne Tracking. Alle Daten bleiben lokal in deinem Browser.</p>
+            <p><strong>Bitte aktiviere JavaScript, um den Wahlchecker zu starten.</strong></p>
+        </div>
+    </noscript>
+
+    <!-- Skip to content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[200] focus:bg-slate-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium">Zum Inhalt springen</a>
+
+    <!-- Live region for screen reader announcements -->
+    <div id="aria-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 no-print" role="navigation" aria-label="Hauptnavigation">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" @click="reset()">
+                <div class="w-10 h-10 flex items-center justify-center">
+                    <img src="assets/icon.png" class="w-full h-full object-contain" alt="MUCwahl Logo">
+                </div>
+                <div class="leading-tight">
+                    <span class="text-xl tracking-tight"><span class="font-extrabold text-slate-900">MUC</span><span class="font-light text-slate-900">wahl</span></span>
+                    <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Kommunalwahl München 2026</div>
+                </div>
+            </div>
+            <div class="relative" x-data="{ navOpen: false }" x-show="step === 0 || step === 99" x-cloak>
+                <button @click="navOpen = !navOpen" class="text-slate-500 hover:text-slate-900 transition-colors p-2 rounded-lg hover:bg-slate-100" aria-label="Menü">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><circle cx="4" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="16" cy="10" r="1.5"/></svg>
+                </button>
+                <div x-show="navOpen" @click.away="navOpen = false" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                     class="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-slate-200 py-1 z-50">
+                    <button @click="goToStimmzettel(); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Wahl-Info</button>
+                    <a href="methodik.html" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Offene Karten</a>
+                    <div class="border-t border-slate-100">
+                        <div class="px-4 pt-2 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Stichwahl</div>
+                        <a href="stichwahl-guide.html" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Stichwahl-Guide</a>
+                    </div>
+                    <template x-if="step === 99">
+                        <div class="border-t border-slate-100">
+                            <button @click="step = 98; window.scrollTo(0,0); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Gewichtung anpassen</button>
+                            <button @click="reset(); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Neu starten</button>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400 font-mono" x-show="step > 0 && step <= totalTheses">
+                <span class="text-slate-900 font-bold" x-text="step"></span> / <span x-text="totalTheses"></span>
+            </div>
+        </div>
+        <div class="h-1 bg-slate-100 w-full overflow-hidden" role="progressbar" :aria-valuenow="step" aria-valuemin="0" :aria-valuemax="totalTheses" aria-label="Fortschritt">
+            <div class="h-full bg-blue-600 transition-all duration-500 ease-out" :style="`width: ${(step / totalTheses) * 100}%`" x-show="step > 0 && step <= totalTheses"></div>
+        </div>
+    </nav>
+
+    <main id="main-content" class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12 w-full relative" role="main" aria-label="MUCwahl Inhalt">
+
+        <!-- Election Day Banner -->
+        <div x-show="isElectionDay" x-transition.opacity class="max-w-2xl mx-auto mb-8 no-print" x-cloak>
+            <div class="bg-orange-50 border border-orange-300 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <svg aria-hidden="true" class="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                    <span class="text-sm text-orange-800 font-bold">🎉 Heute wird gewählt!</span>
+                </div>
+                <button @click="goToStimmzettel()" class="text-sm px-5 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 transition-colors whitespace-nowrap">Finde dein Wahllokal</button>
+            </div>
+        </div>
+
+        <!-- Shared Result Banner -->
+        <div x-show="isSharedView && step === 99" x-transition.opacity class="max-w-2xl mx-auto mb-8 no-print">
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <svg aria-hidden="true" class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm text-blue-800 font-medium">Du siehst das Ergebnis einer anderen Person.</span>
+                </div>
+                <button @click="startOwnQuiz()" class="btn btn-primary text-sm px-5 py-2 whitespace-nowrap">Selbst mitmachen</button>
+            </div>
+        </div>
+
+        <!-- Resume Banner -->
+        <div x-show="savedStep > 0 && step === 0 && !isSharedView" x-transition.opacity class="max-w-2xl mx-auto mb-8">
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <svg aria-hidden="true" class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm text-blue-800 font-medium">Du hast noch offene Antworten, weitermachen?</span>
+                </div>
+                <div class="flex gap-2">
+                    <button @click="resumeQuiz()" class="btn btn-primary text-sm px-5 py-2 whitespace-nowrap">Weitermachen</button>
+                    <button @click="savedStep = 0; answers = {}; localStorage.removeItem('wahlomat_answers'); localStorage.removeItem('wn_step'); localStorage.removeItem('wn_weights'); topics.forEach(t => { topicWeights[t] = 1; })" class="text-sm px-4 py-2 text-slate-500 hover:text-slate-700 whitespace-nowrap">Neu starten</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intro -->
+        <div x-show="step === 0" x-transition.opacity class="max-w-2xl mx-auto text-center space-y-8 mt-4">
+            <div class="inline-flex items-center justify-center w-24 h-24 mb-6">
+                <img src="assets/icon.png" class="w-full h-full object-contain drop-shadow-sm" alt="MUCwahl Logo">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">Orientierung <span class="text-slate-400 font-light">für München.</span></h1>
+            <p class="text-base text-slate-600 leading-relaxed max-w-lg mx-auto" style="text-wrap: balance">Vergleiche deine Positionen mit 14 Parteien zur Kommunalwahl 2026.</p>
+            <div class="inline-flex items-center gap-2 px-5 py-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-800 text-xs sm:text-sm font-medium">
+                <svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <span>Kein Tracking · Kein Backend · Daten nur lokal</span>
+            </div>
+            <div class="flex justify-center gap-4 pt-4">
+                <button @click="start()" class="btn btn-primary text-lg px-10 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Starten</button>
+            </div>
+            <div x-show="isElectionSeason && !isElectionDay" x-transition.opacity class="text-sm text-slate-500 font-medium" x-cloak>
+                <span x-show="daysUntilElection === 1" class="text-orange-600 font-bold">🗳️ Morgen ist Wahl!</span>
+                <span x-show="daysUntilElection > 1">Noch <span class="text-orange-600 font-bold" x-text="daysUntilElection"></span> Tage bis zur Wahl.</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 text-left">
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
+                    <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center"><svg aria-hidden="true" class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+                    <h2 class="font-bold text-slate-900 text-sm">Mehr als Prozente</h2>
+                    <p class="text-xs text-slate-500">Kompass, Radar und Überraschungstreffer zeigen dir, warum eine Partei zu dir passt.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
+                    <div class="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center"><svg aria-hidden="true" class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg></div>
+                    <h2 class="font-bold text-slate-900 text-sm">Trade-off-Transparenz</h2>
+                    <p class="text-xs text-slate-500">Jede These zeigt, was auf dem Spiel steht. Für Entscheidungen, die du wirklich verstehst.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-2">
+                    <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center"><svg aria-hidden="true" class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
+                    <h2 class="font-bold text-slate-900 text-sm">Open Source</h2>
+                    <p class="text-xs text-slate-500">Quellcode offen auf <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub</a>. Transparent und nachprüfbar.</p>
+                </div>
+            </div>
+
+            <!-- Stichwahl-Tools Banner (start screen) -->
+            <div class="mt-10 bg-orange-50 border border-orange-200 rounded-xl p-6 text-left">
+                <div class="flex items-start gap-3 mb-3">
+                    <span class="inline-flex items-center justify-center w-8 h-8 bg-orange-100 rounded-lg flex-shrink-0">
+                        <svg aria-hidden="true" class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </span>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-sm">Stichwahl am 22. März</h2>
+                        <p class="text-xs text-slate-600 mt-1">Reiter oder Krause? Zwei Tools für die OB-Stichwahl.</p>
+                    </div>
+                </div>
+                <a href="stichwahl-guide.html" class="flex items-center gap-3 bg-white border border-orange-200 rounded-lg px-4 py-3 hover:border-orange-400 hover:shadow-sm transition-all group">
+                    <span class="text-orange-500 group-hover:text-orange-600 flex-shrink-0">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    </span>
+                    <div>
+                        <div class="text-sm font-bold text-slate-900">Dein Stichwahl-Guide</div>
+                        <div class="text-xs text-slate-500">4 Schritte, ~12 Minuten, kein Tracking</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Questions -->
+        <div x-show="step > 0 && step <= totalTheses" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-4" class="max-w-3xl mx-auto">
+            <template x-if="currentThesis">
+                <div class="card p-6 md:p-12 flex flex-col min-h-[70vh] md:min-h-[60vh]">
+                    <div class="flex-1">
+                    <div class="mb-6 flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-[10px] md:text-xs font-semibold uppercase tracking-wider rounded-lg" x-text="currentThesis.topic"></span>
+                        <span class="px-3 py-1 bg-orange-50 text-orange-700 text-[10px] md:text-xs font-bold tracking-wide rounded-lg border border-orange-100 shadow-sm" x-show="currentThesis.tradeoff" x-text="currentThesis.tradeoff"></span>
+                        <span class="px-3 py-1 bg-orange-600 text-white text-[10px] md:text-xs font-bold tracking-wide rounded-lg shadow-sm" x-show="step === totalTheses" x-cloak>Letzte These!</span>
+                    </div>
+                    <h2 class="text-xl md:text-3xl font-bold text-slate-900 mb-6 leading-tight" x-text="currentThesis.statement"></h2>
+                    <!-- Background info toggle -->
+                    <button @click="showBackground = !showBackground" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-500 font-medium flex items-center justify-center gap-2 hover:bg-slate-100 hover:text-slate-600 transition-colors" x-show="currentThesis?.background" aria-expanded="false" :aria-expanded="showBackground">
+                        <svg aria-hidden="true" class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Hintergrund
+                        <svg aria-hidden="true" class="w-3 h-3 transition-transform duration-200" :class="showBackground && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <!-- Expandable background panel -->
+                    <div x-show="showBackground && currentThesis?.background" x-transition:enter="transition-all ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-all ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-cloak>
+                        <div class="mt-2 px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 leading-relaxed" x-text="currentThesis.background"></div>
+                    </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 md:gap-4 mt-8 md:mt-12">
+                        <button @click="answer(1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-all duration-150 text-[10px] md:text-base" :class="selectedAnswer === 1 && 'bg-slate-200 scale-95'">
+                            <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Zustimmung</span>
+                        </button>
+                        <button @click="answer(0)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-all duration-150 text-[10px] md:text-base" :class="selectedAnswer === 0 && 'bg-slate-200 scale-95'">
+                            <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                            <span>Neutral</span>
+                        </button>
+                        <button @click="answer(-1)" class="btn btn-answer flex flex-col items-center justify-center py-4 md:py-8 gap-2 active:scale-95 transition-all duration-150 text-[10px] md:text-base" :class="selectedAnswer === -1 && 'bg-slate-200 scale-95'">
+                            <svg aria-hidden="true" class="w-6 h-6 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Ablehnung</span>
+                        </button>
+                    </div>
+                    <!-- Keyboard hints (desktop only) -->
+                    <div class="hidden md:flex justify-center gap-12 mt-4 text-[10px] text-slate-400 font-mono">
+                        <span><kbd class="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-500">1</kbd></span>
+                        <span><kbd class="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-500">2</kbd></span>
+                        <span><kbd class="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-500">3</kbd></span>
+                        <span><kbd class="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-500">i</kbd> Info</span>
+                    </div>
+                    <div class="mt-10 flex justify-between items-center text-sm text-slate-400 border-t border-slate-50 pt-6">
+                        <button @click="step > 1 ? step-- : (step = 98, window.scrollTo(0,0))" class="hover:text-slate-600 flex items-center gap-1"><svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> <span x-text="step > 1 ? 'Zurück' : 'Gewichtung'"></span></button>
+                        <button @click="skip()" class="hover:text-slate-600 ml-auto flex items-center gap-1">Überspringen <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Stimmzettel + Wahllokal Info -->
+        <div x-show="step === 97" x-transition.opacity class="max-w-2xl mx-auto space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">Wahl-Info</h2>
+                <p class="text-slate-500 text-sm">So funktioniert die Kommunalwahl in München</p>
+            </div>
+
+            <!-- Section 1: Stimmzettel -->
+            <div class="card p-6 md:p-8 space-y-6">
+                <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                    <svg aria-hidden="true" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Dein Stimmzettel
+                </h3>
+                <p class="text-sm text-slate-600">Bei der Kommunalwahl hast du <strong>80 Stimmen</strong> für den Stadtrat. So vergibst du sie:</p>
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg aria-hidden="true" class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Parteiliste ankreuzen</div>
+                            <p class="text-xs text-slate-500 mt-1">Der einfachste Weg: Alle 80 Stimmen gehen an die Kandidaten einer Partei in der Listenreihenfolge.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg aria-hidden="true" class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Kumulieren</div>
+                            <p class="text-xs text-slate-500 mt-1">Gib einer Person bis zu 3 Stimmen, um sie besonders zu unterstützen.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg aria-hidden="true" class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Panaschieren</div>
+                            <p class="text-xs text-slate-500 mt-1">Wähle Kandidaten aus verschiedenen Parteien.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4 mt-2">
+                    <p class="text-xs text-blue-800"><strong>Kombinierbar:</strong> Du kannst eine Parteiliste ankreuzen und trotzdem einzelne Kandidaten kumulieren oder panaschieren. Deine individuellen Stimmen zählen zuerst, die restlichen Stimmen werden von der Liste aufgefüllt. Insgesamt nie mehr als 80 Stimmen.</p>
+                </div>
+            </div>
+
+            <!-- Section 2: Wahllokal -->
+            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 md:p-8 space-y-4">
+                <h3 class="font-bold text-lg text-orange-900 flex items-center gap-2">
+                    <svg aria-hidden="true" class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Finde dein Wahllokal
+                </h3>
+                <p class="text-sm text-orange-800">Am 8. März 2026 kannst du von 8:00 bis 18:00 Uhr wählen.</p>
+                <a href="https://www.muenchen.de/wahlraumfinder" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg font-medium text-sm hover:bg-orange-700 transition-colors">
+                    Wahllokal suchen
+                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+
+            <!-- Section 3: What to bring -->
+            <div class="card p-6 md:p-8 space-y-4">
+                <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                    <svg aria-hidden="true" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                    Das brauchst du im Wahllokal
+                </h3>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start gap-3">
+                        <svg aria-hidden="true" class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span><strong>Wahlbenachrichtigung</strong> (kommt per Post, ca. 3 Wochen vorher)</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg aria-hidden="true" class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span><strong>Personalausweis oder Reisepass</strong> (zur Identifikation)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex flex-col sm:flex-row justify-center gap-3">
+                <button @click="step = 99; window.scrollTo(0,0)" class="btn btn-primary" x-show="results.length > 0">Zurück zum Ergebnis</button>
+                <button @click="step = 0; window.scrollTo(0,0)" class="btn btn-neutral">Zur Startseite</button>
+            </div>
+        </div>
+
+        <!-- Weighting -->
+        <div x-show="step === 98" x-transition.opacity class="max-w-2xl mx-auto">
+            <div class="card p-6 md:p-10">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">Gewichtung</h2>
+                <p class="text-slate-500 text-sm md:text-base mb-4">Gewichte Themen nach Wichtigkeit. Verteile bis zu 10 Punkte.</p>
+                <div class="text-center mb-6 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+                    <span class="text-sm font-bold text-slate-900" x-text="budgetUsed + ' von 10 Punkten vergeben'"></span>
+                    <span class="text-sm text-slate-500" x-text="'(' + budgetRemaining + ' frei)'"></span>
+                </div>
+                <div class="space-y-3" role="group" aria-label="Themen-Gewichtung">
+                    <template x-for="topic in topics" :key="topic">
+                        <div class="flex items-center justify-between p-4 rounded-xl border transition-all"
+                             :class="topicWeights[topic] >= 2 ? 'border-orange-400 bg-orange-50/50' : 'border-slate-200 bg-white'">
+                            <span class="font-semibold text-slate-900 text-sm md:text-base flex-1 min-w-0 mr-3" x-text="topic"></span>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <div class="flex gap-0.5" aria-hidden="true">
+                                    <template x-for="i in 4" :key="'dot-' + topic + '-' + i">
+                                        <div class="w-2.5 h-2.5 rounded-full transition-colors" :class="i <= topicWeights[topic] ? 'bg-orange-500' : 'bg-slate-200'"></div>
+                                    </template>
+                                </div>
+                                <button @click="decrementWeight(topic)" class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" :disabled="topicWeights[topic] === 0" :aria-label="'Gewicht für ' + topic + ' verringern'">
+                                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                                </button>
+                                <span class="w-5 text-center text-sm font-bold text-slate-900" x-text="topicWeights[topic]" :aria-label="topicWeights[topic] + ' Punkte für ' + topic"></span>
+                                <button @click="incrementWeight(topic)" class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" :disabled="topicWeights[topic] >= 4 || budgetRemaining <= 0" :aria-label="'Gewicht für ' + topic + ' erhöhen'">
+                                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="mt-8 space-y-3">
+                    <button @click="step = 1; window.scrollTo(0,0)" class="btn btn-primary w-full text-lg py-4" x-show="Object.keys(answers).length === 0">Weiter zu den Fragen</button>
+                    <button @click="showResults()" class="btn btn-primary w-full text-lg py-4" x-show="Object.keys(answers).length > 0">Ergebnis berechnen</button>
+                    <button @click="step = totalTheses" class="text-sm text-slate-400 hover:text-slate-600 w-full text-center" x-show="Object.keys(answers).length > 0">Zurück zu den Fragen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div x-show="step === 99" x-transition.opacity class="space-y-6">
+
+        <!--
+        === PROJECT SPEC - Donation Banner ===
+        WORKFLOW: Read this block → update changelog → implement → verify features.
+
+        ## FEATURES (v1.3)
+        ### Donation Banner (results page, step 99)
+        - Standalone closable donation banner: "MUCwahl hat viele Nachtschichten gekostet. Spezi spendieren?"
+        - Links to paypal.me/frederikmetz (new tab)
+        - X close button, dismisses via localStorage (mucwahl_banner_dismissed)
+        - 44px touch targets on all interactive elements
+
+        ### Voting Countdown (hero card, results page)
+        - Dynamic countdown inside hero card: "Noch X Tage bis zur Wahl!"
+        - On election day: "Heute ist Wahltag!"
+        - After election: hidden
+        - "→ So wählst du richtig" link navigates to step 97 (Wahl-Info)
+
+        ### Results page UX
+        - Default tab: Parteien (was Kompass)
+        - Vergleich tab: party switcher dropdown in header (replaces bottom text link)
+        - Feedback buttons: distinct colors at rest (green/amber/red)
+        - Compass axis labels: 12px (was 9px)
+        - Compass footnotes: 12px (was 10px)
+
+        ### Footer (all pages)
+        - "Unterstützen" link to paypal.me on index, methodik, datenschutz, impressum
+
+        ### Hamburger menu (results page only)
+        - "Gewichtung anpassen" and "Neu starten" items shown when step === 99
+
+        ### Share sheet
+        - "Link kopieren" + "Als PDF" side by side
+        - "Einbetten ..." collapsible embed code panel
+
+        ## CHANGELOG
+        ### v1.3 -QA audit fixes (UX expert + user panel)
+        - CHANGED: Separated donation banner from voting countdown (banner = donation only, countdown = hero card)
+        - CHANGED: Default tab Kompass → Parteien (more immediately rewarding)
+        - ADDED: Party switcher dropdown in Vergleich tab header
+        - CHANGED: Feedback buttons now have distinct colors at rest (emerald/amber/red)
+        - CHANGED: Compass axis labels 9px → 12px, footnotes 10px → 12px
+        - CHANGED: Donation framing from pill button to "viele Nachtschichten" narrative
+        - REMOVED: Bottom "Andere Partei vergleichen?" text link (replaced by dropdown)
+        - UNCHANGED: everything else
+
+        ### v1.2 -Mobile optimisation + dynamic countdown
+        - CHANGED: Static "Kommunalwahl am 8. März" → dynamic "Noch X Tage bis zur Wahl!"
+        - ADDED: Election day variant ("Heute ist Wahltag!")
+        - ADDED: Post-election hide (daysUntilElection < 0)
+        - CHANGED: Mobile layout now stacks with full-width elements and 44px touch targets
+        - UNCHANGED: everything else
+
+        ### v1.1 -UX cleanup
+        - MOVED: PDF + Embed to share sheet
+        - MOVED: Gewichtung/Neu starten to hamburger menu
+        - REMOVED: bottom orphan buttons section
+        - FIXED: X button placement (inline instead of absolute overlay)
+        - FIXED: Date corrected to 8. März
+
+        ### v1.0 -Initial build
+        - CREATED: Closable donation + voting reminder banner on results page
+        - CREATED: "Unterstützen" footer link on all pages
+        - CREATED: bannerDismissed state + dismissBanner() in app.js
+
+        ## KNOWN ISSUES
+        ### Active
+        - (none)
+        ### Fixed
+        - X button was awkwardly placed as absolute overlay (v1.1)
+        - Date was wrong (15. März instead of 8. März) (v1.1)
+        ### Design Decisions
+        - Variant A (flat slate) chosen over Variant B (split amber/slate)
+        - Plain <a> links only, zero CSP changes, Fortress Zero preserved
+        - Banner only on results page (not during quiz)
+        === END PROJECT SPEC ===
+        -->
+
+        <!-- Donation Banner (standalone, closable) -->
+        <div x-show="step === 99 && !bannerDismissed" x-transition.opacity class="max-w-2xl mx-auto no-print" x-cloak>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+                <div class="flex items-center justify-between gap-3">
+                    <a href="https://paypal.me/frederikmetz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-800 transition-colors" style="min-height:44px">
+                        <span aria-hidden="true" class="text-lg">🍾</span>
+                        <span>MUCwahl hat viele Nachtschichten gekostet. <span class="font-medium text-slate-700 underline underline-offset-2">Spezi spendieren?</span></span>
+                    </a>
+                    <button @click="dismissBanner()" class="text-slate-300 hover:text-slate-500 active:text-slate-600 transition-colors p-2 flex items-center justify-center rounded-full hover:bg-slate-100 flex-shrink-0" style="min-width:44px;min-height:44px" aria-label="Banner schließen">
+                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stichwahl-Tools Banner (results page) -->
+        <div class="max-w-2xl mx-auto mb-4 no-print">
+            <div class="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3">
+                <div class="flex items-center justify-between gap-3 flex-wrap">
+                    <div class="flex items-center gap-2 text-sm text-slate-700">
+                        <span aria-hidden="true" class="text-orange-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </span>
+                        <span><span class="font-bold">Stichwahl 22. März:</span> Reiter oder Krause?</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="stichwahl-guide.html" class="text-xs font-medium text-orange-700 hover:text-orange-900 bg-white border border-orange-200 rounded-lg px-3 py-1.5 hover:border-orange-400 transition-colors" style="min-height:44px;display:inline-flex;align-items:center">Stichwahl-Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Result: Top Match (always visible, above tabs) -->
+        <section x-show="topMatch" class="max-w-2xl mx-auto" aria-label="Dein Top-Ergebnis">
+            <div class="card p-8 text-center bg-gradient-to-br from-white to-slate-50 relative overflow-hidden">
+                <!-- Party color accent bar (top edge) -->
+                <div class="absolute top-0 left-0 right-0 h-1 transition-opacity duration-1000" :style="`background-color: ${topMatch ? getPartyColor(topMatch.id) : 'transparent'}`" :class="celebrationActive ? 'opacity-100' : 'opacity-0'"></div>
+                <div class="text-sm text-slate-500 mb-3 font-medium">Höchste Übereinstimmung</div>
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <div class="relative w-24 h-24 flex-shrink-0" x-data="{ displayPct: 0 }" x-effect="if (topMatch && resultsRevealed && !prefersReducedMotion) { let start = performance.now(); let target = Math.round(topMatch.matchPercentage); let dur = 800; let tick = (now) => { let p = Math.min((now - start) / dur, 1); displayPct = Math.round(p * target); if (p < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); } else if (topMatch) { displayPct = Math.round(topMatch.matchPercentage); }">
+                        <!-- Celebration pulse ring -->
+                        <div x-show="celebrationActive && !prefersReducedMotion" class="absolute inset-0 rounded-full animate-celebration-pulse" :style="`border: 3px solid ${topMatch ? getPartyColor(topMatch.id) : '#e2e8f0'}`" aria-hidden="true"></div>
+                        <svg aria-hidden="true" class="w-full h-full transform -rotate-90">
+                            <circle cx="48" cy="48" r="44" stroke="#e2e8f0" stroke-width="6" fill="none"/>
+                            <circle cx="48" cy="48" r="44" :stroke="topMatch ? getPartyColor(topMatch.id) : '#e2e8f0'" stroke-width="6" fill="none" stroke-dasharray="276.5" :stroke-dashoffset="topMatch ? 276.5 - (276.5 * topMatch.matchPercentage / 100) : 276.5" class="transition-all duration-1000 ease-out"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center"><span class="text-xl font-bold" x-text="displayPct + '%'"></span></div>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-3xl md:text-4xl font-extrabold text-slate-900 print-top-match" x-text="topMatch?.name"></div>
+                        <p class="text-slate-500 text-sm mt-1 max-w-xs" x-text="topMatch ? getPartySlogan(topMatch.id) : ''"></p>
+                    </div>
+                </div>
+                <!-- Profile Summary -->
+                <div x-show="profileSummary" class="mb-4">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-600 text-xs font-medium">
+                        <svg aria-hidden="true" class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <span x-text="profileSummary"></span>
+                    </div>
+                </div>
+                <!-- Share + Details actions -->
+                <div class="flex items-center justify-center gap-3 no-print"
+                     x-show="showShareCTA"
+                     x-transition:enter="transition ease-out duration-500"
+                     x-transition:enter-start="opacity-0 translate-y-4"
+                     x-transition:enter-end="opacity-100 translate-y-0">
+                    <button @click="openShareSheet()" class="btn btn-primary text-sm px-6 py-2.5 flex items-center gap-2">
+                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                        Ergebnis teilen
+                    </button>
+                    <button @click="resultTab = 'compare'; if(topMatch) selectedPartyId = topMatch.id; detailFilter = 'all'" class="btn btn-neutral text-sm px-6 py-2.5 flex items-center gap-2">
+                        Vergleich ansehen
+                        <svg aria-hidden="true" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+                <!-- Voting Countdown (inside hero, after share buttons) -->
+                <div class="mt-4 no-print" x-show="daysUntilElection >= 0 && showShareCTA"
+                     x-transition:enter="transition ease-out duration-500 delay-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                    <div class="inline-flex items-center gap-2 text-sm text-slate-500">
+                        <span aria-hidden="true">🗳️</span>
+                        <span x-text="daysUntilElection === 0 ? '🎉 Heute wird gewählt!' : (daysUntilElection === 1 ? '🗳️ Morgen ist Wahl!' : 'Noch ' + daysUntilElection + ' Tage bis zur Wahl!')"></span>
+                        <a @click.prevent="step = 97; window.scrollTo(0,0)" href="#" class="text-blue-600 hover:text-blue-800 font-medium" style="min-height:44px;display:inline-flex;align-items:center">→ So wählst du richtig</a>
+                    </div>
+                </div>
+                <!-- Inline Feedback -->
+                <div class="mt-5 no-print" x-show="showShareCTA && !feedbackGiven"
+                     x-transition:enter="transition ease-out duration-500 delay-500" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+                    <p class="text-xs text-slate-400 text-center mb-2">War MUCwahl hilfreich?</p>
+                    <div class="flex justify-center gap-2">
+                        <button @click="sendFeedback('Ja')" class="px-4 py-2.5 text-xs rounded-full border border-emerald-200 text-emerald-600 bg-emerald-50 hover:border-emerald-400 hover:bg-emerald-100 active:bg-emerald-200 transition-all" style="min-height:44px">Ja</button>
+                        <button @click="sendFeedback('Teilweise')" class="px-4 py-2.5 text-xs rounded-full border border-amber-200 text-amber-600 bg-amber-50 hover:border-amber-400 hover:bg-amber-100 active:bg-amber-200 transition-all" style="min-height:44px">Teilweise</button>
+                        <button @click="sendFeedback('Nein')" class="px-4 py-2.5 text-xs rounded-full border border-red-200 text-red-500 bg-red-50 hover:border-red-400 hover:bg-red-100 active:bg-red-200 transition-all" style="min-height:44px">Nein</button>
+                    </div>
+                </div>
+                <div class="mt-3 no-print text-center" x-show="feedbackGiven && showShareCTA" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                    <p class="text-xs text-slate-400">Danke!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Navigation -->
+        <nav class="flex bg-white border border-slate-200 rounded-xl p-1 shadow-sm no-print max-w-md mx-auto" role="tablist" aria-label="Ergebnis-Bereiche">
+            <button role="tab" :aria-selected="resultTab === 'compass'" @click="resultTab = 'compass'"
+                    class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all text-center"
+                    :class="resultTab === 'compass' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'">Kompass</button>
+            <button role="tab" :aria-selected="resultTab === 'parties'" @click="resultTab = 'parties'"
+                    class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all text-center"
+                    :class="resultTab === 'parties' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'">Parteien</button>
+            <button role="tab" :aria-selected="resultTab === 'compare'" @click="resultTab = 'compare'; if(topMatch) selectedPartyId = topMatch.id; detailFilter = 'all'"
+                    class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all text-center"
+                    :class="resultTab === 'compare' ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'">Vergleich</button>
+        </nav>
+
+        <!-- Tab 1: Kompass -->
+        <div x-show="resultTab === 'compass'" class="result-tab max-w-2xl mx-auto space-y-6">
+
+            <!-- Radar + Compass side-by-side on lg -->
+            <div class="space-y-6">
+                <!-- Radar Chart -->
+                <div class="card p-6 relative" x-show="topMatch && Object.keys(topicScores).length > 0">
+                    <button @click="openShareSheet('radar')" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors no-print" title="Radar teilen">
+                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    </button>
+                    <h3 class="font-bold text-lg mb-2">Themen-Radar</h3>
+                    <p class="text-xs text-slate-500 mb-4">Dein politisches Profil nach Themengebieten</p>
+                    <div class="w-full max-w-[420px] mx-auto" x-html="getRadarSVG()" role="img" aria-label="Radar-Diagramm: Übereinstimmung nach Thema"></div>
+                    <div class="flex items-center justify-center gap-2 mt-3" x-show="topMatch">
+                        <div class="w-3 h-3 rounded-sm" :style="`background-color: ${topMatch ? getPartyColor(topMatch.id) : ''}`"></div>
+                        <span class="text-xs text-slate-600 font-medium" x-text="topMatch?.name"></span>
+                    </div>
+                </div>
+
+                <!-- Compass -->
+                <div class="card p-6 relative">
+                    <button @click="openShareSheet('compass')" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors no-print" title="Kompass teilen">
+                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    </button>
+                    <h3 class="font-bold text-lg mb-2">Politischer Kompass</h3>
+                    <div class="relative w-full aspect-square border border-slate-200 bg-slate-50 rounded-lg overflow-hidden mt-4" role="img" aria-label="Politischer Kompass: Deine Position und die der Parteien auf den Achsen Links-Rechts und Progressiv-Konservativ" style="pointer-events:none">
+                        <!-- Quadrant tints -->
+                        <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-rose-500/[0.06] pointer-events-none" aria-hidden="true"></div>
+                        <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/[0.06] pointer-events-none" aria-hidden="true"></div>
+                        <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/[0.06] pointer-events-none" aria-hidden="true"></div>
+                        <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-500/[0.06] pointer-events-none" aria-hidden="true"></div>
+                        <!-- Quadrant names -->
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight" style="top:12%;left:4%;font-size:8px;color:rgba(251,113,133,0.5)" aria-hidden="true">Sozial-<br>Konservativ</div>
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight text-right" style="top:12%;right:4%;font-size:8px;color:rgba(96,165,250,0.5)" aria-hidden="true">Markt-<br>Konservativ</div>
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight" style="bottom:12%;left:4%;font-size:8px;color:rgba(34,197,94,0.4)" aria-hidden="true">Links-<br>Progressiv</div>
+                        <div class="absolute hidden lg:block font-medium pointer-events-none z-0 leading-tight text-right" style="bottom:12%;right:4%;font-size:8px;color:rgba(192,132,252,0.5)" aria-hidden="true">Liberal-<br>Progressiv</div>
+                        <!-- Axes -->
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+                            <div class="w-[90%] h-px bg-slate-300 relative">
+                                <div class="absolute right-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-l-8 border-l-slate-300"></div>
+                                <div class="absolute left-0 top-1/2 -translate-y-1/2 border-t-4 border-b-4 border-r-8 border-r-slate-300"></div>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+                            <div class="h-[90%] w-px bg-slate-300 relative">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-b-8 border-b-slate-300"></div>
+                                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 border-l-4 border-r-4 border-t-8 border-t-slate-300"></div>
+                            </div>
+                        </div>
+                        <!-- Axis labels -->
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm z-20 pointer-events-none">Konservativ</div>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm z-20 pointer-events-none">Progressiv</div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm -rotate-90 z-20 pointer-events-none">Links</div>
+                        <div class="absolute right-1 top-1/2 -translate-y-1/2 text-xs text-center font-bold text-slate-500 uppercase bg-white/80 px-1.5 rounded shadow-sm rotate-90 z-20 pointer-events-none">Rechts</div>
+
+                        <!-- User dot -->
+                        <div class="absolute z-30 transition-all duration-700 ease-out" :style="`left: ${50 + (userCoords.x * compassDisplayScale)}%; top: ${50 - (userCoords.y * compassDisplayScale)}%; transform: translate(-50%, -50%);`">
+                             <span class="absolute inline-flex h-6 w-6 rounded-full bg-slate-400 opacity-20" :class="prefersReducedMotion ? '' : 'animate-ping'" aria-hidden="true"></span>
+                             <div class="w-4 h-4 bg-slate-900 border-2 border-white rounded-full shadow-xl flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div>
+                             <div class="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm whitespace-nowrap">DU</div>
+                        </div>
+                        <!-- Party dots with hover labels -->
+                        <template x-for="party in compassParties" :key="party.id">
+                            <div class="absolute z-10 group"
+                                 :style="`left: ${50 + (party.x * compassDisplayScale)}%; top: ${50 - (party.y * compassDisplayScale)}%; transform: translate(-50%, -50%); pointer-events: none;`">
+                                <button class="flex items-center justify-center cursor-pointer group/dot focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-full"
+                                     style="width:44px;height:44px;pointer-events:auto"
+                                     :aria-label="party.name + ': Details anzeigen'"
+                                     @click="openModal(party.id)">
+                                    <div class="w-3 h-3 rounded-full shadow-sm group-hover/dot:scale-150 transition-transform"
+                                         :style="`background-color: ${getPartyColor(party.id)};`"></div>
+                                </button>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-1.5 py-0.5 bg-slate-800 text-white text-[8px] font-bold rounded shadow-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity" style="pointer-events:none" x-text="party.name"></div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <p class="text-xs text-slate-400 mt-3 text-center leading-relaxed">Nähe im Kompass bedeutet inhaltliche Übereinstimmung, keine politische Empfehlung. Basiert auf deinen Antworten zu 25 Thesen.</p>
+                    <p class="text-xs text-slate-400 mt-1 text-center leading-relaxed">Die meisten Parteien liegen auf einer Diagonale (links-progressiv bis rechts-konservativ). Das ist typisch für westliche Parteiensysteme, nicht ein Fehler der Darstellung.</p>
+                    <p class="text-xs text-slate-400 mt-1 text-center leading-relaxed">Der Kompass zeigt deine politische Grundrichtung auf zwei Achsen. Die Prozentzahl in der Rangliste misst dagegen, wie oft du bei konkreten Thesen mit einer Partei übereinstimmst, deshalb können Reihenfolge und Kompass-Nähe voneinander abweichen.</p>
+                    <p class="text-[10px] text-center mt-2"><a href="methodik.html" class="text-blue-500 hover:text-blue-700 hover:underline transition-colors">Wie wird das berechnet? →</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tab 2: Parteien -->
+        <div x-show="resultTab === 'parties'" class="result-tab max-w-3xl mx-auto space-y-8">
+
+            <!-- All Parties -->
+            <section aria-label="Alle Parteien im Vergleich">
+                <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Alle Parteien</h3>
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                    <template x-for="(party, index) in results" :key="party.id">
+                        <div class="group relative flex items-center p-4 border-b border-slate-100 last:border-0 hover:bg-slate-50 cursor-pointer"
+                             x-show="resultsRevealed"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             :style="prefersReducedMotion ? '' : `transition-delay: ${index * 50}ms`"
+                             @click="openModal(party.id)">
+                            <div class="w-8 text-center text-slate-400 font-mono text-xs mr-4" x-text="index + 1"></div>
+                            <div class="flex-1 z-10">
+                                <div class="flex justify-between items-center mb-2"><span class="font-bold text-slate-900" x-text="party.name"></span><span x-show="party.partial" class="ml-1.5 text-[9px] font-semibold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full">unvollständig</span><span class="font-mono text-sm font-medium" x-text="Math.round(party.matchPercentage) + '%'"></span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all duration-500" :style="`width: ${party.matchPercentage}%; background-color: ${getPartyColor(party.id)}`"></div></div>
+                            </div>
+                            <div class="ml-4 text-slate-300 group-hover:text-slate-600 transition-colors z-10"><svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div>
+                        </div>
+                    </template>
+                </div>
+            </section>
+
+            <!-- Topic Breakdown -->
+            <section class="no-print" aria-label="Themen-Analyse">
+                <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Themen-Analyse</h3>
+                <div class="space-y-2">
+                    <template x-for="topic in topics" :key="'tb-' + topic">
+                        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                            <button class="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50 transition-colors"
+                                    @click="toggleTopicBreakdown(topic)"
+                                    :aria-expanded="topicBreakdownOpen[topic] ? 'true' : 'false'"
+                                    :aria-controls="'topic-panel-' + topic.replace(/\s/g, '-')">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-3 mb-1">
+                                        <span class="font-bold text-slate-900 text-sm" x-text="topic"></span>
+                                        <span class="text-[10px] text-slate-400 font-mono" x-text="topicScores[topic] ? topicScores[topic].answeredCount + '/' + topicScores[topic].totalCount + ' beantwortet' : ''"></span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden" role="meter" :aria-valuenow="topMatch && topicScores[topic] ? Math.round(topicScores[topic].parties[topMatch.id]?.percent || 0) : 0" aria-valuemin="0" aria-valuemax="100" :aria-label="topMatch ? Math.round(topicScores[topic]?.parties[topMatch.id]?.percent || 0) + '% Übereinstimmung mit ' + topMatch.name + ' bei ' + topic : ''">
+                                        <div class="h-full rounded-full transition-all duration-500" :style="topMatch && topicScores[topic] ? `width: ${topicScores[topic].parties[topMatch.id]?.percent || 0}%; background-color: ${getPartyColor(topMatch.id)}` : 'width: 0'"></div>
+                                    </div>
+                                </div>
+                                <div class="ml-4 flex items-center gap-2">
+                                    <span class="text-sm font-mono font-medium text-slate-600" x-text="topMatch && topicScores[topic] ? Math.round(topicScores[topic].parties[topMatch.id]?.percent || 0) + '%' : ''"></span>
+                                    <svg aria-hidden="true" class="w-4 h-4 text-slate-400 transition-transform duration-200" :class="topicBreakdownOpen[topic] ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </button>
+                            <div x-show="topicBreakdownOpen[topic]"
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 -translate-y-2"
+                                 x-transition:enter-end="opacity-100 translate-y-0"
+                                 :id="'topic-panel-' + topic.replace(/\s/g, '-')"
+                                 role="region"
+                                 :aria-label="'Details für ' + topic"
+                                 class="border-t border-slate-100 px-4 py-3 space-y-2">
+                                <template x-for="party in results" :key="'tb-' + topic + '-' + party.id">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-24 text-xs text-slate-600 font-medium truncate" x-text="party.name"></span>
+                                        <div class="flex-1 bg-slate-100 h-2 rounded-full overflow-hidden">
+                                            <div class="h-full rounded-full transition-all duration-300" :style="`width: ${topicScores[topic]?.parties[party.id]?.percent || 0}%; background-color: ${getPartyColor(party.id)}`"></div>
+                                        </div>
+                                        <span class="text-xs font-mono text-slate-500 w-10 text-right" x-text="Math.round(topicScores[topic]?.parties[party.id]?.percent || 0) + '%'"></span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </section>
+
+            <!-- Surprise Matches -->
+            <section x-show="surpriseMatches.length > 0" x-transition.opacity class="no-print" aria-label="Überraschende Übereinstimmungen">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <svg aria-hidden="true" class="w-5 h-5 text-amber-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        <h3 class="font-bold text-amber-900 text-sm">Überraschende Übereinstimmungen</h3>
+                    </div>
+                    <p class="text-xs text-amber-700 mb-4">Diese Parteien passen besser zu dir als erwartet.</p>
+                    <div class="space-y-2">
+                        <template x-for="party in surpriseMatches" :key="'surprise-' + party.id">
+                            <div class="flex items-center gap-3 bg-white/60 rounded-lg px-3 py-2 cursor-pointer hover:bg-white/80 transition-colors" @click="openModal(party.id)">
+                                <div class="w-3 h-3 rounded-full flex-shrink-0" :style="`background-color: ${getPartyColor(party.id)}`"></div>
+                                <span class="text-sm font-medium text-slate-900 flex-1" x-text="party.name"></span>
+                                <span class="text-sm font-mono font-bold text-amber-700" x-text="Math.round(party.matchPercentage) + '%'"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wahl-Info link -->
+            <div class="flex justify-center no-print">
+                <button @click="goToStimmzettel()" class="text-sm text-slate-500 hover:text-slate-700 font-medium flex items-center gap-2 transition-colors">
+                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Wie wähle ich?
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Tab 3: Vergleich (inline thesis comparison with top match) -->
+        <div x-show="resultTab === 'compare'" class="result-tab max-w-2xl mx-auto space-y-6">
+
+            <!-- Party selector + filter -->
+            <div class="card p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-4 h-4 rounded-full flex-shrink-0" :style="`background-color: ${getPartyColor(selectedPartyId)}`"></div>
+                    <select @change="selectedPartyId = $event.target.value; detailFilter = detailFilter"
+                            class="font-bold text-slate-900 bg-transparent border-none pr-6 py-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                            :value="selectedPartyId"
+                            aria-label="Partei zum Vergleichen auswählen">
+                        <template x-for="party in results" :key="'sel-' + party.id">
+                            <option :value="party.id" x-text="party.name + ' (' + Math.round(party.matchPercentage) + '%)'"></option>
+                        </template>
+                    </select>
+                </div>
+                <div class="flex bg-slate-200/50 p-1 rounded-lg" role="group" aria-label="Filter">
+                    <button @click="detailFilter = 'all'" class="px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'all' ? 'true' : 'false'">Alle</button>
+                    <button @click="detailFilter = 'match'" class="px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'match' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'match' ? 'true' : 'false'">Match</button>
+                    <button @click="detailFilter = 'diff'" class="px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'diff' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'diff' ? 'true' : 'false'">Diff</button>
+                </div>
+            </div>
+
+            <!-- Hint -->
+            <div class="text-xs text-slate-400 flex items-center gap-1.5" x-show="!isSharedView">
+                <svg aria-hidden="true" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                Klicke auf eine Antwort, um sie zu ändern
+            </div>
+
+            <!-- Thesis cards -->
+            <div class="space-y-4">
+                <template x-for="thesis in getFilteredTheses()" :key="'cmp-' + thesis.id">
+                    <div class="card p-4 relative border-l-4" :class="getPositionMatchClass(answers[thesis.id], getPartyPosition(getSelectedParty(), thesis.id))">
+                        <div class="flex justify-between items-start mb-1">
+                            <div class="flex items-center gap-2">
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest" x-text="thesis.topic"></div>
+                                <span x-show="revisedAnswers.includes(thesis.id)" class="text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-200">geändert</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px]">
+                                <span class="text-slate-400 font-bold uppercase">Du</span>
+                                <span x-html="getIconSimple(answers[thesis.id])"></span>
+                                <span class="text-slate-200 mx-0.5" aria-hidden="true">&middot;</span>
+                                <span class="text-slate-400 font-bold uppercase" x-text="getSelectedParty()?.name"></span>
+                                <span x-html="getIconSimple(getPartyPosition(getSelectedParty(), thesis.id))"></span>
+                            </div>
+                        </div>
+                        <div class="text-base font-extrabold text-slate-900 mb-2" x-text="thesis.short_title"></div>
+                        <div class="text-sm text-slate-600 mb-3 leading-relaxed" x-text="thesis.statement"></div>
+                        <div class="text-sm bg-slate-50 p-3 rounded-lg text-slate-600 italic border border-slate-100" x-show="getPartyQuote(getSelectedParty(), thesis.id)">"<span x-text="getPartyQuote(getSelectedParty(), thesis.id)"></span>"</div>
+                        <div class="flex gap-2 mt-2" x-show="!isSharedView" role="group" :aria-label="'Antwort ändern für ' + thesis.short_title">
+                            <button @click="reviseAnswer(thesis.id, 1)" class="text-[10px] font-bold px-3 py-1 rounded-full border transition-all" :class="answers[thesis.id] === 1 ? 'bg-emerald-500 text-white border-emerald-500' : 'border-slate-200 text-slate-500 hover:border-emerald-300 hover:text-emerald-600'">Stimme zu</button>
+                            <button @click="reviseAnswer(thesis.id, 0)" class="text-[10px] font-bold px-3 py-1 rounded-full border transition-all" :class="answers[thesis.id] === 0 ? 'bg-slate-500 text-white border-slate-500' : 'border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-600'">Neutral</button>
+                            <button @click="reviseAnswer(thesis.id, -1)" class="text-[10px] font-bold px-3 py-1 rounded-full border transition-all" :class="answers[thesis.id] === -1 ? 'bg-rose-500 text-white border-rose-500' : 'border-slate-200 text-slate-500 hover:border-rose-300 hover:text-rose-600'">Stimme nicht zu</button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Party switcher hint -->
+            <div class="text-center text-xs text-slate-400">
+                Partei wechseln über das Dropdown oben
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-200 mt-auto bg-white no-print" role="contentinfo">
+        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 gap-4">
+            <div>&copy; 2026 MUCwahl München. Unabhängig & Werbefrei.</div>
+            <div class="flex items-center gap-4 md:gap-6 flex-wrap">
+                <a href="impressum.html" class="hover:text-slate-900 transition-colors py-2">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-slate-900 transition-colors py-2">Datenschutz</a>
+                <a href="methodik.html" class="hover:text-slate-900 transition-colors py-2">Offene Karten</a>
+                <a href="https://paypal.me/frederikmetz" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors py-2">Unterstützen</a>
+                <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 transition-colors p-2" title="GitHub"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Share Sheet -->
+    <div x-show="shareSheetOpen" class="fixed inset-0 z-[90] flex items-end sm:items-center justify-center p-0 sm:p-6 no-print" x-cloak>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" x-show="shareSheetOpen" x-transition.opacity @click="closeShareSheet()"></div>
+        <div role="dialog" aria-modal="true" aria-label="Ergebnis teilen"
+             class="bg-white w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl shadow-2xl relative transform transition-all max-h-[90vh] overflow-y-auto"
+             x-show="shareSheetOpen" @keydown.tab="trapFocus($event)"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 translate-y-8">
+            <!-- Drag handle (mobile) -->
+            <div class="flex justify-center pt-3 sm:hidden"><div class="w-10 h-1 bg-slate-300 rounded-full"></div></div>
+            <!-- Header -->
+            <div class="flex items-center justify-between px-6 pt-4 pb-2">
+                <h3 class="font-bold text-lg text-slate-900">Ergebnis teilen</h3>
+                <button @click="closeShareSheet()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100" aria-label="Schließen">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="px-6 pb-6 space-y-5">
+                <!-- Format toggle -->
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Format</div>
+                    <div class="flex gap-2">
+                        <button @click="shareFormat = 'feed'" class="flex-1 py-2.5 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareFormat === 'feed' ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Feed 4:5</button>
+                        <button @click="shareFormat = 'story'" class="flex-1 py-2.5 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareFormat === 'story' ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Story 9:16</button>
+                    </div>
+                </div>
+                <!-- Card selection -->
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Karte</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button @click="shareCard = 'results'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'results' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Ergebnis</button>
+                        <button @click="shareCard = 'topmatch'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'topmatch' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Top Match</button>
+                        <button @click="shareCard = 'radar'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'radar' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Radar</button>
+                        <button @click="shareCard = 'compass'" class="py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                                :class="shareCard === 'compass' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Kompass</button>
+                    </div>
+                    <button @click="shareCard = 'surprise'" x-show="surpriseMatches.length > 0"
+                            class="w-full mt-2 py-3 px-3 text-xs font-bold rounded-lg border-2 transition-all text-center"
+                            :class="shareCard === 'surprise' ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">Überraschungstreffer</button>
+                </div>
+                <!-- Share button -->
+                <button @click="executeShare()" class="w-full btn btn-primary text-sm py-3 flex items-center justify-center gap-2">
+                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    Teilen
+                </button>
+                <!-- Secondary actions -->
+                <div class="flex gap-2">
+                    <button @click="copyLink(); closeShareSheet()" class="flex-1 py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">Link kopieren</button>
+                    <button @click="printResults(); closeShareSheet()" class="flex-1 py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">Als PDF</button>
+                </div>
+                <button @click="embedCodeVisible = !embedCodeVisible" class="w-full py-2 text-xs text-slate-400 hover:text-slate-600 transition-colors">Einbetten &hellip;</button>
+                <div x-show="embedCodeVisible" x-transition.opacity class="bg-slate-50 border border-slate-200 rounded-lg p-3 space-y-2">
+                    <code class="block text-[11px] bg-white border border-slate-200 rounded-lg p-2 text-slate-700 break-all select-all" x-text="getEmbedCode()"></code>
+                    <button @click="copyEmbedCode()" class="w-full py-1.5 bg-slate-900 text-white rounded-lg text-xs font-medium hover:bg-slate-800 transition-colors">Code kopieren</button>
+                </div>
+                <!-- Direct share buttons -->
+                <div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Direkt teilen</div>
+                    <div class="flex gap-2">
+                        <button @click="shareViaWhatsApp()" class="flex-1 py-2.5 rounded-lg text-white text-xs font-bold transition-opacity hover:opacity-90" style="background-color: #25D366">WhatsApp</button>
+                        <button @click="shareViaTelegram()" class="flex-1 py-2.5 rounded-lg text-white text-xs font-bold transition-opacity hover:opacity-90" style="background-color: #0088cc">Telegram</button>
+                        <button @click="shareViaTwitter()" class="flex-1 py-2.5 rounded-lg text-white text-xs font-bold transition-opacity hover:opacity-90 bg-slate-900">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div x-show="modalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6" x-cloak>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" x-show="modalOpen" x-transition.opacity @click="closeModal()"></div>
+        <div id="party-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="bg-white w-full max-w-2xl h-full sm:h-auto sm:max-h-[90vh] sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col relative transform transition-all" x-show="modalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" @keydown.tab="trapFocus($event)">
+            <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex-shrink-0">
+                <div class="flex justify-between items-start">
+                    <div><h3 id="modal-title" class="font-bold text-2xl" x-text="getSelectedParty()?.name"></h3><p class="text-slate-500 text-sm mt-1" x-text="getSelectedParty()?.long_name"></p><p x-show="getSelectedParty()?.partial" class="text-xs text-amber-600 mt-1">Daten unvollständig (kein umfassendes Wahlprogramm veröffentlicht)</p></div>
+                    <button id="modal-close-btn" @click="closeModal()" class="text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-2" aria-label="Dialog schließen"><svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                </div>
+                <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <div class="text-3xl font-extrabold" :style="`color: ${getPartyColor(selectedPartyId)}`" x-text="Math.round(getSelectedParty()?.matchPercentage) + '%'"></div>
+                        <div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Übereinstimmung</div>
+                    </div>
+                    <div class="flex bg-slate-200/50 p-1 rounded-lg w-full sm:w-auto" role="group" aria-label="Filter">
+                        <button @click="detailFilter = 'all'" class="flex-1 px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'all' ? 'true' : 'false'">Alle</button>
+                        <button @click="detailFilter = 'match'" class="flex-1 px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'match' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'match' ? 'true' : 'false'">Match</button>
+                        <button @click="detailFilter = 'diff'" class="flex-1 px-4 py-1.5 text-xs font-bold rounded-md" :class="detailFilter === 'diff' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'" :aria-pressed="detailFilter === 'diff' ? 'true' : 'false'">Diff</button>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-y-auto p-6 space-y-6 flex-1 bg-white">
+                <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5" x-show="!isSharedView">
+                    <svg aria-hidden="true" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    Klicke auf eine Antwort, um sie zu ändern
+                </div>
+                <template x-for="thesis in getFilteredTheses()" :key="thesis.id">
+                    <div class="relative pl-4 border-l-2 py-1" :class="getPositionMatchClass(answers[thesis.id], getPartyPosition(getSelectedParty(), thesis.id))">
+                         <div class="flex justify-between items-start mb-1">
+                             <div class="flex items-center gap-2">
+                                 <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest" x-text="thesis.topic"></div>
+                                 <span x-show="revisedAnswers.includes(thesis.id)" class="text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full border border-amber-200">geändert</span>
+                             </div>
+                             <div class="flex items-center gap-1.5 text-[10px]">
+                                 <span class="text-slate-400 font-bold uppercase">Du</span>
+                                 <span x-html="getIconSimple(answers[thesis.id])"></span>
+                                 <span class="text-slate-200 mx-0.5" aria-hidden="true">&middot;</span>
+                                 <span class="text-slate-400 font-bold uppercase" x-text="getSelectedParty()?.name"></span>
+                                 <span x-html="getIconSimple(getPartyPosition(getSelectedParty(), thesis.id))"></span>
+                             </div>
+                         </div>
+                         <div class="text-base font-extrabold text-slate-900 mb-2" x-text="thesis.short_title"></div>
+                         <div class="text-sm text-slate-600 mb-3 leading-relaxed" x-text="thesis.statement"></div>
+                         <div class="text-sm bg-slate-50 p-3 rounded-lg text-slate-600 italic border border-slate-100" x-show="getPartyQuote(getSelectedParty(), thesis.id)">"<span x-text="getPartyQuote(getSelectedParty(), thesis.id)"></span>"</div>
+                         <div class="flex gap-2 mt-2" x-show="!isSharedView" role="group" :aria-label="'Antwort ändern für ' + thesis.short_title">
+                             <button @click="reviseAnswer(thesis.id, 1)" class="text-[10px] font-bold px-3 py-1 rounded-full border transition-all" :class="answers[thesis.id] === 1 ? 'bg-emerald-500 text-white border-emerald-500' : 'border-slate-200 text-slate-500 hover:border-emerald-300 hover:text-emerald-600'">Stimme zu</button>
+                             <button @click="reviseAnswer(thesis.id, 0)" class="text-[10px] font-bold px-3 py-1 rounded-full border transition-all" :class="answers[thesis.id] === 0 ? 'bg-slate-500 text-white border-slate-500' : 'border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-600'">Neutral</button>
+                             <button @click="reviseAnswer(thesis.id, -1)" class="text-[10px] font-bold px-3 py-1 rounded-full border transition-all" :class="answers[thesis.id] === -1 ? 'bg-rose-500 text-white border-rose-500' : 'border-slate-200 text-slate-500 hover:border-rose-300 hover:text-rose-600'">Stimme nicht zu</button>
+                         </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exit Intent (Desktop only, once, after 15s) -->
+    <div x-show="exitIntentShown" x-cloak class="fixed bottom-0 inset-x-0 z-[80] flex justify-center p-4 no-print pointer-events-none"
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-full" x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-full">
+        <div class="pointer-events-auto bg-white border border-slate-200 rounded-2xl shadow-xl px-6 py-4 max-w-sm w-full flex items-center gap-4">
+            <div class="flex-1">
+                <p class="text-sm font-medium text-slate-700">War MUCwahl hilfreich?</p>
+                <div class="flex gap-2 mt-2">
+                    <button @click="sendFeedback('Ja'); exitIntentShown = false" class="px-3 py-1 text-xs rounded-full border border-slate-200 text-slate-500 hover:border-emerald-400 hover:text-emerald-600 hover:bg-emerald-50 transition-all">Ja</button>
+                    <button @click="sendFeedback('Teilweise'); exitIntentShown = false" class="px-3 py-1 text-xs rounded-full border border-slate-200 text-slate-500 hover:border-amber-400 hover:text-amber-600 hover:bg-amber-50 transition-all">Teilweise</button>
+                    <button @click="sendFeedback('Nein'); exitIntentShown = false" class="px-3 py-1 text-xs rounded-full border border-slate-200 text-slate-500 hover:border-red-400 hover:text-red-600 hover:bg-red-50 transition-all">Nein</button>
+                </div>
+            </div>
+            <button @click="dismissExitIntent()" class="text-slate-300 hover:text-slate-500 transition-colors flex-shrink-0" aria-label="Schließen">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="wahlomat_data.js"></script>
+    <script src="app.js"></script>
+    <script defer src="vendor/alpine.min.js"></script>
+    <script data-goatcounter="https://mucwahl.goatcounter.com/count" async src="vendor/count.js"></script>
+</body>
+</html>
