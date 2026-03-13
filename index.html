@@ -18,7 +18,7 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 - Programm tab: stacked topic-by-topic comparison (7 topics, side-by-side per topic)
 - Scrollable content per tab, no interaction required
 
-### Step 2 — Versprochen. Gehalten?
+### Step 2 — Versprochen. Und jetzt?
 - 8 coalition promise cards, one at a time
 - Traffic-light status indicator (red/yellow/green)
 - Promise text, reality, both candidates' positions (neutralised)
@@ -312,7 +312,7 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
           </div>
           <div class="flex gap-3 items-start">
             <span class="text-orange-500 font-bold mt-0.5">2</span>
-            <p class="text-stone-600"><strong>Versprochen. Gehalten?</strong> — 8 Koalitionsversprechen prüfen (~2 Min.)</p>
+            <p class="text-stone-600"><strong>Versprochen. Und jetzt?</strong> — 8 Koalitionsversprechen prüfen (~2 Min.)</p>
           </div>
           <div class="flex gap-3 items-start">
             <span class="text-orange-500 font-bold mt-0.5">3</span>
@@ -594,58 +594,68 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
     </div>
   </div>
 
-  <!-- ==================== STEP 2: BILANZ-CHECK ==================== -->
+  <!-- ==================== STEP 2: VERSPROCHEN. UND JETZT? ==================== -->
   <div x-show="step === 2" class="fade-in">
     <div class="text-center mb-4">
-      <h2 class="text-2xl font-extrabold tracking-tight mb-1">Versprochen. Gehalten?</h2>
-      <p class="text-stone-500" style="font-size:14px;">8 Versprechen der schwarz-rot-grünen Koalition. Du entscheidest: Wer hat geliefert?</p>
+      <h2 class="text-2xl font-extrabold tracking-tight mb-1">Versprochen. Und jetzt?</h2>
+      <p class="text-stone-500" style="font-size:14px;" x-show="bilanzQ >= 0" x-text="'Versprechen ' + (bilanzQ+1) + ' von 8'"></p>
+    </div>
+
+    <!-- Intro card (before theme cards) -->
+    <div x-show="bilanzQ === -1" class="bg-white rounded-2xl border border-stone-200 overflow-hidden mb-4">
+      <div class="px-5 py-6 text-center">
+        <p class="text-stone-600 mb-4" style="font-size:15px; line-height:1.6;">Acht Versprechen aus dem Koalitionsvertrag von 2020, acht Mal die Frage: Was wurde daraus? Die Ampel zeigt den Stand, die Kandidaten zeigen ihre Pläne für die nächste Periode. Du entscheidest pro Thema, wem du die Lösung mehr zutraust.</p>
+        <div class="flex justify-center gap-4 mb-5">
+          <span class="text-stone-500" style="font-size:13px;">🟢 Umgesetzt</span>
+          <span class="text-stone-500" style="font-size:13px;">🟡 Teilweise</span>
+          <span class="text-stone-500" style="font-size:13px;">🔴 Nicht umgesetzt</span>
+        </div>
+        <button @click="bilanzQ = 0; window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl px-8 py-3 transition-colors" style="font-size:15px;">Los geht's →</button>
+      </div>
     </div>
 
     <!-- Dot progress -->
-    <div class="flex justify-center gap-2 mb-5">
+    <div x-show="bilanzQ >= 0" class="flex justify-center gap-2 mb-5">
       <template x-for="i in 8">
         <div class="w-2.5 h-2.5 rounded-full transition-colors" :class="bilanzVotes[i-1] !== null ? 'bg-orange-500' : (bilanzQ === i-1 ? 'bg-stone-400' : 'bg-stone-200')"></div>
       </template>
     </div>
 
-    <!-- Status legend -->
-    <p x-show="bilanzQ === 0" class="text-center text-stone-400 mb-3" style="font-size:12px;">🟢 Umgesetzt · 🟡 Teilweise · 🔴 Nicht umgesetzt</p>
-
     <!-- Current card -->
-    <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden mb-4" :key="bilanzQ">
+    <div x-show="bilanzQ >= 0" class="bg-white rounded-2xl border border-stone-200 overflow-hidden mb-4" :key="bilanzQ">
       <div class="px-5 py-4">
         <!-- Status + category -->
         <div class="flex items-center gap-2 mb-3">
-          <div class="bc-status-dot" :class="'bc-status-' + bcPromises[bilanzQ].status"></div>
-          <span class="text-stone-400 font-medium" style="font-size:13px;" x-text="bcPromises[bilanzQ].category"></span>
+          <div class="bc-status-dot" :class="'bc-status-' + bcPromises[bilanzQ]?.status"></div>
+          <span class="text-stone-400 font-medium" style="font-size:13px;" x-text="bcPromises[bilanzQ]?.category"></span>
           <span class="ml-auto text-stone-300" style="font-size:13px;" x-text="(bilanzQ+1) + '/8'"></span>
         </div>
         <!-- Promise -->
-        <p class="font-bold mb-2" style="font-size:16px;" x-text="bcPromises[bilanzQ].shortTitle"></p>
-        <p class="text-stone-600 mb-3" style="font-size:14px;" x-text="bcPromises[bilanzQ].promise"></p>
+        <p class="font-bold mb-2" style="font-size:16px;" x-text="bcPromises[bilanzQ]?.shortTitle"></p>
+        <p class="text-stone-600 mb-3" style="font-size:14px;" x-text="bcPromises[bilanzQ]?.promise"></p>
         <!-- Reality -->
         <div class="bg-stone-50 rounded-xl p-3 mb-4">
           <p class="text-stone-500 font-semibold mb-1" style="font-size:12px;">Realität</p>
-          <p class="text-stone-600" style="font-size:14px;" x-text="bcPromises[bilanzQ].reality"></p>
+          <p class="text-stone-600" style="font-size:14px;" x-text="bcPromises[bilanzQ]?.reality"></p>
         </div>
         <!-- Candidates -->
         <div class="grid grid-cols-2 gap-3 mb-4">
           <div class="col-r rounded-lg p-3">
             <p class="font-semibold text-stone-700 mb-1" style="font-size:13px;">Reiter</p>
-            <p class="text-stone-500" style="font-size:13px;" x-text="bcPromises[bilanzQ].reiterNow"></p>
+            <p class="text-stone-500" style="font-size:13px;" x-text="bcPromises[bilanzQ]?.reiterNow"></p>
           </div>
           <div class="col-k rounded-lg p-3">
             <p class="font-semibold text-stone-700 mb-1" style="font-size:13px;">Krause</p>
-            <p class="text-stone-500" style="font-size:13px;" x-text="bcPromises[bilanzQ].krauseNow"></p>
+            <p class="text-stone-500" style="font-size:13px;" x-text="bcPromises[bilanzQ]?.krauseNow"></p>
           </div>
         </div>
         <!-- Vote buttons -->
-        <div class="flex gap-2" x-show="bilanzVotes[bilanzQ] === null">
+        <div class="flex gap-2" x-show="bilanzQ >= 0 && bilanzVotes[bilanzQ] === null">
           <button @click="bilanzVote('r')" class="bc-vote-btn flex-1 border-2 border-stone-200 rounded-xl py-3 text-center font-semibold" style="font-size:14px; color:#e57373;">Reiter</button>
           <button @click="bilanzVote('b')" class="bc-vote-btn flex-1 border-2 border-stone-200 rounded-xl py-3 text-center font-semibold text-stone-400" style="font-size:14px;">Weiß nicht</button>
           <button @click="bilanzVote('k')" class="bc-vote-btn flex-1 border-2 border-stone-200 rounded-xl py-3 text-center font-semibold" style="font-size:14px; color:#66bb6a;">Krause</button>
         </div>
-        <div x-show="bilanzVotes[bilanzQ] !== null" class="text-center py-3">
+        <div x-show="bilanzQ >= 0 && bilanzVotes[bilanzQ] !== null" class="text-center py-3">
           <span class="text-stone-400" style="font-size:14px;">✓ Gespeichert</span>
         </div>
       </div>
@@ -745,8 +755,8 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
       </div>
 
       <!-- Bilanz tally -->
-      <p class="text-stone-500 font-semibold mb-1" style="font-size:13px;">Bilanz-Check</p>
-      <p class="text-stone-400 mb-2" style="font-size:12px;">Was wurde geschafft?</p>
+      <p class="text-stone-500 font-semibold mb-1" style="font-size:13px;">Versprochen. Und jetzt?</p>
+      <p class="text-stone-400 mb-2" style="font-size:12px;">Wem traust du die Lösung zu?</p>
       <div class="flex gap-3">
         <div class="flex-1 bg-red-50 rounded-xl p-3 text-center">
           <p class="font-bold" style="font-size:20px; color:#e57373;" x-text="bilanzScoreR"></p>
@@ -1122,7 +1132,7 @@ function stichwahlGuide() {
     expandKrause: false,
 
     // Step 2 state
-    bilanzQ: 0,
+    bilanzQ: -1,
     bilanzVotes: [null, null, null, null, null, null, null, null],
     bcPromises: BC_PROMISES,
 
@@ -1140,7 +1150,7 @@ function stichwahlGuide() {
     get progressPct() {
       if (this.step === 'intro') return 0;
       if (this.step === 1) return 25;
-      if (this.step === 2) return 25 + (this.bilanzQ / 8) * 25;
+      if (this.step === 2) return 25 + (Math.max(0, this.bilanzQ) / 8) * 25;
       if (this.step === 3) return 50 + (this.kanoQ / 8) * 25;
       return 100;
     },
@@ -1155,7 +1165,7 @@ function stichwahlGuide() {
 
     get ctaLabel() {
       if (this.step === 'intro') return 'Jetzt starten →';
-      if (this.step === 1) return 'Weiter: Versprochen. Gehalten? →';
+      if (this.step === 1) return 'Weiter: Versprochen. Und jetzt? →';
       if (this.step === 2) return 'Wähle für jedes Versprechen';
       if (this.step === 3) return 'Beantworte beide Fragen';
       return '';
@@ -1337,7 +1347,7 @@ function stichwahlGuide() {
     restart() {
       this.step = 'intro';
       this.stepHistory = [];
-      this.bilanzQ = 0;
+      this.bilanzQ = -1;
       this.bilanzVotes = [null, null, null, null, null, null, null, null];
       this.kanoQ = 0;
       this.kanoAnswers = Array.from({ length: 8 }, () => ({ pos: null, neg: null }));
