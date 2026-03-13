@@ -35,3 +35,15 @@ _build/
 # Local IDE
 .vscode/
 .idea/
+
+# Stichwahl standalone tools (local only, merged into index.html)
+stichwahl-guide.html
+stichwahl1.html
+stichwahl2.html
+stichwahl3.html
+stichwahl4.html
+stichwahl5.html
+stichwahl6.html
+
+# Superpowers brainstorm artefacts
+.superpowers/
