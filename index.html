@@ -2,7 +2,7 @@
 === PROJECT SPEC — DO NOT REMOVE ===
 WORKFLOW: Read this block → update changelog entry → implement changes → update features → write UNCHANGED line → verify against previous features list.
 
-## FEATURES (v1.0)
+## FEATURES (v1.3)
 ### Navigation
 - 4-step wizard: intro → profiles → bilanz → kano → result
 - Progress bar (4 segments, fills orange per step)
@@ -21,7 +21,7 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 ### Step 2 — Versprochen. Gehalten?
 - 8 coalition promise cards, one at a time
 - Traffic-light status indicator (red/yellow/green)
-- Promise text, reality, both candidates' positions
+- Promise text, reality, both candidates' positions (neutralised)
 - Vote buttons: Reiter / Keiner / Krause
 - Auto-advance after 400ms delay
 - Dot progress indicator (8 dots)
@@ -29,7 +29,7 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 ### Step 3 — Was ist dir wichtig?
 - 8 Kano themes, one at a time
 - Dual questions per theme (positive + negative) both visible on screen
-- Emoji scale: 😊 ✓ — 🤷 😠 (5 horizontal circles)
+- 3 text buttons: Freut mich / Egal / Stört mich
 - Auto-advance after both answered (500ms delay)
 - Dot progress indicator (8 dots)
 
@@ -37,16 +37,18 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 - Hero: archetype emoji + name + description
 - Tendency bar: gradient Reiter←→Krause with orange marker
 - Breakdown: Kano categories per theme + Bilanz tally
+- Kano labels: Begeistert dich / Muss sein / Egal / Dagegen / Unklar
 - Expandable Kano detail accordion per theme
 - Cityscape postcard (München 2032, driven by Kano weights)
 - Share: navigator.share() + clipboard fallback
 - "Nochmal starten" reset button
 
 ### Scoring
-- Kano 5×5 matrix classification (B/L/A/I/R/F)
+- Kano 3×3 matrix classification (B/A/I/R/F — no L)
 - Weighted difference candidate scoring (5-95% spread)
 - Combined tendency: Kano 70% + Bilanz 30%
 - 8 archetypes from Kano priority profile
+- Topic attribution: 3 Krause / 3 Reiter / 2 both (balanced)
 
 ### Technical
 - Single HTML file, Alpine.js + TailwindCSS
@@ -55,6 +57,16 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 - Party colours: #e57373 (Reiter/SPD), #66bb6a (Krause/Grüne)
 
 ## CHANGELOG
+### v1.3 — Neutrality fix + Kano 3×3 + label overhaul
+- CHANGED: Kano from 5×5 matrix to 3×3 (L category removed)
+- CHANGED: Kano UI from 5 emoji buttons to 3 text buttons (Freut mich / Egal / Stört mich)
+- CHANGED: Kano labels to everyday German (Begeistert dich, Muss sein, Egal, Dagegen, Unklar)
+- CHANGED: Topic attribution rebalanced to 3 Krause / 3 Reiter / 2 both (Wohnen→both, Sicherheit→reiter)
+- CHANGED: candidateScore() and archetype indices updated for new attribution
+- FIXED: Bilanz texts neutralised (editorial language removed from reiterNow, Krause credit-claiming on GREEN cards removed)
+- REMOVED: L-explainer from all 8 Kano topics
+- UNCHANGED: navigation, step 1 profiles, result screen layout, cityscape, share, archetypes, combined tendency formula
+
 ### v1.2 — Homepage promotion + PayPal + cleanup
 - CHANGED: Guide is now index.html (was stichwahl-guide.html)
 - ADDED: Full OG/SEO meta tags, canonical URL
@@ -83,7 +95,7 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 ### Design Decisions (do NOT change without asking user)
 - Stepped wizard over long-scroll (focused, no overwhelm)
 - Silent data collection (no per-step results, everything builds toward combined result)
-- Emoji scale for Kano (compact for mobile)
+- 3 text buttons for Kano (Freut mich / Egal / Stört mich — replaced 5 emoji scale)
 - One-at-a-time Bilanz cards (proven UX)
 - Cityscape on result only (not during Kano questions)
 - 70/30 Kano/Bilanz weighting (priorities dominate over track record)
@@ -126,6 +138,39 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 .col-k { border-left: 3px solid #66bb6a; }
 .badge-r { background: #e57373; color: white; }
 .badge-k { background: #66bb6a; color: white; }
+
+/* VS Matchup Graphic */
+.vs-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+  color: white; margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08);
+  border: 3px solid white;
+  position: relative;
+}
+.vs-avatar-r { background: linear-gradient(135deg, #ef5350, #e57373); }
+.vs-avatar-k { background: linear-gradient(135deg, #4caf50, #66bb6a); }
+.vs-divider {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: white;
+  border: 2px solid #e7e5e4;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 900; letter-spacing: 1px;
+  color: #a8a29e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  position: relative; z-index: 2;
+  flex-shrink: 0;
+}
+.vs-connector {
+  position: absolute; top: 50%; left: 0; right: 0;
+  height: 2px; background: #e7e5e4;
+  transform: translateY(-1px);
+  z-index: 0;
+}
+.vs-name-r { font-size: 14px; font-weight: 700; color: #e57373; margin-top: 8px; }
+.vs-name-k { font-size: 14px; font-weight: 700; color: #66bb6a; margin-top: 8px; }
+.vs-party { font-size: 12px; color: #a8a29e; margin-top: 1px; }
 .bg-r { background: #fef5f5; }
 .bg-k { background: #f2faf3; }
 
@@ -197,19 +242,53 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 .tendency-marker { width: 16px; height: 16px; border-radius: 50%; background: #f97316; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.2); position: absolute; top: -4px; transform: translateX(-50%); transition: left 0.6s ease; }
 </style>
 </head>
-<body class="bg-stone-50 text-stone-800 min-h-screen font-[Inter,system-ui,sans-serif]" x-data="stichwahlGuide()" x-cloak>
+<body class="bg-stone-50 text-stone-800 min-h-screen flex flex-col font-[Inter,system-ui,sans-serif]" x-data="stichwahlGuide()" x-cloak>
 
-<!-- Progress Bar -->
-<div class="fixed top-0 left-0 right-0 h-1.5 bg-stone-200 z-50" x-show="step !== 'intro'">
-  <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 progress-fill rounded-r-full" :style="'width:' + progressPct + '%'"></div>
-</div>
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-stone-200" role="navigation" aria-label="Hauptnavigation">
+  <div class="max-w-lg mx-auto px-4 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-2 cursor-pointer" @click="step === 'intro' ? null : restart()">
+      <div class="w-9 h-9 flex items-center justify-center">
+        <img src="assets/icon.png" class="w-full h-full object-contain" alt="MUCwahl Logo">
+      </div>
+      <div class="leading-tight">
+        <span class="text-lg tracking-tight"><span class="font-extrabold text-stone-900">MUC</span><span class="font-light text-stone-900">wahl</span></span>
+        <div class="text-[10px] uppercase font-bold text-stone-400 tracking-wider">Stichwahl München 2026</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <!-- Back button (in-quiz only) -->
+      <button @click="goBack()" x-show="stepHistory.length > 0 && step !== 'intro'" class="text-stone-400 hover:text-stone-700 transition-colors p-1.5" aria-label="Zurück" style="font-size:18px;">←</button>
+      <!-- Burger menu -->
+      <div class="relative" x-data="{ navOpen: false }">
+        <button @click="navOpen = !navOpen" class="text-stone-500 hover:text-stone-900 transition-colors p-2 rounded-lg hover:bg-stone-100" aria-label="Menü">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><circle cx="4" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="16" cy="10" r="1.5"/></svg>
+        </button>
+        <div x-show="navOpen" @click.away="navOpen = false" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+             class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-stone-200 py-1 z-50">
+          <a href="kommunalwahl.html" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 transition-colors">25-Thesen-Quiz</a>
+          <a href="methodik.html" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 transition-colors">Offene Karten</a>
+          <a href="methodik-check.html" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 transition-colors">Kano-Methodik</a>
+          <div class="border-t border-stone-100 mt-1 pt-1">
+            <a href="impressum.html" class="block px-4 py-2 text-sm text-stone-400 hover:bg-stone-50 transition-colors">Impressum</a>
+            <a href="datenschutz.html" class="block px-4 py-2 text-sm text-stone-400 hover:bg-stone-50 transition-colors">Datenschutz</a>
+          </div>
+          <template x-if="step !== 'intro'">
+            <div class="border-t border-stone-100 mt-1 pt-1">
+              <button @click="restart(); navOpen = false" class="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 transition-colors">Neu starten</button>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Progress bar (in-quiz only) -->
+  <div class="h-1 bg-stone-100 w-full overflow-hidden" x-show="step !== 'intro' && step !== 'result'">
+    <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 progress-fill rounded-r-full" :style="'width:' + progressPct + '%'"></div>
+  </div>
+</nav>
 
-<!-- Back Button -->
-<button @click="goBack()" x-show="stepHistory.length > 0 && step !== 'intro'" class="fixed top-4 left-4 z-50 w-10 h-10 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-stone-500 hover:text-stone-800 transition-colors" style="font-size:18px;">
-  ←
-</button>
-
-<div class="max-w-lg mx-auto px-4 pt-8 pb-28 min-h-screen">
+<div class="max-w-lg mx-auto px-4 pt-6 pb-28 min-h-0 flex-grow w-full">
 
   <!-- ==================== INTRO ==================== -->
   <div x-show="step === 'intro'" class="fade-in">
@@ -218,19 +297,18 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
         Stichwahl 22. März
       </div>
       <!-- VS graphic -->
-      <div class="flex items-center justify-center gap-4 mb-6">
-        <div class="text-center">
-          <div class="w-16 h-16 rounded-full badge-r flex items-center justify-center text-2xl font-extrabold mx-auto shadow-md">R</div>
-          <p class="font-bold mt-2" style="font-size:14px; color:#e57373;">Reiter</p>
-          <p class="text-stone-400" style="font-size:12px;">SPD</p>
+      <div class="relative flex items-center justify-center gap-0 mb-6" style="padding: 0 12px;">
+        <div class="vs-connector"></div>
+        <div class="text-center" style="min-width: 88px; position: relative; z-index: 1;">
+          <div class="vs-avatar vs-avatar-r" style="padding-right: 1px;">R</div>
+          <p class="vs-name-r">Reiter</p>
+          <p class="vs-party">SPD</p>
         </div>
-        <div class="flex flex-col items-center">
-          <span class="text-2xl font-black text-stone-300">VS</span>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 rounded-full badge-k flex items-center justify-center text-2xl font-extrabold mx-auto shadow-md">K</div>
-          <p class="font-bold mt-2" style="font-size:14px; color:#66bb6a;">Krause</p>
-          <p class="text-stone-400" style="font-size:12px;">Grüne</p>
+        <div class="vs-divider">VS</div>
+        <div class="text-center" style="min-width: 88px; position: relative; z-index: 1;">
+          <div class="vs-avatar vs-avatar-k" style="padding-left: 1px;">K</div>
+          <p class="vs-name-k">Krause</p>
+          <p class="vs-party">Grüne</p>
         </div>
       </div>
 
@@ -256,14 +334,9 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
           </div>
         </div>
       </div>
-      <div class="flex flex-wrap justify-center gap-3 mb-2" style="font-size:13px;">
-        <a href="kommunalwahl.html" class="text-orange-600 font-medium hover:underline">25-Thesen-Quiz →</a>
-        <a href="methodik.html" class="text-stone-500 hover:underline">Methodik</a>
-      </div>
       <p class="text-stone-400" style="font-size:12px;">Keine Cookies. Kein Tracking. Alle Quellen verlinkt.</p>
-      <div class="flex justify-center gap-4 mt-2" style="font-size:12px;">
-        <a href="impressum.html" class="text-stone-400 hover:text-stone-600">Impressum</a>
-        <a href="datenschutz.html" class="text-stone-400 hover:text-stone-600">Datenschutz</a>
+      <div class="flex flex-wrap justify-center gap-3 mt-2" style="font-size:13px;">
+        <a href="kommunalwahl.html" class="text-orange-600 font-medium hover:underline">25-Thesen-Quiz →</a>
       </div>
     </div>
   </div>
@@ -603,40 +676,36 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
     <!-- Current theme -->
     <div :key="kanoQ">
       <div class="text-center mb-4">
-        <span style="font-size:28px;" x-text="kanoTopics[kanoQ].emoji"></span>
-        <p class="font-bold mt-1" style="font-size:16px;" x-text="kanoTopics[kanoQ].label"></p>
-        <p class="text-stone-400" style="font-size:13px;" x-text="kanoTopics[kanoQ].desc"></p>
+        <span style="font-size:28px;" x-text="kanoTopics[kanoQ]?.emoji"></span>
+        <p class="font-bold mt-1" style="font-size:16px;" x-text="kanoTopics[kanoQ]?.label"></p>
+        <p class="text-stone-400" style="font-size:13px;" x-text="kanoTopics[kanoQ]?.desc"></p>
       </div>
 
       <!-- Positive question -->
       <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-3">
-        <p class="text-stone-700 mb-3" style="font-size:14px;" x-text="kanoTopics[kanoQ].posQ"></p>
-        <div class="flex justify-between gap-1">
+        <p class="text-stone-700 mb-3" style="font-size:14px;" x-text="kanoTopics[kanoQ]?.posQ"></p>
+        <div class="flex gap-2">
           <template x-for="(opt, idx) in emojiScale">
             <button @click="kanoAnswers[kanoQ].pos = idx; checkKanoAdvance()"
-              class="emoji-opt" :class="kanoAnswers[kanoQ].pos === idx ? 'selected' : ''"
-              x-text="opt.emoji" :title="opt.label"></button>
+              class="kano-opt flex-1 py-2.5 rounded-xl border-2 text-center font-medium transition-all"
+              :class="kanoAnswers[kanoQ]?.pos === idx ? 'border-green-500 bg-green-100 text-green-700' : 'border-stone-200 text-stone-500 hover:border-stone-300'"
+              style="font-size:13px;"
+              x-text="opt.label"></button>
           </template>
-        </div>
-        <div class="flex justify-between mt-1 px-1">
-          <span class="text-stone-400" style="font-size:10px;">Freut mich</span>
-          <span class="text-stone-400" style="font-size:10px;">Stört mich</span>
         </div>
       </div>
 
       <!-- Negative question -->
       <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-3">
-        <p class="text-stone-700 mb-3" style="font-size:14px;" x-text="kanoTopics[kanoQ].negQ"></p>
-        <div class="flex justify-between gap-1">
+        <p class="text-stone-700 mb-3" style="font-size:14px;" x-text="kanoTopics[kanoQ]?.negQ"></p>
+        <div class="flex gap-2">
           <template x-for="(opt, idx) in emojiScale">
             <button @click="kanoAnswers[kanoQ].neg = idx; checkKanoAdvance()"
-              class="emoji-opt" :class="kanoAnswers[kanoQ].neg === idx ? 'selected' : ''"
-              x-text="opt.emoji" :title="opt.label"></button>
+              class="kano-opt flex-1 py-2.5 rounded-xl border-2 text-center font-medium transition-all"
+              :class="kanoAnswers[kanoQ]?.neg === idx ? 'border-red-400 bg-red-100 text-red-700' : 'border-stone-200 text-stone-500 hover:border-stone-300'"
+              style="font-size:13px;"
+              x-text="opt.label"></button>
           </template>
-        </div>
-        <div class="flex justify-between mt-1 px-1">
-          <span class="text-stone-400" style="font-size:10px;">Freut mich</span>
-          <span class="text-stone-400" style="font-size:10px;">Stört mich</span>
         </div>
       </div>
     </div>
@@ -787,30 +856,38 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
     </div>
 
     <!-- Footer links -->
-    <div class="space-y-2 mb-4">
-      <div class="flex flex-wrap justify-center gap-3" style="font-size:13px;">
-        <a href="kommunalwahl.html" class="text-orange-600 font-medium hover:underline">25-Thesen-Quiz</a>
-        <a href="methodik.html" class="text-stone-500 hover:underline">Methodik</a>
-        <a href="methodik-check.html" class="text-stone-500 hover:underline">Kano-Methodik</a>
-      </div>
-      <p class="text-center text-stone-400" style="font-size:12px;">
-        Keine Cookies. Kein Tracking. Alle Quellen verlinkt.
-      </p>
-      <div class="flex justify-center gap-4" style="font-size:12px;">
-        <a href="impressum.html" class="text-stone-400 hover:text-stone-600">Impressum</a>
-        <a href="datenschutz.html" class="text-stone-400 hover:text-stone-600">Datenschutz</a>
-        <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener" class="text-stone-400 hover:text-stone-600">GitHub</a>
-      </div>
+    <div class="text-center mb-4">
+      <a href="kommunalwahl.html" class="text-orange-600 font-medium hover:underline" style="font-size:13px;">25-Thesen-Quiz →</a>
     </div>
   </div>
 
 </div>
 
+<!-- Footer -->
+<footer class="border-t border-stone-200 mt-auto bg-white" x-show="step === 'intro' || step === 'result'" role="contentinfo">
+  <div class="max-w-lg mx-auto px-4 py-6 flex flex-col items-center text-sm text-stone-500 gap-3">
+    <div>&copy; 2026 MUCwahl München. Unabhängig & Werbefrei.</div>
+    <div class="flex items-center gap-4 flex-wrap justify-center">
+      <a href="impressum.html" class="hover:text-stone-900 transition-colors">Impressum</a>
+      <a href="datenschutz.html" class="hover:text-stone-900 transition-colors">Datenschutz</a>
+      <a href="methodik.html" class="hover:text-stone-900 transition-colors">Offene Karten</a>
+      <a href="https://paypal.me/frederikmetz" target="_blank" rel="noopener noreferrer" class="hover:text-stone-900 transition-colors">Unterstützen</a>
+      <a href="https://github.com/frederikmetz42/mucwahl.de" target="_blank" rel="noopener noreferrer" class="hover:text-stone-900 transition-colors p-1" title="GitHub"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
 <!-- Sticky CTA -->
-<div class="fixed bottom-0 left-0 right-0 p-4 bg-stone-50 border-t border-stone-200 z-40" x-show="step !== 'result'">
+<div x-show="step !== 'result'" class="fixed bottom-0 left-0 right-0 z-40" :class="step === 'intro' ? 'p-5' : 'p-4 bg-stone-50/90 backdrop-blur-sm border-t border-stone-200'">
   <div class="max-w-lg mx-auto">
-    <button @click="nextStep()" class="w-full bg-stone-800 text-white font-semibold py-4 rounded-xl hover:bg-stone-700 active:bg-stone-900 transition-colors" style="font-size:15px;"
-      :disabled="!canAdvance" :class="canAdvance ? '' : 'opacity-40 cursor-not-allowed'">
+    <button @click="nextStep()" style="font-size:15px;"
+      :disabled="!canAdvance"
+      :class="[
+        step === 'intro'
+          ? 'w-full bg-orange-500 text-white font-bold py-4 rounded-2xl hover:bg-orange-600 active:bg-orange-700 transition-all shadow-lg shadow-orange-500/25'
+          : 'w-full bg-stone-800 text-white font-semibold py-4 rounded-xl hover:bg-stone-700 active:bg-stone-900 transition-colors',
+        canAdvance ? '' : 'opacity-40 cursor-not-allowed'
+      ]">
       <span x-text="ctaLabel"></span>
     </button>
   </div>
@@ -826,7 +903,7 @@ function stichwahlGuide() {
       promise: 'Du solltest bis 2025 autofrei durch die Altstadt laufen können. Kein privater Autoverkehr innerhalb des Altstadtrings.',
       status: 'red',
       reality: 'Aus "autofrei" wurde "autoreduziert", dann "Altstadt für alle". Reiter erklärte 2021: "München wird erstmal nicht autofrei." Kein systematischer Autoausschluss umgesetzt.',
-      reiterNow: '"Ausgewogener Verkehrsmix ohne ideologische Grabenkämpfe." Will niemanden aus dem Auto zwingen.',
+      reiterNow: '"Altstadt für alle Verkehrsteilnehmer." Autoverkehr reduzieren, aber nicht verbieten. Ausgewogener Verkehrsmix.',
       krauseNow: 'Fußgängerzonen erweitern, Autoverkehr reduzieren. Radentscheid vollständig umsetzen.'
     },
     {
@@ -835,8 +912,8 @@ function stichwahlGuide() {
       promise: 'Jedes Jahr sollten 8.500 neue Wohnungen entstehen, damit du dir München noch leisten kannst.',
       status: 'yellow',
       reality: '2024 wurden 7.100 Wohnungen fertiggestellt. Neuvermietung liegt bei über 20 Euro/qm. Ziel knapp verfehlt, Richtung stimmt.',
-      reiterNow: 'Keine konkreten Neubauzahlen im neuen Programm. "Bezahlbar bauen, wo Platz ist."',
-      krauseNow: '50.000 neue Wohnungen in 3 Säulen. 10.000 davon aus Büroleerstand. Konkrete Finanzierung offen.'
+      reiterNow: '"Bezahlbar bauen, wo Platz ist." Städtische Wohnbaugesellschaften stärken, Genehmigungen beschleunigen.',
+      krauseNow: '50.000 neue Wohnungen in 3 Säulen, 10.000 aus Büroleerstand. Finanzierung offen.'
     },
     {
       shortTitle: '5 Tramlinien',
@@ -844,7 +921,7 @@ function stichwahlGuide() {
       promise: '5 neue Tramlinien und 15+ km neues Tramnetz sollten deinen Weg zur Arbeit schneller machen.',
       status: 'red',
       reality: 'Nur 1 Teilstück gebaut (Tram 14, Westtangente, seit Feb 2026). Tram 23 und 24 frühestens 2027-2029. 4 von 5 Linien nicht mal begonnen.',
-      reiterNow: 'Unterstützt U5 und U9 Großprojekte. Tram-Ausbau nicht prominent im Programm.',
+      reiterNow: 'Fokus auf U-Bahn-Großprojekte (U5, U9). Tram-Ausbau fortsetzen, wo sinnvoll.',
       krauseNow: 'Tram + U-Bahn + eigene Busspuren. Grüne hatten das Mobilitätsreferat, konnten den Ausbau nicht beschleunigen.'
     },
     {
@@ -852,9 +929,9 @@ function stichwahlGuide() {
       category: 'Mobilität',
       promise: '1,6 Milliarden Euro für sichere Radwege. 560 km geschützte Radinfrastruktur bis 2025. Das war das Versprechen an 160.000 Münchner, die unterschrieben haben.',
       status: 'red',
-      reality: '70 Millionen von 1,6 Milliarden ausgegeben (4,4%). Etwa 30 von 560 km umgesetzt. Bei diesem Tempo wäre der Radentscheid im Jahr 2175 fertig.',
-      reiterNow: 'SPD stimmte 2022 mit CSU für einen 3-km-Autotunnel (BMW). Radentscheid nicht im Fokus.',
-      krauseNow: 'Radentscheid vollständig umsetzen. Grüne hatten das Mobilitätsreferat, tragen Mitverantwortung für das Tempo.'
+      reality: '70 Millionen von 1,6 Milliarden ausgegeben (4,4%). Etwa 30 von 560 km umgesetzt. Bei diesem Tempo wäre der Radentscheid im Jahr 2175 fertig. SPD stimmte 2022 mit CSU für einen Autotunnel statt Rad-Priorisierung.',
+      reiterNow: 'Radwege weiter ausbauen, aber pragmatisch. Autoverkehr nicht verdrängen, sondern besser lenken.',
+      krauseNow: 'Radentscheid vollständig umsetzen. Grüne tragen Mitverantwortung für das Tempo.'
     },
     {
       shortTitle: 'Klimaneutralität 2035',
@@ -863,7 +940,7 @@ function stichwahlGuide() {
       status: 'yellow',
       reality: 'SWM erzeugt rechnerisch 100% Ökostrom. PV-Ausbau verdoppelt, aber unter Landesdurchschnitt. Mobilitätswende stockt. Fahrplan steht, Tempo reicht nicht.',
       reiterNow: '"Sozial verträglicher Klimaschutz." Klimaneutralität bleibt Ziel, aber nicht auf Kosten anderer Prioritäten.',
-      krauseNow: 'Klimaneutralität beschleunigen. Solar- und Geothermie-Ausbau. Tausende zusätzliche Bäume.'
+      krauseNow: 'Klimaneutralität beschleunigen. Solar- und Geothermie-Ausbau forcieren.'
     },
     {
       shortTitle: 'Kita-Ausbau',
@@ -871,8 +948,8 @@ function stichwahlGuide() {
       promise: 'Betreuungsgarantie für alle Kinder. Genug Kita-Plätze, damit du arbeiten gehen kannst.',
       status: 'yellow',
       reality: '3.200 neue Plätze seit 2020 geschaffen. Aber: Noch rund 5.000 Plätze fehlen. Warteliste in manchen Stadtteilen über 12 Monate.',
-      reiterNow: 'Kita-Ausbau bleibt Kernversprechen. Betreuungsgarantie als Priorität.',
-      krauseNow: 'Kita-Gebühren senken. Ausbau fortsetzen, aber auch Qualität der Betreuung verbessern.'
+      reiterNow: 'Kita-Ausbau bleibt Kernversprechen. Betreuungsgarantie als Top-Priorität.',
+      krauseNow: 'Kita-Gebühren senken, Ausbau fortsetzen, Betreuungsqualität verbessern.'
     },
     {
       shortTitle: 'Bildungsbauoffensive',
@@ -880,8 +957,8 @@ function stichwahlGuide() {
       promise: 'München sollte massiv in Schulen und Kitas investieren, das größte kommunale Schulbauprogramm Deutschlands.',
       status: 'green',
       reality: '9,4 Milliarden Euro bewilligt. Dutzende Schulen und Kitas gebaut oder saniert. Größtes kommunales Bildungsbauprogramm der Republik.',
-      reiterNow: 'Programm fortsetzen und beschleunigen. Bildung bleibt Kernthema.',
-      krauseNow: 'Investitionen beibehalten, Qualität stärken. Grüne haben das Programm mitgetragen und mitbeschlossen.'
+      reiterNow: 'Programm fortsetzen und beschleunigen. Bildung bleibt Kernthema der nächsten Amtszeit.',
+      krauseNow: 'Investitionen beibehalten, Qualität stärken, Schulbau entbürokratisieren.'
     },
     {
       shortTitle: 'Ökostrom & Geothermie',
@@ -889,36 +966,34 @@ function stichwahlGuide() {
       promise: 'Die Stadtwerke sollten München mit erneuerbarer Energie versorgen und die Geothermie ausbauen.',
       status: 'green',
       reality: 'SWM erzeugt rechnerisch 100% Ökostrom aus eigenen Anlagen weltweit. Geothermie-Ausbau macht München zum Vorreiter unter den deutschen Großstädten.',
-      reiterNow: 'Geothermie weiter ausbauen. SWM als Treiber der Energiewende erhalten.',
-      krauseNow: 'Ausbau beschleunigen, Fernwärme aus Geothermie verdoppeln. Grüne haben den Geothermie-Ausbau im Koalitionsvertrag verankert.'
+      reiterNow: 'Geothermie weiter ausbauen. SWM als Treiber der Energiewende stärken und verstetigen.',
+      krauseNow: 'Fernwärme aus Geothermie verdoppeln. Ausbau-Tempo erhöhen.'
     }
   ];
 
   // === Kano Data ===
+  // 3×3 Kano matrix: rows = negative answer (0=Freut mich, 1=Egal, 2=Stört mich), cols = positive answer
   const KANO_MATRIX = [
-    ['F', 'R', 'R', 'R', 'R'],
-    ['B', 'I', 'I', 'I', 'R'],
-    ['B', 'I', 'I', 'I', 'R'],
-    ['B', 'I', 'I', 'I', 'R'],
-    ['B', 'L', 'A', 'A', 'F'],
+    ['F', 'R', 'R'],
+    ['B', 'I', 'R'],
+    ['B', 'A', 'F'],
   ];
 
-  const KANO_LABELS = { B: 'Begeisterung', L: 'Leistung', A: 'Basis', I: 'Indifferent', R: 'Rückweisung', F: 'Fraglich' };
-  const KANO_KEYS = { B: 'begeisterung', L: 'leistung', A: 'basis', I: 'indifferent', R: 'rueckweisung', F: 'fraglich' };
-  const KANO_WEIGHTS = { B: 3, L: 2, A: 1, I: 0, R: -2, F: 0 };
+  const KANO_LABELS = { B: 'Begeistert dich', A: 'Muss sein', I: 'Egal', R: 'Dagegen', F: 'Unklar' };
+  const KANO_KEYS = { B: 'begeisterung', A: 'basis', I: 'indifferent', R: 'rueckweisung', F: 'fraglich' };
+  const KANO_WEIGHTS = { B: 3, A: 1, I: 0, R: -2, F: 0 };
 
   const KANO_TOPICS = [
     {
       label: 'Wohnen', emoji: '\u{1F3E0}', desc: 'Bezahlbare Wohnungen, Neubau, Mieterschutz',
-      candidateId: 'krause', cityId: 'wohnen',
+      candidateId: 'both', cityId: 'wohnen',
       posQ: 'Wie fändest du es, wenn der nächste OB 50.000 neue bezahlbare Wohnungen baut und eine Agentur gegen Spekulation gründet?',
       negQ: 'Wie fändest du es, wenn der nächste OB den Wohnungsbau dem Markt überlässt und keine neuen Bauziele setzt?',
       explainers: {
-        B: 'Wohnen begeistert dich. Krause hat genau das zu seinem Kernversprechen gemacht: 50.000 Wohnungen, SEM Nord, Leerstand umwandeln.',
-        L: 'Je mehr beim Wohnen passiert, desto zufriedener bist du. Das ist ein klassisches Leistungsthema.',
+        B: 'Wohnen begeistert dich. Beide Kandidaten versprechen Neubau, Krause mit konkreteren Zahlen (50.000), Reiter mit Fokus auf städtische Wohnbaugesellschaften.',
         A: 'Wohnen ist für dich Pflicht. Wenn hier nichts passiert, ist alles andere egal.',
         I: 'Wohnungsbau ist dir nicht besonders wichtig. Das Thema beeinflusst deine Wahlentscheidung kaum.',
-        R: 'Den aktiven Wohnungsbau lehnst du ab. Du siehst das anders als Krause, der 50.000 neue Wohnungen bauen will.',
+        R: 'Den aktiven Wohnungsbau lehnst du ab. Du siehst das anders als beide Kandidaten.',
         F: 'Deine Antworten passen nicht ins Muster. Vielleicht hast du das Thema anders verstanden als gemeint.'
       }
     },
@@ -929,7 +1004,6 @@ function stichwahlGuide() {
       negQ: 'Wie fändest du es, wenn der nächste OB beim ÖPNV nichts Neues baut und auf Bundesgelder wartet?',
       explainers: {
         B: 'Tram-Ausbau begeistert dich. Krause will Ausbau vor Gratisticket.',
-        L: 'Mehr ÖPNV heißt für dich mehr Zufriedenheit. Je besser das Netz, desto besser dein Urteil.',
         A: 'ÖPNV-Ausbau ist für dich selbstverständlich. Ohne Fortschritt wärst du enttäuscht.',
         I: 'ÖPNV-Ausbau bewegt dich nicht besonders.',
         R: 'Du willst keinen massiven Tramausbau. Deine Prioritäten liegen woanders.',
@@ -943,7 +1017,6 @@ function stichwahlGuide() {
       negQ: 'Wie fändest du es, wenn der nächste OB den Straßenraum so lässt wie er ist und keine Flächen umverteilt?',
       explainers: {
         B: 'Weniger Autos, mehr Lebensqualität begeistert dich. Krause will Straßenraum umverteilen.',
-        L: 'Je konsequenter der Umbau, desto besser. Du belohnst Fortschritt.',
         A: 'Straßenraum für Menschen ist für dich Grundvoraussetzung.',
         I: 'Die Aufteilung des Straßenraums ist dir relativ egal.',
         R: 'Du willst keinen Rückbau des Autoverkehrs. Deine Position liegt näher bei Reiters "ausgewogenem Verkehrsmix".',
@@ -957,7 +1030,6 @@ function stichwahlGuide() {
       negQ: 'Wie fändest du es, wenn der nächste OB Klimaschutz anderen Prioritäten unterordnet und keinen festen Zeitplan setzt?',
       explainers: {
         B: 'Ambitionierter Klimaschutz begeistert dich. Krause will 2035 als festes Ziel.',
-        L: 'Je ambitionierter der Klimaschutz, desto zufriedener bist du.',
         A: 'Klimaschutz ist für dich Grundvoraussetzung.',
         I: 'Klimapolitik beeinflusst deine Wahlentscheidung wenig.',
         R: 'Du lehnst einen aggressiven Klimazeitplan ab. Reiters vorsichtigerer Ansatz liegt dir näher.',
@@ -966,12 +1038,11 @@ function stichwahlGuide() {
     },
     {
       label: 'Sicherheit & Ordnung', emoji: '\u{1F6E1}\u{FE0F}', desc: 'Polizeipräsenz, Sozialarbeit, Prävention',
-      candidateId: 'both', cityId: 'sicher',
+      candidateId: 'reiter', cityId: 'sicher',
       posQ: 'Wie fändest du es, wenn der nächste OB mehr Polizeipräsenz mit Sozialarbeit und Prävention kombiniert?',
       negQ: 'Wie fändest du es, wenn der nächste OB bei Sicherheit und Ordnung keine neuen Akzente setzt?',
       explainers: {
-        B: 'Die Kombination aus Sicherheit und Prävention begeistert dich. Beide Kandidaten versprechen das.',
-        L: 'Je besser die Sicherheitslage, desto zufriedener bist du.',
+        B: 'Sicherheit begeistert dich. Reiter setzt auf mehr Polizeipräsenz kombiniert mit Prävention.',
         A: 'Sicherheit ist Pflicht. Wenn der OB hier nicht liefert, hilft alles andere nicht.',
         I: 'Sicherheit steht bei dir nicht im Vordergrund.',
         R: 'Du lehnst mehr Polizeipräsenz ab, auch mit Sozialarbeit kombiniert.',
@@ -985,7 +1056,6 @@ function stichwahlGuide() {
       negQ: 'Wie fändest du es, wenn Behördengänge weiterhin Wartezeit und persönliches Erscheinen erfordern?',
       explainers: {
         B: 'Digitale Verwaltung begeistert dich. Reiter hat hier ein laufendes Digitalisierungsprogramm.',
-        L: 'Je digitaler die Verwaltung, desto besser.',
         A: 'Digitale Behördengänge sind für dich selbstverständlich.',
         I: 'Digitalisierung der Verwaltung ist dir nicht besonders wichtig.',
         R: 'Du willst keine vollständige Digitalisierung. Vielleicht schätzt du persönlichen Kontakt.',
@@ -999,7 +1069,6 @@ function stichwahlGuide() {
       negQ: 'Wie fändest du es, wenn der nächste OB Kulturförderung dem Markt überlässt und keine Räume für Subkultur schafft?',
       explainers: {
         B: 'Subkulturschutz begeistert dich. Krause hat sich konkret für Zwischennutzung eingesetzt.',
-        L: 'Je mehr für Kultur passiert, desto besser.',
         A: 'Kulturförderung ist Grunderwartung.',
         I: 'Subkultur und Ateliers sind dir nicht besonders wichtig.',
         R: 'Du lehnst aktive Subkulturförderung ab.',
@@ -1013,7 +1082,6 @@ function stichwahlGuide() {
       negQ: 'Wie fändest du es, wenn der nächste OB erst in die Rolle hineinwachsen muss und die internen Abläufe neu lernt?',
       explainers: {
         B: 'Erfahrung begeistert dich. Reiter hat 12 Jahre Amtserfahrung.',
-        L: 'Je mehr Verwaltungskompetenz, desto besser.',
         A: 'Amtserfahrung ist Pflicht.',
         I: 'Ob der OB Erfahrung mitbringt oder nicht, ist dir egal. Du schaust auf die Inhalte.',
         R: 'Du willst keinen Amtsinhaber-Bonus. Für dich ist es Zeit für jemand Neues.',
@@ -1034,13 +1102,11 @@ function stichwahlGuide() {
     'ACG': { emoji: '\u{1F3D7}', label: 'Münchens Macher:in', desc: 'Pragmatisch und ehrgeizig. Hauptsache, es wird was.' }
   };
 
-  // === Emoji Scale ===
+  // === 3-option text scale ===
   const EMOJI_SCALE = [
-    { emoji: '\u{1F60A}', label: 'Freut mich' },
-    { emoji: '\u{2713}', label: 'Erwarte ich' },
-    { emoji: '\u{2014}', label: 'Egal' },
-    { emoji: '\u{1F937}', label: 'Tolerierbar' },
-    { emoji: '\u{1F620}', label: 'Stört mich' }
+    { emoji: 'Freut mich', label: 'Freut mich' },
+    { emoji: 'Egal', label: 'Egal' },
+    { emoji: 'Stört mich', label: 'Stört mich' }
   ];
 
   return {
@@ -1178,9 +1244,9 @@ function stichwahlGuide() {
 
     // === Candidate Scoring (weighted difference) ===
     candidateScore(candidateId) {
-      const krauseTopics = [0, 1, 2, 3, 6];
-      const reiterTopics = [5, 7];
-      const bothTopics = [4];
+      const krauseTopics = [1, 2, 3, 6];
+      const reiterTopics = [4, 5, 7];
+      const bothTopics = [0];
       let topics;
       if (candidateId === 'krause') topics = [...krauseTopics, ...bothTopics];
       else topics = [...reiterTopics, ...bothTopics];
@@ -1222,8 +1288,8 @@ function stichwahlGuide() {
     get archetype() {
       // Derive 3-letter code from Kano priorities
       // Axis 1: Vision (change topics B/L) vs Anchor (continuity topics B/L)
-      const changeTopics = [0, 1, 2, 3, 6]; // Krause topics
-      const contTopics = [5, 7]; // Reiter topics
+      const changeTopics = [1, 2, 3, 6]; // Krause topics
+      const contTopics = [4, 5, 7]; // Reiter topics
       let changeScore = 0, contScore = 0;
       for (const i of changeTopics) { changeScore += KANO_WEIGHTS[this.getKanoCode(i)] || 0; }
       for (const i of contTopics) { contScore += KANO_WEIGHTS[this.getKanoCode(i)] || 0; }
