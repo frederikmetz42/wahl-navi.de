@@ -1,5 +1,17 @@
 # Changelog
 
+## v4.19 - 2026-03-13 - Unified Stichwahl-Guide als Homepage
+- **Added:** `index.html` — Unified 4-step Stichwahl-Wizard (Kandidaten-Profil → Bilanz-Check → München-Check → Ergebnis) als Homepage
+- **Added:** `kommunalwahl.html` — 25-Thesen-Quiz (Kopie des alten index.html) unter eigener URL
+- **Added:** Tab-basiertes Step 1: Person | Kontroversen | Programm (expandierbare Timelines, stacked Themen-Vergleich)
+- **Added:** VS-Grafik (Reiter rot vs. Krause grün) auf Guide-Intro
+- **Added:** PayPal-Spendenbox auf Ergebnisseite
+- **Added:** Footer-Links (25-Thesen-Quiz, Methodik, Impressum, Datenschutz) auf Intro + Ergebnis
+- **Changed:** `stichwahl.html` → Redirect auf index.html (meta-refresh)
+- **Changed:** `methodik.html` — Stichwahl-Sektion auf einen Guide-Link reduziert, Kano-Methodik ergänzt
+- **Changed:** `methodik-check.html` — stichwahl4-Links → index.html
+- **Removed:** stichwahl1-6.html + stichwahl-guide.html aus git (lokal behalten via .gitignore)
+
 ## v4.18 - 2026-03-12 - Workshop-Umsetzung: Playlist + Merges + Scoring-Fix
 - **Added:** `stichwahl.html` — Playlist-Landingpage (4 Schritte + optionaler Simulator + "Jetzt starten" CTA)
 - **Added:** `stichwahl1.html` — Deine Wahl (verschoben von stichwahl.html)
