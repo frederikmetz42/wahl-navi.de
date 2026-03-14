@@ -221,7 +221,7 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
 .kano-fraglich { background: #fef3c7; color: #92400e; }
 
 /* Priority quadrant pills */
-.pq-pill { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.pq-pill { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
 
 /* Step 1 tabs */
 .s1-tab { padding: 8px 0; font-size: 14px; font-weight: 600; color: #78716c; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s ease; text-align: center; }
@@ -1409,13 +1409,27 @@ function stichwahlGuide() {
       ctx.fillStyle = '#a8a29e'; ctx.font = '16px Inter, system-ui, sans-serif'; ctx.textAlign = 'center';
       ctx.fillText('Wichtig = Begeistert dich / Erwarte ich · Match = passt zu deiner Tendenz', W/2, gY + 2*gH + 2*gap + 30);
 
-      // Footer branding
-      ctx.fillStyle = '#d6d3d1';
-      ctx.fillRect(0, H - 80, W, 80);
-      ctx.fillStyle = '#78716c'; ctx.font = 'bold 28px Inter, system-ui, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText('mucwahl.de', W/2, H - 38);
-      ctx.fillStyle = '#a8a29e'; ctx.font = '18px Inter, system-ui, sans-serif';
-      ctx.fillText('Stichwahl München 2026 · Kein Tracking', W/2, H - 14);
+      // Footer banner (matches homepage nav: stone-800 bg, MUCwahl branding)
+      ctx.fillStyle = '#292524';
+      ctx.fillRect(0, H - 90, W, 90);
+      // "MUC" bold + "wahl" light
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      const brandY = H - 52;
+      ctx.font = '900 32px Inter, system-ui, sans-serif'; ctx.fillStyle = '#fafaf9';
+      const mucW = ctx.measureText('MUC').width;
+      ctx.font = '300 32px Inter, system-ui, sans-serif';
+      const wahlW = ctx.measureText('wahl').width;
+      const totalW = mucW + wahlW;
+      const startX = W/2 - totalW/2;
+      ctx.font = '900 32px Inter, system-ui, sans-serif'; ctx.fillStyle = '#fafaf9';
+      ctx.textAlign = 'left';
+      ctx.fillText('MUC', startX, brandY);
+      ctx.font = '300 32px Inter, system-ui, sans-serif';
+      ctx.fillText('wahl', startX + mucW, brandY);
+      // Subtitle
+      ctx.fillStyle = '#a8a29e'; ctx.font = '700 14px Inter, system-ui, sans-serif'; ctx.textAlign = 'center';
+      ctx.letterSpacing = '2px';
+      ctx.fillText('STICHWAHL MÜNCHEN 2026', W/2, H - 22);
 
       return c;
     },
