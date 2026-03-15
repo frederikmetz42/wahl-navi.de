@@ -1351,11 +1351,14 @@ function stichwahlGuide() {
 
     get tendenzShort() {
       const t = this.tendency;
-      if (t > 0.25) return 'Tendenz: Krause (Grüne)';
-      if (t > 0.1) return 'Leichte Tendenz: Krause';
-      if (t < -0.25) return 'Tendenz: Reiter (SPD)';
-      if (t < -0.1) return 'Leichte Tendenz: Reiter';
-      return 'Beide nah beieinander';
+      const r = Math.round(50 - t * 42);
+      const k = 100 - r;
+      const ratio = ' (' + r + ':' + k + ')';
+      if (t > 0.25) return 'Tendenz: Krause (Grüne)' + ratio;
+      if (t > 0.1) return 'Leichte Tendenz: Krause' + ratio;
+      if (t < -0.25) return 'Tendenz: Reiter (SPD)' + ratio;
+      if (t < -0.1) return 'Leichte Tendenz: Reiter' + ratio;
+      return 'Beide nah beieinander' + ratio;
     },
 
     // === Archetype (from Kano profile) ===
