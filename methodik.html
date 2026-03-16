@@ -21,6 +21,20 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/icon.png">
     <link rel="canonical" href="https://mucwahl.de/methodik.html">
+    <script type="speculationrules">
+{
+    "prefetch": [
+        {
+            "urls": [
+                "/",
+                "/kommunalwahl.html",
+                "/methodik-check.html"
+            ],
+            "eagerness": "moderate"
+        }
+    ]
+}
+</script>
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col" x-data="{ expandCalc: false, expandTheses: false, expandSources: false, expandAllTheses: false, expandedThesis: null, get theses() { return window.WAHLOMAT_DATA ? window.WAHLOMAT_DATA.theses : [] } }">
 

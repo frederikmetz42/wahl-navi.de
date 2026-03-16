@@ -96,6 +96,20 @@
         ]
     }
     </script>
+    <script type="speculationrules">
+{
+    "prefetch": [
+        {
+            "urls": [
+                "/",
+                "/methodik.html",
+                "/schnellcheck.html"
+            ],
+            "eagerness": "moderate"
+        }
+    ]
+}
+</script>
 </head>
 <body class="antialiased min-h-screen flex flex-col" x-data="wahlomatApp()" x-cloak @keydown.window="handleKeydown($event)">
 
