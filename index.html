@@ -306,6 +306,26 @@ WORKFLOW: Read this block → update changelog entry → implement changes → u
     "browserRequirements": "Requires JavaScript"
 }
 </script>
+<script type="speculationrules">
+{
+    "prefetch": [
+        {
+            "urls": [
+                "/kommunalwahl.html",
+                "/methodik.html",
+                "/schnellcheck.html"
+            ],
+            "eagerness": "moderate"
+        }
+    ],
+    "prerender": [
+        {
+            "urls": ["/kommunalwahl.html"],
+            "eagerness": "conservative"
+        }
+    ]
+}
+</script>
 </head>
 <body class="bg-stone-50 text-stone-800 min-h-screen flex flex-col font-[Inter,system-ui,sans-serif]" x-data="stichwahlGuide()" x-cloak>
 
