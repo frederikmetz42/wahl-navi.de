@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.20e - 2026-03-16 - Ergebnis-Transparenz
+- **Added:** Tendenz-Verhältnis (z.B. 45:55) neben Textlabel im Ergebnis + Share-Text
+- **Added:** Richtungspfeile pro Kano-Thema im Breakdown (→ Krause / → Reiter / → beide)
+- **Changed:** Issue-Log um v4.20e-Einträge und Rückkanal-Spalte erweitert
+
 ## v4.20d - 2026-03-15 - Kano-Asymmetrie-Fix + Krause-Digital
 - **Fixed:** Kano negQ: 6 von 8 negQ um "auch wenn"-Trade-off ergänzt (Verkehr, Klima, Amtserfahrung komplett neu; Wohnen, Sicherheit, Kultur ergänzt)
 - **Fixed:** Amtserfahrung posQ: Trade-off "Seilschaften" ergänzt (vorher nur positiv)
