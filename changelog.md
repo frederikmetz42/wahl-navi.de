@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.20f - 2026-03-16 - AI Overviews + Speculation Rules
+- **Added:** FAQ structured data (JSON-LD) on `index.html` (4 Stichwahl-FAQs + WebApplication schema)
+- **Added:** 2 FAQ entries to `kommunalwahl.html` (Stichwahl + Funktionsweise)
+- **Added:** Visible FAQ section (`<details>`) on Stichwahl-Guide intro for AI Overview extraction
+- **Added:** `<script type="speculationrules">` on 5 pages for instant prefetch (Chrome 109+, progressive enhancement)
+- **Fixed:** Version meta tag drift (4.9.13 → 4.20e) in `kommunalwahl.html`, added to `index.html`
+
 ## v4.20e - 2026-03-16 - Ergebnis-Transparenz
 - **Added:** Tendenz-Verhältnis (z.B. 45:55) neben Textlabel im Ergebnis + Share-Text
 - **Added:** Richtungspfeile pro Kano-Thema im Breakdown (→ Krause / → Reiter / → beide)
