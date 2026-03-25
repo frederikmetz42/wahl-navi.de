@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.21 - 2026-03-25 - Post-Wahl-Revert
+- **Changed:** `index.html` reverted to 25-Thesen-Quiz (was Stichwahl-Guide since v4.19). `cp kommunalwahl.html index.html`.
+- **Changed:** Canonical URL and og:url to `https://mucwahl.de/`
+- **Changed:** FAQ JSON-LD: Stichwahl question updated to past tense
+- **Removed:** Stichwahl-Tools banner (start screen + results page)
+- **Removed:** Stichwahl nav link from burger menu
+- **Status:** Project enters hibernation until next election (Landtagswahl 2028 or earlier)
+
 ## v4.20f - 2026-03-16 - AI Overviews + Speculation Rules
 - **Added:** FAQ structured data (JSON-LD) on `index.html` (4 Stichwahl-FAQs + WebApplication schema)
 - **Added:** 2 FAQ entries to `kommunalwahl.html` (Stichwahl + Funktionsweise)
