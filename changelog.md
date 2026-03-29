@@ -1,9 +1,20 @@
 # Changelog
 
-## v4.21 - 2026-03-25 - Post-Wahl-Revert
+## v4.22 - 2026-03-27 - Mobile Swipe Interaction
+- **Added:** Touch swipe on mobile quiz cards (right = agree, left = disagree, 80px threshold)
+- **Added:** Visual feedback during swipe: card tilt, green/red colour tint, directional hint labels
+- **Added:** Snap-back animation below threshold, card-off-screen animation above threshold
+- **Added:** CSS swipe classes (swipe-right, swipe-left) in `_build/input.css`
+- **Changed:** `app.js` extended with touch event handlers (handleTouchStart/Move/End)
+- **Unchanged:** Button interaction fully preserved, swipe only activates on touch devices
+- **Rebuilt:** `styles.css` via `npx tailwindcss@3`
+
+## v4.21a - 2026-03-25 - Post-Wahl-Revert + Anti-Scraping
 - **Changed:** `index.html` reverted to 25-Thesen-Quiz (was Stichwahl-Guide since v4.19). `cp kommunalwahl.html index.html`.
 - **Changed:** Canonical URL and og:url to `https://mucwahl.de/`
 - **Changed:** FAQ JSON-LD: Stichwahl question updated to past tense
+- **Changed:** `impressum.html` + `datenschutz.html`: Kontaktdaten per JS-Char-Codes gerendert (kein Plaintext), Honeypot-mailto, user-select:none
+- **Fixed:** `datenschutz.html`: Adresse korrigiert (29f → 9), CSP um script-src erweitert
 - **Removed:** Stichwahl-Tools banner (start screen + results page)
 - **Removed:** Stichwahl nav link from burger menu
 - **Status:** Project enters hibernation until next election (Landtagswahl 2028 or earlier)

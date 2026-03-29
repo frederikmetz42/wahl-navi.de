@@ -41,8 +41,15 @@ function wahlomatApp() {
         bannerDismissed: false,
         exitIntentShown: false,
         selectedAnswer: null,
+        swipeStartX: 0,
+        swipeStartY: 0,
+        swipeDeltaX: 0,
+        isSwiping: false,
+        swipeAnimating: false,
+        isTouchDevice: false,
 
         init() {
+            this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
             if (window.WAHLOMAT_DATA) {
                 this.theses = window.WAHLOMAT_DATA.theses;
                 this.parties = window.WAHLOMAT_DATA.parties;
@@ -199,6 +206,103 @@ function wahlomatApp() {
             this.showBackground = false;
             delete this.answers[this.currentThesis.id];
             this.nextStep();
+        },
+
+        handleTouchStart(e) {
+            if (!this.isTouchDevice || this.swipeAnimating || this.selectedAnswer !== null) return;
+            const touch = e.touches[0];
+            this.swipeStartX = touch.clientX;
+            this.swipeStartY = touch.clientY;
+            this.swipeDeltaX = 0;
+            this.isSwiping = false;
+        },
+
+        handleTouchMove(e) {
+            if (!this.isTouchDevice || this.swipeAnimating || this.selectedAnswer !== null) return;
+            const touch = e.touches[0];
+            const dx = touch.clientX - this.swipeStartX;
+            const dy = touch.clientY - this.swipeStartY;
+
+            // If vertical movement dominates, don't swipe (let page scroll)
+            if (!this.isSwiping && Math.abs(dy) > Math.abs(dx)) return;
+
+            // Once horizontal intent is clear, lock into swipe
+            if (!this.isSwiping && Math.abs(dx) > 10) {
+                this.isSwiping = true;
+            }
+
+            if (this.isSwiping) {
+                e.preventDefault();
+                this.swipeDeltaX = dx;
+            }
+        },
+
+        handleTouchEnd() {
+            if (!this.isTouchDevice || !this.isSwiping || this.swipeAnimating) return;
+            const threshold = 80;
+
+            if (this.swipeDeltaX > threshold) {
+                // Swipe right = Agree
+                this.swipeAnimating = true;
+                this.$nextTick(() => {
+                    const card = this.$refs.quizCard;
+                    if (card) {
+                        card.classList.remove('swiping');
+                        card.classList.add('swipe-right');
+                    }
+                    setTimeout(() => {
+                        this.swipeDeltaX = 0;
+                        this.isSwiping = false;
+                        this.swipeAnimating = false;
+                        if (card) {
+                            card.classList.remove('swipe-right');
+                            card.style.transform = '';
+                        }
+                        this.answer(1);
+                    }, 300);
+                });
+            } else if (this.swipeDeltaX < -threshold) {
+                // Swipe left = Disagree
+                this.swipeAnimating = true;
+                this.$nextTick(() => {
+                    const card = this.$refs.quizCard;
+                    if (card) {
+                        card.classList.remove('swiping');
+                        card.classList.add('swipe-left');
+                    }
+                    setTimeout(() => {
+                        this.swipeDeltaX = 0;
+                        this.isSwiping = false;
+                        this.swipeAnimating = false;
+                        if (card) {
+                            card.classList.remove('swipe-left');
+                            card.style.transform = '';
+                        }
+                        this.answer(-1);
+                    }, 300);
+                });
+            } else {
+                // Snap back
+                this.swipeDeltaX = 0;
+                this.isSwiping = false;
+            }
+        },
+
+        getSwipeStyle() {
+            if (!this.isSwiping || this.swipeAnimating) return '';
+            const rotation = this.swipeDeltaX * 0.05;
+            const maxRotation = Math.max(-8, Math.min(8, rotation));
+            return `transform: translateX(${this.swipeDeltaX}px) rotate(${maxRotation}deg);`;
+        },
+
+        getSwipeHintOpacity(direction) {
+            if (!this.isSwiping || this.swipeAnimating) return 0;
+            const threshold = 80;
+            if (direction === 'right') {
+                return Math.min(1, Math.max(0, this.swipeDeltaX / threshold));
+            } else {
+                return Math.min(1, Math.max(0, -this.swipeDeltaX / threshold));
+            }
         },
 
         nextStep() {
